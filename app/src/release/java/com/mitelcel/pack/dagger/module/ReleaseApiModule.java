@@ -1,5 +1,7 @@
 package com.mitelcel.pack.dagger.module;
 
+import com.mitelcel.pack.api.MiApiClient;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -24,7 +26,7 @@ public class ReleaseApiModule {
 
     @Singleton
     @Provides
-    MiApiClient provideSkillSweetApiClient(RestAdapter restAdapter){
+    MiApiClient provideMiApiClient(RestAdapter restAdapter){
         return restAdapter.create(MiApiClient.class);
     }
 

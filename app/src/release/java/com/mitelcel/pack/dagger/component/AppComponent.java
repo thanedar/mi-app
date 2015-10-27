@@ -3,6 +3,7 @@ package com.mitelcel.pack.dagger.component;
 import android.content.SharedPreferences;
 
 import com.mitelcel.pack.MiApp;
+import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.dagger.module.AppModule;
 import com.mitelcel.pack.dagger.module.ReleaseApiModule;
 import com.mitelcel.pack.dagger.module.SharedPrefModule;
@@ -24,7 +25,7 @@ import dagger.Component;
 )
 public interface AppComponent extends AppGraph {
 
-    MiApiClient skillSweetApiClient();
+    MiApiClient miApiClient();
     SharedPreferences sharedPreferences();
     MiApp getApp();
 
