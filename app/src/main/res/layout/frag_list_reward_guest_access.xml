@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mitelcel.pack.ui.fragment.rewardschannel.FragListRewardGuestAccess"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/rewards_header_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rewards"
+        style="@style/Widget.GenericApp.RewardList.Title.TextFolks"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/margin_medium"
+        android:layout_marginBottom="20dp"/>
+
+
+    <View
+        android:id="@+id/separator"
+        android:layout_below="@+id/rewards_header_guest"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/skillsweet_base_color"/>
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rewards_guest_access_subtitle"
+        android:id="@+id/log_or_sign_already_reg_btn"
+        style="@style/Widget.GenericApp.RewardsGuest.TextView"
+        android:textSize="20sp"
+        android:layout_below="@+id/separator"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/rewards_signin"
+        android:layout_alignEnd="@+id/rewards_signin"
+        android:layout_alignLeft="@+id/rewards_signin"
+        android:layout_alignStart="@+id/rewards_signin" />
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_and_redeem"
+        android:id="@+id/rewards_signin"
+        style="@style/Widget.GenericApp.ButtonFolks.New"
+        android:layout_below="@+id/log_or_sign_already_reg_btn"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+
+</RelativeLayout>
+

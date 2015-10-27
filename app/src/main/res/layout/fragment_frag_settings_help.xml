@@ -1,0 +1,27 @@
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mitelcel.pack.ui.fragment.rewardschannel.FragListRewardGuestAccess"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/invite_friends_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/navdrawer_item_help"
+        style="@style/Widget.GenericApp.Settings.Title.TextFolks"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/margin_medium"
+        android:layout_marginBottom="20dp"/>
+
+
+    <View
+        android:id="@+id/separator"
+        android:layout_below="@+id/invite_friends_title"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/skillsweet_base_color"/>
+
+
+</RelativeLayout>

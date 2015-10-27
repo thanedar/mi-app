@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_indigo_500">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingRight="30dp"
+        android:id="@+id/container_btn"
+        android:paddingLeft="30dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/log_or_sign_register"
+            android:text="@string/register"
+            style="@style/Widget.GenericApp.ButtonFolks.New"
+            android:layout_marginTop="20dp"
+            android:elevation="3dp"
+            android:onClick="clickWidgetOnFragment"
+            android:layout_alignParentTop="true"/>
+
+        <com.mitelcel.pack.ui.widget.TextViewFolks
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/already_member"
+            android:id="@+id/log_or_sign_already_reg_btn"
+            style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
+            android:textSize="20sp"
+            android:layout_below="@+id/log_or_sign_register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"/>
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signin"
+            android:id="@+id/log_or_sign_signin"
+            android:onClick="clickWidgetOnFragment"
+            style="@style/Widget.GenericApp.ButtonFolks.New"
+            android:layout_below="@+id/log_or_sign_already_reg_btn"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="5dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

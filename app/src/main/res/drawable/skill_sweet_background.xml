@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <bitmap
+            android:src="@drawable/pattern_bg_640"
+            android:tileMode="repeat" >
+
+        </bitmap>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle" >
+            <gradient
+                android:angle="90"
+                android:centerColor="@color/skillsweet_base_color_half_transparent"
+                android:centerY="0.2"
+                android:endColor="@color/skillsweet_base_color_total_transparent"
+                android:startColor="@color/skillsweet_base_color"
+                android:type="linear" />
+
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle" >
+            <gradient
+                android:angle="90"
+                android:centerColor="@color/skillsweet_base_color_half_transparent"
+                android:centerY="0.8"
+                android:startColor="@color/skillsweet_base_color_total_transparent"
+                android:endColor="@color/skillsweet_base_color"
+                android:type="linear" />
+
+        </shape>
+    </item>
+</layer-list>

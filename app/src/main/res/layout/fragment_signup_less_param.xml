@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/material_indigo_500">
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/register"
+        android:id="@+id/label_register"
+        style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
+        android:textSize="30sp"
+        android:padding="50dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/form_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_register"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp">
+
+        <view
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signup_et_email"
+            android:hint="@string/email"
+            style="@style/Widget.GenericApp.Signup.EditText.New"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+        <view
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:inputType="textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signup_et_pass"
+            android:hint="@string/password"
+            android:layout_below="@+id/signup_et_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            style="@style/Widget.GenericApp.Signup.EditText.New" />
+
+        <view
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:inputType="textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signup_et_confirm_pass"
+            android:hint="@string/confirm_password"
+            android:layout_below="@+id/signup_et_pass"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            style="@style/Widget.GenericApp.Signup.EditText.New"/>
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:id="@+id/signup_btn_submit"
+            android:textSize="20sp"
+            android:layout_below="@+id/signup_et_confirm_pass"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentRight="true"
+            style="@style/Widget.GenericApp.ButtonFolks.New"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"/>
+
+    </RelativeLayout>
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/already_member"
+        android:id="@+id/log_or_sign_already_reg_btn"
+        style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
+        android:layout_below="@+id/form_signup"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:onClick="clickWidgetOnFragment"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

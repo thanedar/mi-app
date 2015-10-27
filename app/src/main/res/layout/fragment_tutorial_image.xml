@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    tools:context="com.mitelcel.pack.ui.fragment.tutorial.FragTutorialImage">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tutorial_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/tutorial_earn"
+            android:textColor="@color/yellow_dark"
+            style="@style/Widget.GenericApp.Settings.Title.TextFolks"
+            android:textSize="30sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+
+        <ImageView
+            android:id="@+id/tutorial_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:src="@drawable/tut_install"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tutorial_text_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/tutorial_install_1"
+            android:textColor="@color/white"
+            android:textSize="28sp"/>
+
+        <TextView
+            android:id="@+id/tutorial_text_2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/tutorial_install_2"
+            android:textColor="@color/white"
+            style="@style/Widget.GenericApp.TextFolks"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

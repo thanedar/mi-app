@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Mi Telcel</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="placeholder_lorem_ipsum">Lorem ipsum dolor</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_next">Next</string>
+    <string name="action_finish">Finish</string>
+    <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem
+        Ipsum</string>
+    <string name="api_fragmen_list">Api List</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_login_or_sign_up">Login Or Sign Up</string>
+
+    <!-- Login -->
+    <string name="user_name">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="gender">Gender</string>
+    <string name="submit">Submit</string>
+    <string name="retry">Retry</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="logout">LogOut</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="log_on">Log On</string>
+    <string name="play_as_guest">Play as Guest</string>
+    <string name="play">Play</string>
+    <string name="install">Install</string>
+    <string name="rewards_guest_access_subtitle">You are a guest user. \n Register and redeem your points.</string>
+    <string name="already_member">Already a member? Sign in</string>
+    <string name="new_user">New User? Create a New Account</string>
+
+    <string name="hello_blank_fragment">Hello, I am a blank fragment</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <!-- signup -->
+    <string name="email_not_valid">Email not valid</string>
+    <string name="password_doesnt_match">Password doesn\'t match</string>
+    <string name="password_more_digit">Password must be at least 4 characters</string>
+    <string name="gender_not_valid">Gender not valid</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="warning">Warning</string>
+    <string name="close">Close</string>
+    <string name="exit">logout</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Go Back</string>
+    <string name="no_connection">To play, you have to be connected.</string>
+    <string name="no_connection_popup">Looks like you don\'t have an internet connection!</string>
+    <string name="no_data">No Data</string>
+    <string name="success">Success</string>
+    <string name="updated">User updated!</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="somethings_goes_wrong">Something is wrong, please try again later.</string>
+
+    <!-- fonts -->
+    <string name="vagroundedstd_black">VAGRoundedStd-Black.otf</string>
+    <string name="vagroundedstd_bold">VAGRoundedStd-Bold.otf</string>
+    <string name="vagroundedstd_light">VAGRoundedStd-Light.otf</string>
+    <string name="vagroundedstd_thin">VAGRoundedStd-Thin.otf</string>
+    <string name="signin">Sign In</string>
+    <string name="register_and_redeem">Register and Redeem</string>
+
+    <!-- MainList -->
+    <string name="install_and_earn">Install and earn %s coins</string>
+    <string name="play_and_earn">Play and earn %s coins</string>
+    <string name="package_tag">package_tag</string>
+    <string name="url_redirect">link_redirect</string>
+    <string name="installed_tag">installed_tag</string>
+    <string name="title_activity_debug">DebugActivity</string>
+
+    <!-- Environment -->
+    <string name="action_debug">Select Environment</string>
+    <string name="title_activity_environment">EnvironmentActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Navigation drawer -->
+    <string name="navdrawer_item_home">Home</string>
+    <string name="navdrawer_item_recent">Recent Activity</string>
+    <string name="navdrawer_item_frequent_numbers">Frequent Numbers</string>
+    <string name="navdrawer_item_services">Services</string>
+    <string name="navdrawer_item_recharge">Recharge</string>
+    <string name="navdrawer_item_pastime">Pastime</string>
+    <string name="navdrawer_item_offers">Offers</string>
+    <string name="navdrawer_item_help">Help</string>
+    <string name="navdrawer_item_terms">Terms &amp; Conditions</string>
+    <string name="navdrawer_item_contact">Contact Us</string>
+    <string name="navdrawer_item_logout">Logout</string>
+    <string name="navdrawer_item_debug">Is Debug?</string>
+    <string name="navdrawer_item_error_call">Token not valid</string>
+    <string name="faq">FAQ</string>
+
+    <!-- Bucksense -->
+    <string name="tats_app_id">9aeee11d-1ffd-11e5-8cfb-d4856445</string>
+    <string name="gcm_sender">1095055717735</string>
+    <!-- Log Level -->
+    <string name="tats_log_verbose">verbose</string>
+    <string name="tats_log_debug">debug</string>
+    <string name="tats_log_info">info</string>
+    <string name="tats_log_warn">warning</string>
+    <string name="tats_log_error">error</string>
+    <string name="tats_log_assert">assert</string>
+    <!-- Retargeting Placement -->
+    <string name="placement_id">5</string>
+    <string name="start_screen">appstart</string>
+    <string name="tutorial_screen">tutorial</string>
+    <!-- Environment -->
+    <string name="tats_env_production">production</string>
+    <string name="tats_env_sandbox">sandbox</string>
+    <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
+
+    <!-- POPUP -->
+    <string name="popup_guest_exit_message">Are you sure want to logout? You will lose all your progress by logging out of the application.</string>
+
+    <!-- MSISDN -->
+    <string name="msisdn">your number</string>
+    <string name="email_hint">your email</string>
+    <string name="msisdn_not_valid">Invalid number</string>
+
+    <string name="lorem_ipsum">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</string>
+
+    <!-- Tutorial -->
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="start">Start Now</string>
+
+    <string name="tutorial_welcome_1">Welcome to</string>
+    <string name="tutorial_welcome_2">It\'s fun and easy to earn prizes</string>
+    <string name="tutorial_install_1">Install Apps</string>
+    <string name="tutorial_install_2">"Install awesome apps and \n earn coins!"</string>
+    <string name="tutorial_play_1">Play Games</string>
+    <string name="tutorial_play_2">"Play fun games and \n earn more coins!"</string>
+    <string name="tutorial_invite_1">Invite Friends</string>
+    <string name="tutorial_invite_2">"Invite lots of friends and \n earn lots of coins."</string>
+    <string name="tutorial_cash">"When you have enough coins, \n redeem them for cool prizes"</string>
+
+    <string name="tutorial_earn">Earn Coins</string>
+    <string name="tutorial_cash_in">Cash In</string>
+
+</resources>

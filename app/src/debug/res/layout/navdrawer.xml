@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:id="@+id/navdrawer"
+    android:fitsSystemWindows="true"
+    android:background="@color/skillsweet_base_color"
+    android:clickable="true">
+
+    <!-- Drawer items -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/navdrawer_items_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Items -->
+            <include android:id="@+id/navdrawer_item_home" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_recent" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_frequent_numbers" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_services" layout="@layout/navdrawer_item"/>
+
+            <include android:id="@+id/navdrawer_item_recharge" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_pastime" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_offers" layout="@layout/navdrawer_item"/>
+
+            <include android:id="@+id/navdrawer_item_help" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_terms" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_contact" layout="@layout/navdrawer_item"/>
+
+            <!-- Divider -->
+            <include  layout="@layout/navdrawer_separator"/>
+
+            <!-- debug -->
+            <include android:id="@+id/navdrawer_item_logout" layout="@layout/navdrawer_item"/>
+            <include  android:id="@+id/navdrawer_item_debug" layout="@layout/navdrawer_item_debug"/>
+            <include  android:id="@+id/navdrawer_item_error_call" layout="@layout/navdrawer_item_debug"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

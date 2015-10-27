@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:id="@+id/item_card"
+        style="@style/Widget.SampleDashboard.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="@dimen/cardview_content_padding"
+        app:cardCornerRadius="0dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_footer"/>
+
+            <LinearLayout
+                android:id="@+id/btn_install"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:background="#ff0000"></View>-->
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:background="#ff3aff35"></View>-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#baffffff"
+                    android:id="@+id/item_install_play">
+
+                    <view
+                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
+                        style="@style/Widget.GenericApp.TextFolks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:gravity="center"
+                        android:text="25"
+                        android:drawableLeft="@drawable/act_bar_coin"
+                        android:drawablePadding="7dp"
+                        android:id="@+id/item_gift_coins"
+                        android:layout_alignTop="@+id/item_install_play_btn"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <view
+                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
+                        style="@style/Widget.GenericApp.GameList.TextFolks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:text="Install and earn 50 coins"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:id="@+id/item_message_gift"
+                        android:layout_alignTop="@+id/item_install_play_btn"
+                        android:layout_toRightOf="@+id/item_gift_coins"
+                        android:layout_toEndOf="@+id/item_gift_coins"
+                        android:layout_toLeftOf="@+id/item_install_play_btn"
+                        android:layout_toStartOf="@+id/item_install_play_btn"/>
+
+                    <view
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="7dp"
+                        android:paddingLeft="7dp"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
+                        android:text="@string/install"
+                        style="@style/Widget.GenericApp.GamesList.ButtonFolks"
+                        android:id="@+id/item_install_play_btn"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/soft_grey"
+                    android:id="@+id/item_divider"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#baffffff"
+                    android:visibility="visible"
+                    android:id="@+id/item_play_fake">
+
+                    <view
+                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
+                        style="@style/Widget.GenericApp.TextFolks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:gravity="center"
+                        android:drawablePadding="7dp"
+                        android:text="10"
+                        android:drawableLeft="@drawable/act_bar_coin"
+                        android:id="@+id/item_gift_coins_for_play"
+                        android:layout_alignTop="@+id/item_fake_play_btn"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <view
+                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
+                        style="@style/Widget.GenericApp.GameList.TextFolks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:text="Play and earn coins"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:id="@+id/item_message_gift_play"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/item_gift_coins_for_play"
+                        android:layout_toEndOf="@+id/item_gift_coins_for_play"
+                        android:layout_toLeftOf="@+id/item_fake_play_btn"
+                        android:layout_toStartOf="@+id/item_fake_play_btn" />
+
+                    <view
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="7dp"
+                        android:paddingLeft="7dp"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:alpha="30"
+                        android:layout_marginRight="10dp"
+                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
+                        android:text="@string/play"
+                        style="@style/Widget.GenericApp.GamesList.ButtonFolksTransparent"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/item_fake_play_btn"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>

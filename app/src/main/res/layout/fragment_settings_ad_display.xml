@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mitelcel.pack.ui.fragment.settings.FragSettingsAdDisplay"
+    android:padding="10dp">
+
+    <include
+        android:id="@+id/sett_header_include"
+        layout="@layout/fragment_settings_header" />
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch Video"
+        android:id="@+id/btn_watch_video"
+        android:textSize="20sp"
+        android:layout_below="@+id/separator"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentRight="true"
+        style="@style/Widget.GenericApp.ButtonFolks.New"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"/>
+
+</RelativeLayout>

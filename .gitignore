@@ -1,0 +1,19 @@
+.DS_Store
+
+# /
+/.gradle
+/build
+/local.properties
+
+# /.idea/
+/.idea/workspace.xml
+
+# /app/
+/app/app.iml
+/app/build
+
+# /buckstracks-ui/
+/buckstracks-ui/build
+
+# /viewserverfordebug/
+/viewserverfordebug/build
