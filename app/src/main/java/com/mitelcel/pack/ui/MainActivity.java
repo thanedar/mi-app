@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.sample_content_fragment, fragMainListGrid);
+            transaction.replace(R.id.main_content_fragment, fragMainListGrid);
             transaction.commit();
         }
 
@@ -149,7 +149,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 break;
             case R.id.navdrawer_item_logout:
                 MiUtils.MiAppPreferences.logOut(this);
-                MiUtils.startSkillActivityClearStack(this, LoginOrSignUp.class);
+                MiUtils.startSkillActivityClearStack(this, LoginOrRegister.class);
                 break;
         }
     }

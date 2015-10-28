@@ -1,6 +1,7 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class FragSignIn extends Fragment implements View.OnClickListener{
+public class FragLogin extends Fragment implements View.OnClickListener{
 
     @InjectView(R.id.reg_red_et_email)
     EditText mail;
@@ -40,11 +41,11 @@ public class FragSignIn extends Fragment implements View.OnClickListener{
 
     OnDialogListener mListener;
 
-    public static final String TAG = FragSignIn.class.getSimpleName();
-    public static final String TAG_TEST_FLOW = "SignIn";
+    public static final String TAG = FragLogin.class.getSimpleName();
+    public static final String TAG_TEST_FLOW = "Login";
 
-    public static FragSignIn newInstance(String param1, String param2) {
-        FragSignIn fragment = new FragSignIn();
+    public static FragLogin newInstance(String param1, String param2) {
+        FragLogin fragment = new FragLogin();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -66,14 +67,15 @@ public class FragSignIn extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_signin, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.inject(this, view);
         return view;
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
         try {
             mListener = (OnDialogListener) activity;
         } catch (ClassCastException e) {
@@ -105,13 +107,13 @@ public class FragSignIn extends Fragment implements View.OnClickListener{
         getActivity().finish();
 
         /*BeanUserValid bean = new BeanUserValid(getActivity().getApplicationContext());
-        MiLog.i(FragSignUp.class.getSimpleName(), "beanUserValid [ " + bean.toString() + " ]");
+        MiLog.i(FragLogin.class.getSimpleName(), "beanUserValid [ " + bean.toString() + " ]");
 
         MiRestClient.init().userValid(bean, new Callback<BeanUserValidResponse>() {
             @Override
             public void success(BeanUserValidResponse beanUserValidResponse, Response response) {
                 dialog.dismiss();
-                MiLog.i(FragLoginOrSignup.class.getSimpleName(), "beanUserValidResponse [ " + beanUserValidResponse.toString() + " ]");
+                MiLog.i(FragLogin.class.getSimpleName(), "beanUserValidResponse [ " + beanUserValidResponse.toString() + " ]");
                 if (beanUserValidResponse.getStatus()) {
                     Buckstracks.trackCustomEvent(Config.EVENT_LOGIN_ID, Config.EVENT_LOGIN_REGISTER, getActivity());
                     MiUtils.MiAppPreferences.saveLoginUser(beanUserValidResponse, getActivity());

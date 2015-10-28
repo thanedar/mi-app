@@ -1,6 +1,5 @@
 package com.mitelcel.pack.utils;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -31,6 +30,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.DialogActivity;
+import com.mitelcel.pack.ui.LoginOrRegister;
 //import com.tatssense.core.Buckstracks;
 
 import java.net.Inet4Address;
@@ -387,16 +387,6 @@ public class MiUtils {
     }
 
     public static class Drawable{
-        public static int getRewardResId(Context context){
-            if(MiAppPreferences.getRewardsCurrency(context).equals(Config.COINS)){
-                return R.drawable.act_bar_coin;
-            }
-            if(MiAppPreferences.getRewardsCurrency(context).equals(Config.CASH)){
-                return R.drawable.ic_cash;
-            }
-            return 0;
-        }
-
         public static ColorMatrix getGrayscaleColorMatrix() {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(0);
@@ -591,7 +581,7 @@ public class MiUtils {
         public static void logOut(Activity activity){
             MiAppPreferences.clear(activity);
             MiAppPreferences.setLogout(activity);
-//            MiUtils.startSkillActivity(activity, LoginOrSignUp.class);
+            MiUtils.startSkillActivity(activity, LoginOrRegister.class);
             activity.finish();
         }
 

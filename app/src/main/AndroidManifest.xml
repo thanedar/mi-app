@@ -48,8 +48,8 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.mitelcel.pack.ui.LoginOrSignUp"
-            android:label="@string/title_activity_login_or_sign_up"
+            android:name=".ui.LoginOrRegister"
+            android:label="@string/title_activity_login_or_register"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SkillSweet.NoActionBar" >
         </activity>

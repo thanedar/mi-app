@@ -16,7 +16,7 @@
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/log_or_sign_register"
+            android:id="@+id/login_or_register_register"
             android:text="@string/register"
             style="@style/Widget.GenericApp.ButtonFolks.New"
             android:layout_marginTop="20dp"
@@ -29,21 +29,21 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/already_member"
-            android:id="@+id/log_or_sign_already_reg_btn"
+            android:id="@+id/login_or_register_already_reg"
             style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
             android:textSize="20sp"
-            android:layout_below="@+id/log_or_sign_register"
+            android:layout_below="@+id/login_or_register_register"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"/>
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/signin"
-            android:id="@+id/log_or_sign_signin"
+            android:text="@string/login"
+            android:id="@+id/login_or_register_login"
             android:onClick="clickWidgetOnFragment"
             style="@style/Widget.GenericApp.ButtonFolks.New"
-            android:layout_below="@+id/log_or_sign_already_reg_btn"
+            android:layout_below="@+id/login_or_register_already_reg"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="5dp"/>
 

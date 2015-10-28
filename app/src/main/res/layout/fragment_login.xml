@@ -1,60 +1,90 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.mitelcel.pack.ui.Login$PlaceholderFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_indigo_500">
 
-    <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/black"
-        android:id="@+id/tv_email"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/btn_expired"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/user_created_et_json_to_send" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/user_created_et_json_to_send"
-        android:layout_below="@+id/tv_email"
-        android:textColor="@android:color/black"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/login_tv_res"
-        android:layout_below="@+id/btn_expired"
-        android:textColor="@android:color/black"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
-
-    <TextView
+    <com.mitelcel.pack.ui.widget.TextViewFolks
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Authenticate"
-        android:textColor="@android:color/black"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
+        android:text="@string/login"
+        android:id="@+id/label_login"
+        style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
+        android:textSize="30sp"
+        android:layout_above="@+id/form_login"
+        android:padding="50dp"
+        android:gravity="center"
         android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/form_login"
+        android:padding="15dp">
+
+        <view
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reg_red_et_email"
+            android:hint="@string/msisdn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/edittext_background"
+            style="@style/Widget.GenericApp.Signup.EditText.New" />
+
+        <view
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:inputType="textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reg_red_et_pass"
+            android:hint="@string/enter_your_password"
+            android:layout_below="@+id/reg_red_et_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            style="@style/Widget.GenericApp.Signup.EditText.New" />
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_on"
+            android:id="@+id/signin_btn_logon"
+            android:textSize="20sp"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            style="@style/Widget.GenericApp.ButtonFolks.New"
+            android:layout_below="@+id/reg_red_et_pass"
+            android:layout_marginBottom="5dp"/>
+
+    </RelativeLayout>
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/new_user"
+        style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:onClick="clickWidgetOnFragment"
+        android:clickable="true"
+        android:id="@+id/signin_tv_new_user"
+        android:layout_below="@+id/form_login"
+        android:gravity="center" />
 
 </RelativeLayout>

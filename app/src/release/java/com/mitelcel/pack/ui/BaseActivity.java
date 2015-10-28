@@ -23,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.ic_skill_logo);
+        getSupportActionBar().setLogo(R.drawable.ic_launcher);
 
 
         if (BuildConfig.DEBUG) {

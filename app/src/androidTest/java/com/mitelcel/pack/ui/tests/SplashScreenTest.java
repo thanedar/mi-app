@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 
-import com.mitelcel.pack.ui.LoginOrSignUp;
+import com.mitelcel.pack.ui.LoginOrRegister;
 import com.mitelcel.pack.ui.SplashScreen;
 import com.mitelcel.pack.utils.MiUtils;
 
@@ -40,11 +40,11 @@ public class SplashScreenTest extends ActivityInstrumentationTestCase2<SplashScr
     public void testOpenLoginOrSignupActivity(){
 
         // add monitor to check for the second activity
-        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(LoginOrSignUp.class.getName(), null, false);
+        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(LoginOrRegister.class.getName(), null, false);
 
         // wait 2 seconds for the start of the activity
-        LoginOrSignUp loginOrSignUp = (LoginOrSignUp) monitor.waitForActivityWithTimeout(2000);
-        assertNotNull(loginOrSignUp);
+        LoginOrRegister loginOrRegister = (LoginOrRegister) monitor.waitForActivityWithTimeout(2000);
+        assertNotNull(loginOrRegister);
 
         // check if token is not present
         assertNotNull(pref.getString(MiUtils.MiAppPreferences.TOKEN, null));

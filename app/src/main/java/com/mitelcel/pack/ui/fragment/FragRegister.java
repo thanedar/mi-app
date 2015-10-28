@@ -1,6 +1,7 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class FragSignUp extends Fragment implements View.OnClickListener{
+public class FragRegister extends Fragment implements View.OnClickListener{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -52,12 +53,12 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
 
     OnDialogListener mListener;
 
-    public static final String TAG = FragSignUp.class.getSimpleName();
+    public static final String TAG = FragRegister.class.getSimpleName();
     public static final String TAG_TEST_FLOW = "SignUp";
 
     // TODO: Rename and change types and number of parameters
-    public static FragSignUp newInstance(String param1, String param2) {
-        FragSignUp fragment = new FragSignUp();
+    public static FragRegister newInstance(String param1, String param2) {
+        FragRegister fragment = new FragRegister();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +66,7 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
         return fragment;
     }
 
-    public FragSignUp() {
+    public FragRegister() {
         // Required empty public constructor
     }
 
@@ -89,7 +90,7 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_signup_less_param, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_register, container, false);
         ButterKnife.inject(this, rootView);
 
         email.addTextChangedListener(new TextWatcher() {
@@ -115,8 +116,9 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
         try {
             mListener = (OnDialogListener) activity;
         } catch (ClassCastException e) {
@@ -154,18 +156,18 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
         getActivity().finish();
 
         /*BeanActionCreateUser bean = new BeanActionCreateUser(getActivity().getApplicationContext(), pass, email, referralCode);
-        MiLog.i(FragSignUp.class.getSimpleName(), "beanActionCreateUserRequest [ " + bean.toString() + " ]");
+        MiLog.i(FragRegister.class.getSimpleName(), "beanActionCreateUserRequest [ " + bean.toString() + " ]");
 
         MiRestClient.init().actionCreateUser(bean, new Callback<BeanActionCreateUserResponse>() {
             @Override
             public void success(BeanActionCreateUserResponse beanActionCreateUserResponse, Response response) {
                 dialog.dismiss();
-                MiLog.i(FragSignUp.class.getSimpleName(), "beanActionCreateUserResponse [ " + beanActionCreateUserResponse.toString() + " ]");
+                MiLog.i(FragRegister.class.getSimpleName(), "beanActionCreateUserResponse [ " + beanActionCreateUserResponse.toString() + " ]");
                 if (beanActionCreateUserResponse.getStatus()) {
                     // event custom
                     Buckstracks.trackCustomEvent(Config.EVENT_NEW_USER_ID, Config.EVENT_NEW_USER_REGISTER, getActivity());
 
-                    MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + " authcall ok");
+                    MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + " authcall ok");
                     executeValidateUser();
 
                     MiUtils.MiAppPreferences.saveDataRegisterUser(beanActionCreateUserResponse, getActivity());
@@ -173,14 +175,14 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
                     getActivity().finish();
                 } else {
                     if (beanActionCreateUserResponse.getResult() != null && beanActionCreateUserResponse.getResult().getMessage() != null) {
-                        MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + "CreateUser KO Status");
+                        MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "CreateUser KO Status");
                         mListener.showDialogErrorCall(
                                 beanActionCreateUserResponse.getResult().getMessage(),
                                 getString(R.string.close),
                                 R.string.close,
                                 DialogActivity.REQ_SIGN_UP);
                     } else {
-                        MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + "CreateUser KO Empty");
+                        MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "CreateUser KO Empty");
                         mListener.showDialogErrorCall(
                                 getString(R.string.somethings_goes_wrong),
                                 getString(R.string.close),
@@ -193,7 +195,7 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
 
             @Override
             public void failure(RetrofitError error) {
-                MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + "CreateUser KO Failure");
+                MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "CreateUser KO Failure");
                 dialog.dismiss();
                 mListener.showDialogErrorCall(
                         getString(R.string.somethings_goes_wrong),
@@ -206,12 +208,12 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
     }
 
     public void executeValidateUser() {
-        /*MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + " validateuser");
+        /*MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + " validateuser");
         BeanUserValid bean = new BeanUserValid(getActivity().getApplicationContext());
         miApiClient.userValid(bean, new Callback<BeanUserValidResponse>() {
             @Override
             public void success(BeanUserValidResponse beanUserValidResponse, Response response) {
-                MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + " validateuser ok - " + beanUserValidResponse);
+                MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + " validateuser ok - " + beanUserValidResponse);
                 dialog.dismiss();
             }
 
@@ -254,12 +256,12 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
         /*if(MiUtils.MiAppPreferences.getToken(getActivity()) == null) {
             dialog.show();
             BeanAuthenticate bean = new BeanAuthenticate(getActivity().getApplicationContext(), MiUtils.MiAppPreferences.AUTHENTICATION_PASS);
-            MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + "Auth");
+            MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "Auth");
             miApiClient.authenticate(bean, new Callback<BeanAuthenticateResponse>() {
                 @Override
                 public void success(BeanAuthenticateResponse beanAuthenticateResponse, Response response) {
                     dialog.dismiss();
-                    MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + "Auth OK");
+                    MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "Auth OK");
                     MiUtils.MiAppPreferences.setToken(getActivity(), beanAuthenticateResponse.getIdToken());
                     submit();
                 }
@@ -273,7 +275,7 @@ public class FragSignUp extends Fragment implements View.OnClickListener{
                             R.string.close,
                             DialogActivity.REQ_SIGN_UP
                     );
-                    MiLog.i(FragSignUp.class.getName(), TAG_TEST_FLOW + "Auth KO - Error[ " + error + " ]");
+                    MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "Auth KO - Error[ " + error + " ]");
                 }
             });
         }

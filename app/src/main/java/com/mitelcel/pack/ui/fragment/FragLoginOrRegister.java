@@ -1,6 +1,7 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,20 +17,20 @@ import com.mitelcel.pack.ui.listener.OnDialogListener;
 
 import butterknife.ButterKnife;
 
-public class FragLoginOrSignup extends Fragment{
+public class FragLoginOrRegister extends Fragment{
 
     MaterialDialog dialog;
 
     OnDialogListener mListener;
 
-    public static final String TAG = FragLoginOrSignup.class.getSimpleName();
+    public static final String TAG = FragLoginOrRegister.class.getSimpleName();
 
-    public static FragLoginOrSignup newInstance() {
-        FragLoginOrSignup fragment = new FragLoginOrSignup();
+    public static FragLoginOrRegister newInstance() {
+        FragLoginOrRegister fragment = new FragLoginOrRegister();
         return fragment;
     }
 
-    public FragLoginOrSignup() {
+    public FragLoginOrRegister() {
         // Required empty public constructor
     }
 
@@ -43,7 +44,7 @@ public class FragLoginOrSignup extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login_or_signup, container, false);
+        View view = inflater.inflate(R.layout.fragment_login_or_register, container, false);
         ButterKnife.inject(this, view);
 
         dialog = new MaterialDialog.Builder(getActivity())
@@ -60,8 +61,9 @@ public class FragLoginOrSignup extends Fragment{
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
         try {
             mListener = (OnDialogListener) activity;
         } catch (ClassCastException e) {

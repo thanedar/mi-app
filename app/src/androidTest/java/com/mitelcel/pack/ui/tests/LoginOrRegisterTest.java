@@ -11,21 +11,21 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.ui.LoginOrSignUp;
+import com.mitelcel.pack.ui.LoginOrRegister;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.utils.MiUtils;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
-public class LoginOrSignUpTest extends ActivityInstrumentationTestCase2<LoginOrSignUp> {
+public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginOrRegister> {
 
-    LoginOrSignUp loginOrSignUp;
+    LoginOrRegister loginOrRegister;
     View rootActivity;
     SharedPreferences pref;
 
-    public LoginOrSignUpTest() {
-        super(LoginOrSignUp.class);
+    public LoginOrRegisterTest() {
+        super(LoginOrRegister.class);
     }
 
     @Override
@@ -34,9 +34,9 @@ public class LoginOrSignUpTest extends ActivityInstrumentationTestCase2<LoginOrS
         //NOTE: Activities under test may not be started from within the UI thread. If your test method is annotated with UiThreadTest,
         // then you must call setActivityInitialTouchMode(boolean) from setUp().
         setActivityInitialTouchMode(false);
-        loginOrSignUp = getActivity();
-        rootActivity = loginOrSignUp.getWindow().getDecorView();
-        pref = PreferenceManager.getDefaultSharedPreferences(loginOrSignUp);
+        loginOrRegister = getActivity();
+        rootActivity = loginOrRegister.getWindow().getDecorView();
+        pref = PreferenceManager.getDefaultSharedPreferences(loginOrRegister);
         pref.edit().clear().commit();
     }
 
@@ -51,7 +51,7 @@ public class LoginOrSignUpTest extends ActivityInstrumentationTestCase2<LoginOrS
 
     public void testLogIn() throws Exception{
         // get play as guest user
-        Button btn = (Button)rootActivity.findViewById(R.id.log_or_sign_register);
+        Button btn = (Button)rootActivity.findViewById(R.id.login_or_register_register);
         // click on btn
         TouchUtils.clickView(this, btn);
         // get btn logon

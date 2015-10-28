@@ -30,7 +30,6 @@ public class LayoutCashCoins extends FrameLayout
     TextView tvCoinsCash;
     @InjectView(R.id.progress_bar_coins)
     ProgressBar pbCoins;
-    int mResIcon;
 
     @Inject
     MiApiClient miApiClient;
@@ -79,8 +78,7 @@ public class LayoutCashCoins extends FrameLayout
     }
 
     private void setCashOrCoinIcon(){
-        mResIcon = MiUtils.Drawable.getRewardResId(getContext());
-        tvCoinsCash.setCompoundDrawablesWithIntrinsicBounds(0, 0, mResIcon, 0);
+        tvCoinsCash.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cash, 0);
         String value = MiUtils.MiAppPreferences.getMyEarnRewards(getContext());
         String symbol = MiUtils.MiAppPreferences.getCurrencySymbol(getContext());
         tvCoinsCash.setText(symbol + value);
