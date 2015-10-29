@@ -22,27 +22,27 @@ import butterknife.InjectView;
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
-public class LayoutCashCoins extends FrameLayout
+public class LayoutBalance extends FrameLayout
 //        implements SharedPreferences.OnSharedPreferenceChangeListener, Observer<BeanUserWalletResponse>
 {
 
-    @InjectView(R.id.act_bar_coins)
-    TextView tvCoinsCash;
-    @InjectView(R.id.progress_bar_coins)
-    ProgressBar pbCoins;
+    @InjectView(R.id.act_bar_balance)
+    TextView textView;
+    @InjectView(R.id.progress_bar_balance)
+    ProgressBar progressBar;
 
     @Inject
     MiApiClient miApiClient;
 
-    public LayoutCashCoins(Context context) {
+    public LayoutBalance(Context context) {
         super(context);
     }
 
-    public LayoutCashCoins(Context context, AttributeSet attrs) {
+    public LayoutBalance(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public LayoutCashCoins(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LayoutBalance(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -50,16 +50,13 @@ public class LayoutCashCoins extends FrameLayout
     protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.inject(this);
-        setCashOrCoinIcon();
+        setCurrentBalance();
     }
 
 //    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if(key.equals(MiUtils.MiAppPreferences.REWARD_CURRENCY)
-                || key.equals(MiUtils.MiAppPreferences.COIN_COUNT)
-                || key.equals(MiUtils.MiAppPreferences.MONEY_COUNT)
-                || key.equals(MiUtils.MiAppPreferences.CURRENCY_SYMBOL))
-            setCashOrCoinIcon();
+        if(key.equals(MiUtils.MiAppPreferences.MONEY_BALANCE) || key.equals(MiUtils.MiAppPreferences.CURRENCY_SYMBOL))
+            setCurrentBalance();
     }
 
     @Override
@@ -77,27 +74,27 @@ public class LayoutCashCoins extends FrameLayout
         miApiClient = null;
     }
 
-    private void setCashOrCoinIcon(){
-        tvCoinsCash.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cash, 0);
-        String value = MiUtils.MiAppPreferences.getMyEarnRewards(getContext());
+    private void setCurrentBalance(){
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cash, 0, 0, 0);
         String symbol = MiUtils.MiAppPreferences.getCurrencySymbol(getContext());
-        tvCoinsCash.setText(symbol + value);
-        tvCoinsCash.setOnClickListener(new OnClickListener() {
+        String value = MiUtils.MiAppPreferences.getMoneyCount(getContext());
+        textView.setText(symbol + value);
+        /*textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                updateUserWallet();
+                updateUserWallet();
             }
-        });
+        });*/
     }
 
     public void hideProgressBarCoins(){
-        if(pbCoins != null)pbCoins.setVisibility(View.GONE);
-        if(tvCoinsCash!=null)tvCoinsCash.setVisibility(View.VISIBLE);
+        if(progressBar != null) progressBar.setVisibility(View.GONE);
+        if(textView !=null) textView.setVisibility(View.VISIBLE);
     }
 
     public void showProgressBarCoins(){
-        if(pbCoins != null)pbCoins.setVisibility(View.VISIBLE);
-        if(tvCoinsCash!=null)tvCoinsCash.setVisibility(View.GONE);
+        if(progressBar != null) progressBar.setVisibility(View.VISIBLE);
+        if(textView !=null) textView.setVisibility(View.GONE);
     }
 
     /*public void callUserWallet(){
@@ -122,11 +119,9 @@ public class LayoutCashCoins extends FrameLayout
 
 //    @Override
     public void onNext(GenericBean beanUserWalletResponse) {
-        MiLog.i(LayoutCashCoins.class.getSimpleName(), "beanUserWallet response [ " + beanUserWalletResponse.toString() + " ]");
+        MiLog.i(LayoutBalance.class.getSimpleName(), "beanUserWallet response [ " + beanUserWalletResponse.toString() + " ]");
         /*if (beanUserWalletResponse != null && beanUserWalletResponse.getResult().getErrorCode() == 1) {
-            String coins = beanUserWalletResponse.getCoinBalance();
             String cash = beanUserWalletResponse.getMoneyBalance();
-            MiUtils.MiAppPreferences.setCoinCount(getContext(), coins);
             MiUtils.MiAppPreferences.setMoneyCount(getContext(), cash);
         }*/
     }

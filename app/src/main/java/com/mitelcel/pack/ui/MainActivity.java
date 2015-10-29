@@ -14,10 +14,12 @@ import android.view.View;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.ui.fragment.FragHelp;
 import com.mitelcel.pack.ui.fragment.FragMainListGrid;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
+import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiUtils;
 
 import javax.inject.Inject;
@@ -41,6 +43,8 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     boolean mIsDialogStarted = false;
     boolean mIsBonusDialogStarted = false;
 
+    protected static final String BACK_STACK_NAME = "bk_main";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +56,12 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         fragMainListGrid = FragMainListGrid.newInstance(null);
 
         if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.main_content_fragment, fragMainListGrid);
-            transaction.commit();
+            FragmentHandler.addFragmentInBackStackWithAnimation(
+                    getSupportFragmentManager(),
+                    BACK_STACK_NAME,
+                    FragMainListGrid.class.getName(),
+                    fragMainListGrid,
+                    R.id.main_content_fragment);
         }
 
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -121,7 +128,16 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
     public void onClickNavigationDrawer(View view){
         mDrawerLayout.closeDrawers();
+        FragmentTransaction transaction;
         switch (view.getId()){
+            case R.id.navdrawer_item_home:
+                FragmentHandler.addFragmentInBackStackWithAnimation(
+                        getSupportFragmentManager(),
+                        BACK_STACK_NAME,
+                        FragMainListGrid.class.getName(),
+                        fragMainListGrid,
+                        R.id.main_content_fragment);
+                break;
             case R.id.navdrawer_item_recent:
 //                startActivity(new Intent(this, InviteFriends.class));
                 break;
@@ -141,7 +157,12 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 //                startActivity(new Intent(this, Rewards.class));
                 break;
             case R.id.navdrawer_item_help:
-//                startActivity(new Intent(this, Rewards.class));
+                FragmentHandler.addFragmentInBackStackWithAnimation(
+                        getSupportFragmentManager(),
+                        BACK_STACK_NAME,
+                        FragHelp.class.getName(),
+                        FragHelp.newInstance("", ""),
+                        R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_terms:
 //                startActivity(new Intent(this, Rewards.class));
@@ -191,7 +212,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(actionBar.getDisplayOptions() | ActionBar.DISPLAY_SHOW_CUSTOM);
 
-        View coins = View.inflate(getApplicationContext(), R.layout.actionbar_coins, null);
+        View coins = View.inflate(getApplicationContext(), R.layout.actionbar_balance, null);
 
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT,
