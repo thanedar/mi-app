@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -149,7 +151,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 break;
             case R.id.navdrawer_item_logout:
                 MiUtils.MiAppPreferences.logOut(this);
-                MiUtils.startSkillActivityClearStack(this, LoginOrRegister.class);
                 break;
         }
     }
@@ -184,6 +185,21 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     @Override
     public void showDialogErrorCall(String content, String btnTex, int resId, int requestCode) {
         MiUtils.showDialogError(this, content, btnTex, resId, requestCode);
+    }
+
+    public void actionBarDecorator(String numberCoins){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(actionBar.getDisplayOptions() | ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        View coins = View.inflate(getApplicationContext(), R.layout.actionbar_coins, null);
+
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+
+        layoutParams.rightMargin = 40;
+        coins.setLayoutParams(layoutParams);
+        actionBar.setCustomView(coins);
     }
 
 }

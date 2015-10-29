@@ -45,23 +45,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-
-    public void actionBarDecorator(String numberCoins){
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(actionBar.getDisplayOptions()
-                | ActionBar.DISPLAY_SHOW_CUSTOM);
-
-        View coins = View.inflate(getApplicationContext(), R.layout.actionbar_coins, null);
-
-        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.END | Gravity.CENTER_VERTICAL);
-
-        layoutParams.rightMargin = 40;
-        coins.setLayoutParams(layoutParams);
-        actionBar.setCustomView(coins);
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
