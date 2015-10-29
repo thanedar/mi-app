@@ -19,7 +19,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, FragSplashScreen.newInstance("",""))
+                    .add(R.id.container, FragSplashScreen.newInstance())
                     .commit();
         }
 

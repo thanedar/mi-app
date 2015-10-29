@@ -30,20 +30,15 @@ public class FragSplashScreen extends Fragment implements
 
     MaterialDialog dialog;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     public static final String TAG_TEST_FLOW = "SplashScreen";
 
     @Inject
     MiApiClient miApiClient;
 
     // TODO: Rename and change types and number of parameters
-    public static FragSplashScreen newInstance(String param1, String param2) {
+    public static FragSplashScreen newInstance() {
         FragSplashScreen fragment = new FragSplashScreen();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -77,7 +72,7 @@ public class FragSplashScreen extends Fragment implements
             public void run() {
                 autoLogin();
             }
-        }, 1500);
+        }, 1000);
 
     }
 
@@ -94,7 +89,7 @@ public class FragSplashScreen extends Fragment implements
     }
 
     private void autoLogin() {
-        MiLog.i(FragSplashScreen.class.getName(), "getLogout value [" + MiUtils.MiAppPreferences.getLogout(getActivity()) + "]");
+        MiLog.i(FragSplashScreen.class.getName(), "getLoggedStatus value [" + MiUtils.MiAppPreferences.getLoggedStatus(getActivity()) + "]");
         MiUtils.startSkillActivity(getActivity(), MainActivity.class);
         getActivity().finish();
     }

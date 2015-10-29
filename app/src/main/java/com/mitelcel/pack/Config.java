@@ -9,13 +9,6 @@ public class Config {
     public static final int ERROR_NETWORK = -3;
     public static final int SUCCESS = 1;
 
-    /**
-     * CASH/COINS
-     */
-    public static final String REWARD_CURRENCY = "reward_currency";
-    public static final String COINS = "coins";
-    public static final String CASH = "cash";
-
     public static final int MSISDN_LENGTH = 8;
     public static final int PASS_LENGTH = 4;
 
