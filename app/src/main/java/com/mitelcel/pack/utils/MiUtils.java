@@ -9,7 +9,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -22,12 +21,13 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.IdRes;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.DialogActivity;
 import com.mitelcel.pack.ui.LoginOrRegister;
@@ -37,15 +37,9 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
@@ -213,10 +207,15 @@ public class MiUtils {
         /**
          * return the location object
          * @param context
-         * @return
+         * @return location
          */
         public static Location getUserLocation(Context context){
             Location location = null;
+            if ( Build.VERSION.SDK_INT >= 23 &&
+                    ContextCompat.checkSelfPermission( context, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return location;
+            }
             try{
                 final LocationManager locationManager = (LocationManager) context
                         .getSystemService(Context.LOCATION_SERVICE);
@@ -249,7 +248,7 @@ public class MiUtils {
         }
 
         public static boolean hasAllParamsToValidate(Context context){
-            if(!MiAppPreferences.hasUserMail(context) || MiAppPreferences.getToken(context) == null)
+            if (!MiAppPreferences.hasUserMail(context) || MiAppPreferences.getToken(context) == null)
                 return false;
 
             return true;
@@ -265,86 +264,11 @@ public class MiUtils {
             }
         }
 
-        public static void sendMessageByFb(Context context, String message){
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, message);
-            sharingIntent.setType("text/plain");
-            sharingIntent.setPackage(PACKAGE_FB);
-            try
-            {
-                context.startActivity(sharingIntent);
-            }catch (android.content.ActivityNotFoundException ex)
-            {
-                ex.printStackTrace();
-            }
-        }
-        public static void sendMessageByWhatsapp(Context context, String message){
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, message);
-            sendIntent.setType("text/plain");
-            sendIntent.setPackage(PACKAGE_WHATSAPP);
-            try
-            {
-                context.startActivity(sendIntent);
-            }catch (android.content.ActivityNotFoundException ex)
-            {
-                ex.printStackTrace();
-            }
-        }
         public static void sendMessageBySMS(Context context, String message){
             Intent sendIntent = new Intent(Intent.ACTION_VIEW);
             sendIntent.setData(Uri.parse("sms:"));
             sendIntent.putExtra("sms_body", message);
             context.startActivity(sendIntent);
-        }
-
-        /**
-         * http://stackoverflow.com/questions/5734678/custom-filtering-of-intent-chooser-based-on-installed-android-package-name
-         * @param context
-         * @param message
-         */
-        public static void sendMessageByEmail(Context context, String message){
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, context.getString(R.string.app_name));
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
-            sharingIntent.setType("message/rfc822");
-
-            List<LabeledIntent> intentList = new ArrayList<>();
-            PackageManager pm = context.getPackageManager();
-            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-            intent.setType("message/rfc822");
-            Observable
-                    .from(context.getPackageManager().queryIntentActivities(intent, 0))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .filter(ri -> (ri.activityInfo.packageName.contains("mail")))
-                    .subscribe(new Observer<ResolveInfo>() {
-
-                        @Override
-                        public void onCompleted() {
-                            // convert intentList to array
-                            LabeledIntent[] extraIntents = intentList.toArray(new LabeledIntent[intentList.size()]);
-                            Intent appChooser = Intent.createChooser(sharingIntent, "Send mail");
-                            appChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
-                            context.startActivity(appChooser);
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-
-                        }
-
-                        @Override
-                        public void onNext(ResolveInfo ri) {
-                            Intent intent = new Intent();
-                            intent.setComponent(new ComponentName(ri.activityInfo.packageName, ri.activityInfo.name));
-                            intent.setAction(Intent.ACTION_SEND);
-                            intent.setType("message/rfc822");
-                            intent.setPackage(ri.activityInfo.packageName);
-                            intentList.add(new LabeledIntent(intent, ri.activityInfo.packageName, ri.loadLabel(pm), ri.icon));
-                        }
-                    });
         }
     }
 
@@ -413,12 +337,11 @@ public class MiUtils {
 
     public static class MiAppPreferences {
 
-        public static final String TOKEN = "token";
+        public static final String APP_TOKEN = "mi_app_token";
+        public static final String SESSION_ID = "mi_session_id";
         public static final String PASSWORD_AUT = "password_aut";
-        public static final String ID_APPLICATION = "id_application";
         public static final String MSISDN = "msisdn";
-        public static final String COIN_COUNT = "coin_count";
-        public static final String MONEY_COUNT = "money_count";
+        public static final String MONEY_BALANCE = "money_balance";
         public static final String USER_EMAIL = "user_mail";
         public static final String TOKEN_EXPIRED = "token_expired";
         public static final String DEVICE_TYPE = "device_type";
@@ -428,7 +351,6 @@ public class MiUtils {
         public static final int LOGOUT = 1;
         public static final int LOGIN_NOT_SET = -1;
         public static final int LOGIN = 0;
-        public static String REWARD_CURRENCY = "reward_currency";
         public static String CURRENCY_SYMBOL = "currency_symbol";
         public static String MSISDN_PREFIX = "msisdn_prefix";
         public static String MSISDN_FORMAT = "msisdn_format";
@@ -438,18 +360,30 @@ public class MiUtils {
 
         public static final String SKILL_SHARED_PREF_NAME = "mitelcel_shared_pref";
 
+        public static final String TAG = "MiAppPreferences";
+
         private static SharedPreferences getSharedPreferences(final Context context) {
             return context.getSharedPreferences(SKILL_SHARED_PREF_NAME, Context.MODE_PRIVATE);
         }
 
         public static void setToken(Context context, String token){
-            getSharedPreferences(context).edit().putString(TOKEN, token).apply();
+            getSharedPreferences(context).edit().putString(APP_TOKEN, token).apply();
         }
 
         public static String getToken(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            MiLog.i(MiAppPreferences.class.getName(), "Token[" + sp.getString(TOKEN, null) + "]");
-            return sp.getString(TOKEN, null);
+            String token = getSharedPreferences(context).getString(APP_TOKEN, "");
+            MiLog.i(TAG, "Token[" + token + "]");
+            return token;
+        }
+
+        public static void setSessionId(Context context, String session_id){
+            getSharedPreferences(context).edit().putString(SESSION_ID, session_id).apply();
+        }
+
+        public static String getSessionId(Context context){
+            String s_id = getSharedPreferences(context).getString(SESSION_ID, "");
+            MiLog.i(TAG, "Session ID [" + s_id + "]");
+            return s_id;
         }
 
         public static void setAuthPass(Context context, String value){
@@ -457,12 +391,11 @@ public class MiUtils {
         }
 
         public static String getAuthPass(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            return sp.getString(PASSWORD_AUT, "");
+            return getSharedPreferences(context).getString(PASSWORD_AUT, "");
         }
 
         public static void setUserMail(Context context, String value){
-            MiLog.i("Sh pref", "set email: " + value);
+            MiLog.i(TAG, "set email: " + value);
             getSharedPreferences(context).edit().putString(USER_EMAIL, value).apply();
         }
 
@@ -475,23 +408,9 @@ public class MiUtils {
         }
 
         public static String getUserMail(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            String email = sp.getString(USER_EMAIL, "");
-            MiLog.i("Sh pref", "get user email: " + email);
+            String email = getSharedPreferences(context).getString(USER_EMAIL, "");
+            MiLog.i(TAG, "get user email: " + email);
             return email;
-        }
-
-        public static String getRewardsCurrency(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            return sp.getString(REWARD_CURRENCY, "");
-        }
-
-        public static String getMyEarnRewards(Context context){
-            if(getRewardsCurrency(context).equals(Config.COINS))
-                return getCoinCount(context);
-            if(getRewardsCurrency(context).equals(Config.CASH))
-                return getMoneyCount(context);
-            return "";
         }
 
         public static void setMsisdn(Context context, String value){
@@ -512,64 +431,43 @@ public class MiUtils {
             return sp.getString(DEVICE_TYPE, "android");
         }
 
-        public static void setCoinCount(Context context, String value){
-            getSharedPreferences(context).edit().putString(COIN_COUNT, value).apply();
-        }
-
-        public static String getCoinCount(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            return sp.getString(COIN_COUNT, "");
-        }
-
         public static void setMoneyCount(Context context, String value){
-            getSharedPreferences(context).edit().putString(MONEY_COUNT, value).apply();
+            getSharedPreferences(context).edit().putString(MONEY_BALANCE, value).apply();
         }
 
         public static String getMoneyCount(Context context){
             SharedPreferences sp = getSharedPreferences(context);
-            return sp.getString(MONEY_COUNT, "");
+            return sp.getString(MONEY_BALANCE, "100.00");
         }
 
         public static void setLogout(Context context){
             setLoggedStatus(context, LOGOUT);
-            MiLog.i(MiUtils.class.getName(), "flow Logout setLogout[" + LOGOUT + "]");
+            MiLog.i(TAG, "flow Logout setLogout[" + LOGOUT + "]");
         }
 
         public static void setLogin(Context context){
             setLoggedStatus(context, LOGIN);
-            MiLog.i(MiUtils.class.getName(), "flow Logout setLogout[" + LOGIN + "]");
+            MiLog.i(TAG, "flow Logout setLogout[" + LOGIN + "]");
         }
 
         static void setLoggedStatus(Context context, int value){
             getSharedPreferences(context).edit().putInt(LOGIN_STATUS_KEY, value).apply();
         }
 
-        public static int getLogout(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            MiLog.i(MiUtils.class.getName(), "flow Logout getLogout[" + sp.getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET) + "]");
-            return sp.getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET);
-        }
-
-        public static void setIdProfile(Context context, int value){
-            MiLog.i(MiAppPreferences.class.getName(), "Profile id[" + value + "] setIdProfile");
-            getSharedPreferences(context).edit().putInt(ID_PROFILE, value).apply();
-        }
-
-        public static int getIdProfile(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            MiLog.i(MiAppPreferences.class.getName(), "Profile id[" + sp.getInt(ID_PROFILE, 0) + "] getIdProfile");
-            return sp.getInt(ID_PROFILE, 0);
+        public static int getLoggedStatus(Context context){
+            int key = getSharedPreferences(context).getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET);
+            MiLog.i(TAG, "flow Logout getLoggedStatus[" + key + "]");
+            return key;
         }
 
         public static void setLastCheckTimestamp(Context context){
             long timestamp = System.currentTimeMillis();
-            MiLog.i("Sh pref", "setLastCheckTimestamp: " + timestamp);
+            MiLog.i(TAG, "setLastCheckTimestamp: " + timestamp);
             getSharedPreferences(context).edit().putLong(LAST_CHECK_TIMESTAMP, timestamp).apply();
         }
 
         public static long getLastCheckTimestamp(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
-            return sp.getLong(LAST_CHECK_TIMESTAMP, 0);
+            return getSharedPreferences(context).getLong(LAST_CHECK_TIMESTAMP, 0);
         }
 
         public static void clear(Context context){
@@ -581,7 +479,7 @@ public class MiUtils {
         public static void logOut(Activity activity){
             MiAppPreferences.clear(activity);
             MiAppPreferences.setLogout(activity);
-            MiUtils.startSkillActivity(activity, LoginOrRegister.class);
+            MiUtils.startSkillActivityClearStack(activity, LoginOrRegister.class);
             activity.finish();
         }
 
@@ -589,7 +487,7 @@ public class MiUtils {
             getSharedPreferences(context).registerOnSharedPreferenceChangeListener(listener);
         }
 
-        public static void unRegisterListener(SharedPreferences.OnSharedPreferenceChangeListener listener, Context context){
+        public static void unRegisterListener(SharedPreferences.OnSharedPreferenceChangeListener listener, Context context) {
             getSharedPreferences(context).unregisterOnSharedPreferenceChangeListener(listener);
         }
 
@@ -610,18 +508,8 @@ public class MiUtils {
         }
 
         public static String getCurrencySymbol(Context context){
-            if(MiAppPreferences.getRewardsCurrency(context).equals(Config.COINS)){
-                return "";
-            }
             SharedPreferences sp = getSharedPreferences(context);
-            return sp.getString(CURRENCY_SYMBOL, "");
-        }
-
-        public static String getVirtualCurrency(Context context){
-            if(MiAppPreferences.getRewardsCurrency(context).equals(Config.CASH)){
-                return "";
-            }
-            return " coins";
+            return sp.getString(CURRENCY_SYMBOL, "$");
         }
 
         public static void setMsisdnPrefix(Context context, String value){

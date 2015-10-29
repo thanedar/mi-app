@@ -42,11 +42,11 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
 
     public void testCheckToken() throws Exception{
         // before the auth call
-        assertNull(pref.getString(MiUtils.MiAppPreferences.TOKEN, null));
+        assertNull(pref.getString(MiUtils.MiAppPreferences.APP_TOKEN, null));
         //wai
         Thread.sleep(5000);
         // after the auth call
-        assertNotNull(pref.getString(MiUtils.MiAppPreferences.TOKEN, null));
+        assertNotNull(pref.getString(MiUtils.MiAppPreferences.APP_TOKEN, null));
     }
 
     public void testLogIn() throws Exception{

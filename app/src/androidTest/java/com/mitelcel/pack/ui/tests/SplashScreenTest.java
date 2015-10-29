@@ -47,7 +47,7 @@ public class SplashScreenTest extends ActivityInstrumentationTestCase2<SplashScr
         assertNotNull(loginOrRegister);
 
         // check if token is not present
-        assertNotNull(pref.getString(MiUtils.MiAppPreferences.TOKEN, null));
+        assertNotNull(pref.getString(MiUtils.MiAppPreferences.APP_TOKEN, null));
 
     }
 }
