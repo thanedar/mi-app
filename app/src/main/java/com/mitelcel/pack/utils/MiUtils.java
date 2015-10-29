@@ -130,6 +130,7 @@ public class MiUtils {
     }
 
     public static final String REGEX_MAIL = "(([\\w\\-\\.]+)@([\\w\\-\\.]+)\\.([a-zA-Z]{2,3}))";
+    public static final String REGEX_MSISDN = "[0-9]{4,10}";
     public static final String REGEX_PASSWORD = "[\\w._&$\\-]{4,}";
 
     /**
@@ -456,7 +457,7 @@ public class MiUtils {
 
         public static int getLoggedStatus(Context context){
             int key = getSharedPreferences(context).getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET);
-            MiLog.i(TAG, "flow Logout getLoggedStatus[" + key + "]");
+            MiLog.i(TAG, "getLoggedStatus[" + key + "]");
             return key;
         }
 

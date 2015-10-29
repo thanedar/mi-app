@@ -14,6 +14,7 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
+import com.mitelcel.pack.ui.LoginOrRegister;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
@@ -90,8 +91,22 @@ public class FragSplashScreen extends Fragment implements
 
     private void autoLogin() {
         MiLog.i(FragSplashScreen.class.getName(), "getLoggedStatus value [" + MiUtils.MiAppPreferences.getLoggedStatus(getActivity()) + "]");
-        MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-        getActivity().finish();
+        int status = MiUtils.MiAppPreferences.getLoggedStatus(getActivity());
+        if(status == MiUtils.MiAppPreferences.LOGOUT){
+            MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
+            getActivity().finish();
+        }
+        else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET){
+            /**
+             * Only for first install
+             */
+            MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
+            getActivity().finish();
+        }
+        else{
+            MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+            getActivity().finish();
+        }
     }
 
    @Override

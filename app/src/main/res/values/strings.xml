@@ -117,7 +117,7 @@
     <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
 
     <!-- MSISDN -->
-    <string name="msisdn">your number</string>
+    <string name="msisdn">Phone number</string>
     <string name="msisdn_not_valid">Invalid number</string>
 
     <string name="lorem_ipsum">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</string>

@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.MiUtils;
+import com.mitelcel.pack.utils.Validator;
 //import com.tatssense.core.Buckstracks;
 
 import javax.inject.Inject;
@@ -28,23 +32,24 @@ import butterknife.OnClick;
 
 public class FragLogin extends Fragment implements View.OnClickListener{
 
-    @InjectView(R.id.reg_red_et_email)
-    EditText mail;
-    @InjectView(R.id.reg_red_et_pass)
+    @InjectView(R.id.login_tv_msisdn)
+    EditText msisdn;
+    @InjectView(R.id.login_tv_pass)
     EditText pass;
-    @InjectView(R.id.signin_btn_logon)
+    @InjectView(R.id.login_btn_logon)
     Button logon;
     MaterialDialog dialog;
 
     @Inject
     MiApiClient miApiClient;
+    @Inject
+    Validator validator;
 
     OnDialogListener mListener;
 
     public static final String TAG = FragLogin.class.getSimpleName();
-    public static final String TAG_TEST_FLOW = "Login";
 
-    public static FragLogin newInstance(String param1, String param2) {
+    public static FragLogin newInstance() {
         FragLogin fragment = new FragLogin();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -58,8 +63,6 @@ public class FragLogin extends Fragment implements View.OnClickListener{
                 .content(R.string.please_wait)
                 .progress(true, 0)
                 .build();
-//        executeAuthCall();
-//        ((MiApp)getActivity().getApplication()).getAppComponent().inject(this);
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
@@ -69,6 +72,25 @@ public class FragLogin extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.inject(this, view);
+
+        msisdn.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().matches(MiUtils.REGEX_MSISDN)) {
+                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                } else
+                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.dark_grey_more));
+            }
+        });
+
         return view;
     }
 
@@ -90,92 +112,26 @@ public class FragLogin extends Fragment implements View.OnClickListener{
         mListener = null;
     }
 
-    @OnClick(R.id.signin_btn_logon)
+    @OnClick(R.id.login_btn_logon)
     @Override
     public void onClick(View v) {
-//        executeAuthCall();
+        logon();
     }
 
     public void logon(){
 
+        if(!isValidInput())
+            return;
+
         dialog.show();
 
-        MiUtils.MiAppPreferences.setUserMail(getActivity(), mail.getText().toString());
+        MiUtils.MiAppPreferences.setUserMail(getActivity(), msisdn.getText().toString());
         MiUtils.MiAppPreferences.setAuthPass(getActivity(), pass.getText().toString());
+        MiUtils.MiAppPreferences.setLogin(getActivity());
 
         MiUtils.startSkillActivity(getActivity(), MainActivity.class);
         getActivity().finish();
-
-        /*BeanUserValid bean = new BeanUserValid(getActivity().getApplicationContext());
-        MiLog.i(FragLogin.class.getSimpleName(), "beanUserValid [ " + bean.toString() + " ]");
-
-        MiRestClient.init().userValid(bean, new Callback<BeanUserValidResponse>() {
-            @Override
-            public void success(BeanUserValidResponse beanUserValidResponse, Response response) {
-                dialog.dismiss();
-                MiLog.i(FragLogin.class.getSimpleName(), "beanUserValidResponse [ " + beanUserValidResponse.toString() + " ]");
-                if (beanUserValidResponse.getStatus()) {
-                    Buckstracks.trackCustomEvent(Config.EVENT_LOGIN_ID, Config.EVENT_LOGIN_REGISTER, getActivity());
-                    MiUtils.MiAppPreferences.saveLoginUser(beanUserValidResponse, getActivity());
-                    MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-                    getActivity().finish();
-                } else {
-                    if (beanUserValidResponse.getResult() != null && beanUserValidResponse.getResult().getMessage() != null){
-                        mListener.showDialogErrorCall(
-                                beanUserValidResponse.getResult().getMessage(),
-                                getString(R.string.close),
-                                DialogActivity.DIALOG_HIDDEN_ICO,
-                                DialogActivity.REQ_SIGN_IN
-                        );
-                    }
-
-                    else
-                        mListener.showDialogErrorCall(
-                                getString(R.string.somethings_goes_wrong),
-                                getString(R.string.close),
-                                DialogActivity.DIALOG_HIDDEN_ICO,
-                                DialogActivity.REQ_SIGN_IN
-                        );
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                dialog.dismiss();
-                mListener.showDialogErrorCall(
-                        getString(R.string.somethings_goes_wrong),
-                        getString(R.string.close),
-                        DialogActivity.DIALOG_HIDDEN_ICO,
-                        DialogActivity.REQ_SIGN_IN
-                );
-            }
-        });*/
     }
-
-    /*public void executeAuthCall() {
-        if(MiUtils.MiAppPreferences.getToken(getActivity()) == null) {
-            BeanAuthenticate bean = new BeanAuthenticate(getActivity().getApplicationContext(), MiUtils.MiAppPreferences.AUTHENTICATION_PASS);
-            miApiClient.authenticate(bean, new Callback<BeanAuthenticateResponse>() {
-                @Override
-                public void success(BeanAuthenticateResponse beanAuthenticateResponse, Response response) {
-                    MiUtils.MiAppPreferences.setToken(getActivity(), beanAuthenticateResponse.getIdToken());
-                    logon();
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    mListener.showDialogErrorCall(
-                            getString(R.string.somethings_goes_wrong),
-                            getString(R.string.close),
-                            DialogActivity.DIALOG_HIDDEN_ICO,
-                            DialogActivity.REQ_SIGN_IN
-                    );
-                }
-            });
-        }
-        else
-            logon();
-    }*/
 
     @Override
     public void onDestroyView() {
@@ -183,17 +139,18 @@ public class FragLogin extends Fragment implements View.OnClickListener{
         ButterKnife.reset(this);
     }
 
-//    private boolean isValidInput() {
-//
-//        if(!mail.getText().toString().matches(MiUtils.REGEX_MAIL)){
-//            MiUtils.failureCallWithMsg(getActivity(), getString(R.string.email_not_valid));
-//            mail.requestFocus();
-//            return false;
-//        }else if(!pass.getText().toString(). matches(MiUtils.REGEX_PASSWORD)){
-//            MiUtils.failureCallWithMsg(getActivity(), getString(R.string.password_doesnt_match));
-//            pass.requestFocus();
-//            return false;
-//        }
-//        return true;
-//    }
+    private boolean isValidInput() {
+
+        String msg = validator.isNumberValid(msisdn.getText().toString());
+        if(msg != null){
+            msisdn.setError(msg);
+            return false;
+        }
+        msg = validator.isValidPassSignUp(pass.getText().toString());
+        if(msg != null){
+            pass.setError(msg);
+            return false;
+        }
+        return true;
+    }
 }

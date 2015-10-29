@@ -55,12 +55,12 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
         // click on btn
         TouchUtils.clickView(this, btn);
         // get btn logon
-        Button btnLogin = (Button)rootActivity.findViewById(R.id.signin_btn_logon);
+        Button btnLogin = (Button)rootActivity.findViewById(R.id.login_btn_logon);
         // check if the button is on screen
         ViewAsserts.assertOnScreen(rootActivity, btnLogin);
 
-        final EditText password = (EditText)rootActivity.findViewById(R.id.reg_red_et_pass);
-        final EditText email = (EditText)rootActivity.findViewById(R.id.reg_red_et_email);
+        final EditText password = (EditText)rootActivity.findViewById(R.id.login_tv_pass);
+        final EditText email = (EditText)rootActivity.findViewById(R.id.login_tv_msisdn);
 
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
