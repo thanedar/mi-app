@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="buckstracks">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/buckstracks-ui/libs/buckstracks.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

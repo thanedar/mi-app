@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BucksTracks-ui</string>
+    <string name="feedback_text">Please share your feedback</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_screens">ScreensA</string>
+
+    <string name="send">send</string>
+    <string name="cancel">cancel</string>
+    <string name="issue_switch_text">is it an issue?</string>
+
+</resources>

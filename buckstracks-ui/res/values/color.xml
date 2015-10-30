@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark_transparency">#aa000000</color>
+    <color name="dark">#ff000000</color>
+    <color name="white_transparency">#70ffffff</color>
+    <color name="backgroundColor">#E8E8E0</color>
+    <color name="backgroundColorPress">#DBDBD3</color>
+    <color name="backgroundTrasparent">#00000000</color>
+    <!-- Feed color -->
+    <!--<color name="feed_color">#ff5d74c6</color>
+    <drawable name="feed_color">#ff5d74c6</drawable>
+    <drawable name="feed_color_pressed">#FFFFF000</drawable>
+    <drawable name="feed_color_trasparent">@android:color/transparent</drawable>-->
+    <color name="feed_color">#b5d72e</color>
+    <drawable name="feed_color">#b5d72e</drawable>
+    <drawable name="feed_color_pressed">#FFFFF000</drawable>
+    <drawable name="feed_color_trasparent">@android:color/transparent</drawable>
+</resources>
