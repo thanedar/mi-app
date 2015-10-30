@@ -28,12 +28,13 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
     protected static final int NAVDRAWER_ITEM_RECHARGE          = 4;
     protected static final int NAVDRAWER_ITEM_PASTIME           = 5;
     protected static final int NAVDRAWER_ITEM_OFFERS            = 6;
-    protected static final int NAVDRAWER_ITEM_HELP              = 7;
-    protected static final int NAVDRAWER_ITEM_TERMS             = 8;
-    protected static final int NAVDRAWER_ITEM_CONTACTUS         = 9;
-    protected static final int NAVDRAWER_ITEM_LOGOUT            = 10;
-    protected static final int NAVDRAWER_ITEM_DEBUG             = 11;
-    protected static final int NAVDRAWER_ITEM_ERROR_CALL        = 12;
+    protected static final int NAVDRAWER_ITEM_COMMUNICATE       = 7;
+    protected static final int NAVDRAWER_ITEM_HELP              = 8;
+    protected static final int NAVDRAWER_ITEM_TERMS             = 9;
+    protected static final int NAVDRAWER_ITEM_CONTACTUS         = 10;
+    protected static final int NAVDRAWER_ITEM_LOGOUT            = 11;
+    protected static final int NAVDRAWER_ITEM_DEBUG             = 12;
+    protected static final int NAVDRAWER_ITEM_ERROR_CALL        = 13;
 
     protected static final int NAVDRAWER_ITEM_SEPARATOR = -2;
 
@@ -45,6 +46,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
             R.string.navdrawer_item_recharge,
             R.string.navdrawer_item_pastime,
             R.string.navdrawer_item_offers,
+            R.string.navdrawer_item_communicate,
             R.string.navdrawer_item_help,
             R.string.navdrawer_item_terms,
             R.string.navdrawer_item_contact,
@@ -55,6 +57,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
 
     private static final int[] NAVDRAWER_ICON_RES_ID = new int[]{
             R.drawable.ic_menu_home,
+            R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
@@ -77,6 +80,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
             R.id.navdrawer_item_recharge,
             R.id.navdrawer_item_pastime,
             R.id.navdrawer_item_offers,
+            R.id.navdrawer_item_communicate,
             R.id.navdrawer_item_help,
             R.id.navdrawer_item_terms,
             R.id.navdrawer_item_contact,
@@ -187,6 +191,8 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_PASTIME], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_PASTIME], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_PASTIME]);
         // OFFERS
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_OFFERS], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_OFFERS], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_OFFERS]);
+        // COMMUNICATE
+        fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_COMMUNICATE], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_COMMUNICATE], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_COMMUNICATE]);
         // HELP
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_HELP], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_HELP], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_HELP]);
         // TERMS

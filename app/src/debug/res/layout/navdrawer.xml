@@ -29,6 +29,10 @@
             <include android:id="@+id/navdrawer_item_recharge" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_pastime" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_offers" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_communicate" layout="@layout/navdrawer_item"/>
+
+            <!-- Divider -->
+            <include  layout="@layout/navdrawer_separator"/>
 
             <include android:id="@+id/navdrawer_item_help" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_terms" layout="@layout/navdrawer_item"/>
