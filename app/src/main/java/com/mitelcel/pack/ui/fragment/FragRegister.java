@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -30,19 +31,12 @@ import butterknife.OnClick;
 
 public class FragRegister extends Fragment implements View.OnClickListener{
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    @InjectView(R.id.signup_et_pass)
+    @InjectView(R.id.register_tv_pass)
     EditText pass;
-    @InjectView(R.id.signup_et_confirm_pass)
+    @InjectView(R.id.register_tv_confirm_pass)
     EditText confirm_pass;
-    @InjectView(R.id.signup_et_email)
-    EditText email;
+    @InjectView(R.id.register_tv_msisdn)
+    EditText msisdn;
 
     MaterialDialog dialog;
 
@@ -54,14 +48,10 @@ public class FragRegister extends Fragment implements View.OnClickListener{
     OnDialogListener mListener;
 
     public static final String TAG = FragRegister.class.getSimpleName();
-    public static final String TAG_TEST_FLOW = "SignUp";
 
-    // TODO: Rename and change types and number of parameters
-    public static FragRegister newInstance(String param1, String param2) {
+    public static FragRegister newInstance() {
         FragRegister fragment = new FragRegister();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -73,10 +63,6 @@ public class FragRegister extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
         dialog = new MaterialDialog.Builder(getActivity())
                 .content(R.string.please_wait)
@@ -93,10 +79,9 @@ public class FragRegister extends Fragment implements View.OnClickListener{
         View rootView = inflater.inflate(R.layout.fragment_register, container, false);
         ButterKnife.inject(this, rootView);
 
-        email.addTextChangedListener(new TextWatcher() {
+        msisdn.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -105,10 +90,10 @@ public class FragRegister extends Fragment implements View.OnClickListener{
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!s.toString().matches(MiUtils.REGEX_MAIL)) {
-                    email.setTextColor(getActivity().getResources().getColor(R.color.red));
+                if (!s.toString().matches(MiUtils.REGEX_MSISDN)) {
+                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
                 } else
-                    email.setTextColor(getActivity().getResources().getColor(R.color.dark_grey_more));
+                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.dark_grey_more));
             }
         });
 
@@ -148,88 +133,15 @@ public class FragRegister extends Fragment implements View.OnClickListener{
 
         saveData();
 
-        //prendo i parametri per il signup
-        String pass = MiUtils.MiAppPreferences.getAuthPass(getActivity());
-        String email = MiUtils.MiAppPreferences.getUserMail(getActivity());
-
         MiUtils.startSkillActivity(getActivity(), MainActivity.class);
         getActivity().finish();
-
-        /*BeanActionCreateUser bean = new BeanActionCreateUser(getActivity().getApplicationContext(), pass, email, referralCode);
-        MiLog.i(FragRegister.class.getSimpleName(), "beanActionCreateUserRequest [ " + bean.toString() + " ]");
-
-        MiRestClient.init().actionCreateUser(bean, new Callback<BeanActionCreateUserResponse>() {
-            @Override
-            public void success(BeanActionCreateUserResponse beanActionCreateUserResponse, Response response) {
-                dialog.dismiss();
-                MiLog.i(FragRegister.class.getSimpleName(), "beanActionCreateUserResponse [ " + beanActionCreateUserResponse.toString() + " ]");
-                if (beanActionCreateUserResponse.getStatus()) {
-                    // event custom
-                    Buckstracks.trackCustomEvent(Config.EVENT_NEW_USER_ID, Config.EVENT_NEW_USER_REGISTER, getActivity());
-
-                    MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + " authcall ok");
-                    executeValidateUser();
-
-                    MiUtils.MiAppPreferences.saveDataRegisterUser(beanActionCreateUserResponse, getActivity());
-                    MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-                    getActivity().finish();
-                } else {
-                    if (beanActionCreateUserResponse.getResult() != null && beanActionCreateUserResponse.getResult().getMessage() != null) {
-                        MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "CreateUser KO Status");
-                        mListener.showDialogErrorCall(
-                                beanActionCreateUserResponse.getResult().getMessage(),
-                                getString(R.string.close),
-                                R.string.close,
-                                DialogActivity.REQ_SIGN_UP);
-                    } else {
-                        MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "CreateUser KO Empty");
-                        mListener.showDialogErrorCall(
-                                getString(R.string.somethings_goes_wrong),
-                                getString(R.string.close),
-                                R.string.close,
-                                DialogActivity.REQ_SIGN_UP
-                        );
-                    }
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "CreateUser KO Failure");
-                dialog.dismiss();
-                mListener.showDialogErrorCall(
-                        getString(R.string.somethings_goes_wrong),
-                        getString(R.string.close),
-                        R.string.close,
-                        DialogActivity.REQ_SIGN_UP
-                );
-            }
-        });*/
-    }
-
-    public void executeValidateUser() {
-        /*MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + " validateuser");
-        BeanUserValid bean = new BeanUserValid(getActivity().getApplicationContext());
-        miApiClient.userValid(bean, new Callback<BeanUserValidResponse>() {
-            @Override
-            public void success(BeanUserValidResponse beanUserValidResponse, Response response) {
-                MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + " validateuser ok - " + beanUserValidResponse);
-                dialog.dismiss();
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                dialog.dismiss();
-                MiUtils.failureCallWithMsgCloseActivity(getActivity(), getString(R.string.somethings_goes_wrong));
-            }
-        });*/
     }
 
     private boolean isValidInput() {
 
-        String msg = validator.isValidEmail(email.getText().toString());
+        String msg = validator.isNumberValid(msisdn.getText().toString());
         if(msg != null){
-            email.setError(msg);
+            msisdn.setError(msg);
             return false;
         }
         msg = validator.isValidPassSignUp(pass.getText().toString());
@@ -252,40 +164,8 @@ public class FragRegister extends Fragment implements View.OnClickListener{
         submit();
     }
 
-    public void executeAuthCall() {
-        /*if(MiUtils.MiAppPreferences.getToken(getActivity()) == null) {
-            dialog.show();
-            BeanAuthenticate bean = new BeanAuthenticate(getActivity().getApplicationContext(), MiUtils.MiAppPreferences.AUTHENTICATION_PASS);
-            MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "Auth");
-            miApiClient.authenticate(bean, new Callback<BeanAuthenticateResponse>() {
-                @Override
-                public void success(BeanAuthenticateResponse beanAuthenticateResponse, Response response) {
-                    dialog.dismiss();
-                    MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "Auth OK");
-                    MiUtils.MiAppPreferences.setToken(getActivity(), beanAuthenticateResponse.getIdToken());
-                    submit();
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    dialog.dismiss();
-                    mListener.showDialogErrorCall(
-                            getString(R.string.somethings_goes_wrong),
-                            getString(R.string.close),
-                            R.string.close,
-                            DialogActivity.REQ_SIGN_UP
-                    );
-                    MiLog.i(FragRegister.class.getName(), TAG_TEST_FLOW + "Auth KO - Error[ " + error + " ]");
-                }
-            });
-        }
-        else
-            submit();*/
-    }
-
     public void saveData(){
-        // salvo la i parametri per il signup
-        MiUtils.MiAppPreferences.setUserMail(getActivity(), email.getText().toString());
+        MiUtils.MiAppPreferences.setUserMail(getActivity(), msisdn.getText().toString());
         MiUtils.MiAppPreferences.setAuthPass(getActivity(), pass.getText().toString());
     }
 }

@@ -101,7 +101,7 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
         Button btnRegisterAccount = (Button)rootActivity.findViewById(R.id.signup_btn_submit);
         ViewAsserts.assertOnScreen(rootActivity, btnRegisterAccount);
 
-        final EditText mail = (EditText)rootActivity.findViewById(R.id.signup_et_email);
+        final EditText mail = (EditText)rootActivity.findViewById(R.id.register_tv_msisdn);
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
@@ -112,7 +112,7 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
         getInstrumentation().sendStringSync(EMAIL);
         getInstrumentation().waitForIdleSync();
 
-        final EditText pass = (EditText)rootActivity.findViewById(R.id.signup_et_pass);
+        final EditText pass = (EditText)rootActivity.findViewById(R.id.register_tv_pass);
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
@@ -123,7 +123,7 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
         getInstrumentation().sendStringSync(PASSWORD);
         getInstrumentation().waitForIdleSync();
 
-        final EditText conf_pass = (EditText)rootActivity.findViewById(R.id.signup_et_confirm_pass);
+        final EditText conf_pass = (EditText)rootActivity.findViewById(R.id.register_tv_confirm_pass);
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {

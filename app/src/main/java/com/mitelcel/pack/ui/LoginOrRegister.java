@@ -29,13 +29,16 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
             if(status == MiUtils.MiAppPreferences.LOGOUT) {
                 FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragLogin.TAG, FragLogin.newInstance(), R.id.container);
             }
+            else{
+                FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragLoginOrRegister.TAG, FragLoginOrRegister.newInstance(), R.id.container);
+            }
         }
     }
 
     public void clickWidgetOnFragment(View view) {
         switch (view.getId()) {
             case R.id.signin_tv_new_user://1
-                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragRegister.TAG, FragRegister.newInstance("", ""), R.id.container);
+                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragRegister.TAG, FragRegister.newInstance(), R.id.container);
                 break;
             case R.id.login_or_register_already_reg://2
                 FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragLogin.TAG, FragLogin.newInstance(), R.id.container);
@@ -53,6 +56,5 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
             MiUtils.showDialogError(this, content, btnTex, resId, DialogActivity.APP_ERROR_CALL);
             MiUtils.MiAppPreferences.clear(this);
         }
-
     }
 }
