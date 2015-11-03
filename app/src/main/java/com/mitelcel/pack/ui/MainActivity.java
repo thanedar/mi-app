@@ -15,11 +15,12 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.ui.fragment.FragHelp;
-import com.mitelcel.pack.ui.fragment.FragMainListGrid;
+import com.mitelcel.pack.ui.fragment.FragMain;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
 import com.mitelcel.pack.utils.FragmentHandler;
+import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 
 import javax.inject.Inject;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     RecyclerView mDrawerList;
     ActionBarDrawerToggle mDrawerToggle;
 
-    FragMainListGrid fragMainListGrid;
+    FragMain fragMain;
 
     @Inject
     MiApiClient miApiClient;
@@ -53,14 +54,14 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
         ButterKnife.inject(this);
 
-        fragMainListGrid = FragMainListGrid.newInstance(null);
+        fragMain = FragMain.newInstance();
 
         if (savedInstanceState == null) {
             FragmentHandler.addFragmentInBackStackWithAnimation(
                     getSupportFragmentManager(),
                     BACK_STACK_NAME,
-                    FragMainListGrid.class.getName(),
-                    fragMainListGrid,
+                    FragMain.class.getName(),
+                    fragMain,
                     R.id.main_content_fragment);
         }
 
@@ -102,10 +103,12 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     }
 
     private void checkInternetConnection() {
-        if(!MiUtils.Info.isNetworkConnected(this) && !mIsDialogStarted){
+        MiLog.d("Main Activity", "Started checkInternetConnection");
+        if(!MiUtils.Info.isNetworkConnected(getApplicationContext()) && !mIsDialogStarted){
             mIsDialogStarted = true;
             int res_id = this.getResources().getIdentifier("ic_no_network", "drawable", MiApp.getInstance().getPackageName());
-            MiUtils.showDialogError(this, getString(R.string.no_connection_popup), getString(R.string.retry), res_id, DialogActivity.APP_REQ);
+            MiLog.d("Main Activity", "in if check checkInternetConnection with resId " + res_id);
+            MiUtils.showDialogError(this, getString(R.string.no_connection_popup), getString(R.string.retry), R.drawable.ic_no_network, DialogActivity.APP_REQ);
         }
     }
 
@@ -134,8 +137,8 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 FragmentHandler.addFragmentInBackStackWithAnimation(
                         getSupportFragmentManager(),
                         BACK_STACK_NAME,
-                        FragMainListGrid.class.getName(),
-                        fragMainListGrid,
+                        FragMain.class.getName(),
+                        fragMain,
                         R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_recent:
@@ -222,6 +225,5 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         coins.setLayoutParams(layoutParams);
         actionBar.setCustomView(coins);
     }
-
 }
 

@@ -21,7 +21,7 @@
     android:paddingLeft="@dimen/margin_medium"
     android:paddingRight="@dimen/margin_medium"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="40dp"
     android:onClick="onClickNavigationDrawer">
 
     <ImageView

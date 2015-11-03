@@ -3,7 +3,7 @@ package com.mitelcel.pack.dagger.component;
 import com.mitelcel.pack.ui.fragment.FragHelp;
 import com.mitelcel.pack.ui.fragment.FragLogin;
 import com.mitelcel.pack.ui.fragment.FragLoginOrRegister;
-import com.mitelcel.pack.ui.fragment.FragMainListGrid;
+import com.mitelcel.pack.ui.fragment.FragMain;
 import com.mitelcel.pack.ui.fragment.FragRegister;
 import com.mitelcel.pack.ui.fragment.FragSplashScreen;
 
@@ -12,7 +12,7 @@ import com.mitelcel.pack.ui.fragment.FragSplashScreen;
  */
 public interface FragGraph {
     void inject(FragRegister fragRegister);
-    void inject(FragMainListGrid fragMainListGrid);
+    void inject(FragMain fragMain);
     void inject(FragHelp fragHelp);
     void inject(FragLoginOrRegister fragLoginOrRegister);
     void inject(FragSplashScreen fragSplashScreen);
