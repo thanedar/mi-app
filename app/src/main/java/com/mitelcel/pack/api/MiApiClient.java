@@ -1,5 +1,8 @@
 package com.mitelcel.pack.api;
 
+import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
+
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.POST;
@@ -10,11 +13,15 @@ import rx.Observable;
  */
 public interface MiApiClient {
 
-    String URL_STAGE = "http://stage.skillsweet.com/api/SkillAPI";
-    String URL_LIVE = "http://www.skillsweet.com/api/SkillAPI";
+    String URL_BETA = "http://betamitelcel.acoground.com";
+    String URL_LIVE = "http://mitelcel.acoground.com";
+    String REQUEST_URI = "/api.php";
 
     /*@POST("/")
     void authenticate(@Body BeanAuthenticate beanAuthenticate, Callback<BeanAuthenticateResponse> callback);*/
+
+    @POST(REQUEST_URI)
+    void submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo, Callback<BeanSubmitAppInfoResponse> callback);
 
     /**
      * RxJava call

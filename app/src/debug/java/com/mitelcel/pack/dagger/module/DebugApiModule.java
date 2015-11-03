@@ -22,7 +22,7 @@ public class DebugApiModule {
     @Singleton
     @Provides
     Endpoint provideEndpoint(){
-        return Endpoints.newFixedEndpoint(MiApiClient.URL_STAGE);
+        return Endpoints.newFixedEndpoint(MiApiClient.URL_BETA);
     }
 
     @Singleton

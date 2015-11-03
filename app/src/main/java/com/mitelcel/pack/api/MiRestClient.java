@@ -10,7 +10,7 @@ public class MiRestClient {
     public static synchronized MiApiClient init(){
 
         RestAdapter adapter = new RestAdapter.Builder()
-                .setEndpoint(MiApiClient.URL_LIVE)
+                .setEndpoint(MiApiClient.URL_BETA)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
