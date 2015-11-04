@@ -1,4 +1,4 @@
-package com.mitelcel.pack.api.bean;
+package com.mitelcel.pack.api.bean.req;
 
 import com.google.gson.annotations.Expose;
 import com.mitelcel.pack.bean.GenericBean;

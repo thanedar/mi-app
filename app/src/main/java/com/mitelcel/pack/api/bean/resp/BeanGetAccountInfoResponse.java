@@ -6,17 +6,20 @@ import com.google.gson.annotations.SerializedName;
 import com.mitelcel.pack.bean.GenericBean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by sudhanshut on 11/3/15.
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class BeanGetAccountInfoResponse extends BeanGenericResponse {
 
     @Expose
     private Result result;
 
     @Data
+    @EqualsAndHashCode(callSuper=false)
     public class Result extends GenericBean {
         @SerializedName("account_type")
         @Expose

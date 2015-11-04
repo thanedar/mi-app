@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.mitelcel.pack.api.bean.BeanGenericApi;
 import com.mitelcel.pack.bean.GenericBean;
 import com.mitelcel.pack.utils.MiUtils;
 
