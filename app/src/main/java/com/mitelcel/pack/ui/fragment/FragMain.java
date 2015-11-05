@@ -107,16 +107,15 @@ public class FragMain extends Fragment {
             }
         });
 
-        imei.setText("IMEI: " + MiUtils.Info.getDeviceId(this.getContext()));
-        imsi.setText("IMSI: " + MiUtils.Info.getSubscriberId(this.getContext()));
-        androidId.setText("ANDROID ID: " + MiUtils.Info.getAndroidId(this.getContext()));
+        imei.setText("IMEI: " + MiUtils.Info.getDeviceId(this.getActivity().getApplicationContext()));
+        imsi.setText("IMSI: " + MiUtils.Info.getSubscriberId(this.getActivity().getApplicationContext()));
+        androidId.setText("ANDROID ID: " + MiUtils.Info.getAndroidId(this.getActivity().getApplicationContext()));
         mListener.updateActionBar();
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         try {
             mListener = (OnMainFragmentInteractionListener) activity;
         } catch (ClassCastException e) {

@@ -61,9 +61,8 @@ public class FragLoginOrRegister extends Fragment{
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         try {
             mListener = (OnDialogListener) activity;
         } catch (ClassCastException e) {

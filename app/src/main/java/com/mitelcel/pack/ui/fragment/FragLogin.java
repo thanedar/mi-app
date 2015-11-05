@@ -85,9 +85,9 @@ public class FragLogin extends Fragment implements View.OnClickListener{
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().matches(MiUtils.REGEX_MSISDN)) {
-                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                    msisdn.setTextColor(getResources().getColor(R.color.red));
                 } else
-                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.dark_grey_more));
+                    msisdn.setTextColor(getResources().getColor(R.color.dark_grey_more));
             }
         });
 
@@ -95,9 +95,8 @@ public class FragLogin extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         try {
             mListener = (OnDialogListener) activity;
         } catch (ClassCastException e) {

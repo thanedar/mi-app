@@ -16,7 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.dagger.component.DaggerFragmentComponent;
+import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.MiUtils;
@@ -69,7 +69,7 @@ public class FragRegister extends Fragment implements View.OnClickListener{
                 .progress(true, 0)
                 .build();
 
-        DaggerFragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
+        FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
     @Override
@@ -91,9 +91,9 @@ public class FragRegister extends Fragment implements View.OnClickListener{
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().matches(MiUtils.REGEX_MSISDN)) {
-                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                    msisdn.setTextColor(getResources().getColor(R.color.red));
                 } else
-                    msisdn.setTextColor(ContextCompat.getColor(getActivity(), R.color.dark_grey_more));
+                    msisdn.setTextColor(getResources().getColor(R.color.dark_grey_more));
             }
         });
 
@@ -101,9 +101,8 @@ public class FragRegister extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Activity activity = (context instanceof Activity) ? (Activity) context : getActivity();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         try {
             mListener = (OnDialogListener) activity;
         } catch (ClassCastException e) {

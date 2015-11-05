@@ -108,7 +108,11 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             mIsDialogStarted = true;
             int res_id = this.getResources().getIdentifier("ic_no_network", "drawable", MiApp.getInstance().getPackageName());
             MiLog.d("Main Activity", "in if check checkInternetConnection with resId " + res_id);
-            MiUtils.showDialogError(this, getString(R.string.no_connection_popup), getString(R.string.retry), R.drawable.ic_no_network, DialogActivity.APP_REQ);
+            MiUtils.showDialogError(this,
+                    getString(R.string.no_connection_popup),
+                    getString(R.string.retry),
+                    getResources().getIdentifier("ic_no_network", "drawable", MiApp.getInstance().getPackageName()),
+                    DialogActivity.APP_REQ);
         }
     }
 

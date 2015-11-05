@@ -21,7 +21,6 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
@@ -212,11 +211,11 @@ public class MiUtils {
          */
         public static Location getUserLocation(Context context){
             Location location = null;
-            if ( Build.VERSION.SDK_INT >= 23 &&
+            /*if ( Build.VERSION.SDK_INT >= 23 &&
                     ContextCompat.checkSelfPermission( context, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
                     ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return location;
-            }
+            }*/
             try{
                 final LocationManager locationManager = (LocationManager) context
                         .getSystemService(Context.LOCATION_SERVICE);
