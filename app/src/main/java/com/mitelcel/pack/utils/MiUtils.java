@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -89,6 +90,7 @@ public class MiUtils {
         if(btnTex != null && !btnTex.equals(""))
             i.putExtra(DialogActivity.DIALOG_BTN_TEXT, btnTex);
         i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
+//        i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.oops));
         activity.startActivityForResult(i, requestCode);
     }
 
@@ -202,6 +204,42 @@ public class MiUtils {
             }
             MiLog.i("utils", "AndroidId[" + android_id + "]");
             return android_id;
+        }
+
+        /**
+         * get device IMEI
+         * @param context
+         * @return
+         */
+        public static String getDeviceId(Context context){
+            String device_id = "";
+
+            try{
+                TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                device_id = telephonyManager.getDeviceId();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            MiLog.i("utils", "IMEI [" + device_id + "]");
+            return device_id;
+        }
+
+        /**
+         * get device IMSI
+         * @param context
+         * @return
+         */
+        public static String getSubscriberId(Context context){
+            String subscriber_id = "";
+
+            try{
+                TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                subscriber_id = telephonyManager.getSubscriberId();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            MiLog.i("utils", "IMSI [" + subscriber_id + "]");
+            return subscriber_id;
         }
 
         /**
@@ -355,24 +393,22 @@ public class MiUtils {
         public static String MSISDN_PREFIX = "msisdn_prefix";
         public static String MSISDN_FORMAT = "msisdn_format";
 
-        public static final String APP_ID_VAL = "FLYSKILLAPPSR";
-        public static final String AUTHENTICATION_PASS = "acotel80skill";
+        public static final String MIAPP_SHARED_PREF_NAME = "mitelcel_shared_pref";
 
-        public static final String SKILL_SHARED_PREF_NAME = "mitelcel_shared_pref";
-
-        public static final String TAG = "MiAppPreferences";
+        public static final String TAG = "MiTelcelPreferences";
 
         private static SharedPreferences getSharedPreferences(final Context context) {
-            return context.getSharedPreferences(SKILL_SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            return context.getSharedPreferences(MIAPP_SHARED_PREF_NAME, Context.MODE_PRIVATE);
         }
 
         public static void setToken(Context context, String token){
+            MiLog.i(TAG, "Set App Token [" + token + "]");
             getSharedPreferences(context).edit().putString(APP_TOKEN, token).apply();
         }
 
         public static String getToken(Context context){
             String token = getSharedPreferences(context).getString(APP_TOKEN, "");
-            MiLog.i(TAG, "Token[" + token + "]");
+            MiLog.i(TAG, "Get App Token [" + token + "]");
             return token;
         }
 
@@ -386,6 +422,10 @@ public class MiUtils {
             return s_id;
         }
 
+        public static boolean isInvalidSession(Context context){
+            return (getToken(context) == null || getToken(context).equals(TOKEN_EXPIRED));
+        }
+
         public static void setAuthPass(Context context, String value){
             getSharedPreferences(context).edit().putString(PASSWORD_AUT, value).apply();
         }
@@ -397,10 +437,6 @@ public class MiUtils {
         public static void setUserMail(Context context, String value){
             MiLog.i(TAG, "set email: " + value);
             getSharedPreferences(context).edit().putString(USER_EMAIL, value).apply();
-        }
-
-        public static boolean isInvalidToken(Context context){
-            return (getToken(context)==null || getToken(context).equals(TOKEN_EXPIRED));
         }
 
         public static boolean hasUserMail(Context context){

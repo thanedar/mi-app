@@ -27,31 +27,12 @@ public class BeanSubmitAppInfo extends BeanGenericApi {
 
     public class Params extends GenericBean {
 
-        @SerializedName("os_type")
+        @SerializedName("app_info")
         @Expose
-        private String osType;
-        @SerializedName("os_version")
-        @Expose
-        private String osVersion;
-        @SerializedName("app_version")
-        @Expose
-        private String appVersion;
-        @Expose
-        private String imei;
-        @Expose
-        private String imsi;
-        @SerializedName("android_id")
-        @Expose
-        private String androidId;
+        private BeanAppInfo appInfo;
 
         public Params(Context context) {
-            this.osType = MiUtils.MiAppPreferences.getDeviceType(context);
-            this.osVersion = Build.VERSION.RELEASE;
-            this.appVersion = BuildConfig.VERSION_NAME;
-
-            this.imei = MiUtils.Info.getDeviceId(context);
-            this.imsi = MiUtils.Info.getSubscriberId(context);
-            this.androidId = MiUtils.Info.getAndroidId(context);
+            this.appInfo = new BeanAppInfo(context);
         }
     }
 

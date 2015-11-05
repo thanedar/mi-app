@@ -13,6 +13,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.MiRestClient;
+import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.LoginOrRegister;
 import com.mitelcel.pack.ui.MainActivity;
@@ -23,6 +26,10 @@ import com.mitelcel.pack.utils.MiUtils;
 
 import javax.inject.Inject;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
@@ -31,7 +38,7 @@ public class FragSplashScreen extends Fragment implements
 
     MaterialDialog dialog;
 
-    public static final String TAG_TEST_FLOW = "SplashScreen";
+    public static final String TAG = FragSplashScreen.class.getName();
 
     @Inject
     MiApiClient miApiClient;
@@ -67,6 +74,7 @@ public class FragSplashScreen extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
+        submit_app_info();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -89,14 +97,32 @@ public class FragSplashScreen extends Fragment implements
         MiUtils.MiAppPreferences.unRegisterListener(this, getActivity().getApplicationContext());
     }
 
+    private void submit_app_info(){
+
+        if(MiUtils.MiAppPreferences.getToken(getActivity().getApplicationContext()) == "") {
+            BeanSubmitAppInfo beanSubmitAppInfo = new BeanSubmitAppInfo(getActivity().getApplicationContext());
+            MiRestClient.init().submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
+                @Override
+                public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
+                    if (beanSubmitAppInfoResponse.getResult() != null)
+                        MiUtils.MiAppPreferences.setToken(getActivity().getApplicationContext(), beanSubmitAppInfoResponse.getResult().getAppToken());
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    MiLog.e(TAG, "BeanSubmitAppInfoResponse Error " + error.toString());
+                }
+            });
+        }
+    }
     private void autoLogin() {
-        MiLog.i(FragSplashScreen.class.getName(), "getLoggedStatus value [" + MiUtils.MiAppPreferences.getLoggedStatus(getActivity()) + "]");
+        MiLog.i(TAG, "getLoggedStatus value [" + MiUtils.MiAppPreferences.getLoggedStatus(getActivity()) + "]");
         int status = MiUtils.MiAppPreferences.getLoggedStatus(getActivity());
         if(status == MiUtils.MiAppPreferences.LOGOUT){
             MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
             getActivity().finish();
         }
-        else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET){
+        else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET && !MiUtils.Info.isNetworkConnected(getActivity())){
             /**
              * Only for first install
              */

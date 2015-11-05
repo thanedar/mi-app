@@ -19,6 +19,7 @@ public class BeanSubmitAppInfoResponse extends BeanGenericResponse {
     private Result result;
 
     @Data
+    @EqualsAndHashCode(callSuper=false)
     public class Result extends GenericBean {
         @SerializedName("app_token")
         @Expose
