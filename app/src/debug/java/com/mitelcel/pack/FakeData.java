@@ -9,5 +9,6 @@ public class FakeData{
 
     public static final String RESP_LOGIN = "{\"id\":\"1446760808058\",\"error\":{\"code\":0,\"message\":\"\"},\"result\":{\"session_id\":\"code-review-563c0248101646.95925520\"}}";
 
+    public static final String RESP_CURRENT_BALANCE = "{\"id\":\"1446760808058\",\"error\":{\"code\":0,\"message\":\"\"},\"result\":{\"current_balance\":\"250.00\"}}";
 
 }

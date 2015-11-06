@@ -3,8 +3,10 @@ package com.mitelcel.pack.api;
 import android.content.SharedPreferences;
 
 import com.mitelcel.pack.FakeData;
+import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.dagger.module.SharedPrefModule;
@@ -61,6 +63,18 @@ public class MockMiApiClient implements MiApiClient {
             public void call(Subscriber<? super BeanSubmitAppInfoResponse> subscriber) {
                 BeanSubmitAppInfoResponse beanSubmitAppInfoResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
                 subscriber.onNext(beanSubmitAppInfoResponse);
+                subscriber.onCompleted();
+            }
+        });
+    }
+
+    @Override
+    public Observable<BeanGetCurrentBalanceResponse> get_current_balance(@Body BeanGetCurrentBalance beanGetCurrentBalance) {
+        return Observable.create(new Observable.OnSubscribe<BeanGetCurrentBalanceResponse>() {
+            @Override
+            public void call(Subscriber<? super BeanGetCurrentBalanceResponse> subscriber) {
+                BeanGetCurrentBalanceResponse beanGetCurrentBalanceResponse = new Gson().fromJson(FakeData.RESP_CURRENT_BALANCE, BeanGetCurrentBalanceResponse.class);
+                subscriber.onNext(beanGetCurrentBalanceResponse);
                 subscriber.onCompleted();
             }
         });

@@ -8,9 +8,12 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.bean.GenericBean;
+import com.mitelcel.pack.api.MiRestClient;
+import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
+import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 
@@ -18,12 +21,15 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
 public class LayoutBalance extends FrameLayout
-//        implements SharedPreferences.OnSharedPreferenceChangeListener, Observer<BeanUserWalletResponse>
+        implements SharedPreferences.OnSharedPreferenceChangeListener, Observer<BeanGetCurrentBalanceResponse>
 {
 
     @InjectView(R.id.act_bar_balance)
@@ -62,22 +68,23 @@ public class LayoutBalance extends FrameLayout
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-//        ((MiApp)getContext()).getAppComponent().inject(this);
-//        MiUtils.MiAppPreferences.registerListener(this, getContext());
-//        callUserWallet();
+        ((MiApp)getContext()).getAppComponent().inject(this);
+        MiUtils.MiAppPreferences.registerListener(this, getContext());
+        miApiClient = MiRestClient.init();
+        callUserWallet();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-//        MiUtils.MiAppPreferences.unRegisterListener(this, getContext());
+        MiUtils.MiAppPreferences.unRegisterListener(this, getContext());
         miApiClient = null;
     }
 
     private void setCurrentBalance(){
         textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cash, 0, 0, 0);
         String symbol = MiUtils.MiAppPreferences.getCurrencySymbol(getContext());
-        String value = MiUtils.MiAppPreferences.getMoneyCount(getContext());
+        String value = MiUtils.MiAppPreferences.getCurrentBalance(getContext());
         textView.setText(symbol + value);
         /*textView.setOnClickListener(new OnClickListener() {
             @Override
@@ -97,33 +104,33 @@ public class LayoutBalance extends FrameLayout
         if(textView !=null) textView.setVisibility(View.GONE);
     }
 
-    /*public void callUserWallet(){
-        BeanUserWallet beanUserWallet = new BeanUserWallet(getContext());
-        MiLog.i(LayoutCashCoins.class.getSimpleName(), "beanUserWallet [ " + beanUserWallet.toString() + " ]");
+    public void callUserWallet(){
+        BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance(getContext());
+        MiLog.i(LayoutBalance.class.getSimpleName(), "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
         showProgressBarCoins();
-        miApiClient.userWalletRxJava(beanUserWallet)
+        miApiClient.get_current_balance(beanGetCurrentBalance)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this);
-    }*/
+    }
 
-//    @Override
+    @Override
     public void onCompleted() {
         hideProgressBarCoins();
     }
 
-//    @Override
+    @Override
     public void onError(Throwable e) {
         hideProgressBarCoins();
     }
 
-//    @Override
-    public void onNext(GenericBean beanUserWalletResponse) {
-        MiLog.i(LayoutBalance.class.getSimpleName(), "beanUserWallet response [ " + beanUserWalletResponse.toString() + " ]");
-        /*if (beanUserWalletResponse != null && beanUserWalletResponse.getResult().getErrorCode() == 1) {
-            String cash = beanUserWalletResponse.getMoneyBalance();
-            MiUtils.MiAppPreferences.setMoneyCount(getContext(), cash);
-        }*/
+    @Override
+    public void onNext(BeanGetCurrentBalanceResponse beanResponse) {
+        MiLog.i(LayoutBalance.class.getSimpleName(), "BeanGetCurrentBalanceResponse response [ " + beanResponse.toString() + " ]");
+        if (beanResponse != null && beanResponse.getError().getCode() == 0) {
+            String cash = beanResponse.getResult().getCurrentBalance();
+            MiUtils.MiAppPreferences.setCurrentBalance(getContext(), cash);
+        }
     }
 
     /*public void updateUserWallet(){

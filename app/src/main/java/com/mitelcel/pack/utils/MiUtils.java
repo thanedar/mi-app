@@ -467,11 +467,11 @@ public class MiUtils {
             return sp.getString(DEVICE_TYPE, "android");
         }
 
-        public static void setMoneyCount(Context context, String value){
+        public static void setCurrentBalance(Context context, String value){
             getSharedPreferences(context).edit().putString(MONEY_BALANCE, value).apply();
         }
 
-        public static String getMoneyCount(Context context){
+        public static String getCurrentBalance(Context context){
             SharedPreferences sp = getSharedPreferences(context);
             return sp.getString(MONEY_BALANCE, "100.00");
         }

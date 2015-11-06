@@ -1,7 +1,9 @@
 package com.mitelcel.pack.api;
 
+import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 
@@ -31,6 +33,12 @@ public interface MiApiClient {
     /**
      * RxJava call
      */
+
+    @POST(REQUEST_URI)
+    Observable<BeanSubmitAppInfoResponse> submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo);
+
+    @POST(REQUEST_URI)
+    Observable<BeanGetCurrentBalanceResponse> get_current_balance(@Body BeanGetCurrentBalance beanGetCurrentBalance);
 
     /*@POST("/")
     Observable<BeanAuthenticateResponse> authenticate(@Body BeanAuthenticate beanAuthenticate);*/
