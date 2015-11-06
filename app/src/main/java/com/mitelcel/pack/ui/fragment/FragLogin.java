@@ -17,9 +17,12 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.bean.req.BeanLogin;
+import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
+import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 import com.mitelcel.pack.utils.Validator;
 //import com.tatssense.core.Buckstracks;
@@ -29,6 +32,9 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class FragLogin extends Fragment implements View.OnClickListener{
 
@@ -124,7 +130,26 @@ public class FragLogin extends Fragment implements View.OnClickListener{
 
         dialog.show();
 
-        MiUtils.MiAppPreferences.setUserMail(getActivity(), msisdn.getText().toString());
+        BeanLogin beanLogin = new BeanLogin(getActivity(), msisdn.getText().toString(), pass.getText().toString());
+        miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
+            @Override
+            public void success(BeanLoginResponse beanLoginResponse, Response response) {
+//                MiLog.i(TAG, "Login response " + beanLoginResponse.toString());
+//                MiLog.i(TAG, "Login Session Id " + beanLoginResponse.getResult().getSessionId());
+                if (beanLoginResponse.getError().getCode() == 0) {
+                    MiUtils.MiAppPreferences.setSessionId(getActivity(), beanLoginResponse.getResult().getSessionId());
+                } else {
+                    MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                MiLog.i(TAG, "Login failure " + error.toString());
+            }
+        });
+
+        MiUtils.MiAppPreferences.setMsisdn(getActivity(), msisdn.getText().toString());
         MiUtils.MiAppPreferences.setAuthPass(getActivity(), pass.getText().toString());
         MiUtils.MiAppPreferences.setLogin(getActivity());
 

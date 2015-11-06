@@ -7,7 +7,7 @@ public class FakeData{
 
     public static final String RESP_SUBMIT_APP_INFO = "{\"id\": \"1446760808058\",\"error\": {\"code\": 0, \"message\": \"\"},\"result\": {\"app_key\": \"beta-63be2793729b\"}}";
 
+    public static final String RESP_LOGIN = "{\"id\":\"1446760808058\",\"error\":{\"code\":0,\"message\":\"\"},\"result\":{\"session_id\":\"code-review-563c0248101646.95925520\"}}";
 
-    public static final String RESP_TOKEN_IS_NOT_VALID = "{\"result\":{\"status\":false,\"message\":\"Token is not valid\",\"error_code\":-2,\"aData\":null}}";
 
 }

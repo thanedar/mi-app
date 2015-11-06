@@ -1,6 +1,8 @@
 package com.mitelcel.pack.api;
 
+import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 
 import retrofit.Callback;
@@ -22,6 +24,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo, Callback<BeanSubmitAppInfoResponse> callback);
+
+    @POST(REQUEST_URI)
+    void login(@Body BeanLogin beanLogin, Callback<BeanLoginResponse> callback);
 
     /**
      * RxJava call

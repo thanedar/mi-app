@@ -10,11 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mitelcel.pack.BuildConfig;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.MiRestClient;
+import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.LoginOrRegister;
@@ -102,6 +105,9 @@ public class FragSplashScreen extends Fragment implements
                     if (beanSubmitAppInfoResponse.getResult() != null) {
                         MiUtils.MiAppPreferences.setToken(getActivity(), beanSubmitAppInfoResponse.getResult().getAppToken());
                     }
+                    if (BuildConfig.DEBUG) {
+                        fakeLogin();
+                    }
                 }
 
                 @Override
@@ -126,9 +132,33 @@ public class FragSplashScreen extends Fragment implements
             getActivity().finish();
         }
         else{
+            if(BuildConfig.DEBUG && !MiUtils.MiAppPreferences.getToken(getActivity().getApplicationContext()).equals(""))
+                fakeLogin();
             MiUtils.startSkillActivity(getActivity(), MainActivity.class);
             getActivity().finish();
         }
+    }
+
+    private void fakeLogin() {
+        BeanLogin beanLogin = new BeanLogin(getActivity(), "520000000001", "blabla");
+        miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
+            @Override
+            public void success(BeanLoginResponse beanLoginResponse, Response response) {
+//                MiLog.i(TAG, "Fake Login response " + beanLoginResponse.toString());
+//                MiLog.i(TAG, "Fake Login Session Id " + beanLoginResponse.getResult().getSessionId());
+                if(beanLoginResponse.getError().getCode() == 0) {
+                    MiUtils.MiAppPreferences.setSessionId(getActivity(), beanLoginResponse.getResult().getSessionId());
+                }
+                else{
+                    MiLog.i(TAG, "Fake Login error response " + beanLoginResponse.toString());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                MiLog.i(TAG, "Fake Login failure " + error.toString());
+            }
+        });
     }
 
    @Override

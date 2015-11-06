@@ -3,7 +3,9 @@ package com.mitelcel.pack.api;
 import android.content.SharedPreferences;
 
 import com.mitelcel.pack.FakeData;
+import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.dagger.module.SharedPrefModule;
 
@@ -36,6 +38,13 @@ public class MockMiApiClient implements MiApiClient {
         BeanSubmitAppInfoResponse beanSubmitAppInfoResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_SUBMIT_APP_INFO.getBytes()));
         callback.success(beanSubmitAppInfoResponse, response);
+    }
+
+    @Override
+    public void login(@Body BeanLogin beanLogin, Callback<BeanLoginResponse> callback) {
+        BeanLoginResponse beanLoginResponse = new Gson().fromJson(FakeData.RESP_LOGIN, BeanLoginResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_SUBMIT_APP_INFO.getBytes()));
+        callback.success(beanLoginResponse, response);
     }
 
     /*@Override
