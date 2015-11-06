@@ -164,7 +164,7 @@ public class FragRegister extends Fragment implements View.OnClickListener{
     }
 
     public void saveData(){
-        MiUtils.MiAppPreferences.setUserMail(getActivity(), msisdn.getText().toString());
-        MiUtils.MiAppPreferences.setAuthPass(getActivity(), pass.getText().toString());
+        MiUtils.MiAppPreferences.setUserMail(msisdn.getText().toString());
+        MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
     }
 }

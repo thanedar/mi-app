@@ -28,6 +28,7 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.DialogActivity;
 import com.mitelcel.pack.ui.LoginOrRegister;
@@ -120,7 +121,7 @@ public class MiUtils {
                 })
                 .build()
                 .show();
-        MiAppPreferences.clear(activity);
+        MiAppPreferences.clear();
     }
 
     public static void openMarketPageWithReferrer(Context context, String url){
@@ -285,8 +286,8 @@ public class MiUtils {
                 return true;
         }
 
-        public static boolean hasAllParamsToValidate(Context context){
-            if (!MiAppPreferences.hasUserMail(context) || MiAppPreferences.getToken(context) == null)
+        public static boolean hasAllParamsToValidate(){
+            if (!MiAppPreferences.hasUserMail() || MiAppPreferences.getToken() == null)
                 return false;
 
             return true;
@@ -397,172 +398,173 @@ public class MiUtils {
 
         public static final String TAG = "MiTelcelPreferences";
 
-        private static SharedPreferences getSharedPreferences(final Context context) {
+        private static SharedPreferences getSharedPreferences() {
+            Context context = MiApp.getInstance().getApplicationContext();
             return context.getSharedPreferences(MIAPP_SHARED_PREF_NAME, Context.MODE_PRIVATE);
         }
 
-        public static void setToken(Context context, String token){
+        public static void setToken(String token){
             MiLog.i(TAG, "Set App Token [" + token + "]");
-            getSharedPreferences(context).edit().putString(APP_TOKEN, token).apply();
+            getSharedPreferences().edit().putString(APP_TOKEN, token).apply();
         }
 
-        public static String getToken(Context context){
-            String token = getSharedPreferences(context).getString(APP_TOKEN, "");
+        public static String getToken(){
+            String token = getSharedPreferences().getString(APP_TOKEN, "");
             MiLog.i(TAG, "Get App Token [" + token + "]");
             return token;
         }
 
-        public static void setSessionId(Context context, String session_id){
-            getSharedPreferences(context).edit().putString(SESSION_ID, session_id).apply();
+        public static void setSessionId(String session_id){
+            getSharedPreferences().edit().putString(SESSION_ID, session_id).apply();
         }
 
-        public static String getSessionId(Context context){
-            String s_id = getSharedPreferences(context).getString(SESSION_ID, "");
+        public static String getSessionId(){
+            String s_id = getSharedPreferences().getString(SESSION_ID, "");
             MiLog.i(TAG, "Session ID [" + s_id + "]");
             return s_id;
         }
 
-        public static boolean isInvalidSession(Context context){
-            return (getToken(context) == null || getToken(context).equals(TOKEN_EXPIRED));
+        public static boolean isInvalidSession(){
+            return (getToken() == null || getToken().equals(TOKEN_EXPIRED));
         }
 
-        public static void setAuthPass(Context context, String value){
-            getSharedPreferences(context).edit().putString(PASSWORD_AUT, value).apply();
+        public static void setAuthPass(String value){
+            getSharedPreferences().edit().putString(PASSWORD_AUT, value).apply();
         }
 
-        public static String getAuthPass(Context context){
-            return getSharedPreferences(context).getString(PASSWORD_AUT, "");
+        public static String getAuthPass(){
+            return getSharedPreferences().getString(PASSWORD_AUT, "");
         }
 
-        public static void setUserMail(Context context, String value){
+        public static void setUserMail(String value){
             MiLog.i(TAG, "set email: " + value);
-            getSharedPreferences(context).edit().putString(USER_EMAIL, value).apply();
+            getSharedPreferences().edit().putString(USER_EMAIL, value).apply();
         }
 
-        public static boolean hasUserMail(Context context){
-            return getSharedPreferences(context).contains(USER_EMAIL);
+        public static boolean hasUserMail(){
+            return getSharedPreferences().contains(USER_EMAIL);
         }
 
-        public static String getUserMail(Context context){
-            String email = getSharedPreferences(context).getString(USER_EMAIL, "");
+        public static String getUserMail(){
+            String email = getSharedPreferences().getString(USER_EMAIL, "");
             MiLog.i(TAG, "get user email: " + email);
             return email;
         }
 
-        public static void setMsisdn(Context context, String value){
-            getSharedPreferences(context).edit().putString(MSISDN, value).apply();
+        public static void setMsisdn(String value){
+            getSharedPreferences().edit().putString(MSISDN, value).apply();
         }
 
-        public static String getMsisdn(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
+        public static String getMsisdn(){
+            SharedPreferences sp = getSharedPreferences();
             return sp.getString(MSISDN, "");
         }
 
-        public static void setDeviceType(Context context, String value){
-            getSharedPreferences(context).edit().putString(DEVICE_TYPE, value).apply();
+        public static void setDeviceType(String value){
+            getSharedPreferences().edit().putString(DEVICE_TYPE, value).apply();
         }
 
-        public static String getDeviceType(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
+        public static String getDeviceType(){
+            SharedPreferences sp = getSharedPreferences();
             return sp.getString(DEVICE_TYPE, "android");
         }
 
-        public static void setCurrentBalance(Context context, String value){
-            getSharedPreferences(context).edit().putString(MONEY_BALANCE, value).apply();
+        public static void setCurrentBalance(String value){
+            getSharedPreferences().edit().putString(MONEY_BALANCE, value).apply();
         }
 
-        public static String getCurrentBalance(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
+        public static String getCurrentBalance(){
+            SharedPreferences sp = getSharedPreferences();
             return sp.getString(MONEY_BALANCE, "100.00");
         }
 
-        public static void setLogout(Context context){
-            setLoggedStatus(context, LOGOUT);
+        public static void setLogout(){
+            setLoggedStatus(LOGOUT);
             MiLog.i(TAG, "flow Logout setLogout[" + LOGOUT + "]");
         }
 
-        public static void setLogin(Context context){
-            setLoggedStatus(context, LOGIN);
+        public static void setLogin(){
+            setLoggedStatus(LOGIN);
             MiLog.i(TAG, "flow Logout setLogout[" + LOGIN + "]");
         }
 
-        static void setLoggedStatus(Context context, int value){
-            getSharedPreferences(context).edit().putInt(LOGIN_STATUS_KEY, value).apply();
+        static void setLoggedStatus(int value){
+            getSharedPreferences().edit().putInt(LOGIN_STATUS_KEY, value).apply();
         }
 
-        public static int getLoggedStatus(Context context){
-            int key = getSharedPreferences(context).getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET);
+        public static int getLoggedStatus(){
+            int key = getSharedPreferences().getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET);
             MiLog.i(TAG, "getLoggedStatus[" + key + "]");
             return key;
         }
 
-        public static void setLastCheckTimestamp(Context context){
+        public static void setLastCheckTimestamp(){
             long timestamp = System.currentTimeMillis();
             MiLog.i(TAG, "setLastCheckTimestamp: " + timestamp);
-            getSharedPreferences(context).edit().putLong(LAST_CHECK_TIMESTAMP, timestamp).apply();
+            getSharedPreferences().edit().putLong(LAST_CHECK_TIMESTAMP, timestamp).apply();
         }
 
-        public static long getLastCheckTimestamp(Context context){
-            return getSharedPreferences(context).getLong(LAST_CHECK_TIMESTAMP, 0);
+        public static long getLastCheckTimestamp(){
+            return getSharedPreferences().getLong(LAST_CHECK_TIMESTAMP, 0);
         }
 
-        public static void clear(Context context){
-            String token = getToken(context);
-            getSharedPreferences(context).edit().clear().apply();
-            setToken(context, token);
+        public static void clear(){
+            String token = getToken();
+            getSharedPreferences().edit().clear().apply();
+            setToken(token);
         }
 
         public static void logOut(Activity activity){
-            MiAppPreferences.clear(activity);
-            MiAppPreferences.setLogout(activity);
+            MiAppPreferences.clear();
+            MiAppPreferences.setLogout();
             MiUtils.startSkillActivityClearStack(activity, LoginOrRegister.class);
             activity.finish();
         }
 
-        public static void registerListener(SharedPreferences.OnSharedPreferenceChangeListener listener, Context context){
-            getSharedPreferences(context).registerOnSharedPreferenceChangeListener(listener);
+        public static void registerListener(SharedPreferences.OnSharedPreferenceChangeListener listener){
+            getSharedPreferences().registerOnSharedPreferenceChangeListener(listener);
         }
 
-        public static void unRegisterListener(SharedPreferences.OnSharedPreferenceChangeListener listener, Context context) {
-            getSharedPreferences(context).unregisterOnSharedPreferenceChangeListener(listener);
+        public static void unRegisterListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+            getSharedPreferences().unregisterOnSharedPreferenceChangeListener(listener);
         }
 
 /*
-        public static void saveDataRegisterUser(BeanActionCreateUserResponse beanActionCreateUserResponse, Context context){
-            setIdProfile(context, beanActionCreateUserResponse.getIdProfile());
-            setInvitedBy(context, beanActionCreateUserResponse.getCheckedInvitedBy());
+        public static void saveDataRegisterUser(BeanActionCreateUserResponse beanActionCreateUserResponse){
+            setIdProfile(beanActionCreateUserResponse.getIdProfile());
+            setInvitedBy(beanActionCreateUserResponse.getCheckedInvitedBy());
         }
 
-        public static void saveLoginUser(BeanUserValidResponse beanUserValidResponse, Context context){
-            setIdProfile(context, beanUserValidResponse.getIdProfile());
-            setInvitedBy(context, beanUserValidResponse.getCheckedInvitedBy());
+        public static void saveLoginUser(BeanUserValidResponse beanUserValidResponse){
+            setIdProfile(beanUserValidResponse.getIdProfile());
+            setInvitedBy(beanUserValidResponse.getCheckedInvitedBy());
         }
 */
 
-        public static void setCurrencySymbol(Context context, String value){
-            getSharedPreferences(context).edit().putString(CURRENCY_SYMBOL, value).apply();
+        public static void setCurrencySymbol(String value){
+            getSharedPreferences().edit().putString(CURRENCY_SYMBOL, value).apply();
         }
 
-        public static String getCurrencySymbol(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
+        public static String getCurrencySymbol(){
+            SharedPreferences sp = getSharedPreferences();
             return sp.getString(CURRENCY_SYMBOL, "$");
         }
 
-        public static void setMsisdnPrefix(Context context, String value){
-            getSharedPreferences(context).edit().putString(MSISDN_PREFIX, value).apply();
+        public static void setMsisdnPrefix(String value){
+            getSharedPreferences().edit().putString(MSISDN_PREFIX, value).apply();
         }
 
-        public static String getMsisdnPrefix(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
+        public static String getMsisdnPrefix(){
+            SharedPreferences sp = getSharedPreferences();
             return sp.getString(MSISDN_PREFIX, "");
         }
 
-        public static void setMsisdnFormat(Context context, String value){
-            getSharedPreferences(context).edit().putString(MSISDN_FORMAT, value).apply();
+        public static void setMsisdnFormat(String value){
+            getSharedPreferences().edit().putString(MSISDN_FORMAT, value).apply();
         }
 
-        public static String getMsisdnFormat(Context context){
-            SharedPreferences sp = getSharedPreferences(context);
+        public static String getMsisdnFormat(){
+            SharedPreferences sp = getSharedPreferences();
             return sp.getString(MSISDN_FORMAT, "");
         }
     }

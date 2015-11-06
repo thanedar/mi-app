@@ -24,7 +24,7 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
         setContentView(R.layout.activity_login_or_register);
 
         if (savedInstanceState == null) {
-            int status = MiUtils.MiAppPreferences.getLoggedStatus(this);
+            int status = MiUtils.MiAppPreferences.getLoggedStatus();
             MiLog.i(LoginOrRegister.class.getName(), "getLoggedStatus value [" + status + "]");
             if(status == MiUtils.MiAppPreferences.LOGOUT) {
                 FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragLogin.TAG, FragLogin.newInstance(), R.id.container);
@@ -54,7 +54,7 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
     public void showDialogErrorCall(String content, String btnTex, @IdRes int resId, int requestCode) {
         if (requestCode == DialogActivity.REQ_SIGN_UP || requestCode == DialogActivity.REQ_SIGN_IN) {
             MiUtils.showDialogError(this, content, btnTex, resId, DialogActivity.APP_ERROR_CALL);
-            MiUtils.MiAppPreferences.clear(this);
+            MiUtils.MiAppPreferences.clear();
         }
     }
 }

@@ -32,7 +32,7 @@ public class BeanAppInfo extends GenericBean {
     private String androidId;
 
     public BeanAppInfo(Context context) {
-        this.osType = MiUtils.MiAppPreferences.getDeviceType(context);
+        this.osType = MiUtils.MiAppPreferences.getDeviceType();
         this.osVersion = Build.VERSION.RELEASE;
         this.appVersion = BuildConfig.VERSION_NAME;
 

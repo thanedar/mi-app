@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MiUtils.MiAppPreferences.setLogin(this);
+        MiUtils.MiAppPreferences.setLogin();
         setContentView(R.layout.main_activity);
 
         ButterKnife.inject(this);

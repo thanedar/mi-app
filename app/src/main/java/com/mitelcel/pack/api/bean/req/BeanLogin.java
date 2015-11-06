@@ -44,17 +44,17 @@ public class BeanLogin extends BeanGenericApi {
 
         public Params(Context context) {
             this.appInfo = new BeanAppInfo(context);
-            String token = MiUtils.MiAppPreferences.getToken(context);
+            String token = MiUtils.MiAppPreferences.getToken();
             if(token != "")
                 this.appToken = token;
 
-            this.credentials = new BeanCredentials(context);
+            this.credentials = new BeanCredentials();
         }
 
         public Params(Context context, String msisdn, String password) {
             this.appInfo = new BeanAppInfo(context);
 
-            String token = MiUtils.MiAppPreferences.getToken(context);
+            String token = MiUtils.MiAppPreferences.getToken();
             if(!token.equals(""))
                 this.appToken = token;
 

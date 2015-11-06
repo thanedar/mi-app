@@ -137,7 +137,7 @@ public class FragLogin extends Fragment implements View.OnClickListener{
 //                MiLog.i(TAG, "Login response " + beanLoginResponse.toString());
 //                MiLog.i(TAG, "Login Session Id " + beanLoginResponse.getResult().getSessionId());
                 if (beanLoginResponse.getError().getCode() == 0) {
-                    MiUtils.MiAppPreferences.setSessionId(getActivity(), beanLoginResponse.getResult().getSessionId());
+                    MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
                 } else {
                     MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());
                 }
@@ -149,9 +149,9 @@ public class FragLogin extends Fragment implements View.OnClickListener{
             }
         });
 
-        MiUtils.MiAppPreferences.setMsisdn(getActivity(), msisdn.getText().toString());
-        MiUtils.MiAppPreferences.setAuthPass(getActivity(), pass.getText().toString());
-        MiUtils.MiAppPreferences.setLogin(getActivity());
+        MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
+        MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
+        MiUtils.MiAppPreferences.setLogin();
 
         MiUtils.startSkillActivity(getActivity(), MainActivity.class);
         getActivity().finish();

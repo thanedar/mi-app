@@ -2,12 +2,14 @@ package com.mitelcel.pack.ui.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.mitelcel.pack.BuildConfig;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
@@ -69,22 +71,26 @@ public class LayoutBalance extends FrameLayout
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         ((MiApp)getContext()).getAppComponent().inject(this);
-        MiUtils.MiAppPreferences.registerListener(this, getContext());
+        MiUtils.MiAppPreferences.registerListener(this);
         miApiClient = MiRestClient.init();
-        callUserWallet();
+
+        if(BuildConfig.DEBUG)
+            new Handler().postDelayed(() -> callUserWallet(), 1500);
+        else
+            callUserWallet();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        MiUtils.MiAppPreferences.unRegisterListener(this, getContext());
+        MiUtils.MiAppPreferences.unRegisterListener(this);
         miApiClient = null;
     }
 
     private void setCurrentBalance(){
         textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cash, 0, 0, 0);
-        String symbol = MiUtils.MiAppPreferences.getCurrencySymbol(getContext());
-        String value = MiUtils.MiAppPreferences.getCurrentBalance(getContext());
+        String symbol = MiUtils.MiAppPreferences.getCurrencySymbol();
+        String value = MiUtils.MiAppPreferences.getCurrentBalance();
         textView.setText(symbol + value);
         /*textView.setOnClickListener(new OnClickListener() {
             @Override
@@ -105,7 +111,7 @@ public class LayoutBalance extends FrameLayout
     }
 
     public void callUserWallet(){
-        BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance(getContext());
+        BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance();
         MiLog.i(LayoutBalance.class.getSimpleName(), "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
         showProgressBarCoins();
         miApiClient.get_current_balance(beanGetCurrentBalance)
@@ -129,7 +135,7 @@ public class LayoutBalance extends FrameLayout
         MiLog.i(LayoutBalance.class.getSimpleName(), "BeanGetCurrentBalanceResponse response [ " + beanResponse.toString() + " ]");
         if (beanResponse != null && beanResponse.getError().getCode() == 0) {
             String cash = beanResponse.getResult().getCurrentBalance();
-            MiUtils.MiAppPreferences.setCurrentBalance(getContext(), cash);
+            MiUtils.MiAppPreferences.setCurrentBalance(cash);
         }
     }
 

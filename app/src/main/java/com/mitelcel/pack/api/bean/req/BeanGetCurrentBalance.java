@@ -17,10 +17,10 @@ public class BeanGetCurrentBalance extends BeanGenericApi {
     @Expose
     private Params params;
 
-    public BeanGetCurrentBalance (Context context) {
+    public BeanGetCurrentBalance () {
         this.id = System.currentTimeMillis();
         this.method = NAME;
-        this.params = new Params(context);
+        this.params = new Params();
     }
 
     public class Params extends GenericBean {
@@ -29,8 +29,8 @@ public class BeanGetCurrentBalance extends BeanGenericApi {
         @Expose
         private String sessionId;
 
-        public Params(Context context) {
-            this.sessionId = MiUtils.MiAppPreferences.getSessionId(context);
+        public Params() {
+            this.sessionId = MiUtils.MiAppPreferences.getSessionId();
         }
     }
 }

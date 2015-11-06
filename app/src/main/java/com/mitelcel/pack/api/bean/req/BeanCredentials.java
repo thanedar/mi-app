@@ -15,9 +15,9 @@ public class BeanCredentials extends GenericBean {
     @Expose
     private String password;
 
-    public BeanCredentials(Context context){
-        this.msisdn = MiUtils.MiAppPreferences.getMsisdn(context);
-        this.password = MiUtils.MiAppPreferences.getAuthPass(context);
+    public BeanCredentials(){
+        this.msisdn = MiUtils.MiAppPreferences.getMsisdn();
+        this.password = MiUtils.MiAppPreferences.getAuthPass();
     }
 
     public BeanCredentials(String msisdn, String password){

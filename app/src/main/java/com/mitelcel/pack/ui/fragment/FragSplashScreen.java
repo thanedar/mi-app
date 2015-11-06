@@ -86,24 +86,24 @@ public class FragSplashScreen extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MiUtils.MiAppPreferences.registerListener(this, getActivity().getApplicationContext());
+        MiUtils.MiAppPreferences.registerListener(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        MiUtils.MiAppPreferences.unRegisterListener(this, getActivity().getApplicationContext());
+        MiUtils.MiAppPreferences.unRegisterListener(this);
     }
 
     private void submit_app_info(){
 
-        if(MiUtils.MiAppPreferences.getToken(getActivity().getApplicationContext()) == "") {
+        if(MiUtils.MiAppPreferences.getToken().equals("")) {
             BeanSubmitAppInfo beanSubmitAppInfo = new BeanSubmitAppInfo(getActivity().getApplicationContext());
             miApiClient.submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
                 @Override
                 public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
                     if (beanSubmitAppInfoResponse.getResult() != null) {
-                        MiUtils.MiAppPreferences.setToken(getActivity(), beanSubmitAppInfoResponse.getResult().getAppToken());
+                        MiUtils.MiAppPreferences.setToken(beanSubmitAppInfoResponse.getResult().getAppToken());
                     }
                     if (BuildConfig.DEBUG) {
                         fakeLogin();
@@ -118,8 +118,8 @@ public class FragSplashScreen extends Fragment implements
         }
     }
     private void autoLogin() {
-        MiLog.i(TAG, "getLoggedStatus value [" + MiUtils.MiAppPreferences.getLoggedStatus(getActivity()) + "]");
-        int status = MiUtils.MiAppPreferences.getLoggedStatus(getActivity());
+        int status = MiUtils.MiAppPreferences.getLoggedStatus();
+        MiLog.i(TAG, "getLoggedStatus value [" + status + "]");
         if(status == MiUtils.MiAppPreferences.LOGOUT){
             MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
             getActivity().finish();
@@ -132,7 +132,7 @@ public class FragSplashScreen extends Fragment implements
             getActivity().finish();
         }
         else{
-            if(BuildConfig.DEBUG && !MiUtils.MiAppPreferences.getToken(getActivity().getApplicationContext()).equals(""))
+            if(BuildConfig.DEBUG && !MiUtils.MiAppPreferences.getToken().equals(""))
                 fakeLogin();
             MiUtils.startSkillActivity(getActivity(), MainActivity.class);
             getActivity().finish();
@@ -140,14 +140,14 @@ public class FragSplashScreen extends Fragment implements
     }
 
     private void fakeLogin() {
-        BeanLogin beanLogin = new BeanLogin(getActivity(), "520000000001", "blabla");
+        BeanLogin beanLogin = new BeanLogin(getActivity().getApplicationContext(), "520000000001", "blabla");
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
 //                MiLog.i(TAG, "Fake Login response " + beanLoginResponse.toString());
 //                MiLog.i(TAG, "Fake Login Session Id " + beanLoginResponse.getResult().getSessionId());
                 if(beanLoginResponse.getError().getCode() == 0) {
-                    MiUtils.MiAppPreferences.setSessionId(getActivity(), beanLoginResponse.getResult().getSessionId());
+                    MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
                 }
                 else{
                     MiLog.i(TAG, "Fake Login error response " + beanLoginResponse.toString());
