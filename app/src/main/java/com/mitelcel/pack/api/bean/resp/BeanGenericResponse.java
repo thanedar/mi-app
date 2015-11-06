@@ -1,15 +1,16 @@
 package com.mitelcel.pack.api.bean.resp;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.mitelcel.pack.bean.GenericBean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by sudhanshut on 11/3/15.
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public abstract class BeanGenericResponse extends GenericBean {
 
     public static final int PARSE_ERROR =       -32700;
@@ -24,6 +25,7 @@ public abstract class BeanGenericResponse extends GenericBean {
     protected Error error;
 
     @Data
+    @EqualsAndHashCode(callSuper=false)
     public class Error extends GenericBean {
 
         @Expose

@@ -9,7 +9,7 @@ public class Config {
     public static final int ERROR_NETWORK = -3;
     public static final int SUCCESS = 1;
 
-    public static final int MSISDN_LENGTH = 5;
+    public static final int MSISDN_LENGTH = 10;
     public static final int PASS_LENGTH = 4;
 
     /**

@@ -1,7 +1,5 @@
 package com.mitelcel.pack.api.bean.req;
 
-import android.content.Context;
-
 import com.google.gson.annotations.Expose;
 import com.mitelcel.pack.bean.GenericBean;
 import com.mitelcel.pack.utils.MiUtils;

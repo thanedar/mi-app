@@ -1,14 +1,11 @@
 package com.mitelcel.pack.api.bean.req;
 
 import android.content.Context;
-import android.os.Build;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.mitelcel.pack.BuildConfig;
 import com.mitelcel.pack.bean.GenericBean;
-import com.mitelcel.pack.utils.MiUtils;
 
 /**
  * Created by sudhanshut on 11/3/15.

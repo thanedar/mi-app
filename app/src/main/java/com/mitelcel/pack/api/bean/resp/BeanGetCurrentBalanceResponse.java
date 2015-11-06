@@ -7,20 +7,19 @@ import com.mitelcel.pack.bean.GenericBean;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 /**
  * Created by sudhanshut on 11/6/15.
  */
 @Data
-@Getter
+@EqualsAndHashCode(callSuper=true)
 public class BeanGetCurrentBalanceResponse extends BeanGenericResponse {
 
     @Expose
     private Result result;
 
     @Data
-    @EqualsAndHashCode(callSuper=false)
+    @EqualsAndHashCode(callSuper=true)
     public class Result extends GenericBean {
         @SerializedName("current_balance")
         @Expose

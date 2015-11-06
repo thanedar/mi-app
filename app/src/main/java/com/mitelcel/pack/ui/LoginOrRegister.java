@@ -2,7 +2,6 @@ package com.mitelcel.pack.ui;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.mitelcel.pack.R;
