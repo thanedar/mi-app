@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/material_indigo_500"
+    tools:context="com.mitelcel.pack.ui.fragment.FragMain">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/hello_blank_fragment"
+        android:id="@+id/main_imei"
+        android:padding="30dp"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/hello_blank_fragment"
+        android:id="@+id/main_imsi"
+        android:padding="30dp"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/hello_blank_fragment"
+        android:id="@+id/main_android_id"
+        android:padding="30dp"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+</LinearLayout>

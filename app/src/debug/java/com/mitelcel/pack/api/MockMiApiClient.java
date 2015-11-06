@@ -45,6 +45,18 @@ public class MockMiApiClient implements MiApiClient {
         callback.success(beanAuthenticateResponse, response);
     }*/
 
+    @Override
+    public Observable<BeanSubmitAppInfoResponse> submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo) {
+        return Observable.create(new Observable.OnSubscribe<BeanSubmitAppInfoResponse>() {
+            @Override
+            public void call(Subscriber<? super BeanSubmitAppInfoResponse> subscriber) {
+                BeanSubmitAppInfoResponse beanSubmitAppInfoResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
+                subscriber.onNext(beanSubmitAppInfoResponse);
+                subscriber.onCompleted();
+            }
+        });
+    }
+
     /*@Override
     public Observable<BeanAuthenticateResponse> authenticate(@Body BeanAuthenticate beanAuthenticate) {
         return Observable.create(new Observable.OnSubscribe<BeanAuthenticateResponse>() {

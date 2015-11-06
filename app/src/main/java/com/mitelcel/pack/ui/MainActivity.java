@@ -123,8 +123,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mDrawerToggle.onOptionsItemSelected(item)){

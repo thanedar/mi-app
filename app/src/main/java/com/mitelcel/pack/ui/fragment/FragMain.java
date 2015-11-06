@@ -11,10 +11,6 @@ import android.widget.TextView;
 
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.MiRestClient;
-import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
-import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.utils.MiLog;
@@ -24,9 +20,6 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,9 +38,6 @@ public class FragMain extends Fragment {
 
     @InjectView(R.id.main_android_id)
     TextView androidId;
-
-    @Inject
-    MiApiClient miApiClient;
 
     OnMainFragmentInteractionListener mListener;
 
@@ -74,9 +64,6 @@ public class FragMain extends Fragment {
         setRetainInstance(true);
         setHasOptionsMenu(true);
 
-        if (getArguments() != null) {
-        }
-
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
@@ -93,19 +80,6 @@ public class FragMain extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        BeanSubmitAppInfo beanSubmitAppInfo = new BeanSubmitAppInfo(getActivity().getApplicationContext());
-        MiRestClient.init().submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
-            @Override
-            public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
-                MiUtils.MiAppPreferences.setToken(getActivity(), beanSubmitAppInfoResponse.getResult().getAppToken());
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                MiLog.e(TAG, "BeanSubmitAppInfoResponse Error " + error.toString());
-            }
-        });
 
         imei.setText("IMEI: " + MiUtils.Info.getDeviceId(this.getActivity().getApplicationContext()));
         imsi.setText("IMSI: " + MiUtils.Info.getSubscriberId(this.getActivity().getApplicationContext()));

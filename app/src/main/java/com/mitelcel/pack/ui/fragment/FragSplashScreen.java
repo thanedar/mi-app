@@ -63,6 +63,7 @@ public class FragSplashScreen extends Fragment implements
                 .progress(true, 0)
                 .build();
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
+        miApiClient = MiRestClient.init();
     }
 
     @Override
@@ -76,13 +77,7 @@ public class FragSplashScreen extends Fragment implements
         super.onResume();
         submit_app_info();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                autoLogin();
-            }
-        }, 1000);
-
+        new Handler().postDelayed(() -> autoLogin(), 1500);
     }
 
     @Override
@@ -101,11 +96,12 @@ public class FragSplashScreen extends Fragment implements
 
         if(MiUtils.MiAppPreferences.getToken(getActivity().getApplicationContext()) == "") {
             BeanSubmitAppInfo beanSubmitAppInfo = new BeanSubmitAppInfo(getActivity().getApplicationContext());
-            MiRestClient.init().submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
+            miApiClient.submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
                 @Override
                 public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
-                    if (beanSubmitAppInfoResponse.getResult() != null)
-                        MiUtils.MiAppPreferences.setToken(getActivity().getApplicationContext(), beanSubmitAppInfoResponse.getResult().getAppToken());
+                    if (beanSubmitAppInfoResponse.getResult() != null) {
+                        MiUtils.MiAppPreferences.setToken(getActivity(), beanSubmitAppInfoResponse.getResult().getAppToken());
+                    }
                 }
 
                 @Override
