@@ -555,7 +555,7 @@ public class MiUtils {
 
         public static String getMsisdnPrefix(){
             SharedPreferences sp = getSharedPreferences();
-            return sp.getString(MSISDN_PREFIX, "");
+            return sp.getString(MSISDN_PREFIX, "52");
         }
 
         public static void setMsisdnFormat(String value){
