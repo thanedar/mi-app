@@ -2,9 +2,11 @@ package com.mitelcel.pack.api;
 
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
+import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
+import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 
 import retrofit.Callback;
@@ -29,6 +31,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void login(@Body BeanLogin beanLogin, Callback<BeanLoginResponse> callback);
+
+    @POST(REQUEST_URI)
+    void logout(@Body BeanLogout beanLogout, Callback<BeanLogoutResponse> callback);
 
     /**
      * RxJava call

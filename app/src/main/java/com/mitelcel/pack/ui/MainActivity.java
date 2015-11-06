@@ -14,6 +14,9 @@ import android.view.View;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.MiRestClient;
+import com.mitelcel.pack.api.bean.req.BeanLogout;
+import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.ui.fragment.FragHelp;
 import com.mitelcel.pack.ui.fragment.FragMain;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
@@ -27,6 +30,9 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class MainActivity extends BaseActivity implements OnMainFragmentInteractionListener, OnDialogListener{
@@ -42,7 +48,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     MiApiClient miApiClient;
 
     boolean mIsDialogStarted = false;
-    boolean mIsBonusDialogStarted = false;
 
     protected static final String BACK_STACK_NAME = "bk_main";
 
@@ -176,9 +181,32 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 //                startActivity(new Intent(this, Rewards.class));
                 break;
             case R.id.navdrawer_item_logout:
-                MiUtils.MiAppPreferences.logOut(this);
+                logout();
                 break;
         }
+    }
+
+    private void logout(){
+        miApiClient = MiRestClient.init();
+        BeanLogout beanLogout = new BeanLogout();
+        miApiClient.logout(beanLogout, new Callback<BeanLogoutResponse>() {
+            @Override
+            public void success(BeanLogoutResponse beanLogoutResponse, Response response) {
+//                MiLog.i(TAG, "Logout response " + beanLogoutResponse.toString());
+                if (beanLogoutResponse.getError().getCode() == 0) {
+                    MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
+
+                    MiUtils.MiAppPreferences.logOut(MainActivity.this);
+                } else {
+                    MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                MiLog.i("Logout", "Logout failure " + error.toString());
+            }
+        });
     }
 
     @Override

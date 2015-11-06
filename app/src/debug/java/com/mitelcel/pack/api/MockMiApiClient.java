@@ -5,11 +5,12 @@ import android.content.SharedPreferences;
 import com.mitelcel.pack.FakeData;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
+import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
+import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
-import com.mitelcel.pack.dagger.module.SharedPrefModule;
 
 import com.google.gson.Gson;
 
@@ -33,7 +34,7 @@ public class MockMiApiClient implements MiApiClient {
     public MockMiApiClient(){}
 
     @Inject
-    SharedPreferences  sharedPreferences;
+    SharedPreferences sharedPreferences;
 
     @Override
     public void submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo, Callback<BeanSubmitAppInfoResponse> callback) {
@@ -45,8 +46,15 @@ public class MockMiApiClient implements MiApiClient {
     @Override
     public void login(@Body BeanLogin beanLogin, Callback<BeanLoginResponse> callback) {
         BeanLoginResponse beanLoginResponse = new Gson().fromJson(FakeData.RESP_LOGIN, BeanLoginResponse.class);
-        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_SUBMIT_APP_INFO.getBytes()));
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_LOGIN.getBytes()));
         callback.success(beanLoginResponse, response);
+    }
+
+    @Override
+    public void logout(@Body BeanLogout beanLogout, Callback<BeanLogoutResponse> callback) {
+        BeanLogoutResponse beanLogoutResponse = new Gson().fromJson(FakeData.RESP_LOGOUT, BeanLogoutResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_LOGOUT.getBytes()));
+        callback.success(beanLogoutResponse, response);
     }
 
     /*@Override
