@@ -66,7 +66,6 @@ public class FragSplashScreen extends Fragment implements
                 .progress(true, 0)
                 .build();
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
-        miApiClient = MiRestClient.init();
     }
 
     @Override
@@ -140,7 +139,7 @@ public class FragSplashScreen extends Fragment implements
     }
 
     private void fakeLogin() {
-        BeanLogin beanLogin = new BeanLogin(getActivity().getApplicationContext(), "520000000001", "blabla");
+        BeanLogin beanLogin = new BeanLogin(getActivity().getApplicationContext(), "0000000001", "blabla");
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {

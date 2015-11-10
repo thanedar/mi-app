@@ -27,15 +27,6 @@ public class FragMain extends Fragment {
 
     public static final String TAG = FragMain.class.getSimpleName();
 
-    @InjectView(R.id.main_imei)
-    TextView imei;
-
-    @InjectView(R.id.main_imsi)
-    TextView imsi;
-
-    @InjectView(R.id.main_android_id)
-    TextView androidId;
-
     OnMainFragmentInteractionListener mListener;
 
     /**
@@ -68,7 +59,7 @@ public class FragMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.inject(this, view);
 
         return view;
@@ -78,9 +69,6 @@ public class FragMain extends Fragment {
     public void onResume() {
         super.onResume();
 
-        imei.setText("IMEI: " + MiUtils.Info.getDeviceId(this.getActivity().getApplicationContext()));
-        imsi.setText("IMSI: " + MiUtils.Info.getSubscriberId(this.getActivity().getApplicationContext()));
-        androidId.setText("ANDROID ID: " + MiUtils.Info.getAndroidId(this.getActivity().getApplicationContext()));
         mListener.updateActionBar();
     }
 

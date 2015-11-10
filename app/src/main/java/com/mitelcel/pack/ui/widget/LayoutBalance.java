@@ -72,7 +72,6 @@ public class LayoutBalance extends FrameLayout
         super.onAttachedToWindow();
         ((MiApp)getContext()).getAppComponent().inject(this);
         MiUtils.MiAppPreferences.registerListener(this);
-        miApiClient = MiRestClient.init();
 
         if(BuildConfig.DEBUG)
             new Handler().postDelayed(() -> callUserWallet(), 1500);

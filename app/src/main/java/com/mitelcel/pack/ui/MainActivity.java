@@ -186,7 +186,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     }
 
     private void logout(){
-        miApiClient = MiRestClient.init();
         BeanLogout beanLogout = new BeanLogout();
         miApiClient.logout(beanLogout, new Callback<BeanLogoutResponse>() {
             @Override

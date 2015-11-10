@@ -33,6 +33,8 @@ public class DebugApiModule {
             MockMiApiClient mockMiApiClient,
             @PerDebug boolean hasDebug){
 
+        restAdapter.setLogLevel(RestAdapter.LogLevel.HEADERS_AND_ARGS);
+
         if(hasDebug){
             return mockRestAdapter.create(MiApiClient.class, mockMiApiClient);
         }
