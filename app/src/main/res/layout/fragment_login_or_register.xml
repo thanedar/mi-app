@@ -1,51 +1,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_indigo_500">
+    android:background="@color/background_color">
 
     <RelativeLayout
+        android:id="@+id/container_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:paddingRight="30dp"
-        android:id="@+id/container_btn"
         android:paddingLeft="30dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:paddingRight="30dp">
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:id="@+id/login_or_register_register"
+            style="@style/Widget.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/login_or_register_register"
-            android:text="@string/register"
-            style="@style/Widget.GenericApp.ButtonFolks.New"
-            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
             android:elevation="3dp"
             android:onClick="clickWidgetOnFragment"
-            android:layout_alignParentTop="true"/>
+            android:text="@string/register" />
 
         <com.mitelcel.pack.ui.widget.TextViewFolks
+            android:id="@+id/login_or_register_already_reg"
+            style="@style/Widget.GenericApp.Fragment.Title.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/already_member"
-            android:id="@+id/login_or_register_already_reg"
-            style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
-            android:textSize="20sp"
             android:layout_below="@+id/login_or_register_register"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="100dp"
+            android:text="@string/already_member"
+            android:textSize="20sp" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:id="@+id/login_or_register_login"
+            style="@style/Widget.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:id="@+id/login_or_register_login"
-            android:onClick="clickWidgetOnFragment"
-            style="@style/Widget.GenericApp.ButtonFolks.New"
             android:layout_below="@+id/login_or_register_already_reg"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginTop="40dp"
+            android:onClick="clickWidgetOnFragment"
+            android:text="@string/login" />
 
     </RelativeLayout>
 

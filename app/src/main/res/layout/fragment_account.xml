@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:padding="@dimen/card_padding"
-    tools:context="com.mitelcel.pack.ui.fragment.FragMain">
+    tools:context="com.mitelcel.pack.ui.fragment.FragAccount">
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/account_id"
@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:padding="20dp"
-        android:text="@string/your_account" />
+        android:padding="25dp"
+        android:text="@string/sample_user_msisdn" />
 
     <LinearLayout
         android:id="@+id/account_list"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/account_id"
         android:orientation="horizontal"
@@ -30,8 +30,15 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="0.33" />
+            android:layout_marginRight="8dp" />
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:id="@+id/account_money"
+            style="@style/Widget.GenericApp.ButtonFolks.Info"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/account_sms"
@@ -39,8 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="0.33" />
+            android:layout_marginRight="8dp" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/account_data"
@@ -48,43 +54,24 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="0.33" />
+            android:layout_marginRight="8dp" />
     </LinearLayout>
-
-    <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/account_recent_title"
-        style="@style/Widget.GenericApp.Account.Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/account_list"
-        android:padding="20dp"
-        android:text="@string/recent_activity" />
-
-    <com.mitelcel.pack.ui.widget.ButtonFolks
-        android:id="@+id/account_recent_one"
-        style="@style/Widget.GenericApp.ButtonFolks.Info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/account_recent_title"
-        android:layout_margin="10dp" />
-
-    <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/account_offer_title"
-        style="@style/Widget.GenericApp.Account.Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/account_recent_one"
-        android:padding="20dp"
-        android:text="@string/your_offers" />
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
         android:id="@+id/account_offer"
         style="@style/Widget.GenericApp.Account.Offer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_offer_title"
+        android:layout_below="@id/account_list"
         android:layout_margin="10dp"
         android:text="@string/sample_offer" />
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:id="@+id/account_recent_one"
+        style="@style/Widget.GenericApp.ButtonFolks.Info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_offer"
+        android:layout_margin="10dp" />
 
 </RelativeLayout>

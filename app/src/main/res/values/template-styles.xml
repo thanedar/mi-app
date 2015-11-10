@@ -49,9 +49,9 @@
 
     <style name="Theme.Generic.Base" parent="Theme">
 
-        <item name="colorPrimary">@color/material_indigo_500</item>
-        <item name="colorPrimaryDark">@color/material_indigo_600</item>
-        <item name="colorAccent">@color/material_teal_500</item>
+        <item name="colorPrimary">@color/material_blue_700</item>
+        <item name="colorPrimaryDark">@color/material_blue_900</item>
+        <item name="colorAccent">@color/material_blue_a200</item>
 
     </style>
 
@@ -66,10 +66,9 @@
     <!-- NO actionbar style -->
 
     <style name="Theme.App.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
-    <style name="Theme.SkillSweet.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
-        <item name="colorPrimary">@color/material_indigo_500</item>
-        <item name="colorPrimaryDark">@color/material_indigo_600</item>
-        <item name="colorAccent">@color/material_teal_500</item>
+        <item name="colorPrimary">@color/material_blue_700</item>
+        <item name="colorPrimaryDark">@color/material_blue_900</item>
+        <item name="colorAccent">@color/material_blue_a200</item>
         <!-- Only needed for pre-L -->
         <item name="android:editTextBackground">@drawable/edit_text</item>
         <item name="android:editTextStyle">@style/Widget.GenericApp.EditText</item>
@@ -95,8 +94,10 @@
     <style name="Widget.GenericApp.Fragment.Title.TextView" parent="Theme.App" >
         <item name="type_face">@string/vagroundedstd_black</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">30sp</item>
     </style>
 
     <style name="Widget.GenericApp.EditText" parent="Widget.AppCompat.EditText">

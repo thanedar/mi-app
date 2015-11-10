@@ -2,88 +2,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_indigo_500">
+    android:background="@color/background_color">
 
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/label_login"
+        style="@style/Widget.GenericApp.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/login"
-        android:id="@+id/label_login"
-        style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
-        android:textSize="30sp"
-        android:padding="50dp"
         android:gravity="center"
-        android:layout_centerHorizontal="true" />
+        android:padding="50dp"
+        android:text="@string/login" />
 
     <RelativeLayout
+        android:id="@+id/form_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/form_login"
         android:padding="15dp">
 
         <view
-            class="com.mitelcel.pack.ui.widget.EditTextFolk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/login_tv_msisdn"
-            android:hint="@string/msisdn"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            style="@style/Widget.App.Input.EditText"
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
-            style="@style/Widget.GenericApp.Signup.EditText.New" />
+            android:hint="@string/enter_your_msisdn" />
 
         <view
-            class="com.mitelcel.pack.ui.widget.EditTextFolk"
-            android:inputType="textPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/login_tv_pass"
-            android:hint="@string/enter_your_password"
+            style="@style/Widget.App.Input.EditText"
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/login_tv_msisdn"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            style="@style/Widget.GenericApp.Signup.EditText.New" />
+            android:hint="@string/enter_your_password"
+            android:inputType="textPassword" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_on"
             android:id="@+id/login_btn_logon"
-            android:textSize="20sp"
-            android:layout_marginTop="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            style="@style/Widget.GenericApp.ButtonFolks.New"
+            style="@style/Widget.App.ButtonFolks.Positive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/login_tv_pass"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/log_on" />
 
     </RelativeLayout>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/signin_tv_new_user"
+        style="@style/Widget.GenericApp.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/new_user"
-        style="@style/Widget.GenericApp.NavigationDrawer.TextView.New"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_marginBottom="20dp"
-        android:onClick="clickWidgetOnFragment"
-        android:clickable="true"
-        android:id="@+id/signin_tv_new_user"
         android:layout_below="@+id/form_login"
-        android:gravity="center" />
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="clickWidgetOnFragment"
+        android:text="@string/new_user"
+        android:textSize="20sp" />
 
 </RelativeLayout>
