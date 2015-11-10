@@ -20,7 +20,9 @@
 
     <style name="Theme.Base" parent="Theme.AppCompat.Light" />
 
-    <style name="AppTheme" parent="Theme.Base" />
+    <style name="Theme.Sample" parent="Theme.Base" />
+
+    <style name="AppTheme" parent="Theme.Sample" />
     <!-- Widget styling -->
 
     <style name="Widget" />
@@ -32,47 +34,7 @@
         <item name="android:paddingRight">@dimen/horizontal_page_margin</item>
     </style>
 
-    <style name="Widget.SampleMessage">
-        <item name="android:textAppearance">?android:textAppearanceMedium</item>
-        <item name="android:lineSpacingMultiplier">1.1</item>
-        <item name="android:textColor">@color/black_54</item>
-    </style>
-
-    <style name="Widget.SampleDashboard.Grid" parent="Widget">
-        <item name="android:stretchMode">columnWidth</item>
-        <item name="android:columnWidth">200dp</item>
-        <item name="android:numColumns">auto_fit</item>
-        <item name="android:drawSelectorOnTop">true</item>
-        <item name="android:horizontalSpacing">0dp</item>
-        <item name="android:verticalSpacing">0dp</item>
-    </style>
-
-    <style name="Widget.SampleDashboard.Card" parent="Widget">
-        <item name="android:gravity">center</item>
-        <item name="android:layout_margin">@dimen/card_margin</item>
-        <item name="cardCornerRadius">4dp</item>
-        <item name="cardElevation">5dp</item>
-        <item name="contentPadding">@dimen/card_padding</item>
-    </style>
-
-    <style name="Widget.SampleDashboard.Item" parent="Widget">
-    </style>
-
-    <style name="Widget.SampleDashboard.Item.Title" parent="Widget">
-        <item name="android:layout_marginBottom">@dimen/margin_tiny</item>
-        <item name="android:textAppearance">?android:textAppearanceLarge</item>
-        <item name="android:textColor">@color/teal</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">24sp</item>
-    </style>
-
-    <style name="Widget.SampleDashboard.Item.Description" parent="Widget">
-        <item name="android:textAppearance">?android:textAppearanceSmall</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textColor">@color/black_87</item>
-    </style>
-
-    <style name="Transparent" parent="Theme.Base" >
+    <style name="Transparent" parent="Theme.Sample" >
         <!--<item name="android:windowNoTitle">true</item>-->
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -99,10 +61,11 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.SkillSweet" parent="Theme.Generic.Base" />
+    <style name="Theme.App" parent="Theme.Generic.Base" />
 
     <!-- NO actionbar style -->
 
+    <style name="Theme.App.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
     <style name="Theme.SkillSweet.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">@color/material_indigo_500</item>
         <item name="colorPrimaryDark">@color/material_indigo_600</item>
@@ -113,7 +76,7 @@
 
     </style>
 
-    <style name="Theme.SkillSweet.DialogPopupNoConnection" parent="android:Theme">
+    <style name="Theme.App.Dialog.Popup" parent="android:Theme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/dark_transparency_popup</item>
         <!--<item name="android:windowContentOverlay">@null</item>-->
@@ -124,32 +87,16 @@
 
     <!-- END NO actionbar style -->
 
-    <style name="Widget.GenericApp.NavigationDrawer.TextView" parent="Theme.SkillSweet" >
+    <style name="Widget.GenericApp.NavigationDrawer.TextView" parent="Theme.App" >
         <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@string/font_fontFamily_medium</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Widget.GenericApp.NavigationDrawer.TextView.New" parent="Theme.SkillSweet" >
+    <style name="Widget.GenericApp.Fragment.Title.TextView" parent="Theme.App" >
         <item name="type_face">@string/vagroundedstd_black</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@string/font_fontFamily_medium</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">14sp</item>
-    </style>
-    <style name="Widget.GenericApp.RewardsGuest.TextView" parent="Theme.SkillSweet" >
-        <item name="type_face">@string/vagroundedstd_thin</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:fontFamily">@string/font_fontFamily_medium</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-
-    <style name="Widget.GenericApp.NavigationDrawer.Account.TextView" parent="Theme.SkillSweet" >
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@string/font_fontFamily_medium</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:ellipsize">marquee</item>
-        <item name="android:lines">1</item>
     </style>
 
     <style name="Widget.GenericApp.EditText" parent="Widget.AppCompat.EditText">
@@ -158,124 +105,74 @@
         <item name="android:textColorHint">@color/soft_grey</item>
         <item name="android:singleLine">true</item>
     </style>
-    <style name="Widget.GenericApp.Signup.Title.TextView" parent="Theme.SkillSweet">
-        <item name="android:textColor">@color/dark_grey</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-    </style>
 
-    <style name="Widget.GenericApp.ButtonFolks.Tutorial.Next" parent="Theme.SkillSweet">
-        <item name="android:textColor">@color/red</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_list_tutorial_next_btn</item>
+    <style name="Widget.GenericApp.Account.Title" parent="Theme.App">
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">25sp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">15dp</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
-
-    <style name="Widget.GenericApp.ButtonFolks.Tutorial.Skip" parent="Theme.SkillSweet">
+    <style name="Widget.GenericApp.Account.Offer" parent="Theme.App">
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_list_tutorial_skip_btn</item>
+        <item name="android:background">@drawable/shape_account_offer</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:paddingTop">50dp</item>
+    </style>
+
+    <style name="Widget.GenericApp.ButtonFolks" parent="Theme.App">
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_login_register_btn</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Widget.GenericApp.ButtonFolks.Info" parent="Theme.App"  >
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_account_info</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+    <style name="Widget.App.ButtonFolks.Positive" parent="Theme.App"  >
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_button_folks_positive</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Widget.App.ButtonFolks.Disable" parent="Theme.App"  >
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_button_folks_disable</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Widget.App.TextFolks" parent="Theme.App"  >
+        <item name="android:textColor">@color/skillsweet_base_color</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Widget.GenericApp.Settings.Title.TextFolks" parent="Theme.App"  >
+        <item name="android:textColor">@color/green_skill</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="Widget.GenericApp.ButtonFolks" parent="Theme.SkillSweet">
-        <item name="android:textColor">@color/white</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_login_signup_btn</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.ButtonFolks.New" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/white</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_login_signup_btn_new</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-    <style name="Widget.GenericApp.ButtonFolks.New.Disable" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/white</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_login_signup_btn_new_disable</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-    <style name="Widget.GenericApp.ButtonFolks.New.Elevation" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/white</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_login_signup_btn_elevation</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.GamesList.ButtonFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/white</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_list_games_btn_install_play</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-    <style name="Widget.GenericApp.GamesList.ButtonFolksTransparent" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/white_transparent</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:background">@drawable/shape_list_games_btn_install_play_transparent</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/skillsweet_base_color</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.GameList.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/black</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.RewardList.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/skillsweet_base_color</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.RewardList.Title.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/green_skill</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">30sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.Settings.Title.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/green_skill</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">30sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.Settings.SubTitle.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/skillsweet_base_color</item>
-        <item name="type_face">@string/vagroundedstd_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-    <style name="Widget.GenericApp.Settings.SubTitle.TextFolks.Black" parent="Widget.GenericApp.Settings.SubTitle.TextFolks"  >
-        <item name="android:textColor">@color/dark_grey_more</item>
-    </style>
-    <style name="Widget.GenericApp.Settings.SubTitle.Value.TextFolks" parent="Theme.SkillSweet"  >
-        <item name="android:textColor">@color/dark_grey</item>
-        <item name="type_face">@string/vagroundedstd_thin</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-    <style name="Widget.GenericApp.PopupDialogNoConnection" parent="Theme.SkillSweet"  >
+    <style name="Widget.App.Dialog.Popup.Layout" parent="Theme.App"  >
         <item name="android:padding">10dp</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@color/white</item>
     </style>
-    <style name="Widget.GenericApp.PopupDialogNoConnection.Title" parent="Theme.SkillSweet" >
+
+    <style name="Widget.App.Dialog.Popup.Title" parent="Theme.App" >
         <item name="android:layout_gravity">start</item>
-        <item name="android:background">@drawable/shape_login_signup_btn</item>
+        <item name="android:background">@drawable/shape_login_register_btn</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textAllCaps">true</item>
@@ -283,15 +180,7 @@
         <item name="android:padding">10dp</item>
     </style>
 
-    <style name="Widget.GenericApp.Signup.EditText" parent="Theme"  >
-        <item name="type_face">@string/vagroundedstd_black</item>
-        <item name="android:textCursorDrawable">@drawable/skill_cursor_Drawable</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:textColorHint">@color/soft_grey</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="Widget.GenericApp.Signup.EditText.New" parent="Theme"  >
+    <style name="Widget.App.Input.EditText" parent="Theme">
         <item name="type_face">@string/vagroundedstd_black</item>
         <item name="android:textCursorDrawable">@drawable/skill_cursor_Drawable</item>
         <item name="android:layout_marginTop">10dp</item>
@@ -300,30 +189,6 @@
         <item name="android:textColor">@color/dark_grey_more</item>
         <item name="android:padding">12dp</item>
         <item name="android:background">@drawable/edittext_background</item>
-    </style>
-
-    <style name="Widget.GenericApp.SettReferralCode.EditText" parent="Theme"  >
-        <item name="type_face">@string/vagroundedstd_black</item>
-        <item name="android:textCursorDrawable">@drawable/skill_cursor_Drawable</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:textColorHint">@color/soft_grey</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/dark_grey_more</item>
-        <item name="android:padding">12dp</item>
-        <item name="android:background">@drawable/edittext_background_referral</item>
-    </style>
-
-    <style name="Theme.U2020" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColorPrimary">@color/text_color_primary</item>
-        <item name="android:textColorSecondary">@color/text_color_secondary</item>
-
-
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@color/white</item>
-
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorPrimary">@color/accent</item>
     </style>
 
 </resources>

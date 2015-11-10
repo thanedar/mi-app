@@ -40,7 +40,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
-        android:theme="@style/Theme.SkillSweet" >
+        android:theme="@style/Theme.App" >
         <activity
             android:name=".ui.MainActivity"
             android:icon="@mipmap/ic_launcher"
@@ -51,13 +51,13 @@
             android:name=".ui.LoginOrRegister"
             android:label="@string/title_activity_login_or_register"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SkillSweet.NoActionBar" >
+            android:theme="@style/Theme.App.NoActionBar" >
         </activity>
         <activity
             android:name="com.mitelcel.pack.ui.SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SkillSweet.NoActionBar" >
+            android:theme="@style/Theme.App.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,7 +79,7 @@
         <activity
             android:name="com.mitelcel.pack.ui.DialogActivity"
             android:label="@string/title_activity_dialog_no_connection"
-            android:theme="@style/Theme.SkillSweet.DialogPopupNoConnection">
+            android:theme="@style/Theme.App.Dialog.Popup">
         </activity>
 
         <meta-data

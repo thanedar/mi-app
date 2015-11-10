@@ -55,16 +55,15 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MiUtils.MiAppPreferences.setLogin();
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
         ButterKnife.inject(this);
 
         fragMain = FragMain.newInstance();
 
         if (savedInstanceState == null) {
-            FragmentHandler.addFragmentInBackStackWithAnimation(
+            FragmentHandler.replaceFragment(
                     getSupportFragmentManager(),
-                    BACK_STACK_NAME,
                     FragMain.class.getName(),
                     fragMain,
                     R.id.main_content_fragment);

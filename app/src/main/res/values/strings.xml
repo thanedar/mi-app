@@ -18,28 +18,17 @@
 
     <string name="app_name">Mi Telcel</string>
     <string name="hello_world">Hello world!</string>
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_websearch">Web search</string>
-    <string name="app_not_available">Sorry, there\'s no web browser available</string>
-    <string name="navigation_drawer_close">Drawer Close</string>
-    <string name="navigation_drawer_open">Drawer Open</string>
     <string name="placeholder_lorem_ipsum">Lorem ipsum dolor</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Login</string>
-    <string name="action_previous">Previous</string>
-    <string name="action_next">Next</string>
-    <string name="action_finish">Finish</string>
-    <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem
-        Ipsum</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
 
+    <!-- MSISDN -->
+    <string name="msisdn">Phone number</string>
+    <string name="msisdn_not_valid">Invalid number</string>
+
     <!-- Login -->
-    <string name="user_name">Username</string>
     <string name="password">Password</string>
-    <string name="email">Email</string>
     <string name="repeat_password">Repeat password</string>
-    <string name="gender">Gender</string>
     <string name="submit">Submit</string>
     <string name="retry">Retry</string>
     <string name="register">Register</string>
@@ -56,12 +45,12 @@
     <string name="email_not_valid">Email not valid</string>
     <string name="password_doesnt_match">Password doesn\'t match</string>
     <string name="password_more_digit">Password must be at least 4 characters</string>
-    <string name="gender_not_valid">Gender not valid</string>
+    <!-- General -->
+    <string name="email">Email</string>
     <string name="loading">Loading&#8230;</string>
     <string name="please_wait">Please wait…</string>
     <string name="warning">Warning</string>
     <string name="close">Close</string>
-    <string name="exit">logout</string>
     <string name="cancel">Cancel</string>
     <string name="back">Go Back</string>
     <string name="no_connection_popup">Looks like you don\'t have an internet connection!</string>
@@ -76,11 +65,6 @@
     <string name="vagroundedstd_bold">VAGRoundedStd-Bold.otf</string>
     <string name="vagroundedstd_light">VAGRoundedStd-Light.otf</string>
     <string name="vagroundedstd_thin">VAGRoundedStd-Thin.otf</string>
-
-    <!-- Environment -->
-    <string name="action_debug">Select Environment</string>
-    <string name="title_activity_environment">EnvironmentActivity</string>
-    <string name="title_activity_settings">Settings</string>
 
     <!-- Navigation drawer -->
     <string name="navdrawer_item_home">Home</string>
@@ -101,6 +85,7 @@
     <!-- Bucksense -->
     <string name="tats_app_id">9aeee11d-1ffd-11e5-8cfb-d4856445</string>
     <string name="gcm_sender">1095055717735</string>
+
     <!-- Log Level -->
     <string name="tats_log_verbose">verbose</string>
     <string name="tats_log_debug">debug</string>
@@ -108,18 +93,13 @@
     <string name="tats_log_warn">warning</string>
     <string name="tats_log_error">error</string>
     <string name="tats_log_assert">assert</string>
+
     <!-- Retargeting Placement -->
-    <string name="placement_id">5</string>
-    <string name="start_screen">appstart</string>
     <string name="tutorial_screen">tutorial</string>
     <!-- Environment -->
     <string name="tats_env_production">production</string>
     <string name="tats_env_sandbox">sandbox</string>
     <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
-
-    <!-- MSISDN -->
-    <string name="msisdn">Phone number</string>
-    <string name="msisdn_not_valid">Invalid number</string>
 
     <string name="lorem_ipsum">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</string>
 

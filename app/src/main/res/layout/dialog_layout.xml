@@ -4,14 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/Widget.GenericApp.PopupDialogNoConnection">
+    style="@style/Widget.App.Dialog.Popup.Layout">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/success"
         android:id="@+id/tv_dialog_title"
-        style="@style/Widget.GenericApp.PopupDialogNoConnection.Title"
+        style="@style/Widget.App.Dialog.Popup.Title"
         android:visibility="gone"
         android:layout_alignParentTop="true" />
 
@@ -51,7 +51,7 @@
         android:id="@+id/btn_dialog"
         android:textSize="20sp"
         android:layout_marginTop="5dp"
-        style="@style/Widget.GenericApp.ButtonFolks.New"
+        style="@style/Widget.App.ButtonFolks.Positive"
         android:layout_marginBottom="5dp"/>
 
 
