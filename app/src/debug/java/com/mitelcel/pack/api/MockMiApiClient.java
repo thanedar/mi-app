@@ -3,10 +3,12 @@ package com.mitelcel.pack.api;
 import android.content.SharedPreferences;
 
 import com.mitelcel.pack.FakeData;
+import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
@@ -41,6 +43,13 @@ public class MockMiApiClient implements MiApiClient {
         BeanSubmitAppInfoResponse beanSubmitAppInfoResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_SUBMIT_APP_INFO.getBytes()));
         callback.success(beanSubmitAppInfoResponse, response);
+    }
+
+    @Override
+    public void get_account_info(@Body BeanGetAccountInfo beanGetAccountInfo, Callback<BeanGetAccountInfoResponse> callback) {
+        BeanGetAccountInfoResponse beanGetAccountInfoResponse = new Gson().fromJson(FakeData.RESP_GET_ACCOUNT_INFO, BeanGetAccountInfoResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_ACCOUNT_INFO.getBytes()));
+        callback.success(beanGetAccountInfoResponse, response);
     }
 
     @Override

@@ -44,9 +44,9 @@
 
     <string name="hello_blank_fragment">Hello, I am a blank fragment</string>
 
-    <string name="minutes_title">"Minutes\n%1$1"</string>
-    <string name="sms_title">"SMS\n%1$1"</string>
-    <string name="data_title">"Data\n%1$1"</string>
+    <string name="home_minutes">"Minutes\n%1$s"</string>
+    <string name="home_sms">"SMS\n%1$s"</string>
+    <string name="home_data">"Data\n%1$s"</string>
 
     <!-- my account page -->
     <string name="your_account">Your account</string>
@@ -54,6 +54,7 @@
     <string name="your_offers">Your offers</string>
     <string name="account_period">From %1$s to %2$s</string>
     <string name="sample_offer">Limited time offer! Buy a internet pack for $19 for 500 MB and receive another 200 MB free! Click here now to purchase this deal!</string>
+    <string name="your_balance">"Balance: %1$s &gt;"</string>
 
     <!-- signup -->
     <string name="email_not_valid">Email not valid</string>

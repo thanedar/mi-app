@@ -10,7 +10,7 @@ import com.mitelcel.pack.utils.MiUtils;
  */
 public class BeanGetAccountInfo extends BeanGenericApi {
 
-    public static final String NAME = "submit_app_info";
+    public static final String NAME = "get_account_info";
     @Expose
     private Params params;
 

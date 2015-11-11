@@ -7,17 +7,8 @@
     android:padding="@dimen/card_padding"
     tools:context="com.mitelcel.pack.ui.fragment.FragMain">
 
-    <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/account_id"
-        style="@style/Widget.GenericApp.Account.Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:padding="20dp"
-        android:text="@string/your_account" />
-
     <LinearLayout
-        android:id="@+id/account_list"
+        android:id="@+id/home_account_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/account_id"
@@ -25,7 +16,7 @@
         android:padding="10dp">
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
-            android:id="@+id/account_minutes"
+            android:id="@+id/home_minutes"
             style="@style/Widget.GenericApp.ButtonFolks.Info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -34,7 +25,7 @@
             android:layout_weight="0.33" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
-            android:id="@+id/account_sms"
+            android:id="@+id/home_sms"
             style="@style/Widget.GenericApp.ButtonFolks.Info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -43,7 +34,7 @@
             android:layout_weight="0.33" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
-            android:id="@+id/account_data"
+            android:id="@+id/home_data"
             style="@style/Widget.GenericApp.ButtonFolks.Info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -53,37 +44,37 @@
     </LinearLayout>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/account_recent_title"
+        android:id="@+id/home_recent_title"
         style="@style/Widget.GenericApp.Account.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_list"
+        android:layout_below="@id/home_account_list"
         android:padding="20dp"
         android:text="@string/recent_activity" />
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
-        android:id="@+id/account_recent_one"
+        android:id="@+id/home_recent_act"
         style="@style/Widget.GenericApp.ButtonFolks.Info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_recent_title"
+        android:layout_below="@id/home_recent_title"
         android:layout_margin="10dp" />
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/account_offer_title"
+        android:id="@+id/home_offer_title"
         style="@style/Widget.GenericApp.Account.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_recent_one"
+        android:layout_below="@id/home_recent_act"
         android:padding="20dp"
         android:text="@string/your_offers" />
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
-        android:id="@+id/account_offer"
+        android:id="@+id/home_offer"
         style="@style/Widget.GenericApp.Account.Offer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_offer_title"
+        android:layout_below="@id/home_offer_title"
         android:layout_margin="10dp"
         android:text="@string/sample_offer" />
 

@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public abstract class BeanGenericResponse extends GenericBean {
 
+    public static final int NO_ERROR =               0;
     public static final int PARSE_ERROR =       -32700;
     public static final int INVALID_REQUEST =   -32600;
     public static final int METHOD_NOT_FOUND =  -32601;
