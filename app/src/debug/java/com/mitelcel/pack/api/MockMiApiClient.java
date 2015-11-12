@@ -5,11 +5,13 @@ import android.content.SharedPreferences;
 import com.mitelcel.pack.FakeData;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
+import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
@@ -50,6 +52,13 @@ public class MockMiApiClient implements MiApiClient {
         BeanGetAccountInfoResponse beanGetAccountInfoResponse = new Gson().fromJson(FakeData.RESP_GET_ACCOUNT_INFO, BeanGetAccountInfoResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_ACCOUNT_INFO.getBytes()));
         callback.success(beanGetAccountInfoResponse, response);
+    }
+
+    @Override
+    public void get_recent_activity(@Body BeanGetRecentActivity beanGetRecentActivity, Callback<BeanGetRecentActivityResponse> callback) {
+        BeanGetRecentActivityResponse beanGetRecentActivityResponse = new Gson().fromJson(FakeData.RESP_GET_RECENT_ACTIVITY, BeanGetRecentActivityResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_RECENT_ACTIVITY.getBytes()));
+        callback.success(beanGetRecentActivityResponse, response);
     }
 
     @Override

@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.BuildConfig;
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.MiRestClient;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
@@ -145,7 +145,7 @@ public class FragSplashScreen extends Fragment implements
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
 //                MiLog.i(TAG, "Fake Login response " + beanLoginResponse.toString());
 //                MiLog.i(TAG, "Fake Login Session Id " + beanLoginResponse.getResult().getSessionId());
-                if(beanLoginResponse.getError().getCode() == 0) {
+                if(beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                     MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
                 }
                 else{

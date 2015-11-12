@@ -27,6 +27,7 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.DialogActivity;
@@ -121,6 +122,26 @@ public class MiUtils {
                 .build()
                 .show();
         MiAppPreferences.clear();
+    }
+
+    public static int getResIdFromAction(int action){
+        int res;
+        int ol = 0;
+
+        switch (action){
+            case Config.ACTION_TYPE_RECHARGE:
+                res = R.drawable.ic_recharge;
+                break;
+            case Config.ACTION_TYPE_TRANSFER:
+                res = R.drawable.ic_transfer;
+                break;
+            case Config.ACTION_TYPE_BONUS:
+                res = R.drawable.ic_cash;
+                break;
+            default:
+                res = R.drawable.ic_cash;
+        }
+        return res;
     }
 
     public static void openMarketPageWithReferrer(Context context, String url){

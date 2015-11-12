@@ -11,12 +11,14 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.MiRestClient;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
+import com.mitelcel.pack.ui.fragment.FragAccount;
 import com.mitelcel.pack.ui.fragment.FragHelp;
 import com.mitelcel.pack.ui.fragment.FragMain;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
@@ -35,7 +37,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class MainActivity extends BaseActivity implements OnMainFragmentInteractionListener, OnDialogListener{
+public class MainActivity extends BaseActivity implements OnMainFragmentInteractionListener, FragAccount.OnAccountFragmentInteractionListener, OnDialogListener{
 
     @InjectView(R.id.drawer_layout)
     CustomDrawerLayout mDrawerLayout;
@@ -148,7 +150,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                         R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_recent:
-//                startActivity(new Intent(this, InviteFriends.class));
+                startActivity(new Intent(this, RecentActivity.class));
                 break;
             case R.id.navdrawer_item_frequent_numbers:
 //                startActivity(new Intent(this, Tutorial.class));
@@ -191,7 +193,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             @Override
             public void success(BeanLogoutResponse beanLogoutResponse, Response response) {
 //                MiLog.i(TAG, "Logout response " + beanLogoutResponse.toString());
-                if (beanLogoutResponse.getError().getCode() == 0) {
+                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS) {
                     MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
 
                     MiUtils.MiAppPreferences.logOut(MainActivity.this);
@@ -209,6 +211,21 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
     @Override
     public void updateActionBar() {
+    }
+
+    @Override
+    public void onAccountFragmentInteraction () {
+        MiLog.i("OnAccountFragmentInteractionListener", " ");
+    }
+
+    @Override
+    public void onMainFragmentInteraction (int id) {
+        MiLog.i("OnMainFragmentInteractionListener", " ");
+        switch (id){
+            case R.id.empty_list:
+            case R.id.home_recent_act:
+            MiUtils.startSkillActivity(this, RecentActivity.class);
+        }
     }
 
     @Override

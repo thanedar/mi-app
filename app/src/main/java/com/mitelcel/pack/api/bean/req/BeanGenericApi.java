@@ -1,5 +1,6 @@
 package com.mitelcel.pack.api.bean.req;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.mitelcel.pack.bean.GenericBean;
 
@@ -8,9 +9,13 @@ import com.mitelcel.pack.bean.GenericBean;
  */
 public abstract class BeanGenericApi extends GenericBean {
 
-
     @Expose
     protected long id;
     @Expose
     protected String method;
+
+    @Override
+    public String toString(){
+        return new Gson().toJson(this);
+    }
 }

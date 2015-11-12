@@ -2,11 +2,13 @@ package com.mitelcel.pack.api;
 
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
+import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
@@ -33,6 +35,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void get_account_info(@Body BeanGetAccountInfo beanGetAccountInfo, Callback<BeanGetAccountInfoResponse> callback);
+
+    @POST(REQUEST_URI)
+    void get_recent_activity(@Body BeanGetRecentActivity beanGetRecentActivity, Callback<BeanGetRecentActivityResponse> callback);
 
     @POST(REQUEST_URI)
     void login(@Body BeanLogin beanLogin, Callback<BeanLoginResponse> callback);

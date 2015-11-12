@@ -8,4 +8,5 @@ public interface OnMainFragmentInteractionListener {
     void updateActionBar();
     void noInternetConnection();
     void goBackPreviousFragment();
+    void onMainFragmentInteraction(int id);
 }

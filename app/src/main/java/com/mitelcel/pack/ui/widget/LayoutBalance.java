@@ -10,10 +10,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mitelcel.pack.BuildConfig;
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.MiRestClient;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.utils.MiLog;
@@ -132,7 +132,7 @@ public class LayoutBalance extends FrameLayout
     @Override
     public void onNext(BeanGetCurrentBalanceResponse beanResponse) {
         MiLog.i(LayoutBalance.class.getSimpleName(), "BeanGetCurrentBalanceResponse response [ " + beanResponse.toString() + " ]");
-        if (beanResponse != null && beanResponse.getError().getCode() == 0) {
+        if (beanResponse != null && beanResponse.getError().getCode() == Config.SUCCESS) {
             String cash = beanResponse.getResult().getCurrentBalance();
             MiUtils.MiAppPreferences.setCurrentBalance(cash);
         }

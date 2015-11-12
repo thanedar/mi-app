@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
@@ -134,7 +135,7 @@ public class FragLogin extends Fragment implements View.OnClickListener{
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
 //                MiLog.i(TAG, "Login response " + beanLoginResponse.toString());
 //                MiLog.i(TAG, "Login Session Id " + beanLoginResponse.getResult().getSessionId());
-                if (beanLoginResponse.getError().getCode() == 0) {
+                if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                     MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
                 } else {
                     MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());

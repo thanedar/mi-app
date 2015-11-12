@@ -1,7 +1,5 @@
 package com.mitelcel.pack.ui.fragment;
 
-import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,15 +10,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mitelcel.pack.Config;
-import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
+import com.mitelcel.pack.api.MiRestClient;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
-import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
-import com.mitelcel.pack.dagger.component.FragmentComponent;
-import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
 import com.mitelcel.pack.ui.widget.RecentRecycleViewAdapter;
@@ -38,26 +32,20 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragMain#newInstance} factory method to
- * create an instance of this fragment.
+ * A fragment representing a list of Items.
+ * <p>
+ * Large screen devices (such as tablets) are supported by replacing the ListView
+ * with a GridView.
+ * <p>
  */
-public class FragMain extends Fragment {
+public class FragRecent extends Fragment
+{
+    public static final String TAG = FragRecent.class.getName();
 
-    public static final String TAG = FragMain.class.getSimpleName();
-
-    OnMainFragmentInteractionListener mListener;
     RecyclerView.LayoutManager mLayoutManager;
     RecentRecycleViewAdapter mRecentRecycleViewAdapter;
 
-    @InjectView(R.id.home_minutes)
-    TextView minutes;
-    @InjectView(R.id.home_sms)
-    TextView sms;
-    @InjectView(R.id.home_data)
-    TextView data;
-
-    @InjectView(R.id.home_recent_act)
+    @InjectView(R.id.recent_recycle_view)
     EmptyRecyclerView mRecyclerView;
     @InjectView(R.id.empty_list)
     TextView tvEmpty;
@@ -65,37 +53,29 @@ public class FragMain extends Fragment {
     @Inject
     MiApiClient miApiClient;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment FragMain.
-     */
-    public static FragMain newInstance() {
-        FragMain fragment = new FragMain();
+    public static FragRecent newInstance() {
+        FragRecent fragment = new FragRecent();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public FragMain() {
-        // Required empty public constructor
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public FragRecent() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-        setHasOptionsMenu(true);
-
-        FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_recent, container, false);
         ButterKnife.inject(this, view);
 
         // use this setting to improve performance if you know that changes
@@ -120,63 +100,23 @@ public class FragMain extends Fragment {
     public void onResume() {
         super.onResume();
 
-        mListener.updateActionBar();
-
-        get_account_info();
-        get_most_recent_activity();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnMainFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnMainFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    private void get_account_info() {
-        BeanGetAccountInfo beanGetAccountInfo = new BeanGetAccountInfo();
-        miApiClient.get_account_info(beanGetAccountInfo, new Callback<BeanGetAccountInfoResponse>() {
-            @Override
-            public void success(BeanGetAccountInfoResponse beanGetAccountInfoResponse, Response response) {
-                if (beanGetAccountInfoResponse.getError().getCode() == Config.SUCCESS && beanGetAccountInfoResponse.getResult() != null) {
-                    Resources res = getResources();
-                    String value = String.format(res.getString(R.string.home_minutes), beanGetAccountInfoResponse.getResult().getUsedMinutes());
-                    minutes.setText(value);
-                    value = String.format(res.getString(R.string.home_sms), beanGetAccountInfoResponse.getResult().getUsedSms());
-                    sms.setText(value);
-                    value = String.format(res.getString(R.string.home_data), beanGetAccountInfoResponse.getResult().getUsedData());
-                    data.setText(value);
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                MiLog.i(TAG, "GetAccountInfo failure " + error.toString());
-            }
-        });
-    }
-
-    private void get_most_recent_activity() {
         BeanGetRecentActivity beanGetRecentActivity = new BeanGetRecentActivity(1);
+        MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivity.toString() + " ]");
+        if(miApiClient == null){
+            MiLog.i(TAG, "miApiClient [ NULL ]");
+            miApiClient = MiRestClient.init();
+        }
         miApiClient.get_recent_activity(beanGetRecentActivity, new Callback<BeanGetRecentActivityResponse>() {
             @Override
             public void success(BeanGetRecentActivityResponse beanGetRecentActivityResponse, Response response) {
+                MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivityResponse.toString() + " ]");
                 if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS && beanGetRecentActivityResponse.getResult() != null) {
                     MiLog.i(TAG, beanGetRecentActivityResponse.toString());
                     List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
                     mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
                 } else{
                     if(beanGetRecentActivityResponse == null)
-                        MiLog.i("FragMain", "beanGetRecentActivityResponse [ NULL ]");
+                        MiLog.i(TAG, "beanGetRecentActivityResponse [ NULL ]");
                     tvEmpty.setText(R.string.oops);
                 }
             }

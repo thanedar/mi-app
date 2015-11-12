@@ -7,7 +7,17 @@ public class Config {
 
     public static final int ERROR_CODE_TOKEN_EXPIRED = -2;
     public static final int ERROR_NETWORK = -3;
-    public static final int SUCCESS = 1;
+    public static final int SUCCESS = 0;
+
+    public static final int PARSE_ERROR =       -32700;
+    public static final int INVALID_REQUEST =   -32600;
+    public static final int METHOD_NOT_FOUND =  -32601;
+    public static final int INVALID_PARAMS =    -32602;
+    public static final int INTERNAL_ERROR =    -32603;
+
+    public static final int ACTION_TYPE_RECHARGE = 9;
+    public static final int ACTION_TYPE_TRANSFER = 10;
+    public static final int ACTION_TYPE_BONUS = 5;
 
     public static final int MSISDN_LENGTH = 10;
     public static final int PASS_LENGTH = 4;
