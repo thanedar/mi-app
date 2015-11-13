@@ -8,7 +8,7 @@
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/label_history"
-        style="@style/Widget.GenericApp.Fragment.Title.TextView"
+        style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

@@ -16,52 +16,15 @@
 
 <resources>
 
-    <!-- Activity themes -->
-
-    <style name="Theme.Base" parent="Theme.AppCompat.Light" />
-
-    <style name="Theme.Sample" parent="Theme.Base" />
-
-    <style name="AppTheme" parent="Theme.Sample" />
-    <!-- Widget styling -->
-
-    <style name="Widget" />
-
-    <style name="Widget.SampleContentContainer">
-        <item name="android:paddingTop">@dimen/vertical_page_margin</item>
-        <item name="android:paddingBottom">@dimen/vertical_page_margin</item>
-        <item name="android:paddingLeft">@dimen/horizontal_page_margin</item>
-        <item name="android:paddingRight">@dimen/horizontal_page_margin</item>
-    </style>
-
-    <style name="Transparent" parent="Theme.Sample" >
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
-
     <!-- Immediate parent theme to specify base values for custom attributes -->
-    <style name="Theme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Only needed for pre-L -->
         <item name="android:editTextBackground">@drawable/edit_text</item>
-        <item name="android:editTextStyle">@style/Widget.GenericApp.EditText</item>
-    </style>
-
-    <style name="Theme.Generic.Base" parent="Theme">
-
+        <item name="android:editTextStyle">@style/Theme.App.EditText</item>
         <item name="colorPrimary">@color/material_blue_700</item>
         <item name="colorPrimaryDark">@color/material_blue_900</item>
         <item name="colorAccent">@color/material_blue_a200</item>
-
     </style>
-
-    <style name="Generic.Transparent.Theme" parent="Theme.Generic.Base" >
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
-
-    <style name="Theme.App" parent="Theme.Generic.Base" />
 
     <!-- NO actionbar style -->
 
@@ -71,27 +34,23 @@
         <item name="colorAccent">@color/material_blue_a200</item>
         <!-- Only needed for pre-L -->
         <item name="android:editTextBackground">@drawable/edit_text</item>
-        <item name="android:editTextStyle">@style/Widget.GenericApp.EditText</item>
-
+        <item name="android:editTextStyle">@style/Theme.App.EditText</item>
     </style>
 
     <style name="Theme.App.Dialog.Popup" parent="android:Theme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/dark_transparency_popup</item>
-        <!--<item name="android:windowContentOverlay">@null</item>-->
         <item name="android:windowNoTitle">true</item>
-        <!--<item name="android:windowIsFloating">true</item>-->
-        <!--<item name="android:backgroundDimEnabled">false</item>-->
     </style>
 
     <!-- END NO actionbar style -->
 
-    <style name="Widget.GenericApp.NavigationDrawer.TextView" parent="Theme.App" >
+    <style name="Theme.App.NavigationDrawer.TextView" parent="Theme.App" >
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Widget.GenericApp.Fragment.Title.TextView" parent="Theme.App" >
+    <style name="Theme.App.Fragment.Title.TextView" parent="Theme.App" >
         <item name="type_face">@string/vagroundedstd_black</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
@@ -100,21 +59,21 @@
         <item name="android:textSize">30sp</item>
     </style>
 
-    <style name="Widget.GenericApp.EditText" parent="Widget.AppCompat.EditText">
+    <style name="Theme.App.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/edit_text</item>
         <item name="android:textColor">@color/dark_grey</item>
         <item name="android:textColorHint">@color/soft_grey</item>
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="Widget.GenericApp.Account.Title" parent="Theme.App">
+    <style name="Theme.App.Account.Title" parent="Theme.App">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textStyle">italic</item>
         <item name="android:gravity">center</item>
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
-    <style name="Widget.GenericApp.Account.Offer" parent="Theme.App">
+    <style name="Theme.App.Account.Offer" parent="Theme.App">
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_thin</item>
         <item name="android:background">@drawable/shape_account_offer</item>
@@ -124,48 +83,48 @@
         <item name="android:paddingTop">50dp</item>
     </style>
 
-    <style name="Widget.GenericApp.ButtonFolks" parent="Theme.App">
+    <style name="Theme.App.ButtonFolks" parent="Theme.App">
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:background">@drawable/shape_login_register_btn</item>
         <item name="android:textSize">25sp</item>
     </style>
 
-    <style name="Widget.GenericApp.ButtonFolks.Info" parent="Theme.App"  >
+    <style name="Theme.App.ButtonFolks.Info" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_light</item>
         <item name="android:background">@drawable/shape_account_info</item>
         <item name="android:textSize">20sp</item>
         <item name="android:padding">5dp</item>
     </style>
-    <style name="Widget.App.ButtonFolks.Positive" parent="Theme.App"  >
+    <style name="Theme.App.ButtonFolks.Positive" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:background">@drawable/shape_button_folks_positive</item>
         <item name="android:textSize">25sp</item>
     </style>
 
-    <style name="Widget.App.ButtonFolks.Disable" parent="Theme.App"  >
+    <style name="Theme.App.ButtonFolks.Disable" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:background">@drawable/shape_button_folks_disable</item>
         <item name="android:textSize">25sp</item>
     </style>
 
-    <style name="Widget.App.TextFolks" parent="Theme.App"  >
+    <style name="Theme.App.TextFolks" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="Widget.App.Dialog.Popup.Layout" parent="Theme.App"  >
+    <style name="Theme.App.Dialog.Popup.Layout" parent="Theme.App"  >
         <item name="android:padding">10dp</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="Widget.App.Dialog.Popup.Title" parent="Theme.App" >
+    <style name="Theme.App.Dialog.Popup.Title" parent="Theme.App" >
         <item name="android:layout_gravity">start</item>
         <item name="android:background">@drawable/shape_login_register_btn</item>
         <item name="android:textColor">@color/white</item>
@@ -175,7 +134,7 @@
         <item name="android:padding">10dp</item>
     </style>
 
-    <style name="Widget.App.Input.EditText" parent="Theme">
+    <style name="Theme.App.Input.EditText" parent="Theme.App">
         <item name="type_face">@string/vagroundedstd_black</item>
         <item name="android:textCursorDrawable">@drawable/skill_cursor_Drawable</item>
         <item name="android:layout_marginTop">10dp</item>

@@ -9,7 +9,7 @@
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/account_id"
-        style="@style/Widget.GenericApp.Account.Title"
+        style="@style/Theme.App.Account.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,7 +18,7 @@
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
         android:id="@+id/account_offer"
-        style="@style/Widget.GenericApp.Account.Offer"
+        style="@style/Theme.App.Account.Offer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/account_id"
@@ -27,7 +27,7 @@
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
         android:id="@+id/account_money"
-        style="@style/Widget.GenericApp.ButtonFolks.Info"
+        style="@style/Theme.App.ButtonFolks.Info"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@id/account_offer"
@@ -44,7 +44,7 @@
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/account_minutes"
-            style="@style/Widget.GenericApp.ButtonFolks.Info"
+            style="@style/Theme.App.ButtonFolks.Info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
@@ -53,7 +53,7 @@
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/account_sms"
-            style="@style/Widget.GenericApp.ButtonFolks.Info"
+            style="@style/Theme.App.ButtonFolks.Info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
@@ -62,7 +62,7 @@
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/account_data"
-            style="@style/Widget.GenericApp.ButtonFolks.Info"
+            style="@style/Theme.App.ButtonFolks.Info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"

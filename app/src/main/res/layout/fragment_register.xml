@@ -6,7 +6,7 @@
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/label_register"
-        style="@style/Widget.GenericApp.Fragment.Title.TextView"
+        style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -25,7 +25,7 @@
 
         <view
             android:id="@+id/register_tv_msisdn"
-            style="@style/Widget.App.Input.EditText"
+            style="@style/Theme.App.Input.EditText"
             class="com.mitelcel.pack.ui.widget.EditTextFolk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
 
         <view
             android:id="@+id/register_tv_pass"
-            style="@style/Widget.App.Input.EditText"
+            style="@style/Theme.App.Input.EditText"
             class="com.mitelcel.pack.ui.widget.EditTextFolk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
 
         <view
             android:id="@+id/register_tv_confirm_pass"
-            style="@style/Widget.App.Input.EditText"
+            style="@style/Theme.App.Input.EditText"
             class="com.mitelcel.pack.ui.widget.EditTextFolk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/signup_btn_submit"
-            style="@style/Widget.App.ButtonFolks.Positive"
+            style="@style/Theme.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -66,7 +66,7 @@
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/login_or_register_already_reg"
-        style="@style/Widget.GenericApp.Fragment.Title.TextView"
+        style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

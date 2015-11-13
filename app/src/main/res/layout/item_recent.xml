@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="You've earn free coins!"
-            style="@style/Widget.App.TextFolks"/>
+            style="@style/Theme.App.TextFolks"/>
 
         <TextView
             android:id="@+id/item_recent_time"
@@ -30,7 +30,7 @@
             android:textStyle="italic"
             android:layout_gravity="end"
             android:text="1 day ago"
-            style="@style/Widget.App.TextFolks"/>
+            style="@style/Theme.App.TextFolks"/>
 
     </LinearLayout>
 

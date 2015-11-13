@@ -23,6 +23,7 @@
     <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem Ipsum</string>
     <string name="sample_user_msisdn">Subscriber 55 55897898</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
+    <string name="title_activity_recent_activity">Recent Activity</string>
 
     <!-- MSISDN -->
     <string name="msisdn">Phone number</string>

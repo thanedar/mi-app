@@ -16,7 +16,7 @@ import javax.inject.Inject;
 /**
  * Created by sudhanshu.thanedar on 12/11/2015
  */
-public class RecentRecycleViewAdapter extends EmptyRecyclerView.Adapter<RecentRecycleViewAdapter.VHHistory>{
+public class RecentRecycleViewAdapter extends EmptyRecyclerView.Adapter<RecentRecycleViewAdapter.RecentViewHolder>{
 
     List<UserActivity> userActivities;
 
@@ -32,13 +32,13 @@ public class RecentRecycleViewAdapter extends EmptyRecyclerView.Adapter<RecentRe
     }
 
     @Override
-    public VHHistory onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecentItemLayout recentItemLayout = (RecentItemLayout)View.inflate(parent.getContext(), R.layout.item_recent, null);
-        return  new VHHistory(recentItemLayout);
+        return  new RecentViewHolder(recentItemLayout);
     }
 
     @Override
-    public void onBindViewHolder(VHHistory holder, int position) {
+    public void onBindViewHolder(RecentViewHolder holder, int position) {
         holder.bind(userActivities.get(position));
     }
 
@@ -47,11 +47,11 @@ public class RecentRecycleViewAdapter extends EmptyRecyclerView.Adapter<RecentRe
         return userActivities.size();
     }
 
-    public static final class VHHistory extends RecyclerView.ViewHolder{
+    public static final class RecentViewHolder extends RecyclerView.ViewHolder{
 
         RecentItemLayout itemView;
 
-        public VHHistory(RecentItemLayout itemView) {
+        public RecentViewHolder(RecentItemLayout itemView) {
             super(itemView);
             this.itemView = itemView;
         }

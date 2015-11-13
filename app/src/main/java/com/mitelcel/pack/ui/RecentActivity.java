@@ -8,8 +8,6 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.fragment.FragRecent;
 import com.mitelcel.pack.utils.FragmentHandler;
 
-import butterknife.ButterKnife;
-
 public class RecentActivity extends BaseActivity {
 
     private static final String TAG = RecentActivity.class.getName();

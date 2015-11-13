@@ -13,7 +13,7 @@
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/login_or_register_register"
-            style="@style/Widget.App.ButtonFolks.Positive"
+            style="@style/Theme.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
 
         <com.mitelcel.pack.ui.widget.TextViewFolks
             android:id="@+id/login_or_register_already_reg"
-            style="@style/Widget.GenericApp.Fragment.Title.TextView"
+            style="@style/Theme.App.Fragment.Title.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_or_register_register"
@@ -33,7 +33,7 @@
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
             android:id="@+id/login_or_register_login"
-            style="@style/Widget.App.ButtonFolks.Positive"
+            style="@style/Theme.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_or_register_already_reg"

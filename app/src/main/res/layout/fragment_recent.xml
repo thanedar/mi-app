@@ -20,6 +20,6 @@
         android:textSize="18sp"
         android:id="@+id/empty_list"
         android:gravity="center"
-        style="@style/Widget.App.TextFolks"/>
+        style="@style/Theme.App.TextFolks"/>
 
 </RelativeLayout>
