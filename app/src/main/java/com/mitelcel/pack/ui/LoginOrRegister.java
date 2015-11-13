@@ -48,7 +48,6 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
         }
     }
 
-
     @Override
     public void showDialogErrorCall(String content, String btnTex, @IdRes int resId, int requestCode) {
         if (requestCode == DialogActivity.REQ_SIGN_UP || requestCode == DialogActivity.REQ_SIGN_IN) {

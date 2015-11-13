@@ -170,10 +170,15 @@ public class FragMain extends Fragment {
         miApiClient.get_recent_activity(beanGetRecentActivity, new Callback<BeanGetRecentActivityResponse>() {
             @Override
             public void success(BeanGetRecentActivityResponse beanGetRecentActivityResponse, Response response) {
-                if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS && beanGetRecentActivityResponse.getResult() != null) {
+                if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS) {
                     MiLog.i(TAG, beanGetRecentActivityResponse.toString());
-                    List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
-                    mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
+                    if (beanGetRecentActivityResponse.getResult() != null) {
+                        List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
+                        mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
+                    } else{
+                        MiLog.i("FragMain", "beanGetRecentActivityResponse.Result [ NULL ]");
+                        tvEmpty.setText(R.string.no_data);
+                    }
                 } else{
                     if(beanGetRecentActivityResponse == null)
                         MiLog.i("FragMain", "beanGetRecentActivityResponse [ NULL ]");

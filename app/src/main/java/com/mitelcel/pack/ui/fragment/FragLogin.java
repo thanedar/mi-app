@@ -19,6 +19,7 @@ import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
+import com.mitelcel.pack.ui.DialogActivity;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.MiLog;
@@ -43,13 +44,13 @@ public class FragLogin extends Fragment implements View.OnClickListener{
     EditText pass;
     @InjectView(R.id.login_btn_logon)
     Button logon;
-    MaterialDialog dialog;
 
     @Inject
     MiApiClient miApiClient;
     @Inject
     Validator validator;
 
+    MaterialDialog dialog;
     OnDialogListener mListener;
 
     public static final String TAG = FragLogin.class.getSimpleName();
@@ -133,27 +134,42 @@ public class FragLogin extends Fragment implements View.OnClickListener{
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
+                dialog.dismiss();
 //                MiLog.i(TAG, "Login response " + beanLoginResponse.toString());
 //                MiLog.i(TAG, "Login Session Id " + beanLoginResponse.getResult().getSessionId());
                 if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                     MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
+
+                    MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
+                    MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
+                    MiUtils.MiAppPreferences.setLogin();
+
+                    MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                    getActivity().finish();
                 } else {
                     MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());
+                    dialog.dismiss();
+                    mListener.showDialogErrorCall(
+                            String.format(getString(R.string.login_failed), beanLoginResponse.getError().getCode()),
+                            getString(R.string.close),
+                            DialogActivity.DIALOG_HIDDEN_ICO,
+                            DialogActivity.REQ_SIGN_IN
+                    );
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 MiLog.i(TAG, "Login failure " + error.toString());
+                dialog.dismiss();
+                mListener.showDialogErrorCall(
+                        getString(R.string.somethings_goes_wrong),
+                        getString(R.string.close),
+                        DialogActivity.DIALOG_HIDDEN_ICO,
+                        DialogActivity.REQ_SIGN_IN
+                );
             }
         });
-
-        MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
-        MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
-        MiUtils.MiAppPreferences.setLogin();
-
-        MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-        getActivity().finish();
     }
 
     @Override

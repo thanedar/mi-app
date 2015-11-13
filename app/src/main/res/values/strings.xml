@@ -22,6 +22,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem Ipsum</string>
     <string name="sample_user_msisdn">Subscriber 55 55897898</string>
+    <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
     <string name="title_activity_recent_activity">Recent Activity</string>
 
@@ -61,6 +62,7 @@
     <string name="email_not_valid">Email not valid</string>
     <string name="password_doesnt_match">Password does not match</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
+    <string name="login_failed">"Login failed with code: %1$s"</string>
 
     <!-- General -->
     <string name="email">Email</string>
@@ -117,7 +119,6 @@
     <!-- Environment -->
     <string name="tats_env_production">production</string>
     <string name="tats_env_sandbox">sandbox</string>
-    <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
 
     <string name="lorem_ipsum">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</string>
 
