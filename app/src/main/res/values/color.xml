@@ -5,7 +5,7 @@
     <color name="green_skill">#76c01e</color>
     <color name="yellow_dark">#dfdf00</color>
     <color name="yellow_transparent">#80dfdf00</color>
-    <color name="offer_orange">#ff9933</color>
+    <color name="offer_orange">#cc7a29</color>
     <color name="white">#FFFFFF</color>
     <color name="white_transparent">#96ffffff</color>
     <color name="dark_grey">#ff666666</color>
@@ -24,7 +24,8 @@
     <color name="white_transparency">#70ffffff</color>
     <color name="border_image">#ffc1c1c1</color>
 
-    <color name="background_color">@color/material_blue_500</color>
+    <color name="background_color">@color/white_transparent</color>
+    <color name="text_color">@color/material_blue_500</color>
     <drawable name="skill_cursor_Drawable">@color/green_skill</drawable>
 
     <!-- color new theme -->

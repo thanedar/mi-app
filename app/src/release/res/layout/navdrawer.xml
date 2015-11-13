@@ -6,7 +6,7 @@
     android:layout_gravity="start"
     android:id="@+id/navdrawer"
     android:fitsSystemWindows="true"
-    android:background="@color/background_color"
+    android:background="@color/material_blue_500"
     android:clickable="true">
 
     <!-- Drawer items -->
