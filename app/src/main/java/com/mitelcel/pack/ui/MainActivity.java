@@ -159,7 +159,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 //                startActivity(new Intent(this, Settings.class));
                 break;
             case R.id.navdrawer_item_recharge:
-//                startActivity(new Intent(this, History.class));
+                startActivity(new Intent(this, RechargeActivity.class));
                 break;
             case R.id.navdrawer_item_pastime:
 //                startActivity(new Intent(this, Rewards.class));
@@ -180,6 +180,9 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 break;
             case R.id.navdrawer_item_contact:
 //                startActivity(new Intent(this, Rewards.class));
+                break;
+            case R.id.navdrawer_item_tutorial:
+//                startActivity(new Intent(this, Tutorial.class));
                 break;
             case R.id.navdrawer_item_logout:
                 logout();
@@ -205,6 +208,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             @Override
             public void failure(RetrofitError error) {
                 MiLog.i("Logout", "Logout failure " + error.toString());
+                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
         });
     }
