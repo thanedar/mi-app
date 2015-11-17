@@ -500,13 +500,13 @@ public class MiUtils {
             return sp.getString(DEVICE_TYPE, "android");
         }
 
-        public static void setCurrentBalance(String value){
-            getSharedPreferences().edit().putString(MONEY_BALANCE, value).apply();
+        public static void setCurrentBalance(float value){
+            getSharedPreferences().edit().putFloat(MONEY_BALANCE, value).apply();
         }
 
-        public static String getCurrentBalance(){
+        public static float getCurrentBalance(){
             SharedPreferences sp = getSharedPreferences();
-            return sp.getString(MONEY_BALANCE, "100.00");
+            return sp.getFloat(MONEY_BALANCE, 100.00f);
         }
 
         public static void setLogout(){

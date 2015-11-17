@@ -133,18 +133,25 @@ public class FragSplashScreen extends Fragment implements
         else{
             if(BuildConfig.DEBUG && !MiUtils.MiAppPreferences.getToken().equals(""))
                 fakeLogin();
-            MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-            getActivity().finish();
+            else {
+                MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                getActivity().finish();
+            }
         }
     }
 
     private void fakeLogin() {
-        BeanLogin beanLogin = new BeanLogin(getActivity().getApplicationContext(), "0000000001", "blabla");
+        String fakeMsisdn = "0000000002";
+        String fakePassword = "yasar";
+        BeanLogin beanLogin = new BeanLogin(getActivity().getApplicationContext(), fakeMsisdn, fakePassword);
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
                 if(beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                     MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
+                    MiUtils.MiAppPreferences.setMsisdn(fakeMsisdn);
+                    MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                    getActivity().finish();
                 }
                 else{
                     MiLog.i(TAG, "Fake Login error response " + beanLoginResponse.toString());

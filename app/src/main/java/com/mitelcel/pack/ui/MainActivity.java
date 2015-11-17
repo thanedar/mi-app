@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -15,7 +13,6 @@ import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.MiRestClient;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.ui.fragment.FragAccount;
@@ -79,8 +76,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         );
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        actionBarDecorator("300");
 
         ((MiApp)getApplication()).getAppComponent().inject(this);
     }
@@ -258,21 +253,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     @Override
     public void showDialogErrorCall(String content, String btnTex, int resId, int requestCode) {
         MiUtils.showDialogError(this, content, btnTex, resId, requestCode);
-    }
-
-    public void actionBarDecorator(String numberCoins){
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(actionBar.getDisplayOptions() | ActionBar.DISPLAY_SHOW_CUSTOM);
-
-        View coins = View.inflate(getApplicationContext(), R.layout.actionbar_balance, null);
-
-        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-
-        layoutParams.rightMargin = 40;
-        coins.setLayoutParams(layoutParams);
-        actionBar.setCustomView(coins);
     }
 
     public void showRecentActivity(View view) {

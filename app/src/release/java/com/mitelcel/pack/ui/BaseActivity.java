@@ -16,7 +16,6 @@ import com.mitelcel.pack.R;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_launcher);
-
 
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -44,6 +42,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             ViewServer.get(this).addWindow(this);
         }
 
+        actionBarDecorator();
+
     }
 
     @Override
@@ -59,4 +59,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         if(BuildConfig.DEBUG)
             ViewServer.get(this).setFocusedWindow(this);
     }
+
+    public void actionBarDecorator(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(actionBar.getDisplayOptions() | ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        View actionbarBalance = View.inflate(getApplicationContext(), R.layout.actionbar_balance, null);
+
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+
+        layoutParams.rightMargin = 40;
+        actionbarBalance.setLayoutParams(layoutParams);
+        actionBar.setCustomView(actionbarBalance);
+    }
+
 }

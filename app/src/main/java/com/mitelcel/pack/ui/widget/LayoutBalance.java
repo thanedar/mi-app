@@ -73,10 +73,7 @@ public class LayoutBalance extends FrameLayout
         ((MiApp)getContext()).getAppComponent().inject(this);
         MiUtils.MiAppPreferences.registerListener(this);
 
-        if(BuildConfig.DEBUG)
-            new Handler().postDelayed(() -> callUserWallet(), 1500);
-        else
-            callUserWallet();
+        callUserWallet();
     }
 
     @Override
@@ -89,7 +86,7 @@ public class LayoutBalance extends FrameLayout
     private void setCurrentBalance(){
         textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cash, 0, 0, 0);
         String symbol = MiUtils.MiAppPreferences.getCurrencySymbol();
-        String value = MiUtils.MiAppPreferences.getCurrentBalance();
+        float value = MiUtils.MiAppPreferences.getCurrentBalance();
         textView.setText(symbol + value);
         /*textView.setOnClickListener(new OnClickListener() {
             @Override
@@ -134,7 +131,7 @@ public class LayoutBalance extends FrameLayout
         MiLog.i(LayoutBalance.class.getSimpleName(), "BeanGetCurrentBalanceResponse response [ " + beanResponse.toString() + " ]");
         if (beanResponse != null && beanResponse.getError().getCode() == Config.SUCCESS) {
             String cash = beanResponse.getResult().getCurrentBalance();
-            MiUtils.MiAppPreferences.setCurrentBalance(cash);
+            MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(cash));
         }
     }
 

@@ -3,6 +3,7 @@ package com.mitelcel.pack.ui;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.fragment.FragSplashScreen;
 
@@ -34,6 +35,9 @@ public class SplashScreen extends AppCompatActivity {
                 .defaultDisplayImageOptions(defaultOptions)
                 .build();
 
-        ImageLoader.getInstance().init(imageLoaderConfiguration);
+        if(!ImageLoader.getInstance().isInited())
+            ImageLoader.getInstance().init(imageLoaderConfiguration);
+
+        ((MiApp)getApplication()).getAppComponent().inject(this);
     }
 }
