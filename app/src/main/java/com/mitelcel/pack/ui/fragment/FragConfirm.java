@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
-import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.widget.ButtonFolks;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
@@ -53,9 +51,6 @@ public class FragConfirm extends Fragment {
     @InjectView(R.id.confirm_btn)
     ButtonFolks btn;
 
-    MaterialDialog dialog;
-    OnDialogListener dialogListener;
-
     private OnConfirmFragmentInteractionListener fragmentInteractionListener;
 
     /**
@@ -82,11 +77,6 @@ public class FragConfirm extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        dialog = new MaterialDialog.Builder(getActivity())
-                .content(R.string.please_wait)
-                .progress(true, 0)
-                .build();
 
         if (getArguments() != null) {
             mString = getArguments().getString(ARG_STRING);
@@ -125,17 +115,18 @@ public class FragConfirm extends Fragment {
         MiLog.i("FragConfirm", "Confirm clicked");
 
         if(tvPassword.getVisibility() == View.VISIBLE){
-            String msg = validator.isValidPassSignUp(tvPassword.getText().toString());
+            String pw = tvPassword.getText().toString();
+            String msg = validator.isValidPassSignUp(pw);
             if (msg != null)
                 tvPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_alert, 0);
             else if (fragmentInteractionListener != null) {
                 MiLog.i("FragConfirm", "Confirm fragmentInteractionListener found");
-                fragmentInteractionListener.onConfirmFragmentInteraction();
+                fragmentInteractionListener.onConfirmFragmentInteraction(pw);
             }
         }
         else if (fragmentInteractionListener != null) {
             MiLog.i("FragConfirm", "Confirm fragmentInteractionListener found");
-            fragmentInteractionListener.onConfirmFragmentInteraction();
+            fragmentInteractionListener.onConfirmFragmentInteraction("");
         }
     }
 
@@ -167,6 +158,6 @@ public class FragConfirm extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnConfirmFragmentInteractionListener {
-        void onConfirmFragmentInteraction();
+        void onConfirmFragmentInteraction(String password);
     }
 }

@@ -59,6 +59,7 @@
     <string name="recent_recharge">"Recharge of %1$s%2$s"</string>
     <string name="recharge_check">"Please confirm you want to recharge your account with %1$s%2$s."</string>
     <string name="recharge_invalid_input">Please check if you have selected proper amount to recharge!</string>
+    <string name="recharge_success">"Your recharge for %1$s%2$s was successful."</string>
 
     <string name="recharge_5">$5</string>
     <string name="recharge_10">$10</string>

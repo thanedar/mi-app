@@ -8,12 +8,14 @@ import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
+import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
+import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 
 import com.google.gson.Gson;
@@ -41,38 +43,45 @@ public class MockMiApiClient implements MiApiClient {
     SharedPreferences sharedPreferences;
 
     @Override
-    public void submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo, Callback<BeanSubmitAppInfoResponse> callback) {
-        BeanSubmitAppInfoResponse beanSubmitAppInfoResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
-        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_SUBMIT_APP_INFO.getBytes()));
-        callback.success(beanSubmitAppInfoResponse, response);
-    }
-
-    @Override
-    public void get_account_info(@Body BeanGetAccountInfo beanGetAccountInfo, Callback<BeanGetAccountInfoResponse> callback) {
-        BeanGetAccountInfoResponse beanGetAccountInfoResponse = new Gson().fromJson(FakeData.RESP_GET_ACCOUNT_INFO, BeanGetAccountInfoResponse.class);
+    public void get_account_info(@Body BeanGetAccountInfo beanInput, Callback<BeanGetAccountInfoResponse> callback) {
+        BeanGetAccountInfoResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_ACCOUNT_INFO, BeanGetAccountInfoResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_ACCOUNT_INFO.getBytes()));
-        callback.success(beanGetAccountInfoResponse, response);
+        callback.success(beanResponse, response);
     }
 
     @Override
-    public void get_recent_activity(@Body BeanGetRecentActivity beanGetRecentActivity, Callback<BeanGetRecentActivityResponse> callback) {
-        BeanGetRecentActivityResponse beanGetRecentActivityResponse = new Gson().fromJson(FakeData.RESP_GET_RECENT_ACTIVITY, BeanGetRecentActivityResponse.class);
+    public void get_recent_activity(@Body BeanGetRecentActivity beanInput, Callback<BeanGetRecentActivityResponse> callback) {
+        BeanGetRecentActivityResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_RECENT_ACTIVITY, BeanGetRecentActivityResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_RECENT_ACTIVITY.getBytes()));
-        callback.success(beanGetRecentActivityResponse, response);
+        callback.success(beanResponse, response);
     }
 
     @Override
-    public void login(@Body BeanLogin beanLogin, Callback<BeanLoginResponse> callback) {
-        BeanLoginResponse beanLoginResponse = new Gson().fromJson(FakeData.RESP_LOGIN, BeanLoginResponse.class);
+    public void login(@Body BeanLogin beanInput, Callback<BeanLoginResponse> callback) {
+        BeanLoginResponse beanResponse = new Gson().fromJson(FakeData.RESP_LOGIN, BeanLoginResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_LOGIN.getBytes()));
-        callback.success(beanLoginResponse, response);
+        callback.success(beanResponse, response);
     }
 
     @Override
-    public void logout(@Body BeanLogout beanLogout, Callback<BeanLogoutResponse> callback) {
-        BeanLogoutResponse beanLogoutResponse = new Gson().fromJson(FakeData.RESP_LOGOUT, BeanLogoutResponse.class);
+    public void logout(@Body BeanLogout beanInput, Callback<BeanLogoutResponse> callback) {
+        BeanLogoutResponse beanResponse = new Gson().fromJson(FakeData.RESP_LOGOUT, BeanLogoutResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_LOGOUT.getBytes()));
-        callback.success(beanLogoutResponse, response);
+        callback.success(beanResponse, response);
+    }
+
+    @Override
+    public void recharge_account(@Body BeanRechargeAccount beanInput, Callback<BeanRechargeAccountResponse> callback) {
+        BeanRechargeAccountResponse beanResponse  = new Gson().fromJson(FakeData.RESP_RECHARGE_ACCOUNT, BeanRechargeAccountResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_RECHARGE_ACCOUNT.getBytes()));
+        callback.success(beanResponse, response);
+    }
+
+    @Override
+    public void submit_app_info(@Body BeanSubmitAppInfo beanInput, Callback<BeanSubmitAppInfoResponse> callback) {
+        BeanSubmitAppInfoResponse beanResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_SUBMIT_APP_INFO.getBytes()));
+        callback.success(beanResponse, response);
     }
 
     /*@Override
@@ -83,24 +92,24 @@ public class MockMiApiClient implements MiApiClient {
     }*/
 
     @Override
-    public Observable<BeanSubmitAppInfoResponse> submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo) {
+    public Observable<BeanSubmitAppInfoResponse> submit_app_info(@Body BeanSubmitAppInfo beanInput) {
         return Observable.create(new Observable.OnSubscribe<BeanSubmitAppInfoResponse>() {
             @Override
             public void call(Subscriber<? super BeanSubmitAppInfoResponse> subscriber) {
-                BeanSubmitAppInfoResponse beanSubmitAppInfoResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
-                subscriber.onNext(beanSubmitAppInfoResponse);
+                BeanSubmitAppInfoResponse beanResponse = new Gson().fromJson(FakeData.RESP_SUBMIT_APP_INFO, BeanSubmitAppInfoResponse.class);
+                subscriber.onNext(beanResponse);
                 subscriber.onCompleted();
             }
         });
     }
 
     @Override
-    public Observable<BeanGetCurrentBalanceResponse> get_current_balance(@Body BeanGetCurrentBalance beanGetCurrentBalance) {
+    public Observable<BeanGetCurrentBalanceResponse> get_current_balance(@Body BeanGetCurrentBalance beanInput) {
         return Observable.create(new Observable.OnSubscribe<BeanGetCurrentBalanceResponse>() {
             @Override
             public void call(Subscriber<? super BeanGetCurrentBalanceResponse> subscriber) {
-                BeanGetCurrentBalanceResponse beanGetCurrentBalanceResponse = new Gson().fromJson(FakeData.RESP_CURRENT_BALANCE, BeanGetCurrentBalanceResponse.class);
-                subscriber.onNext(beanGetCurrentBalanceResponse);
+                BeanGetCurrentBalanceResponse beanResponse = new Gson().fromJson(FakeData.RESP_CURRENT_BALANCE, BeanGetCurrentBalanceResponse.class);
+                subscriber.onNext(beanResponse);
                 subscriber.onCompleted();
             }
         });

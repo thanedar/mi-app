@@ -91,7 +91,18 @@ public class MiUtils {
         if(btnTex != null && !btnTex.equals(""))
             i.putExtra(DialogActivity.DIALOG_BTN_TEXT, btnTex);
         i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
-//        i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.oops));
+        i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.oops));
+        activity.startActivityForResult(i, requestCode);
+    }
+
+    public static void showDialogSuccess(Activity activity, String content, String btnTex, @IdRes int resId, int requestCode){
+        Intent i = new Intent(activity, DialogActivity.class);
+        if(content != null && !content.equals(""))
+            i.putExtra(DialogActivity.DIALOG_CONTENT, content);
+        if(btnTex != null && !btnTex.equals(""))
+            i.putExtra(DialogActivity.DIALOG_BTN_TEXT, btnTex);
+        i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
+        i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.success));
         activity.startActivityForResult(i, requestCode);
     }
 

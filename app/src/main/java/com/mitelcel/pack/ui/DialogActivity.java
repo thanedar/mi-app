@@ -96,7 +96,6 @@ public class DialogActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
         setResult(APP_RES);
         finish();
     }

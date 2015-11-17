@@ -91,10 +91,6 @@ public class FragRecharge extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialog = new MaterialDialog.Builder(getActivity())
-                .content(R.string.please_wait)
-                .progress(true, 0)
-                .build();
 
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
