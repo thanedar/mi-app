@@ -4,10 +4,13 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse.UserActivity;
+import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 
 import butterknife.ButterKnife;
@@ -16,7 +19,7 @@ import butterknife.InjectView;
 /**
  * Created by sudhanshu.thanedar on 12/11/2015
  */
-public class RecentItemLayout extends CardView {
+public class RecentItemLayout extends RelativeLayout {
 
     @InjectView(R.id.item_recent_description)
     TextView tvDescription;
@@ -47,11 +50,18 @@ public class RecentItemLayout extends CardView {
 
     public void bind(UserActivity userActivity){
         long activityId = (userActivity.getActivityId());
+        int activityType = userActivity.getActivityType();
 
-        tvDescription.setText(userActivity.getActivityType());
-        tvTime.setText("For now ID: " + activityId);
+//        tvDescription.setText(String.format(R.string.recent_recharge, userActivity.getActivityId());
 
-        int iconRes = MiUtils.getResIdFromAction(userActivity.getActivityType());
+        if(activityType == Config.ACTION_TYPE_RECHARGE)
+            tvDescription.setText(R.string.recharge);
+        else if(activityType == Config.ACTION_TYPE_TRANSFER)
+            tvDescription.setText(R.string.transfer_balance);
+
+        tvTime.setText(userActivity.getActivityDatetime());
+
+        int iconRes = MiUtils.getResIdFromAction(activityType);
         icon.setImageResource(iconRes);
     }
 }

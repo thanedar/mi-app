@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mitelcel.pack.Config;
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
+import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.utils.MiLog;
 
 import javax.inject.Inject;
@@ -66,6 +68,7 @@ public class FragAccount extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
     @Override

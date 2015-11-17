@@ -77,19 +77,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/home_offer"
         android:padding="20dp"
+        android:clickable="true"
+        android:onClick="showRecentActivity"
         android:text="@string/recent_activity" />
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/home_act_list"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:onClick="showRecentActivity"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_below="@id/home_recent_title">
+
         <com.mitelcel.pack.ui.widget.EmptyRecyclerView
             android:id="@+id/home_recent_act"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp" />
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:duplicateParentState="true" />
 
         <com.mitelcel.pack.ui.widget.TextViewFolks
             android:layout_width="match_parent"
@@ -99,6 +108,6 @@
             android:id="@+id/empty_list"
             android:gravity="center_horizontal"
             style="@style/Theme.App.TextFolks"/>
-    </FrameLayout>
+    </LinearLayout>
 
 </RelativeLayout>

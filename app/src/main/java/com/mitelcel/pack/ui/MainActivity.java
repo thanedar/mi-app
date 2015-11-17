@@ -274,5 +274,10 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         coins.setLayoutParams(layoutParams);
         actionBar.setCustomView(coins);
     }
+
+    public void showRecentActivity(View view) {
+        MiLog.i("MainActivity", "Start recent activity");
+        startActivity(new Intent(this, RecentActivity.class));
+    }
 }
 

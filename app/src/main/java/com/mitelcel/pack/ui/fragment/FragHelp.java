@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.mitelcel.pack.Config;
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
+import com.mitelcel.pack.dagger.component.FragmentComponent;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -63,6 +65,7 @@ public class FragHelp extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
     @Override

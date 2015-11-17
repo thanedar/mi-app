@@ -33,7 +33,7 @@ public class Validator {
 
     public String doesPassMatchSignUp(String pass, String passConfirm) {
         if(!pass.equals(passConfirm)){
-            return this.context.getString(R.string.password_doesnt_match);
+            return this.context.getString(R.string.password_does_not_match);
         }
         return null;
     }

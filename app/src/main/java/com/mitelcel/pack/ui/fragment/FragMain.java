@@ -20,6 +20,7 @@ import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
+import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
@@ -33,6 +34,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -175,12 +177,12 @@ public class FragMain extends Fragment {
                     if (beanGetRecentActivityResponse.getResult() != null) {
                         List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
                         mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
-                    } else{
+                    } else {
                         MiLog.i("FragMain", "beanGetRecentActivityResponse.Result [ NULL ]");
                         tvEmpty.setText(R.string.no_data);
                     }
-                } else{
-                    if(beanGetRecentActivityResponse == null)
+                } else {
+                    if (beanGetRecentActivityResponse == null)
                         MiLog.i("FragMain", "beanGetRecentActivityResponse [ NULL ]");
                     tvEmpty.setText(R.string.oops);
                 }
@@ -192,5 +194,11 @@ public class FragMain extends Fragment {
                 tvEmpty.setText(R.string.oops);
             }
         });
+    }
+
+    @OnClick(R.id.home_act_list)
+    public void showRecent(){
+        MiLog.i(TAG, "Start recent activity");
+//        (MainActivity) getActivity().showRecentActivity();
     }
 }

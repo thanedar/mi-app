@@ -79,26 +79,29 @@
 
     <!-- signup -->
     <string name="email_not_valid">Email not valid</string>
-    <string name="password_doesnt_match">Password does not match</string>
+    <string name="password_does_not_match">Password does not match</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
     <string name="login_failed">"Login failed with code: %1$s"</string>
 
     <!-- General -->
+    <string name="back">Go Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="check_input">Please check input</string>
+    <string name="close">Close</string>
+    <string name="confirm">Confirm</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>
     <string name="loading">Loading&#8230;</string>
-    <string name="please_wait">Please wait…</string>
-    <string name="warning">Warning</string>
-    <string name="confirm">Confirm</string>
-    <string name="close">Close</string>
-    <string name="cancel">Cancel</string>
-    <string name="back">Go Back</string>
     <string name="no_connection_popup">Looks like you are not connected to the internet!</string>
     <string name="no_data">No Data</string>
-    <string name="success">Success</string>
+    <string name="ok">OK</string>
+    <string name="other">Other</string>
     <string name="oops">Oops&#8230;</string>
-    <string name="updated">User updated!</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="please_wait">Please wait…</string>
     <string name="somethings_goes_wrong">Something is wrong, please try again later.</string>
+    <string name="success">Success</string>
+    <string name="updated">User updated!</string>
+    <string name="warning">Warning</string>
 
     <!-- fonts -->
     <string name="vagroundedstd_black">VAGRoundedStd-Black.otf</string>

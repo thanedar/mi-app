@@ -143,6 +143,7 @@ public class FragLogin extends Fragment implements View.OnClickListener{
                     MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
                     MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
                     MiUtils.MiAppPreferences.setLogin();
+                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
 
                     MiUtils.startSkillActivity(getActivity(), MainActivity.class);
                     getActivity().finish();

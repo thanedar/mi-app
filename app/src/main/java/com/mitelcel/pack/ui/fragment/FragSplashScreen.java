@@ -79,7 +79,7 @@ public class FragSplashScreen extends Fragment implements
         super.onResume();
         submit_app_info();
 
-        new Handler().postDelayed(() -> autoLogin(), 1500);
+        new Handler().postDelayed(() -> autoLogin(), 2500);
     }
 
     @Override
@@ -143,8 +143,6 @@ public class FragSplashScreen extends Fragment implements
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
-//                MiLog.i(TAG, "Fake Login response " + beanLoginResponse.toString());
-//                MiLog.i(TAG, "Fake Login Session Id " + beanLoginResponse.getResult().getSessionId());
                 if(beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                     MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
                 }

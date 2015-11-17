@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="false"
+    android:background="@color/material_blue_200"
     android:padding="@dimen/margin_medium">
 
     <LinearLayout
@@ -12,8 +14,8 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/recent_image_layout"
         android:layout_toEndOf="@+id/recent_image_layout"
-        android:layout_marginLeft="@dimen/margin_small"
-        android:layout_marginStart="@dimen/margin_small">
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium">
 
         <TextView
             android:id="@+id/item_recent_description"
@@ -21,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="You've earn free coins!"
+            android:paddingBottom="@dimen/margin_large"
             style="@style/Theme.App.TextFolks"/>
 
         <TextView
