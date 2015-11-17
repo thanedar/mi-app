@@ -58,6 +58,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.RechargeActivity"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/title_activity_recharge"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

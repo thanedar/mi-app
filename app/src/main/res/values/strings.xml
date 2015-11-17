@@ -25,6 +25,7 @@
     <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
     <string name="title_activity_recent_activity">Recent Activity</string>
+    <string name="title_activity_recharge">Recharge</string>
 
     <!-- MSISDN -->
     <string name="msisdn">Phone number</string>
@@ -49,6 +50,24 @@
     <string name="home_minutes">"Minutes\n%1$s"</string>
     <string name="home_sms">"SMS\n%1$s"</string>
     <string name="home_data">"Data\n%1$s"</string>
+    
+    <string name="confirm_info">"Since you not signed in recently, please provide your password below to confirm."</string>
+
+    <!-- Recharge -->
+    <string name="recharge">Recharge</string>
+    <string name="recharge_value">Amount</string>
+    <string name="recent_recharge">"Recharge of %1$s%2$s"</string>
+    <string name="recharge_check">"Please confirm you want to recharge your account with %1$s%2$s."</string>
+    <string name="recharge_invalid_input">Please check if you have selected proper amount to recharge!</string>
+
+    <string name="recharge_5">$5</string>
+    <string name="recharge_10">$10</string>
+    <string name="recharge_20">$20</string>
+    <string name="recharge_50">$50</string>
+
+    <!-- Transfer Balance -->
+    <string name="recent_transfer">"Transferred %1$s%2$s"</string>
+    <string name="transfer_balance">Transfer balance</string>
 
     <!-- my account page -->
     <string name="your_account">Your account</string>
@@ -69,6 +88,7 @@
     <string name="loading">Loading&#8230;</string>
     <string name="please_wait">Please wait…</string>
     <string name="warning">Warning</string>
+    <string name="confirm">Confirm</string>
     <string name="close">Close</string>
     <string name="cancel">Cancel</string>
     <string name="back">Go Back</string>

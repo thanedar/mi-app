@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/label_recharge"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="30dp"
+        android:text="@string/recharge" />
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/recharge_details"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_recharge"
+        android:padding="10dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/lorem_ipsum"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:id="@+id/recharge_list_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recharge_details"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="25dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.App.Input.RadioButton"
+            android:text="@string/recharge_5"
+            android:id="@+id/recharge_5"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.App.Input.RadioButton"
+            android:text="@string/recharge_10"
+            android:id="@+id/recharge_10"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.App.Input.RadioButton"
+            android:text="@string/recharge_20"
+            android:id="@+id/recharge_20"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:checked="false" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/recharge_list_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recharge_list_1"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="25dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.App.Input.RadioButton"
+            android:text="@string/recharge_50"
+            android:id="@+id/recharge_50"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.App.Input.RadioButton"
+            android:text="@string/other"
+            android:id="@+id/recharge_other"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:checked="false" />
+
+        <view
+            android:id="@+id/recharge_amount"
+            style="@style/Theme.App.Input.EditText"
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:hint="@string/recharge_value"
+            android:inputType="number" />
+
+    </RadioGroup>
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:id="@+id/recharge_confirm_btn"
+        style="@style/Theme.App.ButtonFolks.Positive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recharge_list_2"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/ok" />
+
+</RelativeLayout>

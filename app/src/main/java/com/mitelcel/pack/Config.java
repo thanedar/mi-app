@@ -29,13 +29,14 @@ public class Config {
 
     public static final int LOW_BALANCE = -32050;
 
-    public static final int ACTION_TYPE_RECHARGE = 9;
-    public static final int ACTION_TYPE_TRANSFER = 10;
+    public static final int ACTION_TYPE_TRANSFER = 9;
+    public static final int ACTION_TYPE_RECHARGE = 10;
     public static final int ACTION_TYPE_BONUS    = 5;
 
     public static final String MSISDN_PREFIX = "52";
     public static final int MSISDN_LENGTH = 10;
     public static final int PASS_LENGTH = 4;
+    public static final int PASS_TIMEOUT = 20;
 
     /**
      * HTML
