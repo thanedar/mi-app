@@ -20,7 +20,6 @@ import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
-import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
@@ -41,12 +40,12 @@ import retrofit.client.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragMain#newInstance} factory method to
+ * Use the {@link FragmentMain#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragMain extends Fragment {
+public class FragmentMain extends Fragment {
 
-    public static final String TAG = FragMain.class.getSimpleName();
+    public static final String TAG = FragmentMain.class.getSimpleName();
 
     OnMainFragmentInteractionListener mListener;
     RecyclerView.LayoutManager mLayoutManager;
@@ -71,16 +70,16 @@ public class FragMain extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment FragMain.
+     * @return A new instance of fragment FragmentMain.
      */
-    public static FragMain newInstance() {
-        FragMain fragment = new FragMain();
+    public static FragmentMain newInstance() {
+        FragmentMain fragment = new FragmentMain();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public FragMain() {
+    public FragmentMain() {
         // Required empty public constructor
     }
 
@@ -178,12 +177,12 @@ public class FragMain extends Fragment {
                         List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
                         mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
                     } else {
-                        MiLog.i("FragMain", "beanGetRecentActivityResponse.Result [ NULL ]");
+                        MiLog.i("FragmentMain", "beanGetRecentActivityResponse.Result [ NULL ]");
                         tvEmpty.setText(R.string.no_data);
                     }
                 } else {
                     if (beanGetRecentActivityResponse == null)
-                        MiLog.i("FragMain", "beanGetRecentActivityResponse [ NULL ]");
+                        MiLog.i("FragmentMain", "beanGetRecentActivityResponse [ NULL ]");
                     tvEmpty.setText(R.string.oops);
                 }
             }

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.ui.fragment.FragSplashScreen;
+import com.mitelcel.pack.ui.fragment.FragmentSplashScreen;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, FragSplashScreen.newInstance())
+                    .add(R.id.container, FragmentSplashScreen.newInstance())
                     .commit();
         }
 

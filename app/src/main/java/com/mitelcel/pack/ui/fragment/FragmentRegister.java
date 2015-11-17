@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class FragRegister extends Fragment implements View.OnClickListener{
+public class FragmentRegister extends Fragment implements View.OnClickListener{
 
     @InjectView(R.id.register_tv_pass)
     EditText pass;
@@ -45,16 +45,16 @@ public class FragRegister extends Fragment implements View.OnClickListener{
 
     OnDialogListener mListener;
 
-    public static final String TAG = FragRegister.class.getSimpleName();
+    public static final String TAG = FragmentRegister.class.getSimpleName();
 
-    public static FragRegister newInstance() {
-        FragRegister fragment = new FragRegister();
+    public static FragmentRegister newInstance() {
+        FragmentRegister fragment = new FragmentRegister();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public FragRegister() {
+    public FragmentRegister() {
         // Required empty public constructor
     }
 

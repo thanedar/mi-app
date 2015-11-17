@@ -5,7 +5,7 @@
     android:background="@color/background_color"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.mitelcel.pack.ui.fragment.FragMain">
+    tools:context="com.mitelcel.pack.ui.fragment.FragmentMain">
 
     <TextView
         android:id="@+id/main_imei"

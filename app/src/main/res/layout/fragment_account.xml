@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:padding="@dimen/card_padding"
-    tools:context="com.mitelcel.pack.ui.fragment.FragAccount">
+    tools:context="com.mitelcel.pack.ui.fragment.FragmentAccount">
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/account_id"

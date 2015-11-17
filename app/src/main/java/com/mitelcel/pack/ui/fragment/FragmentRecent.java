@@ -40,9 +40,9 @@ import retrofit.client.Response;
  * with a GridView.
  * <p>
  */
-public class FragRecent extends Fragment
+public class FragmentRecent extends Fragment
 {
-    public static final String TAG = FragRecent.class.getName();
+    public static final String TAG = FragmentRecent.class.getName();
 
     RecyclerView.LayoutManager mLayoutManager;
     RecentRecycleViewAdapter mRecentRecycleViewAdapter;
@@ -55,8 +55,8 @@ public class FragRecent extends Fragment
     @Inject
     MiApiClient miApiClient;
 
-    public static FragRecent newInstance() {
-        FragRecent fragment = new FragRecent();
+    public static FragmentRecent newInstance() {
+        FragmentRecent fragment = new FragmentRecent();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -66,7 +66,7 @@ public class FragRecent extends Fragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FragRecent() {
+    public FragmentRecent() {
     }
 
     @Override

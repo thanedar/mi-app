@@ -11,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.MiApp;
@@ -28,19 +27,18 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragRecharge.OnRechargeFragmentInteractionListener} interface
+ * {@link FragmentRecharge.OnRechargeFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragConfirm#newInstance} factory method to
+ * Use the {@link FragmentRecharge#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragRecharge extends Fragment
+public class FragmentRecharge extends Fragment
 {
-    public static final String TAG = FragRecharge.class.getName();
+    public static final String TAG = FragmentRecharge.class.getName();
 
     private OnRechargeFragmentInteractionListener mListener;
 
@@ -74,8 +72,8 @@ public class FragRecharge extends Fragment
     MaterialDialog dialog;
     OnDialogListener dialogListener;
 
-    public static FragRecharge newInstance() {
-        FragRecharge fragment = new FragRecharge();
+    public static FragmentRecharge newInstance() {
+        FragmentRecharge fragment = new FragmentRecharge();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -85,7 +83,7 @@ public class FragRecharge extends Fragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FragRecharge() {
+    public FragmentRecharge() {
     }
 
     @Override

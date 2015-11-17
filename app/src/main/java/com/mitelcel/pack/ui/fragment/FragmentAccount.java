@@ -35,7 +35,7 @@ import retrofit.client.Response;
  * Activities containing this fragment MUST implement the {@link OnAccountFragmentInteractionListener}
  * interface.
  */
-public class FragAccount extends Fragment
+public class FragmentAccount extends Fragment
 {
     private OnAccountFragmentInteractionListener mListener;
 
@@ -51,8 +51,8 @@ public class FragAccount extends Fragment
     @Inject
     MiApiClient miApiClient;
 
-    public static FragAccount newInstance() {
-        FragAccount fragment = new FragAccount();
+    public static FragmentAccount newInstance() {
+        FragmentAccount fragment = new FragmentAccount();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -62,7 +62,7 @@ public class FragAccount extends Fragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FragAccount() {
+    public FragmentAccount() {
     }
 
     @Override
@@ -138,7 +138,7 @@ public class FragAccount extends Fragment
 
             @Override
             public void failure(RetrofitError error) {
-                MiLog.i("FragAccount", "GetAccountInfo failure " + error.toString());
+                MiLog.i("FragmentAccount", "GetAccountInfo failure " + error.toString());
             }
         });
     }

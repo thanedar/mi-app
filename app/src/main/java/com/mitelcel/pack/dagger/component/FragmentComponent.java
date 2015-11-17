@@ -13,7 +13,7 @@ import dagger.Component;
         dependencies = AppComponent.class,
         modules = ValidatorModule.class
 )
-public interface FragmentComponent extends FragGraph{
+public interface FragmentComponent extends FragmentGraph {
 
     final class Initializer {
         private Initializer() {

@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.Config;
@@ -15,8 +13,8 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
 import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
-import com.mitelcel.pack.ui.fragment.FragConfirm;
-import com.mitelcel.pack.ui.fragment.FragRecharge;
+import com.mitelcel.pack.ui.fragment.FragmentConfirm;
+import com.mitelcel.pack.ui.fragment.FragmentRecharge;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
@@ -29,8 +27,8 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class RechargeActivity extends BaseActivity
-        implements FragConfirm.OnConfirmFragmentInteractionListener,
-            FragRecharge.OnRechargeFragmentInteractionListener,
+        implements FragmentConfirm.OnConfirmFragmentInteractionListener,
+            FragmentRecharge.OnRechargeFragmentInteractionListener,
             OnDialogListener
 {
 
@@ -49,7 +47,7 @@ public class RechargeActivity extends BaseActivity
         setContentView(R.layout.activity_recharge);
 
         if (savedInstanceState == null) {
-            FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragRecharge.TAG, FragRecharge.newInstance(), R.id.container);
+            FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentRecharge.TAG, FragmentRecharge.newInstance(), R.id.container);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -89,8 +87,8 @@ public class RechargeActivity extends BaseActivity
         FragmentHandler.addFragmentInBackStackWithAnimation(
                 getSupportFragmentManager(),
                 "RECHARGE",
-                FragConfirm.class.getName(),
-                FragConfirm.newInstance(display, String.valueOf(amount)),
+                FragmentConfirm.class.getName(),
+                FragmentConfirm.newInstance(display, String.valueOf(amount)),
                 R.id.container);
     }
 

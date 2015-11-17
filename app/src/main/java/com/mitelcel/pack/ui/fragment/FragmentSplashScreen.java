@@ -36,25 +36,25 @@ import retrofit.client.Response;
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
-public class FragSplashScreen extends Fragment implements
+public class FragmentSplashScreen extends Fragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     MaterialDialog dialog;
 
-    public static final String TAG = FragSplashScreen.class.getName();
+    public static final String TAG = FragmentSplashScreen.class.getName();
 
     @Inject
     MiApiClient miApiClient;
 
     // TODO: Rename and change types and number of parameters
-    public static FragSplashScreen newInstance() {
-        FragSplashScreen fragment = new FragSplashScreen();
+    public static FragmentSplashScreen newInstance() {
+        FragmentSplashScreen fragment = new FragmentSplashScreen();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public FragSplashScreen() {
+    public FragmentSplashScreen() {
     }
 
     @Override

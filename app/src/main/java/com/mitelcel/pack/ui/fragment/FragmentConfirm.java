@@ -26,12 +26,12 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragConfirm.OnConfirmFragmentInteractionListener} interface
+ * {@link FragmentConfirm.OnConfirmFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragConfirm#newInstance} factory method to
+ * Use the {@link FragmentConfirm#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragConfirm extends Fragment {
+public class FragmentConfirm extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_STRING = "string";
     private static final String ARG_AMOUNT = "amount";
@@ -59,10 +59,10 @@ public class FragConfirm extends Fragment {
      *
      * @param mString Parameter 1.
      * @param mAmount Parameter 2.
-     * @return A new instance of fragment FragConfirm.
+     * @return A new instance of fragment FragmentConfirm.
      */
-    public static FragConfirm newInstance(String mString, String mAmount) {
-        FragConfirm fragment = new FragConfirm();
+    public static FragmentConfirm newInstance(String mString, String mAmount) {
+        FragmentConfirm fragment = new FragmentConfirm();
         Bundle args = new Bundle();
         args.putString(ARG_STRING, mString);
         args.putString(ARG_AMOUNT, mAmount);
@@ -70,7 +70,7 @@ public class FragConfirm extends Fragment {
         return fragment;
     }
 
-    public FragConfirm() {
+    public FragmentConfirm() {
         // Required empty public constructor
     }
 
@@ -112,7 +112,7 @@ public class FragConfirm extends Fragment {
 
     @OnClick(R.id.confirm_btn)
     public void transactionConfirmed() {
-        MiLog.i("FragConfirm", "Confirm clicked");
+        MiLog.i("FragmentConfirm", "Confirm clicked");
 
         if(tvPassword.getVisibility() == View.VISIBLE){
             String pw = tvPassword.getText().toString();
@@ -120,12 +120,12 @@ public class FragConfirm extends Fragment {
             if (msg != null)
                 tvPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_alert, 0);
             else if (fragmentInteractionListener != null) {
-                MiLog.i("FragConfirm", "Confirm fragmentInteractionListener found");
+                MiLog.i("FragmentConfirm", "Confirm fragmentInteractionListener found");
                 fragmentInteractionListener.onConfirmFragmentInteraction(pw);
             }
         }
         else if (fragmentInteractionListener != null) {
-            MiLog.i("FragConfirm", "Confirm fragmentInteractionListener found");
+            MiLog.i("FragmentConfirm", "Confirm fragmentInteractionListener found");
             fragmentInteractionListener.onConfirmFragmentInteraction("");
         }
     }

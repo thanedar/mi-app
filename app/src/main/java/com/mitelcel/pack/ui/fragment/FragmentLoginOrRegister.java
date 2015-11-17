@@ -16,20 +16,20 @@ import com.mitelcel.pack.ui.listener.OnDialogListener;
 
 import butterknife.ButterKnife;
 
-public class FragLoginOrRegister extends Fragment{
+public class FragmentLoginOrRegister extends Fragment{
 
     MaterialDialog dialog;
 
     OnDialogListener mListener;
 
-    public static final String TAG = FragLoginOrRegister.class.getSimpleName();
+    public static final String TAG = FragmentLoginOrRegister.class.getSimpleName();
 
-    public static FragLoginOrRegister newInstance() {
-        FragLoginOrRegister fragment = new FragLoginOrRegister();
+    public static FragmentLoginOrRegister newInstance() {
+        FragmentLoginOrRegister fragment = new FragmentLoginOrRegister();
         return fragment;
     }
 
-    public FragLoginOrRegister() {
+    public FragmentLoginOrRegister() {
         // Required empty public constructor
     }
 

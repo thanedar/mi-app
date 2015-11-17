@@ -15,9 +15,9 @@ import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
-import com.mitelcel.pack.ui.fragment.FragAccount;
-import com.mitelcel.pack.ui.fragment.FragHelp;
-import com.mitelcel.pack.ui.fragment.FragMain;
+import com.mitelcel.pack.ui.fragment.FragmentAccount;
+import com.mitelcel.pack.ui.fragment.FragmentHelp;
+import com.mitelcel.pack.ui.fragment.FragmentMain;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
@@ -34,14 +34,14 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class MainActivity extends BaseActivity implements OnMainFragmentInteractionListener, FragAccount.OnAccountFragmentInteractionListener, OnDialogListener{
+public class MainActivity extends BaseActivity implements OnMainFragmentInteractionListener, FragmentAccount.OnAccountFragmentInteractionListener, OnDialogListener{
 
     @InjectView(R.id.drawer_layout)
     CustomDrawerLayout mDrawerLayout;
     RecyclerView mDrawerList;
     ActionBarDrawerToggle mDrawerToggle;
 
-    FragMain fragMain;
+    FragmentMain fragmentMain;
 
     @Inject
     MiApiClient miApiClient;
@@ -58,13 +58,13 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
         ButterKnife.inject(this);
 
-        fragMain = FragMain.newInstance();
+        fragmentMain = FragmentMain.newInstance();
 
         if (savedInstanceState == null) {
             FragmentHandler.replaceFragment(
                     getSupportFragmentManager(),
-                    FragMain.class.getName(),
-                    fragMain,
+                    FragmentMain.class.getName(),
+                    fragmentMain,
                     R.id.main_content_fragment);
         }
 
@@ -140,8 +140,8 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 FragmentHandler.addFragmentInBackStackWithAnimation(
                         getSupportFragmentManager(),
                         BACK_STACK_NAME,
-                        FragMain.class.getName(),
-                        fragMain,
+                        FragmentMain.class.getName(),
+                        fragmentMain,
                         R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_recent:
@@ -166,8 +166,8 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 FragmentHandler.addFragmentInBackStackWithAnimation(
                         getSupportFragmentManager(),
                         BACK_STACK_NAME,
-                        FragHelp.class.getName(),
-                        FragHelp.newInstance("", ""),
+                        FragmentHelp.class.getName(),
+                        FragmentHelp.newInstance("", ""),
                         R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_terms:

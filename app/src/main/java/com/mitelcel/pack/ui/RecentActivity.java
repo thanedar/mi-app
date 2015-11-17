@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.ui.fragment.FragRecent;
+import com.mitelcel.pack.ui.fragment.FragmentRecent;
 import com.mitelcel.pack.utils.FragmentHandler;
 
 public class RecentActivity extends BaseActivity {
@@ -18,7 +18,7 @@ public class RecentActivity extends BaseActivity {
         setContentView(R.layout.activity_recent);
 
         if (savedInstanceState == null) {
-            FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragRecent.TAG, FragRecent.newInstance(), R.id.container);
+            FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentRecent.TAG, FragmentRecent.newInstance(), R.id.container);
         }
 
         ActionBar actionBar = getSupportActionBar();

@@ -36,7 +36,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class FragLogin extends Fragment implements View.OnClickListener{
+public class FragmentLogin extends Fragment implements View.OnClickListener{
 
     @InjectView(R.id.login_tv_msisdn)
     EditText msisdn;
@@ -53,10 +53,10 @@ public class FragLogin extends Fragment implements View.OnClickListener{
     MaterialDialog dialog;
     OnDialogListener mListener;
 
-    public static final String TAG = FragLogin.class.getSimpleName();
+    public static final String TAG = FragmentLogin.class.getSimpleName();
 
-    public static FragLogin newInstance() {
-        FragLogin fragment = new FragLogin();
+    public static FragmentLogin newInstance() {
+        FragmentLogin fragment = new FragmentLogin();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
