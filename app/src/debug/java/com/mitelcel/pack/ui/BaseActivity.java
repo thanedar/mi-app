@@ -43,8 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             ViewServer.get(this).addWindow(this);
         }
 
-        actionBarDecorator();
-
     }
 
     @Override
@@ -59,6 +57,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onResume();
         if(BuildConfig.DEBUG)
             ViewServer.get(this).setFocusedWindow(this);
+
+        actionBarDecorator();
     }
 
     public void actionBarDecorator(){

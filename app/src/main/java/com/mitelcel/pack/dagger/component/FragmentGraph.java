@@ -10,6 +10,7 @@ import com.mitelcel.pack.ui.fragment.FragmentRecent;
 import com.mitelcel.pack.ui.fragment.FragmentRecharge;
 import com.mitelcel.pack.ui.fragment.FragmentRegister;
 import com.mitelcel.pack.ui.fragment.FragmentSplashScreen;
+import com.mitelcel.pack.ui.fragment.FragmentTransfer;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
@@ -25,4 +26,5 @@ public interface FragmentGraph {
     void inject(FragmentRecharge fragmentRecharge);
     void inject(FragmentRegister fragmentRegister);
     void inject(FragmentSplashScreen fragmentSplashScreen);
+    void inject(FragmentTransfer fragmentTransfer);
 }

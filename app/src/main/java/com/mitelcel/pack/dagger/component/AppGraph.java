@@ -4,6 +4,7 @@ import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.RechargeActivity;
 import com.mitelcel.pack.ui.SplashScreen;
+import com.mitelcel.pack.ui.TransferActivity;
 import com.mitelcel.pack.ui.widget.LayoutBalance;
 
 /**
@@ -15,4 +16,5 @@ public interface AppGraph {
     void inject(LayoutBalance layoutBalance);
     void inject(RechargeActivity rechargeActivity);
     void inject(SplashScreen splashScreen);
+    void inject(TransferActivity transferActivity);
 }

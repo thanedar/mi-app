@@ -7,6 +7,7 @@ import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
+import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
@@ -14,6 +15,7 @@ import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
+import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -49,6 +51,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo, Callback<BeanSubmitAppInfoResponse> callback);
+
+    @POST(REQUEST_URI)
+    void transfer_balance(@Body BeanTransferBalance beanTransferBalance, Callback<BeanTransferBalanceResponse> callback);
 
     /**
      * RxJava call

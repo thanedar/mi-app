@@ -16,9 +16,9 @@ public class Validator {
         this.context = context;
     }
 
-    public String isNumberValid(String referral){
+    public String isNumberValid(String msisdn){
 
-        if(referral.length() < Config.MSISDN_LENGTH)
+        if(msisdn.length() < Config.MSISDN_LENGTH)
             return this.context.getString(R.string.msisdn_not_valid);
 
         // If null return the referral code is OK
@@ -35,6 +35,15 @@ public class Validator {
         if(!pass.equals(passConfirm)){
             return this.context.getString(R.string.password_does_not_match);
         }
+        return null;
+    }
+
+    public String isTransferAmountValid(float amount){
+
+        if(amount <= 0 || amount > MiUtils.MiAppPreferences.getCurrentBalance())
+            return this.context.getString(R.string.check_input);
+
+        // If null return the referral code is OK
         return null;
     }
 

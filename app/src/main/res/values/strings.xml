@@ -24,8 +24,6 @@
     <string name="sample_user_msisdn">Subscriber 55 55897898</string>
     <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
-    <string name="title_activity_recent_activity">Recent Activity</string>
-    <string name="title_activity_recharge">Recharge</string>
 
     <!-- MSISDN -->
     <string name="msisdn">Phone number</string>
@@ -55,7 +53,6 @@
 
     <!-- Recharge -->
     <string name="recharge">Recharge</string>
-    <string name="recharge_value">Amount</string>
     <string name="recent_recharge">"Recharge of %1$s%2$s"</string>
     <string name="recharge_check">"Please confirm you want to recharge your account with %1$s%2$s."</string>
     <string name="recharge_invalid_input">Please check if you have selected proper amount to recharge!</string>
@@ -69,6 +66,17 @@
     <!-- Transfer Balance -->
     <string name="recent_transfer">"Transferred %1$s%2$s"</string>
     <string name="transfer_balance">Transfer balance</string>
+
+    <string name="transfer">Transfer</string>
+    <string name="transfer_check">"Please confirm you want to transfer %1$s%2$s to %3$s."</string>
+    <string name="transfer_invalid_input">Please check if you have selected proper amount and contact to transfer balance!</string>
+    <string name="transfer_msisdn">Choose contact</string>
+    <string name="transfer_success">"Your transfer of %1$s%2$s to %3$s was successful."</string>
+
+    <string name="transfer_5">$5</string>
+    <string name="transfer_10">$10</string>
+    <string name="transfer_20">$20</string>
+    <string name="transfer_50">$50</string>
 
     <!-- my account page -->
     <string name="your_account">Your account</string>
@@ -85,6 +93,7 @@
     <string name="login_failed">"Login failed with code: %1$s"</string>
 
     <!-- General -->
+    <string name="amount">Amount</string>
     <string name="back">Go Back</string>
     <string name="cancel">Cancel</string>
     <string name="check_input">Please check input</string>
