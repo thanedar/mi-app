@@ -58,28 +58,6 @@ public class MiUtils {
         context.startActivity(i);
     }
 
-    public static void startGameFromPackageId(Context context, String packageId){
-
-        PackageManager pm = context.getPackageManager();
-
-        Intent intent = new Intent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ResolveInfo> listActivities = pm.queryIntentActivities(intent, 0);
-        for(ResolveInfo resolveInfo : listActivities){
-            if(resolveInfo.activityInfo.packageName.equals(packageId)){
-                intent = new Intent();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setAction(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.setComponent(new ComponentName(packageId, resolveInfo.activityInfo.name));
-                context.startActivity(intent);
-            }
-        }
-    }
-
     public static void showDialogErrorCall(Activity activity, String content, String btnTex){
         showDialogError(activity, content, btnTex, -1, DialogActivity.APP_ERROR_CALL);
     }
@@ -155,13 +133,6 @@ public class MiUtils {
         return res;
     }
 
-    public static void openMarketPageWithReferrer(Context context, String url){
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
-
     public static final String REGEX_MAIL = "(([\\w\\-\\.]+)@([\\w\\-\\.]+)\\.([a-zA-Z]{2,3}))";
     public static final String REGEX_MSISDN = "[0-9]{4,10}";
     public static final String REGEX_PASSWORD = "[\\w._&$\\-]{4,}";
@@ -170,9 +141,6 @@ public class MiUtils {
      * Static class to get all user's information
      */
     public static class Info{
-
-        public static final String PACKAGE_FB = "com.facebook.orca";
-        public static final String PACKAGE_WHATSAPP = "com.whatsapp";
 
         /**
          * language configuration
@@ -191,6 +159,10 @@ public class MiUtils {
 
         public static String getLanguage(){
             return Locale.getDefault().getLanguage();
+        }
+
+        public static String getFormattedCurrency(float value){
+            return String.format("%.2f", value);
         }
 
         /**
@@ -275,32 +247,6 @@ public class MiUtils {
         }
 
         /**
-         * return the location object
-         * @param context
-         * @return location
-         */
-        public static Location getUserLocation(Context context){
-            Location location = null;
-            /*if ( Build.VERSION.SDK_INT >= 23 &&
-                    ContextCompat.checkSelfPermission( context, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return location;
-            }*/
-            try{
-                final LocationManager locationManager = (LocationManager) context
-                        .getSystemService(Context.LOCATION_SERVICE);
-                // Register the listener with the Location Manager to receive location
-                // updates
-                if (locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
-                    location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            return location;
-        }
-
-        /**
          * check connection state
          * @param context
          * @return
@@ -322,16 +268,6 @@ public class MiUtils {
                 return false;
 
             return true;
-        }
-
-        public static boolean isPackageInstalled(Context context, String packagename) {
-            PackageManager pm = context.getPackageManager();
-            try {
-                pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
-                return true;
-            } catch (PackageManager.NameNotFoundException e) {
-                return false;
-            }
         }
 
         public static void sendMessageBySMS(Context context, String message){
@@ -415,7 +351,6 @@ public class MiUtils {
         public static final String USER_EMAIL = "user_mail";
         public static final String TOKEN_EXPIRED = "token_expired";
         public static final String DEVICE_TYPE = "device_type";
-        public static final String ID_PROFILE = "id_profile";
         public static final String LOGIN_STATUS_KEY = "login_status";
         public static final String LAST_CHECK_TIMESTAMP = "last_check_timestamp";
         public static final int LOGOUT = 1;
@@ -507,6 +442,12 @@ public class MiUtils {
         public static float getCurrentBalance(){
             SharedPreferences sp = getSharedPreferences();
             return sp.getFloat(MONEY_BALANCE, 100.00f);
+        }
+
+        public static String getCurrentBalanceString(){
+            SharedPreferences sp = getSharedPreferences();
+            float balance = sp.getFloat(MONEY_BALANCE, 100.00f);
+            return String.format("%.2f", balance);
         }
 
         public static void setLogout(){

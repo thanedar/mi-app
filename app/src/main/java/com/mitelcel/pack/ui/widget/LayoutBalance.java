@@ -86,7 +86,7 @@ public class LayoutBalance extends FrameLayout
     private void setCurrentBalance(){
         textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cash, 0, 0, 0);
         String symbol = MiUtils.MiAppPreferences.getCurrencySymbol();
-        float value = MiUtils.MiAppPreferences.getCurrentBalance();
+        String value = MiUtils.MiAppPreferences.getCurrentBalanceString();
         textView.setText(symbol + value);
         /*textView.setOnClickListener(new OnClickListener() {
             @Override

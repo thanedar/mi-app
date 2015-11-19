@@ -55,6 +55,7 @@
     <string name="recharge">Recharge</string>
     <string name="recent_recharge">"Recharge of %1$s%2$s"</string>
     <string name="recharge_check">"Please confirm you want to recharge your account with %1$s%2$s."</string>
+    <string name="recharge_info">Please choose the amount you want to recharge.</string>
     <string name="recharge_invalid_input">Please check if you have selected proper amount to recharge!</string>
     <string name="recharge_success">"Your recharge for %1$s%2$s was successful."</string>
 
@@ -68,10 +69,11 @@
     <string name="transfer_balance">Transfer balance</string>
 
     <string name="transfer">Transfer</string>
-    <string name="transfer_check">"Please confirm you want to transfer %1$s%2$s to %3$s."</string>
+    <string name="transfer_check">"Please confirm you want to transfer %1$s%2$.2f to %3$s."</string>
+    <string name="transfer_info">Please choose the amount and the phone number you want to transfer balance.</string>
     <string name="transfer_invalid_input">Please check if you have selected proper amount and contact to transfer balance!</string>
-    <string name="transfer_msisdn">Choose contact</string>
-    <string name="transfer_success">"Your transfer of %1$s%2$s to %3$s was successful."</string>
+    <string name="transfer_msisdn">Enter phone #</string>
+    <string name="transfer_success">"Your transfer of %1$s%2$.2f to %3$s was successful."</string>
 
     <string name="transfer_5">$5</string>
     <string name="transfer_10">$10</string>

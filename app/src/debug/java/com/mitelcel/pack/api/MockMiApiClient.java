@@ -52,6 +52,13 @@ public class MockMiApiClient implements MiApiClient {
     }
 
     @Override
+    public void get_current_balance(@Body BeanGetCurrentBalance beanInput, Callback<BeanGetCurrentBalanceResponse> callback) {
+        BeanGetCurrentBalanceResponse beanResponse = new Gson().fromJson(FakeData.RESP_CURRENT_BALANCE, BeanGetCurrentBalanceResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_CURRENT_BALANCE.getBytes()));
+        callback.success(beanResponse, response);
+    }
+
+    @Override
     public void get_recent_activity(@Body BeanGetRecentActivity beanInput, Callback<BeanGetRecentActivityResponse> callback) {
         BeanGetRecentActivityResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_RECENT_ACTIVITY, BeanGetRecentActivityResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_RECENT_ACTIVITY.getBytes()));

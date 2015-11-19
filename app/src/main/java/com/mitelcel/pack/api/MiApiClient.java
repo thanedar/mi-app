@@ -38,6 +38,9 @@ public interface MiApiClient {
     void get_account_info(@Body BeanGetAccountInfo beanGetAccountInfo, Callback<BeanGetAccountInfoResponse> callback);
 
     @POST(REQUEST_URI)
+    void get_current_balance(@Body BeanGetCurrentBalance beanGetCurrentBalance, Callback<BeanGetCurrentBalanceResponse> callback);
+
+    @POST(REQUEST_URI)
     void get_recent_activity(@Body BeanGetRecentActivity beanGetRecentActivity, Callback<BeanGetRecentActivityResponse> callback);
 
     @POST(REQUEST_URI)

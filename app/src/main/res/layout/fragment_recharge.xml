@@ -22,7 +22,7 @@
         android:padding="10dp"
         android:clickable="true"
         android:gravity="center"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/recharge_info"
         android:textSize="20sp" />
 
     <RadioGroup

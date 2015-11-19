@@ -1,4 +1,4 @@
-package com.mitelcel.pack.ui;
+package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
 import android.net.Uri;
