@@ -15,13 +15,13 @@ public class BeanRechargeAccount extends BeanGenericApi {
     @Expose
     private Params params;
 
-    public BeanRechargeAccount(int amount) {
+    public BeanRechargeAccount(float amount) {
         this.id = System.currentTimeMillis();
         this.method = NAME;
         this.params = new Params(amount);
     }
 
-    public BeanRechargeAccount(int amount, String password) {
+    public BeanRechargeAccount(float amount, String password) {
         this.id = System.currentTimeMillis();
         this.method = NAME;
         this.params = new Params(amount, password);
@@ -30,7 +30,7 @@ public class BeanRechargeAccount extends BeanGenericApi {
     public class Params extends GenericBean {
 
         @Expose
-        private int amount;
+        private float amount;
 
         @SerializedName("app_token")
         @Expose
@@ -43,7 +43,7 @@ public class BeanRechargeAccount extends BeanGenericApi {
         @Expose
         private BeanCredentials credentials;
 
-        public Params(int amount) {
+        public Params(float amount) {
             this.amount = amount;
             this.appToken = MiUtils.MiAppPreferences.getToken();
             this.sessionId = MiUtils.MiAppPreferences.getSessionId();
@@ -51,7 +51,7 @@ public class BeanRechargeAccount extends BeanGenericApi {
             this.credentials = new BeanCredentials();
         }
 
-        public Params(int amount, String password) {
+        public Params(float amount, String password) {
             this.amount = amount;
             this.appToken = MiUtils.MiAppPreferences.getToken();
             this.sessionId = MiUtils.MiAppPreferences.getSessionId();

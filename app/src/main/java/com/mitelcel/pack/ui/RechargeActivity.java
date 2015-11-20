@@ -34,7 +34,7 @@ public class RechargeActivity extends BaseActivity
 
     private static final String TAG = RechargeActivity.class.getName();
 
-    private int amount = 0;
+    private float amount = 0;
 
     MaterialDialog dialog;
 
@@ -79,7 +79,7 @@ public class RechargeActivity extends BaseActivity
     }
 
     @Override
-    public void onRechargeFragmentInteraction(int amount){
+    public void onRechargeFragmentInteraction(float amount){
         MiLog.i(TAG, "onRechargeFragmentInteraction event with " + amount);
         this.amount = amount;
 

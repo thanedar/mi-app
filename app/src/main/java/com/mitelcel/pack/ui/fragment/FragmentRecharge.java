@@ -42,7 +42,6 @@ public class FragmentRecharge extends Fragment
 
     private OnRechargeFragmentInteractionListener mListener;
 
-    private int recharge = 0;
     private int checkedButtonId = 0;
 
     @InjectView(R.id.recharge_amount)
@@ -162,7 +161,7 @@ public class FragmentRecharge extends Fragment
     @OnClick(R.id.recharge_confirm_btn)
     public void startConfirm(View view){
         MiLog.i(TAG, "Confirm clicked");
-        recharge = 0;
+        float recharge = 0;
 
         switch (checkedButtonId) {
             case R.id.recharge_5:
@@ -181,17 +180,13 @@ public class FragmentRecharge extends Fragment
                 String input = recharge_amount.getText().toString();
                 MiLog.i(TAG, "In other with amount " + input);
 
-                int inInt = 0;
                 try {
-                    inInt = Integer.parseInt(input);
+                    recharge = Float.parseFloat(input);
                 } catch (NumberFormatException e) {
                     MiLog.i(TAG, "In other with amount " + input);
                     recharge_amount.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_alert, 0);
 //                    recharge_amount.setError(getString(R.string.check_input));
                 }
-
-                recharge = inInt;
-
                 break;
         }
 
@@ -205,11 +200,6 @@ public class FragmentRecharge extends Fragment
                     DialogActivity.APP_REQ
             );
     }
-
-    /*@OnFocusChange(R.id.recharge_amount)
-    void onAmountFocus(boolean focus){
-        Toast.makeText(getActivity(), focus ? "Gained focus" : "Lost focus", Toast.LENGTH_SHORT).show();
-    }*/
 
     @Override
     public void onAttach(Activity activity) {
@@ -245,6 +235,6 @@ public class FragmentRecharge extends Fragment
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnRechargeFragmentInteractionListener {
-        void onRechargeFragmentInteraction(int recharge);
+        void onRechargeFragmentInteraction(float recharge);
     }
 }
