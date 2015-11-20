@@ -2,6 +2,7 @@ package com.mitelcel.pack.api;
 
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
+import com.mitelcel.pack.api.bean.req.BeanGetOfferList;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
@@ -10,6 +11,7 @@ import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
@@ -39,6 +41,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void get_current_balance(@Body BeanGetCurrentBalance beanGetCurrentBalance, Callback<BeanGetCurrentBalanceResponse> callback);
+
+    @POST(REQUEST_URI)
+    BeanGetOfferListResponse get_offer_list(@Body BeanGetOfferList beanGetOfferList);
 
     @POST(REQUEST_URI)
     void get_recent_activity(@Body BeanGetRecentActivity beanGetRecentActivity, Callback<BeanGetRecentActivityResponse> callback);
