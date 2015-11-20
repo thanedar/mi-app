@@ -18,6 +18,8 @@ import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.ui.fragment.FragmentAccount;
 import com.mitelcel.pack.ui.fragment.FragmentHelp;
 import com.mitelcel.pack.ui.fragment.FragmentMain;
+import com.mitelcel.pack.ui.fragment.FragmentPrivacy;
+import com.mitelcel.pack.ui.fragment.FragmentTerms;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
@@ -171,10 +173,20 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                         R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_terms:
-//                startActivity(new Intent(this, Rewards.class));
+                FragmentHandler.addFragmentInBackStackWithAnimation(
+                        getSupportFragmentManager(),
+                        BACK_STACK_NAME,
+                        FragmentTerms.class.getName(),
+                        FragmentTerms.newInstance("", ""),
+                        R.id.main_content_fragment);
                 break;
-            case R.id.navdrawer_item_contact:
-//                startActivity(new Intent(this, Rewards.class));
+            case R.id.navdrawer_item_privacy:
+                FragmentHandler.addFragmentInBackStackWithAnimation(
+                        getSupportFragmentManager(),
+                        BACK_STACK_NAME,
+                        FragmentPrivacy.class.getName(),
+                        FragmentPrivacy.newInstance("", ""),
+                        R.id.main_content_fragment);
                 break;
             case R.id.navdrawer_item_tutorial:
 //                startActivity(new Intent(this, Tutorial.class));

@@ -43,9 +43,8 @@ public class Config {
      */
     public static final String HTML_FAQ = "file:///android_asset/faq.html";
     public static final String HTML_HELP = "file:///android_asset/help.html";
-    public static final String HTML_RULES = "file:///android_asset/rules.html";
     public static final String HTML_PRIVACY = "file:///android_asset/privacy.html";
-    public static final String HTML_TERM_CONDITION = "file:///android_asset/terms_and_condition.html";
+    public static final String HTML_TERMS = "file:///android_asset/terms_and_condition.html";
 
     /**
      * Custom Event

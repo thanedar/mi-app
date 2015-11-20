@@ -134,6 +134,7 @@
     <string name="navdrawer_item_tutorial">Tutorial</string>
     <string name="navdrawer_item_terms">Terms &amp; Conditions</string>
     <string name="navdrawer_item_contact">Contact Us</string>
+    <string name="navdrawer_item_privacy">Privacy Policy</string>
     <string name="navdrawer_item_logout">Logout</string>
     <string name="navdrawer_item_debug">Is Debug?</string>
     <string name="navdrawer_item_error_call">Token not valid</string>

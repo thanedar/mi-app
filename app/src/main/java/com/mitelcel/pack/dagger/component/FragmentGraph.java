@@ -6,10 +6,12 @@ import com.mitelcel.pack.ui.fragment.FragmentHelp;
 import com.mitelcel.pack.ui.fragment.FragmentLogin;
 import com.mitelcel.pack.ui.fragment.FragmentLoginOrRegister;
 import com.mitelcel.pack.ui.fragment.FragmentMain;
+import com.mitelcel.pack.ui.fragment.FragmentPrivacy;
 import com.mitelcel.pack.ui.fragment.FragmentRecent;
 import com.mitelcel.pack.ui.fragment.FragmentRecharge;
 import com.mitelcel.pack.ui.fragment.FragmentRegister;
 import com.mitelcel.pack.ui.fragment.FragmentSplashScreen;
+import com.mitelcel.pack.ui.fragment.FragmentTerms;
 import com.mitelcel.pack.ui.fragment.FragmentTransfer;
 
 /**
@@ -22,9 +24,11 @@ public interface FragmentGraph {
     void inject(FragmentLogin fragmentLogin);
     void inject(FragmentLoginOrRegister fragmentLoginOrRegister);
     void inject(FragmentMain fragmentMain);
+    void inject(FragmentPrivacy fragmentPrivacy);
     void inject(FragmentRecent fragmentRecent);
     void inject(FragmentRecharge fragmentRecharge);
     void inject(FragmentRegister fragmentRegister);
     void inject(FragmentSplashScreen fragmentSplashScreen);
     void inject(FragmentTransfer fragmentTransfer);
+    void inject(FragmentTerms fragmentTerms);
 }

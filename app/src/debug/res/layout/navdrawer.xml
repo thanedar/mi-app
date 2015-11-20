@@ -37,7 +37,7 @@
             <include android:id="@+id/navdrawer_item_help" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_tutorial" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_terms" layout="@layout/navdrawer_item"/>
-            <include android:id="@+id/navdrawer_item_contact" layout="@layout/navdrawer_item"/>
+            <include android:id="@+id/navdrawer_item_privacy" layout="@layout/navdrawer_item"/>
 
             <!-- Divider -->
             <include  layout="@layout/navdrawer_separator"/>
