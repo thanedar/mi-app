@@ -15,7 +15,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
     private int previousTotalItemCount = 0;
     // True if we are still waiting for the last set of data to load.
     private boolean loading = true;
-    // Sets the starting page index
+    // Sets the starting start index
     private int startingPageIndex = 0;
 
     public EndlessScrollListener() {
@@ -45,7 +45,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
             if (totalItemCount == 0) { this.loading = true; }
         }
         // If it’s still loading, we check to see if the dataset count has
-        // changed, if so we conclude it has finished loading and update the current page
+        // changed, if so we conclude it has finished loading and update the current start
         // number and total item count.
         if (loading && (totalItemCount > previousTotalItemCount)) {
             loading = false;
@@ -62,7 +62,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
         }
     }
 
-    // Defines the process for actually loading more data based on page
+    // Defines the process for actually loading more data based on start
     public abstract void onLoadMore(int page, int totalItemsCount);
 
     @Override
@@ -78,7 +78,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
         previousTotalItemCount = 0;
         // True if we are still waiting for the last set of data to load.
         loading = true;
-        // Sets the starting page index
+        // Sets the starting start index
         startingPageIndex = 0;
     }
 }

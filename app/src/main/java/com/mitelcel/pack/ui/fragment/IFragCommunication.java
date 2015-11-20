@@ -1,5 +1,7 @@
 package com.mitelcel.pack.ui.fragment;
 
+import com.mitelcel.pack.bean.ui.OfferItemHolder;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,6 @@ import java.util.List;
  */
 public interface IFragCommunication {
 
-//    void updateAdapter(List<ItemMainAdapter> data, boolean refreshed);
-//    void error(int errorCode);
+    void updateAdapter(List<OfferItemHolder> data, boolean refreshed);
+    void error(int errorCode);
 }

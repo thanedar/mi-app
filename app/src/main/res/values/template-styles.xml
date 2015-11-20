@@ -97,6 +97,12 @@
         <item name="android:textSize">20sp</item>
         <item name="android:padding">5dp</item>
     </style>
+    <style name="Theme.App.Offers.ButtonFolks" parent="Theme.App"  >
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_list_offer_btn_accept</item>
+        <item name="android:textSize">15sp</item>
+    </style>
     <style name="Theme.App.ButtonFolks.Positive" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
@@ -113,6 +119,11 @@
 
     <style name="Theme.App.TextFolks" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="Theme.App.Offers.TextFolks" parent="Theme.App"  >
+        <item name="android:textColor">@color/black</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:textSize">15sp</item>
     </style>
@@ -154,4 +165,22 @@
         <item name="android:padding">5dp</item>
     </style>
 
+    <style name="Widget"></style>
+
+    <style name="Widget.Dashboard.Grid" parent="Widget">
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:columnWidth">200dp</item>
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:horizontalSpacing">0dp</item>
+        <item name="android:verticalSpacing">0dp</item>
+    </style>
+
+    <style name="Widget.Dashboard.Card" parent="Widget">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">5dp</item>
+        <item name="contentPadding">@dimen/card_padding</item>
+    </style>
 </resources>

@@ -6,6 +6,7 @@ import com.mitelcel.pack.ui.fragment.FragmentHelp;
 import com.mitelcel.pack.ui.fragment.FragmentLogin;
 import com.mitelcel.pack.ui.fragment.FragmentLoginOrRegister;
 import com.mitelcel.pack.ui.fragment.FragmentMain;
+import com.mitelcel.pack.ui.fragment.FragmentOffers;
 import com.mitelcel.pack.ui.fragment.FragmentPrivacy;
 import com.mitelcel.pack.ui.fragment.FragmentRecent;
 import com.mitelcel.pack.ui.fragment.FragmentRecharge;
@@ -24,6 +25,7 @@ public interface FragmentGraph {
     void inject(FragmentLogin fragmentLogin);
     void inject(FragmentLoginOrRegister fragmentLoginOrRegister);
     void inject(FragmentMain fragmentMain);
+    void inject(FragmentOffers fragmentOffers);
     void inject(FragmentPrivacy fragmentPrivacy);
     void inject(FragmentRecent fragmentRecent);
     void inject(FragmentRecharge fragmentRecharge);

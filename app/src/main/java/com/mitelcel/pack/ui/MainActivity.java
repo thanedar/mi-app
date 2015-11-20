@@ -162,7 +162,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 startActivity(new Intent(this, TransferActivity.class));
                 break;
             case R.id.navdrawer_item_offers:
-//                startActivity(new Intent(this, Rewards.class));
+                startActivity(new Intent(this, ListOfferActivity.class));
                 break;
             case R.id.navdrawer_item_help:
                 FragmentHandler.addFragmentInBackStackWithAnimation(

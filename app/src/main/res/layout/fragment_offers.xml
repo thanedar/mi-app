@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:textSize="18sp"
+        android:id="@+id/empty_list"
+        android:layout_gravity="center"
+        style="@style/Theme.App.TextFolks"/>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/offer_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridView android:id="@+id/grid_view"
+            style="@style/Widget.Dashboard.Grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:paddingLeft="@dimen/horizontal_page_margin"
+            android:paddingRight="@dimen/horizontal_page_margin"
+            android:paddingBottom="@dimen/vertical_page_margin"
+            android:scrollbarStyle="outsideOverlay"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>
