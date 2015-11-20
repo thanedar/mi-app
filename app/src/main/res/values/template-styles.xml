@@ -147,7 +147,7 @@
 
     <style name="Theme.App.Input.EditText" parent="Theme.App">
         <item name="type_face">@string/vagroundedstd_black</item>
-        <item name="android:textCursorDrawable">@drawable/skill_cursor_Drawable</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_drawable</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:textColorHint">@color/soft_grey</item>
         <item name="android:textSize">18sp</item>
@@ -183,4 +183,5 @@
         <item name="cardElevation">5dp</item>
         <item name="contentPadding">@dimen/card_padding</item>
     </style>
+
 </resources>
