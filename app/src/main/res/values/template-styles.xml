@@ -117,6 +117,22 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <style name="Theme.App.ButtonFolks.Tutorial.Next" parent="Theme.App">
+        <item name="android:textColor">@color/red</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_list_tutorial_next_btn</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="Theme.App.ButtonFolks.Tutorial.Skip" parent="Theme.App">
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_list_tutorial_skip_btn</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Theme.App.TextFolks" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>

@@ -180,7 +180,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 startActivity(iPrivacy);
                 break;
             case R.id.navdrawer_item_tutorial:
-//                startActivity(new Intent(this, Tutorial.class));
+                startActivity(new Intent(this, TutorialActivity.class));
                 break;
             case R.id.navdrawer_item_logout:
                 logout();

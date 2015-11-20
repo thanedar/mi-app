@@ -23,7 +23,7 @@ public class CustomDrawerLayout extends DrawerLayout {
     protected static final int NAVDRAWER_ITEM_HELP              = 8;
     protected static final int NAVDRAWER_ITEM_TUTORIAL          = 9;
     protected static final int NAVDRAWER_ITEM_TERMS             = 10;
-    protected static final int NAVDRAWER_ITEM_CONTACTUS         = 11;
+    protected static final int NAVDRAWER_ITEM_PRIVACY           = 11;
     protected static final int NAVDRAWER_ITEM_LOGOUT            = 12;
 
     private static final int[] NAVDRAWER_TITLE_RES_ID = new int[]{
@@ -38,7 +38,7 @@ public class CustomDrawerLayout extends DrawerLayout {
             R.string.navdrawer_item_help,
             R.string.navdrawer_item_tutorial,
             R.string.navdrawer_item_terms,
-            R.string.navdrawer_item_contact,
+            R.string.navdrawer_item_privacy,
             R.string.navdrawer_item_logout
     };
 
@@ -70,7 +70,7 @@ public class CustomDrawerLayout extends DrawerLayout {
             R.id.navdrawer_item_help,
             R.id.navdrawer_item_tutorial,
             R.id.navdrawer_item_terms,
-            R.id.navdrawer_item_contact,
+            R.id.navdrawer_item_privacy,
             R.id.navdrawer_item_logout
     };
 
@@ -121,7 +121,7 @@ public class CustomDrawerLayout extends DrawerLayout {
         // TERMS
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_TERMS], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_TERMS], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_TERMS]);
         // CONTACT US
-        fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_CONTACTUS], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_CONTACTUS], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_CONTACTUS]);
+        fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_PRIVACY], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_PRIVACY], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_PRIVACY]);
         // LOGOUT
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_LOGOUT], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_LOGOUT], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_LOGOUT]);
     }
