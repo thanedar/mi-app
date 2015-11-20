@@ -119,10 +119,10 @@ public class MiUtils {
 
         switch (action){
             case Config.ACTION_TYPE_RECHARGE:
-                res = R.drawable.ic_recharge;
+                res = R.drawable.recharge;
                 break;
             case Config.ACTION_TYPE_TRANSFER:
-                res = R.drawable.ic_transfer;
+                res = R.drawable.transfer;
                 break;
             case Config.ACTION_TYPE_BONUS:
                 res = R.drawable.ic_cash;
@@ -391,7 +391,7 @@ public class MiUtils {
         }
 
         public static boolean isInvalidSession(){
-            return (getToken() == null || getToken().equals(TOKEN_EXPIRED));
+            return (getSessionId() == null || getSessionId().equals(TOKEN_EXPIRED));
         }
 
         public static void setAuthPass(String value){

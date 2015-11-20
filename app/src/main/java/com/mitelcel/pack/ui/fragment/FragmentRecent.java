@@ -103,7 +103,7 @@ public class FragmentRecent extends Fragment
     public void onResume() {
         super.onResume();
 
-        BeanGetRecentActivity beanGetRecentActivity = new BeanGetRecentActivity(1);
+        BeanGetRecentActivity beanGetRecentActivity = new BeanGetRecentActivity();
         MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivity.toString() + " ]");
         if(miApiClient == null){
             MiLog.i(TAG, "miApiClient [ NULL ]");

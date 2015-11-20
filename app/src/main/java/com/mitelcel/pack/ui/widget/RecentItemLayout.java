@@ -49,15 +49,9 @@ public class RecentItemLayout extends RelativeLayout {
     }
 
     public void bind(UserActivity userActivity){
-        long activityId = (userActivity.getActivityId());
         int activityType = userActivity.getActivityType();
 
-//        tvDescription.setText(String.format(R.string.recent_recharge, userActivity.getActivityId());
-
-        if(activityType == Config.ACTION_TYPE_RECHARGE)
-            tvDescription.setText(R.string.recharge);
-        else if(activityType == Config.ACTION_TYPE_TRANSFER)
-            tvDescription.setText(R.string.transfer_balance);
+        tvDescription.setText(userActivity.getAppDisplayText());
 
         tvTime.setText(userActivity.getActivityDatetime());
 

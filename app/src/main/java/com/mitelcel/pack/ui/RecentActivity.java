@@ -4,9 +4,12 @@ import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.fragment.FragmentRecent;
 import com.mitelcel.pack.utils.FragmentHandler;
+
+import butterknife.ButterKnife;
 
 public class RecentActivity extends BaseActivity {
 
@@ -24,6 +27,10 @@ public class RecentActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
+
+        ButterKnife.inject(this);
+
+        ((MiApp)getApplication()).getAppComponent().inject(this);
     }
 
     @Override

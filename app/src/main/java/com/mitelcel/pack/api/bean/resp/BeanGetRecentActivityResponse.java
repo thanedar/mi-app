@@ -42,6 +42,9 @@ public class BeanGetRecentActivityResponse extends BeanGenericResponse {
         private String request;
         @Expose
         private String response;
+        @SerializedName("app_display_text")
+        @Expose
+        private String appDisplayText;
     }
 
     @Override
