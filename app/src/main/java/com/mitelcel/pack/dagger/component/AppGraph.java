@@ -3,6 +3,7 @@ package com.mitelcel.pack.dagger.component;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.ui.ListOfferActivity;
 import com.mitelcel.pack.ui.MainActivity;
+import com.mitelcel.pack.ui.OfferDetailActivity;
 import com.mitelcel.pack.ui.RechargeActivity;
 import com.mitelcel.pack.ui.SplashScreen;
 import com.mitelcel.pack.ui.TransferActivity;
@@ -16,6 +17,7 @@ public interface AppGraph {
     void inject(MainActivity mainActivity);
     void inject(LayoutBalance layoutBalance);
     void inject(ListOfferActivity listOfferActivity);
+    void inject(OfferDetailActivity offerDetailActivity);
     void inject(RechargeActivity rechargeActivity);
     void inject(SplashScreen splashScreen);
     void inject(TransferActivity transferActivity);

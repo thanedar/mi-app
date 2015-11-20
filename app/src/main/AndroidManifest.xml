@@ -57,6 +57,11 @@
             android:theme="@style/Theme.App.NoActionBar" >
         </activity>
         <activity
+            android:name=".ui.OfferDetailActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.RecentActivity"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/recent_activity"

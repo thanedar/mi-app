@@ -96,12 +96,14 @@
 
     <!-- General -->
     <string name="amount">Amount</string>
+    <string name="accept">Accept</string>
     <string name="back">Go Back</string>
     <string name="cancel">Cancel</string>
     <string name="check_input">Please check input</string>
     <string name="close">Close</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="decline">Decline</string>
     <string name="email">Email</string>
     <string name="loading">Loading&#8230;</string>
     <string name="no_connection_popup">Looks like you are not connected to the internet!</string>
@@ -114,6 +116,11 @@
     <string name="success">Success</string>
     <string name="updated">User updated!</string>
     <string name="warning">Warning</string>
+
+    <string name="package_tag">package_tag</string>
+    <string name="url_redirect">link_redirect</string>
+    <string name="installed_tag">installed_tag</string>
+
 
     <!-- fonts -->
     <string name="vagroundedstd_black">VAGRoundedStd-Black.otf</string>
