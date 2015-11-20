@@ -258,7 +258,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
         MiUtils.showDialogError(this, content, btnTex, resId, requestCode);
     }
 
-    public void showRecentActivity(View view) {
+    public void showRecentActivity() {
         MiLog.i("MainActivity", "Start recent activity");
         startActivity(new Intent(this, RecentActivity.class));
     }

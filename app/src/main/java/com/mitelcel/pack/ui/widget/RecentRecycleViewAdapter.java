@@ -4,9 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse.UserActivity;
+import com.mitelcel.pack.utils.MiLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,17 +49,25 @@ public class RecentRecycleViewAdapter extends EmptyRecyclerView.Adapter<RecentRe
         return userActivities.size();
     }
 
-    public static final class RecentViewHolder extends RecyclerView.ViewHolder{
+    public static final class RecentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         RecentItemLayout itemView;
+        private  static ClickListener clickListener;
 
         public RecentViewHolder(RecentItemLayout itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             this.itemView = itemView;
         }
 
         public void bind(UserActivity userActivity){
             itemView.bind(userActivity);
+        }
+
+        @Override
+        public void onClick(View view) {
+//            MiLog.i("RecentViewHolder", "onClick detected in ViewHolder");
+            clickListener.onItemClick(getAdapterPosition(), view);
         }
     }
 
@@ -76,5 +86,13 @@ public class RecentRecycleViewAdapter extends EmptyRecyclerView.Adapter<RecentRe
     public void clearData(){
         userActivities.clear();
         notifyDataSetChanged();
+    }
+
+    public void setOnItemClickListener(ClickListener clickListener){
+        RecentViewHolder.clickListener = clickListener;
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View view);
     }
 }

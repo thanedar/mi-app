@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_small"
     android:background="@color/material_blue_700"
-    android:clickable="false"
-    android:padding="@dimen/margin_medium">
+    android:padding="@dimen/margin_small">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="You've earn free coins!"
+            android:text="@string/placeholder_lorem_ipsum"
             android:paddingBottom="@dimen/margin_large"
             style="@style/Theme.App.TextFolks"/>
 
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textStyle="italic"
             android:layout_gravity="end"
-            android:text="1 day ago"
+            android:text="@string/placeholder_lorem_ipsum"
             style="@style/Theme.App.TextFolks"/>
 
     </LinearLayout>

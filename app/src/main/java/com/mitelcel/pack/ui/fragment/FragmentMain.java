@@ -1,6 +1,7 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,8 @@ import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
+import com.mitelcel.pack.ui.MainActivity;
+import com.mitelcel.pack.ui.RecentActivity;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
@@ -108,9 +111,16 @@ public class FragmentMain extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         // create the adapter
         mRecentRecycleViewAdapter = new RecentRecycleViewAdapter();
-        // adding adapter on recycleview
+        mRecentRecycleViewAdapter.setOnItemClickListener(new RecentRecycleViewAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                MiLog.i("FragmentMain", "Click detected in fragment");
+                showRecent();
+            }
+        });
+        // adding adapter on recycle view
         mRecyclerView.setAdapter(mRecentRecycleViewAdapter);
-        // adding separator on recycleview
+        // adding separator on recycle view
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         // adding empty view
         mRecyclerView.setEmptyView(tvEmpty);
@@ -195,9 +205,8 @@ public class FragmentMain extends Fragment {
         });
     }
 
-    @OnClick(R.id.home_act_list)
     public void showRecent(){
         MiLog.i(TAG, "Start recent activity");
-//        (MainActivity) getActivity().showRecentActivity();
+        getActivity().startActivity(new Intent(getActivity(), RecentActivity.class));
     }
 }
