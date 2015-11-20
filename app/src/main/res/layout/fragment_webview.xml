@@ -7,7 +7,7 @@
     tools:context="com.mitelcel.pack.ui.fragment.FragmentHelp">
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/label_history"
+        android:id="@+id/label_help"
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/label_history" />
+        android:layout_below="@+id/label_help" />
 
     <WebView
         android:id="@+id/web_view"

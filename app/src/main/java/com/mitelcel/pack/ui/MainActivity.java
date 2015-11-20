@@ -165,28 +165,19 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 startActivity(new Intent(this, ListOfferActivity.class));
                 break;
             case R.id.navdrawer_item_help:
-                FragmentHandler.addFragmentInBackStackWithAnimation(
-                        getSupportFragmentManager(),
-                        BACK_STACK_NAME,
-                        FragmentHelp.class.getName(),
-                        FragmentHelp.newInstance("", ""),
-                        R.id.main_content_fragment);
+                Intent iHelp = new Intent(this, WebViewActivity.class);
+                iHelp.putExtra(WebViewActivity.VIEW_TYPE, WebViewActivity.VIEW_HELP);
+                startActivity(iHelp);
                 break;
             case R.id.navdrawer_item_terms:
-                FragmentHandler.addFragmentInBackStackWithAnimation(
-                        getSupportFragmentManager(),
-                        BACK_STACK_NAME,
-                        FragmentTerms.class.getName(),
-                        FragmentTerms.newInstance("", ""),
-                        R.id.main_content_fragment);
+                Intent iTerms = new Intent(this, WebViewActivity.class);
+                iTerms.putExtra(WebViewActivity.VIEW_TYPE, WebViewActivity.VIEW_TERMS);
+                startActivity(iTerms);
                 break;
             case R.id.navdrawer_item_privacy:
-                FragmentHandler.addFragmentInBackStackWithAnimation(
-                        getSupportFragmentManager(),
-                        BACK_STACK_NAME,
-                        FragmentPrivacy.class.getName(),
-                        FragmentPrivacy.newInstance("", ""),
-                        R.id.main_content_fragment);
+                Intent iPrivacy = new Intent(this, WebViewActivity.class);
+                iPrivacy.putExtra(WebViewActivity.VIEW_TYPE, WebViewActivity.VIEW_PRIVACY);
+                startActivity(iPrivacy);
                 break;
             case R.id.navdrawer_item_tutorial:
 //                startActivity(new Intent(this, Tutorial.class));

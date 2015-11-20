@@ -8,6 +8,7 @@ import com.mitelcel.pack.ui.RecentActivity;
 import com.mitelcel.pack.ui.RechargeActivity;
 import com.mitelcel.pack.ui.SplashScreen;
 import com.mitelcel.pack.ui.TransferActivity;
+import com.mitelcel.pack.ui.WebViewActivity;
 import com.mitelcel.pack.ui.widget.LayoutBalance;
 
 /**
@@ -23,4 +24,5 @@ public interface AppGraph {
     void inject(RechargeActivity rechargeActivity);
     void inject(SplashScreen splashScreen);
     void inject(TransferActivity transferActivity);
+    void inject(WebViewActivity webViewActivity);
 }
