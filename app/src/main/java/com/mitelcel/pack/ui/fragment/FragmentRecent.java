@@ -90,9 +90,9 @@ public class FragmentRecent extends Fragment
         mRecyclerView.setLayoutManager(mLayoutManager);
         // create the adapter
         mRecentRecycleViewAdapter = new RecentRecycleViewAdapter();
-        // adding adapter on recycleview
+        // adding adapter on recycle view
         mRecyclerView.setAdapter(mRecentRecycleViewAdapter);
-        // adding separator on recycleview
+        // adding separator on recycle view
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         // adding empty view
         mRecyclerView.setEmptyView(tvEmpty);
@@ -102,6 +102,13 @@ public class FragmentRecent extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+
+        mRecentRecycleViewAdapter.setOnItemClickListener(new RecentRecycleViewAdapter.ClickListener() {
+            @Override
+            public void onRecentItemClick(int position, View view) {
+                MiLog.i("FragmentRecent", "Click detected in fragment");
+            }
+        });
 
         BeanGetRecentActivity beanGetRecentActivity = new BeanGetRecentActivity();
         MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivity.toString() + " ]");

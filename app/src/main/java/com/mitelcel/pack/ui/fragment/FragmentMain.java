@@ -111,13 +111,6 @@ public class FragmentMain extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         // create the adapter
         mRecentRecycleViewAdapter = new RecentRecycleViewAdapter();
-        mRecentRecycleViewAdapter.setOnItemClickListener(new RecentRecycleViewAdapter.ClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                MiLog.i("FragmentMain", "Click detected in fragment");
-                showRecent();
-            }
-        });
         // adding adapter on recycle view
         mRecyclerView.setAdapter(mRecentRecycleViewAdapter);
         // adding separator on recycle view
@@ -132,6 +125,13 @@ public class FragmentMain extends Fragment {
         super.onResume();
 
         mListener.updateActionBar();
+        mRecentRecycleViewAdapter.setOnItemClickListener(new RecentRecycleViewAdapter.ClickListener() {
+            @Override
+            public void onRecentItemClick(int position, View view) {
+                MiLog.i("FragmentMain", "Click detected in fragment");
+                showRecent();
+            }
+        });
 
         get_account_info();
         get_most_recent_activity();
