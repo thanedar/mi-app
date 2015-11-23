@@ -1,14 +1,8 @@
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/offer_details_container"
-    android:background="@color/background_color"
-    android:visibility="visible">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:background="@color/background_color">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -38,26 +32,6 @@
                 android:textColor="@android:color/black"
                 android:layout_gravity="center_horizontal" />
 
-            <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/scrollView"-->
-            <!--android:paddingBottom="60dp"-->
-            <!--android:layout_gravity="center_horizontal|bottom">-->
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/ratingBarStyleSmall"
-                android:visibility="invisible"
-                android:id="@+id/ratingBar"
-                android:layout_gravity="center_horizontal"
-                android:numStars="4" />
-
             <TextView
                 android:id="@+id/game_detail_description_tv"
                 android:layout_width="match_parent"
@@ -70,11 +44,6 @@
                 android:text="@string/sample_offer"
                 android:padding="5dp"/>
 
-            <!--</LinearLayout>-->
-            <!--</ScrollView>-->
-
-
-
         </LinearLayout>
 
         <com.mitelcel.pack.ui.widget.BorderImageView
@@ -82,14 +51,13 @@
             android:layout_height="@dimen/game_details_center_image_height"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder_2"
-            android:elevation="20dp"
-            android:layout_marginTop="150dp"
+            android:elevation="@dimen/margin_medium"
+            android:layout_marginTop="160dp"
             android:layout_gravity="center_horizontal|top"
             android:id="@+id/game_details_center_img" />
 
     </FrameLayout>
 
-    </ScrollView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

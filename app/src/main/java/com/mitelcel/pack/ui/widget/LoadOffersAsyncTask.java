@@ -19,18 +19,18 @@ import java.util.List;
 /**
  * Created by sudhanshu.thanedar on 19/11/2015.
  */
-public class LoadAsyncTask extends AsyncTask<MiApiClient, Void, LoadAsyncTask.InternalBean> {
+public class LoadOffersAsyncTask extends AsyncTask<MiApiClient, Void, LoadOffersAsyncTask.InternalBean> {
 
     WeakReference<IFragCommunication> reference;
     BeanGetOfferList beanGetOfferList;
     private boolean refresh;
 
-    public LoadAsyncTask(IFragCommunication reference, int start, int limit) {
+    public LoadOffersAsyncTask(IFragCommunication reference, int start, int limit) {
         this.reference = new WeakReference<>(reference);
         this.beanGetOfferList = new BeanGetOfferList(start, limit);
     }
 
-    public LoadAsyncTask(IFragCommunication reference, int start, int limit, boolean refresh) {
+    public LoadOffersAsyncTask(IFragCommunication reference, int start, int limit, boolean refresh) {
         this.reference = new WeakReference<>(reference);
         this.beanGetOfferList = new BeanGetOfferList(start, limit);
         this.refresh = refresh;
@@ -50,7 +50,7 @@ public class LoadAsyncTask extends AsyncTask<MiApiClient, Void, LoadAsyncTask.In
             if (res.getError().getCode() != Config.SUCCESS)
                 return new InternalBean(null, res.getError().getCode());
 
-            List<OfferItemHolder> mOfferItemHolders = rewardsCatalogToArray(res, context);
+            List<OfferItemHolder> mOfferItemHolders = offerListToArray(res, context);
 
             return new InternalBean(mOfferItemHolders, res.getError().getCode());
 
@@ -102,7 +102,7 @@ public class LoadAsyncTask extends AsyncTask<MiApiClient, Void, LoadAsyncTask.In
         }
     }
 
-    public static List<OfferItemHolder> rewardsCatalogToArray(BeanGetOfferListResponse res, Context context) {
+    public static List<OfferItemHolder> offerListToArray(BeanGetOfferListResponse res, Context context) {
 
         if (res == null || res.getResult() == null || res.getResult() == null || res.getResult().size() == 0 || context == null)
             return new ArrayList<>();
@@ -110,19 +110,19 @@ public class LoadAsyncTask extends AsyncTask<MiApiClient, Void, LoadAsyncTask.In
         List<BeanGetOfferListResponse.Offer> list = res.getResult();
         List<OfferItemHolder> results = new ArrayList<>(list.size());
 
-        MiLog.i("rewardsCatalogToArray", "rewardsCatalogToArray----------------------------------------------------");
-        MiLog.i("rewardsCatalogToArray", "rewardsCatalogToArray original[" + list.size() + "]");
+        MiLog.i("offerListToArray", "offerListToArray----------------------------------------------------");
+        MiLog.i("offerListToArray", "offerListToArray original[" + list.size() + "]");
 
         for (BeanGetOfferListResponse.Offer bean : list) {
             results.add(new OfferItemHolder(bean));
         }
 
         for(OfferItemHolder bean : results)
-            MiLog.i("rewardsCatalog data",bean.toString());
+            MiLog.i("offer list data",bean.toString());
 
-        MiLog.i("rewardsCatalogToArray","rewardsCatalogToArray filtered[" + results.size() + "]");
+        MiLog.i("offerListToArray","offerListToArray filtered[" + results.size() + "]");
 
-        MiLog.i("rewardsCatalogToArray","rewardsCatalogToArray----------------------------------------------------");
+        MiLog.i("offerListToArray","offerListToArray----------------------------------------------------");
 
         return results;
     }

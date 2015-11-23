@@ -16,7 +16,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/tutorial_earn"
-            android:textColor="@color/yellow_dark"
+            android:textColor="@color/yellow"
             style="@style/Theme.App.Account.Title"
             android:textSize="30sp"/>
 

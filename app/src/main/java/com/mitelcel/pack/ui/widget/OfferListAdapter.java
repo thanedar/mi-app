@@ -15,14 +15,10 @@ import android.widget.TextView;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.bean.ui.OfferItemHolder;
 import com.mitelcel.pack.utils.MiLog;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import rx.Observable;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
@@ -48,7 +44,6 @@ public class OfferListAdapter extends ArrayAdapter<OfferItemHolder> implements V
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
 
         final OfferItemHolder offerItemHolder = getItem(position);
 
@@ -79,18 +74,12 @@ public class OfferListAdapter extends ArrayAdapter<OfferItemHolder> implements V
 //        MiUtils.logicButtonInstallPlay(getContext(), v, rewardsRedirectResponse.getRedirectUrl()).start();
     }
 
-    public static class HolderMainItem{
+    public static class HolderMainItem {
 
-        @InjectView(R.id.item_head_rewards_title)
-        public TextView title;
-        @InjectView(R.id.item_head_rewards_coins)
+        @InjectView(R.id.item_offer_description)
         public TextView description;
-        @InjectView(R.id.item_install_play_btn)
-        public TextView playInstall;
-        @InjectView(R.id.item_message_gift)
-        public TextView messageGift;
-        @InjectView(R.id.item_gift_coins)
-        public TextView giftCoins;
+        @InjectView(R.id.item_offer_click_btn)
+        public TextView offerBtn;
         @InjectView(R.id.item_border_imageview)
         public BorderImageView borderImageView;
         @InjectView(R.id.item_background_imageview)
@@ -104,14 +93,9 @@ public class OfferListAdapter extends ArrayAdapter<OfferItemHolder> implements V
 
         public void setData(OfferItemHolder offerItemHolder, Context context){
 
-            int mResIcon = R.drawable.ic_cash;
-            giftCoins.setCompoundDrawablesWithIntrinsicBounds(mResIcon, 0, 0, 0);
-
-            playInstall.setText(context.getString(R.string.accept));
-            playInstall.setTag(R.string.installed_tag, true);
-            playInstall.setTag(R.string.package_tag, offerItemHolder.description);
-
-            giftCoins.setText("$s");
+            offerBtn.setText(offerItemHolder.buttonText);
+            offerBtn.setTag(R.string.installed_tag, true);
+            offerBtn.setTag(R.string.package_tag, offerItemHolder.description);
 
             divider.setVisibility(View.GONE);
 
@@ -123,41 +107,8 @@ public class OfferListAdapter extends ArrayAdapter<OfferItemHolder> implements V
         }
 
         public void setListener(View.OnClickListener l){
-            playInstall.setOnClickListener(l);
+            offerBtn.setOnClickListener(l);
         }
 
     }
-
-    private Observable<Bitmap> loadBitmap(String url, final ImageView imageView) {
-//        DisplayImageOptions options = new DisplayImageOptions.Builder()
-//                .showImageForEmptyUri(R.drawable.placeholder_thumb).build();
-        return Observable
-                .create(subscriber -> {
-                    ImageLoader.getInstance()
-                            .displayImage(url, imageView, new ImageLoadingListener() {
-                                @Override
-                                public void onLoadingStarted(String imageUri, View view) {
-
-                                }
-
-                                @Override
-                                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                                    subscriber.onError(failReason.getCause());
-                                }
-
-                                @Override
-                                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                                    subscriber.onNext(loadedImage);
-                                    subscriber.onCompleted();
-                                }
-
-                                @Override
-                                public void onLoadingCancelled(String imageUri, View view) {
-                                    subscriber.onError(new Throwable("Image  loading cancelled"));
-                                }
-                            });
-                })
-                ;
-    }
-
 }

@@ -2,13 +2,14 @@ package com.mitelcel.pack.bean.ui;
 
 import com.google.gson.Gson;
 import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
+import com.mitelcel.pack.bean.GenericBean;
 import com.mitelcel.pack.utils.MiLog;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
 
-public class OfferItemHolder {
+public class OfferItemHolder extends GenericBean{
 
     public String description;
     public String urlIcon;

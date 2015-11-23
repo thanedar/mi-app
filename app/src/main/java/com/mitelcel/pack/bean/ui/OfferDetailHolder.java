@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * Created by carmelo.iriti on 30/04/2015.
+ * Created by sudhanshu.thanedar on 20/11/2015.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,15 +26,13 @@ public class OfferDetailHolder extends GenericBean {
     int btnInstallPlayLeft;//
     int btnInstallPlayWidth;//
     int btnInstallPlayHeight;//
-    // rewards install play
-    String rewardInstallPlay;
 
     String urlThumb;
     String urlBackground;
     String description;
+    String btnText;
     String title;
     String packageId;
-    Bitmap bitmap;//
 
     public static final String LEFT  = ".left";
     public static final String TOP  = ".top";
@@ -43,7 +41,6 @@ public class OfferDetailHolder extends GenericBean {
     public static final String URL_THUMB = ".thumb";
     public static final String URL_GAME = ".game";
     public static final String URL_BACKGROUND = ".background";
-    public static final String BITMAP  = ".bitmap";
     public static final String DESCRIPTION = ".description";
     public static final String TITLE = ".title";
     public static final String PACKAGE = ".package";
@@ -51,8 +48,7 @@ public class OfferDetailHolder extends GenericBean {
     public static final String BTN_TOP  = ".btn_top";
     public static final String BTN_WIDTH = ".btn_width";
     public static final String BTN_HEIGHT  = ".btn_height";
-    public static final String REWARD_INSTALL_PLAY  = ".rewardInstallPlay";
-
+    public static final String BTN_TEXT  = ".btn_text";
 
     public static void configureIntent(
             Intent gameDetails,
@@ -63,6 +59,7 @@ public class OfferDetailHolder extends GenericBean {
             int thumbnailHeight,
             String urlIcon,
             String urlCard,
+            String btnText,
             String description,
             int btnInstallPlayTop,
             int btnInstallPlayLeft,
@@ -76,12 +73,12 @@ public class OfferDetailHolder extends GenericBean {
                 putExtra(PACKAGE + HEIGHT, thumbnailHeight).
                 putExtra(PACKAGE + URL_THUMB, urlIcon).
                 putExtra(PACKAGE + URL_BACKGROUND, urlCard).
+                putExtra(PACKAGE + BTN_TEXT, btnText).
                 putExtra(PACKAGE + DESCRIPTION, description).
                 putExtra(PACKAGE + BTN_LEFT, btnInstallPlayLeft).
                 putExtra(PACKAGE + BTN_TOP, btnInstallPlayTop).
                 putExtra(PACKAGE + BTN_WIDTH, btnInstallPlayWidth).
                 putExtra(PACKAGE + BTN_HEIGHT, btnInstallPlayHeight);
-
     }
 
     public static OfferDetailHolder createObject(Bundle bundle, String PACKAGE){
@@ -93,7 +90,7 @@ public class OfferDetailHolder extends GenericBean {
         this.thumbnailLeft = bundle.getInt(PACKAGE + LEFT);
         this.thumbnailWidth = bundle.getInt(PACKAGE + WIDTH);
         this.thumbnailHeight = bundle.getInt(PACKAGE + HEIGHT);
-        this.bitmap = bundle.getParcelable(PACKAGE + BITMAP);
+        this.btnText = bundle.getString(PACKAGE + BTN_TEXT);
         this.description = bundle.getString(PACKAGE + DESCRIPTION);
         this.title = bundle.getString(PACKAGE + TITLE);
         this.packageId = bundle.getString(PACKAGE + PACKAGE);
@@ -103,7 +100,5 @@ public class OfferDetailHolder extends GenericBean {
         this.btnInstallPlayLeft = bundle.getInt(PACKAGE + BTN_LEFT);
         this.btnInstallPlayWidth = bundle.getInt(PACKAGE + BTN_WIDTH);
         this.btnInstallPlayHeight = bundle.getInt(PACKAGE + BTN_HEIGHT);
-        this.rewardInstallPlay = bundle.getString(PACKAGE + REWARD_INSTALL_PLAY);
     }
-
 }
