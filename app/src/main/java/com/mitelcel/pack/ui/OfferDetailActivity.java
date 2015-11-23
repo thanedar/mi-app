@@ -4,9 +4,9 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -31,20 +31,21 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
 
     @InjectView(R.id.offer_details_container)
     RelativeLayout mShadowLayout;
-    @InjectView(R.id.game_details_center_img)
+    @InjectView(R.id.offer_detail_center_img)
     BorderImageView mCenterImage;
-    BitmapDrawable mBitmapDrawable;
-    @InjectView(R.id.game_details_bg_img)
+    @InjectView(R.id.offer_detail_bg_img)
     ImageView mImageBackground;
     ColorDrawable mBackground;
-    TextView btnInstall;
-    @InjectView(R.id.game_detail_description_tv)
-    TextView description;
-    @InjectView(R.id.game_title)
-    TextView gameTitle;
-    String gamePackageId;
-    String gameDescription;
+    @InjectView(R.id.offer_detail_btn)
+    TextView btnOffer;
+    @InjectView(R.id.offer_detail_description)
+    TextView tvDescription;
+    @InjectView(R.id.offer_detail_title)
+    TextView offerTitle;
+    String offerPackageId;
+    String offerDescription;
     String urlBackground;
+    String btnText;
 
     // center image
     int mLeftDelta;
@@ -52,7 +53,7 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
     float mWidthScale;
     float mHeightScale;
 
-    //btnInstall
+    //btnOffer
     int mBtnLeftDelta;
     int mBtnTopDelta;
     float mBtnWidthScale;
@@ -67,7 +68,6 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
 
     public static String PACKAGE;
     public static String TAG = OfferDetailActivity.class.getSimpleName();
-    String valueGift;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,77 +78,67 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
         setContentView(R.layout.activity_offer_detail);
         ButterKnife.inject(this);
 
-//        rating = (RatingBar)findViewById(R.id.ratingBar);
-        // Retrieve the data we need for the picture/description to display and
-        // the thumbnail to animate it from
         Bundle bundle = getIntent().getExtras();
 
         for(String key : bundle.keySet()) {
-            MiLog.i(TAG, String.format("Game Detail key %s with value %s", key, bundle.get(key)));
+            MiLog.i(TAG, String.format("Offer Detail key %s with value %s", key, bundle.get(key)));
         }
 
         final OfferDetailHolder beanImage = OfferDetailHolder.createObject(bundle, PACKAGE);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(beanImage.getTitle());
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(beanImage.getTitle());
+        }
 
         MiLog.i(TAG, "beanImage - " + beanImage.toString());
 
-        gameTitle.setText(beanImage.getTitle());
-        gamePackageId = beanImage.getPackageId();
+        offerTitle.setText(beanImage.getTitle());
+        offerPackageId = beanImage.getPackageId();
         urlBackground = beanImage.getUrlBackground();
-        gameDescription = beanImage.getDescription();
-        description.setText(gameDescription);
+        offerDescription = beanImage.getDescription();
+        btnText = beanImage.getBtnText();
 
         mOriginalOrientation = bundle.getInt(PACKAGE + ".orientation");
         mBackground = new ColorDrawable(Color.WHITE);
         mShadowLayout.setBackground(mBackground);
         mCenterImage.setAlpha(255);
 
-        btnInstall = (TextView)findViewById(R.id.game_detail_install_play);
-        btnInstall.setOnClickListener(this);
+        tvDescription.setText(offerDescription);
+        btnOffer.setText(btnText);
+        btnOffer.setOnClickListener(this);
 
         Picasso.with(getApplicationContext()).load(beanImage.getUrlBackground()).into(mImageBackground);
         Picasso.with(getApplicationContext()).load(beanImage.getUrlThumb()).into(mCenterImage);
-
 
         configAnimationCenterImage(savedInstanceState, beanImage);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        valueGift = beanImage.getRewardInstallPlay();
-
         ((MiApp)getApplication()).getAppComponent().inject(this);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        btnInstall.setText(getString(R.string.accept));
-        description.setText(gameDescription);
     }
 
     private void configAnimationInstallPlayBtn(Bundle savedInstanceState, final OfferDetailHolder beanImage) {
         if (savedInstanceState == null) {
-            ViewTreeObserver observer = btnInstall.getViewTreeObserver();
+            ViewTreeObserver observer = btnOffer.getViewTreeObserver();
             observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 
                 @Override
                 public boolean onPreDraw() {
-                    btnInstall.getViewTreeObserver().removeOnPreDrawListener(this);
+                    btnOffer.getViewTreeObserver().removeOnPreDrawListener(this);
 
                     // Figure out where the thumbnail and full size versions are, relative
                     // to the screen and each other
                     int[] screenLocation = new int[2];
-                    btnInstall.getLocationOnScreen(screenLocation);
-                    mBtnLeftDelta = beanImage.getBtnInstallPlayLeft() - screenLocation[0];
-                    mBtnTopDelta = beanImage.getBtnInstallPlayTop() - screenLocation[1];
+                    btnOffer.getLocationOnScreen(screenLocation);
+                    mBtnLeftDelta = beanImage.getBtnOfferLeft() - screenLocation[0];
+                    mBtnTopDelta = beanImage.getBtnOfferTop() - screenLocation[1];
 
                     // Scale factors to make the large version the same size as the thumbnail
-                    mBtnWidthScale = (float) beanImage.getBtnInstallPlayWidth() / btnInstall.getWidth();
-                    mBtnHeightScale = (float) beanImage.getBtnInstallPlayHeight() / btnInstall.getHeight();
+                    mBtnWidthScale = (float) beanImage.getBtnOfferWidth() / btnOffer.getWidth();
+                    mBtnHeightScale = (float) beanImage.getBtnOfferHeight() / btnOffer.getHeight();
 
                     runEnterAnimation();
 
@@ -185,7 +175,6 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
         configAnimationInstallPlayBtn(savedInstanceState, beanImage);
     }
 
-
     /**
      * The enter animation scales the picture in from its previous thumbnail
      * size/location, colorizing it in parallel. In parallel, the background of the
@@ -207,36 +196,33 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
         mCenterImage.setTranslationY(mTopDelta);
 
         //install btn
-        btnInstall.setPivotX(0);
-        btnInstall.setPivotY(0);
-        btnInstall.setScaleX(mBtnWidthScale);
-        btnInstall.setScaleY(mBtnHeightScale);
-        btnInstall.setTranslationX(mBtnLeftDelta);
-        btnInstall.setTranslationY(mBtnTopDelta);
+        btnOffer.setPivotX(0);
+        btnOffer.setPivotY(0);
+        btnOffer.setScaleX(mBtnWidthScale);
+        btnOffer.setScaleY(mBtnHeightScale);
+        btnOffer.setTranslationX(mBtnLeftDelta);
+        btnOffer.setTranslationY(mBtnTopDelta);
 
         // We'll fade the text in later
-        description.setAlpha(0);
-
+        tvDescription.setAlpha(0);
 
         // Animate scale and translation to go from thumbnail to full size
         mCenterImage.animate().setDuration(duration*2).
                 scaleX(1).scaleY(1).
                 translationX(0).translationY(0).
                 setInterpolator(sDecelerator).
-                withEndAction(new Runnable() {
-                    public void run() {
-                        // Animate the description in after the image animation
-                        // is done. Slide and fade the text in from underneath
-                        // the picture.
-                        description.setTranslationY(-description.getHeight());
-                        description.animate().setDuration(duration / 2).
-                                translationY(0).alpha(1).
-                                setInterpolator(sDecelerator);
-                    }
+                withEndAction(() -> {
+                    // Animate the tvDescription in after the image animation
+                    // is done. Slide and fade the text in from underneath
+                    // the picture.
+                    tvDescription.setTranslationY(-tvDescription.getHeight());
+                    tvDescription.animate().setDuration(duration / 2).
+                            translationY(0).alpha(1).
+                            setInterpolator(sDecelerator);
                 });
 
         // Animate scale and translation
-        btnInstall.animate().setDuration(duration*2).
+        btnOffer.animate().setDuration(duration*2).
                 scaleX(1).scaleY(1).
                 translationX(0).translationY(0).
                 setInterpolator(sDecelerator).setListener(new Animator.AnimatorListener() {
@@ -247,8 +233,8 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                btnInstall.setPivotX(btnInstall.getWidth()/2);
-                btnInstall.setPivotY(btnInstall.getHeight()/2);
+                btnOffer.setPivotX(btnOffer.getWidth()/2);
+                btnOffer.setPivotY(btnOffer.getHeight()/2);
             }
 
             @Override
@@ -315,10 +301,8 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
             fadeOut = false;
         }
 
-
-
         // First, slide/fade text out of the way
-        description.animate().translationY(description.getHeight()).alpha(0).
+        tvDescription.animate().translationY(tvDescription.getHeight()).alpha(0).
                 setDuration(duration/2).setInterpolator(sAccelerator);
 
         // Animate image back to thumbnail size/location
@@ -327,12 +311,12 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
                 translationX(mLeftDelta).translationY(mTopDelta).
                 withEndAction(endAction);
 
-        btnInstall.animate().setDuration(duration).
+        btnOffer.animate().setDuration(duration).
                 scaleX(mBtnWidthScale).scaleY(mBtnHeightScale).
                 translationX(mBtnLeftDelta).translationY(mBtnTopDelta).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                gameTitle.setVisibility(View.INVISIBLE);
+                offerTitle.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -353,7 +337,7 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
 
         if (fadeOut) {
             mCenterImage.animate().alpha(0);
-            btnInstall.animate().alpha(0);
+            btnOffer.animate().alpha(0);
         }
 
         // Fade out background
@@ -388,12 +372,7 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
 
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
-            runExitAnimation(new Runnable() {
-                public void run() {
-                    // *Now* go ahead and exit the activity
-                    finish();
-                }
-            });
+            runExitAnimation(OfferDetailActivity.this::finish);
             return true;
         }
 
@@ -406,14 +385,8 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
      */
     @Override
     public void onBackPressed() {
-        runExitAnimation(new Runnable() {
-            public void run() {
-                // *Now* go ahead and exit the activity
-                finish();
-            }
-        });
+        runExitAnimation(OfferDetailActivity.this::finish);
     }
-
 
     @Override
     public void finish() {
@@ -425,10 +398,5 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-//        v.setTag(R.string.installed_tag, MiUtils.Info.isPackageInstalled(getApplicationContext(), gamePackageId));
-//        v.setTag(R.string.package_tag, gamePackageId);
-//        v.setTag(R.string.url_redirect, urlGame);
-//        SkillUtils.logicButtonInstallPlay(getApplicationContext(), v, "").start();
-//        MiUtils.logicButtonInstallPlay(GameDetail.this, v, rewardsRedirectResponse.getRedirectUrl()).start();
     }
 }

@@ -18,6 +18,8 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/padding_left_container_description_title"
         android:paddingStart="@dimen/padding_left_container_description_title"
+        android:paddingRight="@dimen/padding_left_container_description_title"
+        android:paddingEnd="@dimen/padding_left_container_description_title"
         android:paddingTop="@dimen/padding_container_title_description_game"
         android:paddingBottom="@dimen/padding_container_title_description_game"
         android:background="@color/dark_transparency"
@@ -31,10 +33,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Rewards Title"
-            android:id="@+id/item_head_rewards_title"
+            android:id="@+id/item_offer_title"
             android:textSize="@dimen/title_text_game_size"
             android:textColor="@android:color/white"
             android:maxLines="1"
+            android:visibility="gone"
             android:ellipsize="marquee"/>
 
         <TextView
@@ -42,10 +45,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Rewards Description"
-            android:id="@+id/item_head_rewards_coins"
+            android:id="@+id/item_offer_description"
             android:textSize="@dimen/description_game_size"
             android:textColor="@color/white"
-            android:maxLines="2"
+            android:maxLines="3"
             android:ellipsize="marquee"/>
 
     </LinearLayout>
@@ -75,41 +78,37 @@
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Install"
-        android:clickable="true"
-        android:visibility="gone"
-        android:padding="5dp"
-        android:textSize="@dimen/title_text_game_size"
-        android:textColor="@color/white"
-        android:id="@+id/item_install_play_hidden"
-        android:background="@drawable/shape_account_offer"
-        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_above="@+id/linearLayout"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp">
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-        <!--android:text="Install and earn 5 coins"-->
-        <!--android:id="@+id/play_promotion"-->
-        <!--android:textSize="@dimen/description_game_size"-->
-        <!--android:maxLines="2"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:ellipsize="marquee"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:padding="5dp"-->
-        <!--android:background="@drawable/install_play_label" />-->
 
+        <view
+            android:id="@+id/item_offer_click_btn"
+            style="@style/Theme.App.Offers.ButtonFolks"
+            class="com.mitelcel.pack.ui.widget.TextViewFolks"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:layout_marginEnd="@dimen/margin_tiny"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_tiny"
+            android:paddingBottom="@dimen/margin_tiny"
+            android:text="@string/accept" />
+
+        <View
+            android:id="@+id/space_view_end"
+            android:layout_width="@dimen/border_image_height"
+            android:layout_height="@dimen/space_view_height"/>
+    </LinearLayout>
 </RelativeLayout>

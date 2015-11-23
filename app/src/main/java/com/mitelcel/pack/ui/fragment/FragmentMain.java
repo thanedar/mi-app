@@ -10,24 +10,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.mitelcel.pack.Config;
+import com.mitelcel.pack.FakeData;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
+import com.mitelcel.pack.bean.ui.OfferItemHolder;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
-import com.mitelcel.pack.ui.MainActivity;
+import com.mitelcel.pack.ui.ListOfferActivity;
 import com.mitelcel.pack.ui.RecentActivity;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
+import com.mitelcel.pack.ui.widget.BorderImageView;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
 import com.mitelcel.pack.ui.widget.RecentRecycleViewAdapter;
 import com.mitelcel.pack.utils.MiLog;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +72,15 @@ public class FragmentMain extends Fragment {
     EmptyRecyclerView mRecyclerView;
     @InjectView(R.id.empty_list)
     TextView tvEmpty;
+
+    @InjectView(R.id.item_offer_description)
+    public TextView offerDescription;
+    @InjectView(R.id.item_offer_click_btn)
+    public TextView offerBtn;
+    @InjectView(R.id.item_border_imageview)
+    public BorderImageView borderImageView;
+    @InjectView(R.id.item_background_imageview)
+    public ImageView backGroundImageView;
 
     @Inject
     MiApiClient miApiClient;
@@ -134,6 +150,7 @@ public class FragmentMain extends Fragment {
         });
 
         get_account_info();
+        get_best_offer();
         get_most_recent_activity();
     }
 
@@ -203,6 +220,30 @@ public class FragmentMain extends Fragment {
                 tvEmpty.setText(R.string.oops);
             }
         });
+    }
+
+    @OnClick(R.id.home_offer)
+    public void onCLick(View view){
+        MiLog.i(TAG, "Offer click detected");
+        getActivity().startActivity(new Intent(getActivity(), ListOfferActivity.class));
+    }
+    private void get_best_offer() {
+        /*BeanGetOfferList beanGetOfferList = new BeanGetOfferList(0, 1);
+        BeanGetOfferListResponse beanGetOfferListResponse = miApiClient.get_offer_list(beanGetOfferList);*/
+        Gson gson = new Gson();
+        BeanGetOfferListResponse beanGetOfferListResponse = gson.fromJson(FakeData.RESP_GET_BEST_OFFER, BeanGetOfferListResponse.class);
+//        MiLog.i(TAG, "bean " + beanGetOfferListResponse.toString());
+        List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
+//        MiLog.i(TAG, "offer list " + offerList.get(0).toString());
+        OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
+        MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
+                " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
+        offerDescription.setText(offerItemHolder.description);
+        offerBtn.setText(offerItemHolder.buttonText);
+        offerBtn.setVisibility(View.INVISIBLE);
+
+        Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
+        Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
     }
 
     public void showRecent(){

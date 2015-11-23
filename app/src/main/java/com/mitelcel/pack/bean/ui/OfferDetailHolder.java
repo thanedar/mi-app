@@ -22,10 +22,10 @@ public class OfferDetailHolder extends GenericBean {
     int thumbnailWidth;//
     int thumbnailHeight;//
     //btn install
-    int btnInstallPlayTop;//
-    int btnInstallPlayLeft;//
-    int btnInstallPlayWidth;//
-    int btnInstallPlayHeight;//
+    int btnOfferTop;//
+    int btnOfferLeft;//
+    int btnOfferWidth;//
+    int btnOfferHeight;//
 
     String urlThumb;
     String urlBackground;
@@ -61,10 +61,10 @@ public class OfferDetailHolder extends GenericBean {
             String urlCard,
             String btnText,
             String description,
-            int btnInstallPlayTop,
-            int btnInstallPlayLeft,
-            int btnInstallPlayWidth,
-            int btnInstallPlayHeight){
+            int btnOfferTop,
+            int btnOfferLeft,
+            int btnOfferWidth,
+            int btnOfferHeight){
 
         gameDetails.
                 putExtra(PACKAGE + LEFT, thumbnailLeft).
@@ -75,10 +75,10 @@ public class OfferDetailHolder extends GenericBean {
                 putExtra(PACKAGE + URL_BACKGROUND, urlCard).
                 putExtra(PACKAGE + BTN_TEXT, btnText).
                 putExtra(PACKAGE + DESCRIPTION, description).
-                putExtra(PACKAGE + BTN_LEFT, btnInstallPlayLeft).
-                putExtra(PACKAGE + BTN_TOP, btnInstallPlayTop).
-                putExtra(PACKAGE + BTN_WIDTH, btnInstallPlayWidth).
-                putExtra(PACKAGE + BTN_HEIGHT, btnInstallPlayHeight);
+                putExtra(PACKAGE + BTN_LEFT, btnOfferLeft).
+                putExtra(PACKAGE + BTN_TOP, btnOfferTop).
+                putExtra(PACKAGE + BTN_WIDTH, btnOfferWidth).
+                putExtra(PACKAGE + BTN_HEIGHT, btnOfferHeight);
     }
 
     public static OfferDetailHolder createObject(Bundle bundle, String PACKAGE){
@@ -96,9 +96,9 @@ public class OfferDetailHolder extends GenericBean {
         this.packageId = bundle.getString(PACKAGE + PACKAGE);
         this.urlThumb = bundle.getString(PACKAGE + URL_THUMB);
         this.urlBackground = bundle.getString(PACKAGE + URL_BACKGROUND);
-        this.btnInstallPlayTop = bundle.getInt(PACKAGE + BTN_TOP);
-        this.btnInstallPlayLeft = bundle.getInt(PACKAGE + BTN_LEFT);
-        this.btnInstallPlayWidth = bundle.getInt(PACKAGE + BTN_WIDTH);
-        this.btnInstallPlayHeight = bundle.getInt(PACKAGE + BTN_HEIGHT);
+        this.btnOfferTop = bundle.getInt(PACKAGE + BTN_TOP);
+        this.btnOfferLeft = bundle.getInt(PACKAGE + BTN_LEFT);
+        this.btnOfferWidth = bundle.getInt(PACKAGE + BTN_WIDTH);
+        this.btnOfferHeight = bundle.getInt(PACKAGE + BTN_HEIGHT);
     }
 }

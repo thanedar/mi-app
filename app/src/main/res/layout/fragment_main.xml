@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:padding="5dp"
+        android:padding="@dimen/margin_tiny"
         android:text="@string/your_account" />
 
     <LinearLayout
@@ -58,17 +58,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/home_account_list"
-        android:padding="20dp"
-        android:text="@string/your_offers" />
+        android:padding="@dimen/margin_tiny"
+        android:text="@string/your_offer" />
 
-    <com.mitelcel.pack.ui.widget.ButtonFolks
-        android:id="@+id/home_offer"
-        style="@style/Theme.App.Account.Offer"
+    <include layout="@layout/item_offer_listcard_with_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_offer_title"
-        android:layout_margin="10dp"
-        android:text="@string/sample_offer" />
+        android:id="@+id/home_offer"
+        android:clickable="true"
+        android:layout_below="@id/home_offer_title"/>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/home_recent_title"
@@ -76,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/home_offer"
-        android:padding="20dp"
+        android:padding="@dimen/margin_tiny"
         android:text="@string/recent_activity" />
 
     <LinearLayout

@@ -9,9 +9,8 @@
         style="@style/Widget.Dashboard.Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
+        app:cardCornerRadius="@dimen/margin_tiny"
         app:contentPadding="@dimen/cardview_content_padding">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,82 +19,11 @@
 
             <include layout="@layout/item_footer" />
 
-            <LinearLayout
-                android:id="@+id/btn_install"
+            <View
+                android:id="@+id/item_divider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:id="@+id/item_install_play"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#baffffff">
-
-                    <view
-                        android:id="@+id/item_gift_coins"
-                        style="@style/Theme.App.TextFolks"
-                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignTop="@+id/item_install_play_btn"
-                        android:drawableLeft="@drawable/ic_cash"
-                        android:drawablePadding="7dp"
-                        android:gravity="center"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="7dp"
-                        android:paddingRight="7dp"
-                        android:paddingTop="4dp"
-                        android:text="25" />
-
-                    <view
-                        android:id="@+id/item_message_gift"
-                        style="@style/Theme.App.Offers.TextFolks"
-                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignTop="@+id/item_install_play_btn"
-                        android:layout_toEndOf="@+id/item_gift_coins"
-                        android:layout_toLeftOf="@+id/item_install_play_btn"
-                        android:layout_toRightOf="@+id/item_gift_coins"
-                        android:layout_toStartOf="@+id/item_install_play_btn"
-                        android:ellipsize="marquee"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingBottom="4dp"
-                        android:paddingTop="4dp"
-                        android:text="Install and earn 50 coins" />
-
-                    <view
-                        android:id="@+id/item_install_play_btn"
-                        style="@style/Theme.App.Offers.ButtonFolks"
-                        class="com.mitelcel.pack.ui.widget.TextViewFolks"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="7dp"
-                        android:paddingRight="7dp"
-                        android:paddingTop="4dp"
-                        android:text="@string/accept" />
-
-                </RelativeLayout>
-
-                <View
-                    android:id="@+id/item_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/soft_grey" />
-
-            </LinearLayout>
+                android:layout_height="1dp"
+                android:background="@color/soft_grey" />
 
         </LinearLayout>
 

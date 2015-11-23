@@ -28,7 +28,7 @@ import com.mitelcel.pack.dagger.module.SharedPrefModule;
 import com.mitelcel.pack.ui.OfferDetailActivity;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.OfferListAdapter;
-import com.mitelcel.pack.ui.widget.LoadAsyncTask;
+import com.mitelcel.pack.ui.widget.LoadOffersAsyncTask;
 import com.mitelcel.pack.ui.widget.TextViewFolks;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
@@ -58,7 +58,7 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     private GridView mGridView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     OfferListAdapter adapter;
-    LoadAsyncTask async;
+    LoadOffersAsyncTask async;
     TextViewFolks textViewFolks;
     public static String PACKAGE;
 //    Bitmap bitmap;
@@ -75,12 +75,7 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
         public void onLoadMore(final int page, int totalItemsCount) {
 
             MiLog.i(FragmentOffers.class.getName(), "setOnScrollListener start[" + page + "]");
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    loadDataFromPage();
-                }
-            }, 100);
+            new Handler().postDelayed(FragmentOffers.this::loadDataFromPage, 100);
         }
     };
 
@@ -95,10 +90,8 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRetainInstance(true);
         adapter = new OfferListAdapter(getActivity().getApplicationContext(), 0);
         PACKAGE = getActivity().getPackageName();
-//        setHasOptionsMenu(true);
 
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
@@ -114,26 +107,17 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
         View root = View.inflate(getActivity(), R.layout.fragment_offers, null);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.offer_swipe_refresh_layout);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.yellow_transparent, R.color.green, R.color.material_blue_500);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        endlessScrollListener.resetListener();
-                        mSwipeRefreshLayout.setEnabled(true);
-                        mSwipeRefreshLayout.setRefreshing(true);
-                        startUpdateProcess(true);
-                    }
-                }, 100);
-            }
-        });
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.yellow, R.color.green, R.color.material_blue_500);
+        mSwipeRefreshLayout.setOnRefreshListener(() -> new Handler().postDelayed(() -> {
+            endlessScrollListener.resetListener();
+            mSwipeRefreshLayout.setEnabled(true);
+            mSwipeRefreshLayout.setRefreshing(true);
+            startUpdateProcess(true);
+        }, 100));
 
         // Prepare the GridView
         mGridView = (GridView) root.findViewById(R.id.grid_view);
         mGridView.setAdapter(adapter);
-//        mGridView.setEmptyView(root.findViewById(R.id.empty));
         mGridView.setOnItemClickListener(this);
         mGridView.setOnScrollListener(endlessScrollListener);
 
@@ -169,7 +153,7 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     public void startUpdateProcess(boolean refresh) {
         if (async == null || async.getStatus() == AsyncTask.Status.FINISHED) {
             this.start = refresh ? 0 : this.start;
-            async = new LoadAsyncTask(FragmentOffers.this, this.start, limit, refresh);
+            async = new LoadOffersAsyncTask(FragmentOffers.this, this.start, limit, refresh);
             this.start = this.start + limit;
             async.execute(miApiClient);
         }
@@ -178,11 +162,10 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     void loadDataFromPage() {
 
         if (async == null || async.getStatus() == AsyncTask.Status.FINISHED) {
-            async = new LoadAsyncTask(FragmentOffers.this, this.start, limit);
+            async = new LoadOffersAsyncTask(FragmentOffers.this, this.start, limit);
             this.start = this.start + limit;
             async.execute(miApiClient);
         }
-
     }
 
     @Override
@@ -270,7 +253,7 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
         int[] screenLocation = new int[2];
         holder.borderImageView.getLocationOnScreen(screenLocation);
         int[] screenLocationBtnInstallPlay = new int[2];
-        holder.playInstall.getLocationOnScreen(screenLocationBtnInstallPlay);
+        holder.offerBtn.getLocationOnScreen(screenLocationBtnInstallPlay);
 
         Intent offerDetail = new Intent(getActivity(), OfferDetailActivity.class);
         OfferDetailHolder.configureIntent(
@@ -282,11 +265,12 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
                 holder.borderImageView.getHeight(),
                 offerItemHolder.urlIcon,
                 offerItemHolder.urlCard,
+                offerItemHolder.buttonText,
                 offerItemHolder.description,
                 screenLocationBtnInstallPlay[1], //top
                 screenLocationBtnInstallPlay[0], //left
-                holder.playInstall.getWidth(),
-                holder.playInstall.getHeight());
+                holder.offerBtn.getWidth(),
+                holder.offerBtn.getHeight());
 
         //start activity
         startActivity(offerDetail);
