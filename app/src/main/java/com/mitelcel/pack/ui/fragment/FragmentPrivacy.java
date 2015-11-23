@@ -35,10 +35,8 @@ public class FragmentPrivacy extends Fragment {
      *
      * @return A new instance of fragment FragmentPrivacy.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentPrivacy newInstance() {
-        FragmentPrivacy fragment = new FragmentPrivacy();
-        return fragment;
+        return new FragmentPrivacy();
     }
 
     public FragmentPrivacy() {

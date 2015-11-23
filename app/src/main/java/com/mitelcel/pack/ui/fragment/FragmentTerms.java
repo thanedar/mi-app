@@ -35,10 +35,8 @@ public class FragmentTerms extends Fragment {
      *
      * @return A new instance of fragment FragmentTerms.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentTerms newInstance() {
-        FragmentTerms fragment = new FragmentTerms();
-        return fragment;
+        return new FragmentTerms();
     }
 
     public FragmentTerms() {

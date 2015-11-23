@@ -36,12 +36,8 @@ public class FragmentTutorialText extends Fragment {
      *
      * @return A new instance of fragment FragmentTutorialText.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentTutorialText newInstance() {
-        FragmentTutorialText fragment = new FragmentTutorialText();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new FragmentTutorialText();
     }
 
     public FragmentTutorialText() {

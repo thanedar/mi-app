@@ -52,10 +52,8 @@ public class FragmentTutorialImage extends Fragment {
      *
      * @return A new instance of fragment FragmentTutorialImage.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentTutorialImage newInstance() {
-        FragmentTutorialImage fragment = new FragmentTutorialImage();
-        return fragment;
+        return new FragmentTutorialImage();
     }
 
     public FragmentTutorialImage() {

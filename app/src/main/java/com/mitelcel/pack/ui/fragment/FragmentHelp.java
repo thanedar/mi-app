@@ -35,10 +35,8 @@ public class FragmentHelp extends Fragment {
      *
      * @return A new instance of fragment FragmentHelp.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentHelp newInstance() {
-        FragmentHelp fragment = new FragmentHelp();
-        return fragment;
+        return new FragmentHelp();
     }
 
     public FragmentHelp() {

@@ -46,12 +46,8 @@ public class FragmentSplashScreen extends Fragment implements
     @Inject
     MiApiClient miApiClient;
 
-    // TODO: Rename and change types and number of parameters
     public static FragmentSplashScreen newInstance() {
-        FragmentSplashScreen fragment = new FragmentSplashScreen();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new FragmentSplashScreen();
     }
 
     public FragmentSplashScreen() {
