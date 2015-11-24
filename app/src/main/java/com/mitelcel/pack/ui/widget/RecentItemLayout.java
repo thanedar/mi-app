@@ -1,15 +1,17 @@
 package com.mitelcel.pack.ui.widget;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse.UserActivity;
+import com.mitelcel.pack.bean.ui.BeanRechargeParams;
+import com.mitelcel.pack.bean.ui.BeanTransferParams;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 
@@ -51,7 +53,29 @@ public class RecentItemLayout extends RelativeLayout {
     public void bind(UserActivity userActivity){
         int activityType = userActivity.getActivityType();
 
-        tvDescription.setText(userActivity.getAppDisplayText());
+        Gson gson = new Gson();
+        float amount = 0;
+        String action = "";
+        if(activityType == Config.ACTION_TYPE_RECHARGE){
+            BeanRechargeParams bean = gson.fromJson(userActivity.getRequest(), BeanRechargeParams.class);
+            if(bean != null) {
+                MiLog.i("RecentItem", bean.toString());
+                amount = bean.getAmount();
+            }
+            action = getResources().getString(R.string.recharge_recent_activity, MiUtils.MiAppPreferences.getCurrencySymbol(), amount);
+        }
+        else if(activityType == Config.ACTION_TYPE_TRANSFER){
+            String target = "";
+            BeanTransferParams bean = gson.fromJson(userActivity.getRequest(), BeanTransferParams.class);
+            if(bean != null) {
+                amount = bean.getAmount();
+                target = bean.getTarget();
+            }
+            action = getResources().getString(R.string.transfer_recent_activity, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, target);
+        }
+
+        tvDescription.setText(action);
+//        tvDescription.setText(userActivity.getAppDisplayText());
 
         tvTime.setText(userActivity.getActivityDatetime());
 

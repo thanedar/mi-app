@@ -35,13 +35,12 @@ import butterknife.OnClick;
  */
 public class FragmentTransfer extends Fragment
 {
-    public static final String TAG = FragmentRecharge.class.getName();
+    public static final String TAG = FragmentTransfer.class.getName();
 
     private OnTransferFragmentInteractionListener mListener;
 
     private String msisdn = "";
     private float amount = 0;
-    private int checkedButtonId = 0;
 
     @InjectView(R.id.transfer_amount)
     TextView transfer_amount;
