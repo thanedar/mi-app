@@ -1,0 +1,186 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
+
+        <com.mitelcel.pack.ui.widget.TextViewFolks
+            android:id="@+id/label_frequent"
+            style="@style/Theme.App.Fragment.Title.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/frequent_numbers" />
+
+        <com.mitelcel.pack.ui.widget.TextViewFolks
+            android:id="@+id/frequent_details"
+            style="@style/Theme.App.TextFolks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_frequent"
+            android:gravity="center"
+            android:padding="@dimen/margin_medium"
+            android:text="@string/frequent_numbers_info"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/frequent_list_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frequent_details"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <view
+                android:id="@+id/frequent_msisdn_1"
+                style="@style/Theme.App.Input.EditText"
+                class="com.mitelcel.pack.ui.widget.EditTextFolk"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:drawableLeft="@drawable/ic_person_2"
+                android:drawableStart="@drawable/ic_person_2"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/frequent_msisdn"
+                android:inputType="phone"
+                android:maxLength="10" />
+            <ImageView
+                android:id="@+id/frequent_btn_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pencil_edit"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frequent_list_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frequent_list_1"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <view
+                android:id="@+id/frequent_msisdn_2"
+                style="@style/Theme.App.Input.EditText"
+                class="com.mitelcel.pack.ui.widget.EditTextFolk"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:drawableLeft="@drawable/ic_person_2"
+                android:drawableStart="@drawable/ic_person_2"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/frequent_msisdn"
+                android:inputType="phone"
+                android:maxLength="10" />
+            <ImageView
+                android:id="@+id/frequent_btn_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pencil_edit"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frequent_list_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frequent_list_2"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <view
+                android:id="@+id/frequent_msisdn_3"
+                style="@style/Theme.App.Input.EditText"
+                class="com.mitelcel.pack.ui.widget.EditTextFolk"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:drawableLeft="@drawable/ic_person_2"
+                android:drawableStart="@drawable/ic_person_2"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/frequent_msisdn"
+                android:inputType="phone"
+                android:maxLength="10" />
+            <ImageView
+                android:id="@+id/frequent_btn_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pencil_edit"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frequent_list_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frequent_list_3"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <view
+                android:id="@+id/frequent_msisdn_4"
+                style="@style/Theme.App.Input.EditText"
+                class="com.mitelcel.pack.ui.widget.EditTextFolk"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:drawableLeft="@drawable/ic_person_2"
+                android:drawableStart="@drawable/ic_person_2"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/frequent_msisdn"
+                android:inputType="phone"
+                android:maxLength="10" />
+            <ImageView
+                android:id="@+id/frequent_btn_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pencil_edit"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frequent_list_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frequent_list_4"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <view
+                android:id="@+id/frequent_msisdn_5"
+                style="@style/Theme.App.Input.EditText"
+                class="com.mitelcel.pack.ui.widget.EditTextFolk"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:drawableLeft="@drawable/ic_person_2"
+                android:drawableStart="@drawable/ic_person_2"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/frequent_msisdn"
+                android:inputType="phone"
+                android:maxLength="10" />
+            <ImageView
+                android:id="@+id/frequent_btn_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pencil_edit"/>
+        </LinearLayout>
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:id="@+id/frequent_numbers_btn"
+            style="@style/Theme.App.ButtonFolks.Positive"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frequent_list_5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_large"
+            android:focusableInTouchMode="true"
+            android:text="@string/ok" />
+    </RelativeLayout>
+</ScrollView>

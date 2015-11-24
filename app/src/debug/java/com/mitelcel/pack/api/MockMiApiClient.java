@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import com.mitelcel.pack.FakeData;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
+import com.mitelcel.pack.api.bean.req.BeanGetFrequentNumbers;
 import com.mitelcel.pack.api.bean.req.BeanGetOfferList;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
@@ -14,6 +15,7 @@ import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetFrequentNumbersResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
@@ -57,6 +59,13 @@ public class MockMiApiClient implements MiApiClient {
     public void get_current_balance(@Body BeanGetCurrentBalance beanInput, Callback<BeanGetCurrentBalanceResponse> callback) {
         BeanGetCurrentBalanceResponse beanResponse = new Gson().fromJson(FakeData.RESP_CURRENT_BALANCE, BeanGetCurrentBalanceResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_CURRENT_BALANCE.getBytes()));
+        callback.success(beanResponse, response);
+    }
+
+    @Override
+    public void get_frequent_numbers(@Body BeanGetFrequentNumbers beanInput, Callback<BeanGetFrequentNumbersResponse> callback) {
+        BeanGetFrequentNumbersResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_FREQUENT_NUMBERS, BeanGetFrequentNumbersResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_FREQUENT_NUMBERS.getBytes()));
         callback.success(beanResponse, response);
     }
 

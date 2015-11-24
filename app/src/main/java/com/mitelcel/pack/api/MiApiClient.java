@@ -2,6 +2,7 @@ package com.mitelcel.pack.api;
 
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
+import com.mitelcel.pack.api.bean.req.BeanGetFrequentNumbers;
 import com.mitelcel.pack.api.bean.req.BeanGetOfferList;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
@@ -11,6 +12,7 @@ import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetFrequentNumbersResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
@@ -41,6 +43,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void get_current_balance(@Body BeanGetCurrentBalance beanGetCurrentBalance, Callback<BeanGetCurrentBalanceResponse> callback);
+
+    @POST(REQUEST_URI)
+    void get_frequent_numbers(@Body BeanGetFrequentNumbers beanGetFrequentNumbers, Callback<BeanGetFrequentNumbersResponse> callback);
 
     @POST(REQUEST_URI)
     BeanGetOfferListResponse get_offer_list(@Body BeanGetOfferList beanGetOfferList);

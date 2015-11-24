@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 startActivity(new Intent(this, RecentActivity.class));
                 break;
             case R.id.navdrawer_item_frequent_numbers:
-//                startActivity(new Intent(this, Tutorial.class));
+                startActivity(new Intent(this, FrequentNumbersActivity.class));
                 break;
             case R.id.navdrawer_item_services:
 //                startActivity(new Intent(this, Settings.class));
