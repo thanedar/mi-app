@@ -56,6 +56,7 @@
     <string name="frequent_msisdn">Phone #</string>
     <string name="frequent_numbers">Frequent Numbers</string>
     <string name="frequent_numbers_info">Please choose one of the fields to add/edit your frequent numbers.</string>
+    <string name="frequent_numbers_success">You successfully added %1$s to your frequent numbers.</string>
 
     <!-- Recharge -->
     <string name="recharge">Recharge</string>

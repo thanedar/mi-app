@@ -38,22 +38,37 @@
                 android:id="@+id/frequent_msisdn_1"
                 style="@style/Theme.App.Input.EditText"
                 class="com.mitelcel.pack.ui.widget.EditTextFolk"
-                android:layout_width="280dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                android:drawableLeft="@drawable/ic_person_2"
-                android:drawableStart="@drawable/ic_person_2"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/ic_person_64"
+                android:drawableStart="@drawable/ic_person_64"
                 android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:hint="@string/frequent_msisdn"
                 android:inputType="phone"
                 android:maxLength="10" />
+
             <ImageView
-                android:id="@+id/frequent_btn_1"
-                android:layout_width="wrap_content"
+                android:id="@+id/frequent_pos_1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_pencil_edit"/>
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_add_128"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/frequent_neg_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_remove_128"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,22 +82,37 @@
                 android:id="@+id/frequent_msisdn_2"
                 style="@style/Theme.App.Input.EditText"
                 class="com.mitelcel.pack.ui.widget.EditTextFolk"
-                android:layout_width="280dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                android:drawableLeft="@drawable/ic_person_2"
-                android:drawableStart="@drawable/ic_person_2"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/ic_person_64"
+                android:drawableStart="@drawable/ic_person_64"
                 android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:hint="@string/frequent_msisdn"
                 android:inputType="phone"
                 android:maxLength="10" />
+
             <ImageView
-                android:id="@+id/frequent_btn_2"
-                android:layout_width="wrap_content"
+                android:id="@+id/frequent_pos_2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_pencil_edit"/>
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_add_128"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/frequent_neg_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_remove_128"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,22 +126,37 @@
                 android:id="@+id/frequent_msisdn_3"
                 style="@style/Theme.App.Input.EditText"
                 class="com.mitelcel.pack.ui.widget.EditTextFolk"
-                android:layout_width="280dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                android:drawableLeft="@drawable/ic_person_2"
-                android:drawableStart="@drawable/ic_person_2"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/ic_person_64"
+                android:drawableStart="@drawable/ic_person_64"
                 android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:hint="@string/frequent_msisdn"
                 android:inputType="phone"
                 android:maxLength="10" />
+
             <ImageView
-                android:id="@+id/frequent_btn_3"
-                android:layout_width="wrap_content"
+                android:id="@+id/frequent_pos_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_add_128"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/frequent_neg_3"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_pencil_edit"/>
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_remove_128"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,22 +170,37 @@
                 android:id="@+id/frequent_msisdn_4"
                 style="@style/Theme.App.Input.EditText"
                 class="com.mitelcel.pack.ui.widget.EditTextFolk"
-                android:layout_width="280dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                android:drawableLeft="@drawable/ic_person_2"
-                android:drawableStart="@drawable/ic_person_2"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/ic_person_64"
+                android:drawableStart="@drawable/ic_person_64"
                 android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:hint="@string/frequent_msisdn"
                 android:inputType="phone"
                 android:maxLength="10" />
+
             <ImageView
-                android:id="@+id/frequent_btn_4"
-                android:layout_width="wrap_content"
+                android:id="@+id/frequent_pos_4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_pencil_edit"/>
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_add_128"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/frequent_neg_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_remove_128"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -154,22 +214,37 @@
                 android:id="@+id/frequent_msisdn_5"
                 style="@style/Theme.App.Input.EditText"
                 class="com.mitelcel.pack.ui.widget.EditTextFolk"
-                android:layout_width="280dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                android:drawableLeft="@drawable/ic_person_2"
-                android:drawableStart="@drawable/ic_person_2"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/ic_person_64"
+                android:drawableStart="@drawable/ic_person_64"
                 android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:hint="@string/frequent_msisdn"
                 android:inputType="phone"
                 android:maxLength="10" />
+
             <ImageView
-                android:id="@+id/frequent_btn_5"
-                android:layout_width="wrap_content"
+                android:id="@+id/frequent_pos_5"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_pencil_edit"/>
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_add_128"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/frequent_neg_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_small"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_remove_128"
+                android:visibility="gone" />
         </LinearLayout>
 
         <com.mitelcel.pack.ui.widget.ButtonFolks

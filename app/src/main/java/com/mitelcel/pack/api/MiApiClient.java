@@ -8,6 +8,7 @@ import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
+import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
@@ -18,6 +19,7 @@ import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
+import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
 
@@ -61,6 +63,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void recharge_account(@Body BeanRechargeAccount beanRechargeAccount, Callback<BeanRechargeAccountResponse> callback);
+
+    @POST(REQUEST_URI)
+    void set_frequent_number(@Body BeanSetFrequentNumber beanSubmitAppInfo, Callback<BeanSetFrequentNumberResponse> callback);
 
     @POST(REQUEST_URI)
     void submit_app_info(@Body BeanSubmitAppInfo beanSubmitAppInfo, Callback<BeanSubmitAppInfoResponse> callback);

@@ -12,7 +12,9 @@ import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
+import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
 import com.mitelcel.pack.ui.fragment.FragmentConfirm;
 import com.mitelcel.pack.ui.fragment.FragmentFrequentNumbers;
@@ -48,7 +50,7 @@ public class FrequentNumbersActivity extends BaseActivity
         setContentView(R.layout.activity_transfer);
 
         if (savedInstanceState == null) {
-            FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentFrequentNumbers.TAG, FragmentFrequentNumbers.newInstance(), R.id.container);
+            FragmentHandler.addFragment(getSupportFragmentManager(), FragmentFrequentNumbers.TAG, FragmentFrequentNumbers.newInstance(), R.id.container);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -80,42 +82,43 @@ public class FrequentNumbersActivity extends BaseActivity
     }
 
     @Override
-    public void onFrequentNumbersFragmentInteraction(String msisdn, int order){
-        MiLog.i(TAG, "onFrequentNumbersFragmentInteraction event with " + msisdn + " and order " + order);
+    public void onSetFrequentNumberInteraction(String msisdn, int order){
+        MiLog.i(TAG, "onSetFrequentNumberInteraction event with " + msisdn + " and order " + order);
         this.msisdn = msisdn;
 
         dialog.show();
-        new Handler().postDelayed(() -> dialog.dismiss(), 3000);
-        /*MiLog.i(TAG, "onConfirmFragmentInteraction event started");
 
-        BeanTransferBalance beanTransferBalance;
-        beanTransferBalance = new BeanTransferBalance(msisdn, amount);
+        BeanSetFrequentNumber beanSetFrequentNumber;
+        beanSetFrequentNumber = new BeanSetFrequentNumber(msisdn, order);
 
-        miApiClient.transfer_balance(beanTransferBalance, new Callback<BeanTransferBalanceResponse>() {
+        miApiClient.set_frequent_number(beanSetFrequentNumber, new Callback<BeanSetFrequentNumberResponse>() {
             @Override
-            public void success(BeanTransferBalanceResponse beanTransferBalanceResponse, Response response) {
+            public void success(BeanSetFrequentNumberResponse beanSetFrequentNumberResponse, Response response) {
                 dialog.dismiss();
-                if (beanTransferBalanceResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i("Transfer", "Transfer API response " + beanTransferBalanceResponse.toString());
+                if (beanSetFrequentNumberResponse.getError().getCode() == Config.SUCCESS) {
+                    MiLog.i(TAG, "Set Freq Number API response " + beanSetFrequentNumberResponse.toString());
 
-                    MiUtils.MiAppPreferences.setSessionId(beanTransferBalanceResponse.getResult().getSessionId());
-                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
+//                    MiUtils.MiAppPreferences.setSessionId(beanSetFrequentNumberResponse.getResult().getSessionId());
+//                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
 //                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
 
-                    showDialogSuccessCall(String.format(getString(R.string.transfer_success), MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
+                    showDialogSuccessCall(String.format(getString(R.string.frequent_numbers_success), msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
                 } else {
-                    MiLog.i("Transfer", "Transfer API Error response " + beanTransferBalanceResponse.toString());
+                    MiLog.i(TAG, "Set Freq Number API Error response " + beanSetFrequentNumberResponse.toString());
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 dialog.dismiss();
-                MiLog.i("Logout", "Logout failure " + error.toString());
+                MiLog.i(TAG, "Set Freq Number failure " + error.toString());
                 showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
+        });
+    }
+
         });*/
     }
 
@@ -123,8 +126,10 @@ public class FrequentNumbersActivity extends BaseActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         MiLog.i(TAG, "onActivityResult: requestCode " + requestCode + " resultCode " + resultCode);
-        if(requestCode  == DialogActivity.APP_RES && resultCode == DialogActivity.APP_REFRESH)
-            finish();
+        if(requestCode  == DialogActivity.APP_RES && resultCode == DialogActivity.APP_REFRESH) {
+            FragmentHandler.clearFragmentBackStack(getSupportFragmentManager(), TAG);
+            FragmentHandler.replaceFragment(getSupportFragmentManager(), null, FragmentFrequentNumbers.newInstance(), R.id.container);
+        }
     }
 
     @Override

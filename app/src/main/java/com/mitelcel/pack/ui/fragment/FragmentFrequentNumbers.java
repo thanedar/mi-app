@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.Config;
@@ -31,8 +32,6 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
-import butterknife.Optional;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -72,6 +71,28 @@ public class FragmentFrequentNumbers extends Fragment
     EditText tvMsisdn_5;
     @InjectView(R.id.frequent_numbers_btn)
     ButtonFolks confirm_btn;
+    
+    @InjectView(R.id.frequent_pos_1)
+    ImageView pos_1;
+    @InjectView(R.id.frequent_pos_2)
+    ImageView pos_2;
+    @InjectView(R.id.frequent_pos_3)
+    ImageView pos_3;
+    @InjectView(R.id.frequent_pos_4)
+    ImageView pos_4;
+    @InjectView(R.id.frequent_pos_5)
+    ImageView pos_5;
+
+    @InjectView(R.id.frequent_neg_1)
+    ImageView neg_1;
+    @InjectView(R.id.frequent_neg_2)
+    ImageView neg_2;
+    @InjectView(R.id.frequent_neg_3)
+    ImageView neg_3;
+    @InjectView(R.id.frequent_neg_4)
+    ImageView neg_4;
+    @InjectView(R.id.frequent_neg_5)
+    ImageView neg_5;
 
     @Inject
     MiApiClient miApiClient;
@@ -117,21 +138,27 @@ public class FragmentFrequentNumbers extends Fragment
                         switch (num.getOrder()) {
                             case 1:
                                 msisdn_1 = num.getMsisdn();
+                                MiLog.i(TAG, "MSISDN 1 - " + msisdn_1);
                                 break;
                             case 2:
                                 msisdn_2 = num.getMsisdn();
+                                MiLog.i(TAG, "MSISDN 2 - " + msisdn_2);
                                 break;
                             case 3:
                                 msisdn_3 = num.getMsisdn();
+                                MiLog.i(TAG, "MSISDN 3 - " + msisdn_3);
                                 break;
                             case 4:
                                 msisdn_4 = num.getMsisdn();
+                                MiLog.i(TAG, "MSISDN 4 - " + msisdn_4);
                                 break;
                             case 5:
                                 msisdn_5 = num.getMsisdn();
+                                MiLog.i(TAG, "MSISDN 5 - " + msisdn_5);
                                 break;
                         }
                     }
+                    refreshDisplay();
                 }
             }
 
@@ -149,34 +176,21 @@ public class FragmentFrequentNumbers extends Fragment
         View view = inflater.inflate(R.layout.fragment_frequent_numbers, container, false);
         ButterKnife.inject(this, view);
 
-        tvMsisdn_1.setText(msisdn_1);
-        tvMsisdn_2.setText(msisdn_2);
-        tvMsisdn_3.setText(msisdn_3);
-        tvMsisdn_4.setText(msisdn_4);
-        tvMsisdn_5.setText(msisdn_5);
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        refreshDisplay();
     }
 
-    /*@OnFocusChange({R.id.frequent_msisdn_1, R.id.frequent_msisdn_2, R.id.frequent_msisdn_3, R.id.frequent_msisdn_4, R.id.frequent_msisdn_5})
-    public void setButtonActive(View view, boolean focus){
-        if(!focus) {
-            confirm_btn.requestFocusFromTouch();
-            confirm_btn.requestFocus();
-        }
-    }*/
-
-    @OnClick({R.id.frequent_list_1, R.id.frequent_list_2, R.id.frequent_list_3, R.id.frequent_list_4, R.id.frequent_list_5})
+    @OnClick({R.id.frequent_pos_1, R.id.frequent_pos_2, R.id.frequent_pos_3, R.id.frequent_pos_4, R.id.frequent_pos_5})
     public void setEditTextActive(View view){
         MiLog.i(TAG, "setEditTextActive View clicked " + view.getId());
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         switch (view.getId()) {
-            case R.id.frequent_list_1:
+            case R.id.frequent_pos_1:
                 tvMsisdn_1.setFocusableInTouchMode(true);
                 tvMsisdn_1.requestFocusFromTouch();
                 tvMsisdn_1.setNextFocusDownId(R.id.frequent_numbers_btn);
@@ -189,7 +203,7 @@ public class FragmentFrequentNumbers extends Fragment
                 tvMsisdn_4.setFocusableInTouchMode(false);
                 tvMsisdn_5.setFocusableInTouchMode(false);
                 break;
-            case R.id.frequent_list_2:
+            case R.id.frequent_pos_2:
                 tvMsisdn_1.setFocusableInTouchMode(false);
 
                 tvMsisdn_2.setFocusableInTouchMode(true);
@@ -203,7 +217,7 @@ public class FragmentFrequentNumbers extends Fragment
                 tvMsisdn_4.setFocusableInTouchMode(false);
                 tvMsisdn_5.setFocusableInTouchMode(false);
                 break;
-            case R.id.frequent_list_3:
+            case R.id.frequent_pos_3:
                 tvMsisdn_1.setFocusableInTouchMode(false);
                 tvMsisdn_2.setFocusableInTouchMode(false);
 
@@ -217,7 +231,7 @@ public class FragmentFrequentNumbers extends Fragment
                 tvMsisdn_4.setFocusableInTouchMode(false);
                 tvMsisdn_5.setFocusableInTouchMode(false);
                 break;
-            case R.id.frequent_list_4:
+            case R.id.frequent_pos_4:
                 tvMsisdn_1.setFocusableInTouchMode(false);
                 tvMsisdn_2.setFocusableInTouchMode(false);
                 tvMsisdn_3.setFocusableInTouchMode(false);
@@ -231,7 +245,7 @@ public class FragmentFrequentNumbers extends Fragment
 
                 tvMsisdn_5.setFocusableInTouchMode(false);
                 break;
-            case R.id.frequent_list_5:
+            case R.id.frequent_pos_5:
                 tvMsisdn_1.setFocusableInTouchMode(false);
                 tvMsisdn_2.setFocusableInTouchMode(false);
                 tvMsisdn_3.setFocusableInTouchMode(false);
@@ -246,55 +260,6 @@ public class FragmentFrequentNumbers extends Fragment
                 break;
         }
     }
-
-/*
-    @OnClick(R.id.frequent_msisdn_1)
-    public void setEditTextActive_1(View view){
-        MiLog.i(TAG, "setEditTextActive_1 View clicked " + view);
-        tvMsisdn_1.setEnabled(true);
-        tvMsisdn_2.setEnabled(false);
-        tvMsisdn_3.setEnabled(false);
-        tvMsisdn_4.setEnabled(false);
-        tvMsisdn_5.setEnabled(false);
-    }
-
-    @OnClick(R.id.frequent_msisdn_2)
-    public void setEditTextActive_2(View view){
-        MiLog.i(TAG, "View clicked " + view);
-        tvMsisdn_1.setEnabled(false);
-        tvMsisdn_2.setEnabled(true);
-        tvMsisdn_3.setEnabled(false);
-        tvMsisdn_4.setEnabled(false);
-        tvMsisdn_5.setEnabled(false);
-    }
-
-    @OnClick(R.id.frequent_msisdn_3)
-    public void setEditTextActive_3(View view){
-        tvMsisdn_1.setEnabled(false);
-        tvMsisdn_2.setEnabled(false);
-        tvMsisdn_3.setEnabled(true);
-        tvMsisdn_4.setEnabled(false);
-        tvMsisdn_5.setEnabled(false);
-    }
-
-    @OnClick(R.id.frequent_msisdn_4)
-    public void setEditTextActive_4(View view){
-        tvMsisdn_1.setEnabled(false);
-        tvMsisdn_2.setEnabled(false);
-        tvMsisdn_3.setEnabled(false);
-        tvMsisdn_4.setEnabled(true);
-        tvMsisdn_5.setEnabled(false);
-    }
-
-    @OnClick(R.id.frequent_msisdn_5)
-    public void setEditTextActive_5(View view){
-        tvMsisdn_1.setEnabled(false);
-        tvMsisdn_2.setEnabled(false);
-        tvMsisdn_3.setEnabled(false);
-        tvMsisdn_4.setEnabled(false);
-        tvMsisdn_5.setEnabled(true);
-    }
-*/
 
     @OnClick(R.id.frequent_numbers_btn)
     public void saveFrequentNumber(View view){
@@ -318,8 +283,26 @@ public class FragmentFrequentNumbers extends Fragment
         else
             MiLog.d(TAG, "Validator is null");
 
-        if (msg_msisdn == null)
-            mListener.onFrequentNumbersFragmentInteraction(newMsisdn, order);
+        if (msg_msisdn == null) {
+            mListener.onSetFrequentNumberInteraction(newMsisdn, order);
+            switch (order){
+                case 1:
+                    msisdn_1 = newMsisdn;
+                    break;
+                case 2:
+                    msisdn_2 = newMsisdn;
+                    break;
+                case 3:
+                    msisdn_3 = newMsisdn;
+                    break;
+                case 4:
+                    msisdn_4 = newMsisdn;
+                    break;
+                case 5:
+                    msisdn_5 = newMsisdn;
+                    break;
+            }
+        }
         else
             dialogListener.showDialogErrorCall(
                     getString(R.string.frequent_invalid_input),
@@ -352,6 +335,58 @@ public class FragmentFrequentNumbers extends Fragment
         mListener = null;
     }
 
+    private void refreshDisplay() {
+
+        tvMsisdn_1.setText(msisdn_1);
+        MiLog.i(TAG, "refreshDisplay MSISDN 1 - " + msisdn_1);
+        if(msisdn_1.equals("")){
+            pos_1.setVisibility(View.VISIBLE);
+            neg_1.setVisibility(View.GONE);
+        }
+        else {
+            pos_1.setVisibility(View.GONE);
+            neg_1.setVisibility(View.VISIBLE);
+        }
+        tvMsisdn_2.setText(msisdn_2);
+        MiLog.i(TAG, "refreshDisplay MSISDN 2 - " + msisdn_2);
+        if(msisdn_2.equals("")){
+            pos_2.setVisibility(View.VISIBLE);
+            neg_2.setVisibility(View.GONE);
+        }
+        else {
+            pos_2.setVisibility(View.GONE);
+            neg_2.setVisibility(View.VISIBLE);
+        }
+        tvMsisdn_3.setText(msisdn_3);
+        MiLog.i(TAG, "refreshDisplay MSISDN 3 - " + msisdn_3);
+        if(msisdn_3.equals("")){
+            pos_3.setVisibility(View.VISIBLE);
+            neg_3.setVisibility(View.GONE);
+        }
+        else {
+            pos_3.setVisibility(View.GONE);
+            neg_3.setVisibility(View.VISIBLE);
+        }
+        tvMsisdn_4.setText(msisdn_4);
+        if(msisdn_4.equals("")){
+            pos_4.setVisibility(View.VISIBLE);
+            neg_4.setVisibility(View.GONE);
+        }
+        else {
+            pos_4.setVisibility(View.GONE);
+            neg_4.setVisibility(View.VISIBLE);
+        }
+        tvMsisdn_5.setText(msisdn_5);
+        if(msisdn_5.equals("")){
+            pos_5.setVisibility(View.VISIBLE);
+            neg_5.setVisibility(View.GONE);
+        }
+        else {
+            pos_5.setVisibility(View.GONE);
+            neg_5.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -363,6 +398,6 @@ public class FragmentFrequentNumbers extends Fragment
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFrequentNumbersFragmentInteractionListener {
-        void onFrequentNumbersFragmentInteraction(String msisdn, int order);
+        void onSetFrequentNumberInteraction(String msisdn, int order);
     }
 }
