@@ -3,6 +3,7 @@ package com.mitelcel.pack.api;
 import android.content.SharedPreferences;
 
 import com.mitelcel.pack.FakeData;
+import com.mitelcel.pack.api.bean.req.BeanDeleteFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanGetFrequentNumbers;
@@ -14,6 +15,7 @@ import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
+import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetFrequentNumbersResponse;
@@ -49,6 +51,13 @@ public class MockMiApiClient implements MiApiClient {
 
     @Inject
     SharedPreferences sharedPreferences;
+
+    @Override
+    public void delete_frequent_number(@Body BeanDeleteFrequentNumber beanInput, Callback<BeanDeleteFrequentNumberResponse> callback) {
+        BeanDeleteFrequentNumberResponse beanResponse = new Gson().fromJson(FakeData.RESP_LOGOUT, BeanDeleteFrequentNumberResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_LOGOUT.getBytes()));
+        callback.success(beanResponse, response);
+    }
 
     @Override
     public void get_account_info(@Body BeanGetAccountInfo beanInput, Callback<BeanGetAccountInfoResponse> callback) {

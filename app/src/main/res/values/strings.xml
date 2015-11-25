@@ -52,11 +52,13 @@
     <string name="confirm_info">"Since you not signed in recently, please provide your password below to confirm."</string>
 
     <!-- Frequent Numbers -->
+    <string name="frequent_check">"Please confirm you want to delete this number?"</string>
     <string name="frequent_invalid_input">Please check if you have entered proper contact phone number!</string>
     <string name="frequent_msisdn">Phone #</string>
     <string name="frequent_numbers">Frequent Numbers</string>
     <string name="frequent_numbers_info">Please choose one of the fields to add/edit your frequent numbers.</string>
     <string name="frequent_numbers_success">You successfully added %1$s to your frequent numbers.</string>
+    <string name="frequent_numbers_success_delete">You successfully deleted the number from your frequent numbers.</string>
 
     <!-- Recharge -->
     <string name="recharge">Recharge</string>

@@ -12,8 +12,10 @@ import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.bean.req.BeanDeleteFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
+import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
 import com.mitelcel.pack.ui.fragment.FragmentConfirm;
@@ -119,7 +121,39 @@ public class FrequentNumbersActivity extends BaseActivity
         });
     }
 
-        });*/
+    @Override
+    public void onDeleteFrequentNumberInteraction(int order){
+        MiLog.i(TAG, "onSetFrequentNumberInteraction event with order " + order);
+
+        //MiUtils.showDialogError(this, getString(R.string.frequent_check), getString(R.string.ok), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_API_CALL);
+
+        dialog.show();
+
+        BeanDeleteFrequentNumber beanDeleteFrequentNumber;
+        beanDeleteFrequentNumber = new BeanDeleteFrequentNumber(order);
+
+        miApiClient.delete_frequent_number(beanDeleteFrequentNumber, new Callback<BeanDeleteFrequentNumberResponse>() {
+            @Override
+            public void success(BeanDeleteFrequentNumberResponse beanDeleteFrequentNumberResponse, Response response) {
+                dialog.dismiss();
+                if (beanDeleteFrequentNumberResponse.getError().getCode() == Config.SUCCESS) {
+                    MiLog.i(TAG, "Delete Freq Number API response " + beanDeleteFrequentNumberResponse.toString());
+
+                    showDialogSuccessCall(getString(R.string.frequent_numbers_success_delete),
+                            getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+
+                } else {
+                    MiLog.i(TAG, "Delete Freq Number API Error response " + beanDeleteFrequentNumberResponse.toString());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                dialog.dismiss();
+                MiLog.i(TAG, "Delete Freq Number failure " + error.toString());
+                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+            }
+        });
     }
 
     @Override

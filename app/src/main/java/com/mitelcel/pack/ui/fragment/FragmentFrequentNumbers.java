@@ -182,6 +182,9 @@ public class FragmentFrequentNumbers extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+        MiLog.i(TAG, "onResume MSISDN 1 - " + msisdn_1);
+        MiLog.i(TAG, "onResume MSISDN 2 - " + msisdn_2);
+        MiLog.i(TAG, "onResume MSISDN 3 - " + msisdn_3);
         refreshDisplay();
     }
 
@@ -259,6 +262,34 @@ public class FragmentFrequentNumbers extends Fragment
                 order = 5;
                 break;
         }
+    }
+
+    @OnClick({R.id.frequent_neg_1, R.id.frequent_neg_2, R.id.frequent_neg_3, R.id.frequent_neg_4, R.id.frequent_neg_5})
+    public void deleteNumber(View view) {
+        MiLog.i(TAG, "deleteNumber View clicked " + view.getId());
+        switch (view.getId()) {
+            case R.id.frequent_neg_1:
+                selectedView = tvMsisdn_1;
+                order = 1;
+                break;
+            case R.id.frequent_neg_2:
+                selectedView = tvMsisdn_2;
+                order = 2;
+                break;
+            case R.id.frequent_neg_3:
+                selectedView = tvMsisdn_3;
+                order = 3;
+                break;
+            case R.id.frequent_neg_4:
+                selectedView = tvMsisdn_4;
+                order = 4;
+                break;
+            case R.id.frequent_neg_5:
+                selectedView = tvMsisdn_5;
+                order = 5;
+                break;
+        }
+        mListener.onDeleteFrequentNumberInteraction(order);
     }
 
     @OnClick(R.id.frequent_numbers_btn)
@@ -399,5 +430,6 @@ public class FragmentFrequentNumbers extends Fragment
      */
     public interface OnFrequentNumbersFragmentInteractionListener {
         void onSetFrequentNumberInteraction(String msisdn, int order);
+        void onDeleteFrequentNumberInteraction(int order);
     }
 }
