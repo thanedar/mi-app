@@ -85,7 +85,7 @@ public class TransferActivity extends BaseActivity
         this.amount = amount;
         this.msisdn = msisdn;
 
-        String display = String.format(getString(R.string.transfer_check), MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn);
+        String display = getString(R.string.transfer_check, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn);
         FragmentHandler.addFragmentInBackStackWithAnimation(
                 getSupportFragmentManager(),
                 "Transfer",
@@ -118,7 +118,7 @@ public class TransferActivity extends BaseActivity
                     MiUtils.MiAppPreferences.setLastCheckTimestamp();
 //                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
 
-                    showDialogSuccessCall(String.format(getString(R.string.transfer_success), MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
+                    showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
                 } else {
@@ -130,7 +130,7 @@ public class TransferActivity extends BaseActivity
             public void failure(RetrofitError error) {
                 dialog.dismiss();
                 MiLog.i("Logout", "Logout failure " + error.toString());
-                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
         });
     }

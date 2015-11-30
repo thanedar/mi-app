@@ -127,12 +127,9 @@ public class FragmentAccount extends Fragment
             public void success(BeanGetAccountInfoResponse beanGetAccountInfoResponse, Response response) {
                 if (beanGetAccountInfoResponse.getError().getCode() == Config.SUCCESS && beanGetAccountInfoResponse.getResult() != null) {
                     Resources res = getResources();
-                    String value = String.format(res.getString(R.string.home_minutes), beanGetAccountInfoResponse.getResult().getUsedMinutes());
-                    minutes.setText(value);
-                    value = String.format(res.getString(R.string.home_sms), beanGetAccountInfoResponse.getResult().getUsedSms());
-                    sms.setText(value);
-                    value = String.format(res.getString(R.string.home_data), beanGetAccountInfoResponse.getResult().getUsedData());
-                    data.setText(value);
+                    minutes.setText(res.getString(R.string.home_minutes, beanGetAccountInfoResponse.getResult().getUsedMinutes()));
+                    sms.setText(res.getString(R.string.home_sms, beanGetAccountInfoResponse.getResult().getUsedSms()));
+                    data.setText(res.getString(R.string.home_data, beanGetAccountInfoResponse.getResult().getUsedData()));
                 }
             }
 

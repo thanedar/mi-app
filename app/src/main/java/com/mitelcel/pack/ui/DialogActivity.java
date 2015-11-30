@@ -1,7 +1,6 @@
 package com.mitelcel.pack.ui;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mitelcel.pack.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -83,13 +82,7 @@ public class DialogActivity extends Activity {
                 dialogIcon.setImageResource(bundle.getInt(DIALOG_RES_ID));
         }
         if(bundle.containsKey(DIALOG_RES_URL)){
-            ImageLoader.getInstance()
-                    .displayImage(bundle.getString(DIALOG_RES_URL), dialogIcon, new SimpleImageLoadingListener() {
-                        @Override
-                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                            dialogIcon.setImageBitmap(loadedImage);
-                        }
-                    });
+            Picasso.with(getApplicationContext()).load(bundle.getString(DIALOG_RES_URL)).into(dialogIcon);
             dialogIcon.setVisibility(View.VISIBLE);
         }
     }

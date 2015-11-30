@@ -16,10 +16,7 @@ import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.ui.fragment.FragmentAccount;
-import com.mitelcel.pack.ui.fragment.FragmentHelp;
 import com.mitelcel.pack.ui.fragment.FragmentMain;
-import com.mitelcel.pack.ui.fragment.FragmentPrivacy;
-import com.mitelcel.pack.ui.fragment.FragmentTerms;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
@@ -206,7 +203,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             @Override
             public void failure(RetrofitError error) {
                 MiLog.i("Logout", "Logout failure " + error.toString());
-                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
         });
     }

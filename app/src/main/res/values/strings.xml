@@ -122,7 +122,7 @@
     <string name="other">Other</string>
     <string name="oops">Oops&#8230;</string>
     <string name="please_wait">Please wait…</string>
-    <string name="somethings_goes_wrong">Something is wrong, please try again later.</string>
+    <string name="something_is_wrong">Something is wrong, please try again later.</string>
     <string name="success">Success</string>
     <string name="updated">User updated!</string>
     <string name="warning">Warning</string>

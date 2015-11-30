@@ -151,7 +151,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener{
                     MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());
                     dialog.dismiss();
                     mListener.showDialogErrorCall(
-                            String.format(getString(R.string.login_failed), beanLoginResponse.getError().getCode()),
+                            getString(R.string.login_failed, beanLoginResponse.getError().getCode()),
                             getString(R.string.close),
                             DialogActivity.DIALOG_HIDDEN_ICO,
                             DialogActivity.REQ_SIGN_IN
@@ -164,7 +164,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener{
                 MiLog.i(TAG, "Login failure " + error.toString());
                 dialog.dismiss();
                 mListener.showDialogErrorCall(
-                        getString(R.string.somethings_goes_wrong),
+                        getString(R.string.something_is_wrong),
                         getString(R.string.close),
                         DialogActivity.DIALOG_HIDDEN_ICO,
                         DialogActivity.REQ_SIGN_IN

@@ -83,7 +83,7 @@ public class RechargeActivity extends BaseActivity
         MiLog.i(TAG, "onRechargeFragmentInteraction event with " + amount);
         this.amount = amount;
 
-        String display = String.format(getString(R.string.recharge_check), MiUtils.MiAppPreferences.getCurrencySymbol(), amount);
+        String display = getString(R.string.recharge_check, MiUtils.MiAppPreferences.getCurrencySymbol(), amount);
         FragmentHandler.addFragmentInBackStackWithAnimation(
                 getSupportFragmentManager(),
                 "RECHARGE",
@@ -116,7 +116,7 @@ public class RechargeActivity extends BaseActivity
                     MiUtils.MiAppPreferences.setLastCheckTimestamp();
                     MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() + amount);
 
-                    showDialogSuccessCall(String.format(getString(R.string.recharge_success), MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
+                    showDialogSuccessCall(getString(R.string.recharge_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
                 } else {
@@ -128,7 +128,7 @@ public class RechargeActivity extends BaseActivity
             public void failure(RetrofitError error) {
                 dialog.dismiss();
                 MiLog.i("Logout", "Logout failure " + error.toString());
-                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
         });
     }
