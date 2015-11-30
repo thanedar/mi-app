@@ -20,7 +20,7 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_or_register);
+        setContentView(R.layout.activity_generic);
 
         if (savedInstanceState == null) {
             int status = MiUtils.MiAppPreferences.getLoggedStatus();

@@ -45,7 +45,7 @@ public class TransferActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transfer);
+        setContentView(R.layout.activity_generic);
 
         if (savedInstanceState == null) {
             FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentTransfer.TAG, FragmentTransfer.newInstance(), R.id.container);

@@ -28,7 +28,7 @@ public class ListOfferActivity extends BaseActivity implements OnMainFragmentInt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recent);
+        setContentView(R.layout.activity_generic);
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null)

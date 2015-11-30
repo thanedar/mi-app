@@ -18,7 +18,7 @@ public class RecentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recent);
+        setContentView(R.layout.activity_generic);
 
         if (savedInstanceState == null) {
             FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentRecent.TAG, FragmentRecent.newInstance(), R.id.container);

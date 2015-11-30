@@ -44,7 +44,7 @@ public class RechargeActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recharge);
+        setContentView(R.layout.activity_generic);
 
         if (savedInstanceState == null) {
             FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentRecharge.TAG, FragmentRecharge.newInstance(), R.id.container);
