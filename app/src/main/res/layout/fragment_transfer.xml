@@ -3,14 +3,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
-
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/label_transfer"
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="30dp"
+        android:padding="@dimen/padding_label"
         android:text="@string/transfer_balance" />
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
@@ -21,7 +20,7 @@
         android:layout_below="@+id/label_transfer"
         android:clickable="true"
         android:gravity="center"
-        android:padding="@dimen/margin_large"
+        android:padding="@dimen/margin_medium"
         android:text="@string/transfer_info"
         android:textSize="20sp" />
 
@@ -33,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/transfer_details"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/margin_small"
-        android:drawableLeft="@drawable/ic_person"
-        android:drawableStart="@drawable/ic_person"
+        android:layout_margin="@dimen/margin_medium"
+        android:drawableLeft="@drawable/ic_person_128"
+        android:drawableStart="@drawable/ic_person_128"
         android:gravity="center"
         android:hint="@string/transfer_msisdn"
         android:inputType="phone"
@@ -45,7 +44,7 @@
         android:id="@+id/transfer_amount"
         style="@style/Theme.App.Input.EditText"
         class="com.mitelcel.pack.ui.widget.EditTextFolk"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/transfer_msisdn"
         android:layout_centerHorizontal="true"
@@ -59,8 +58,10 @@
         style="@style/Theme.App.ButtonFolks.Positive"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/transfer_amount"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_huge"
+        android:layout_marginRight="@dimen/margin_huge"
         android:layout_marginTop="@dimen/margin_large"
         android:text="@string/ok" />
 

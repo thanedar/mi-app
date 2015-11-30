@@ -3,14 +3,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
-
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/label_recharge"
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="30dp"
+        android:padding="@dimen/padding_label"
         android:text="@string/recharge" />
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
@@ -115,10 +114,11 @@
         style="@style/Theme.App.ButtonFolks.Positive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recharge_list_2"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_huge"
+        android:layout_marginRight="@dimen/margin_huge"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/ok" />
 
 </RelativeLayout>

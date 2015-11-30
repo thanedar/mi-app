@@ -4,14 +4,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
-
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/label_login"
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="50dp"
+        android:padding="@dimen/padding_label"
         android:text="@string/login" />
 
     <RelativeLayout

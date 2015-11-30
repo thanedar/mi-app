@@ -8,10 +8,20 @@
     android:background="@color/background_color"
     tools:context="com.mitelcel.pack.ui.RecentActivity">
 
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/label_recent"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_label"
+        android:text="@string/recent_activity" />
+
     <com.mitelcel.pack.ui.widget.EmptyRecyclerView
         android:id="@+id/recent_recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/label_recent"/>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:layout_width="match_parent"

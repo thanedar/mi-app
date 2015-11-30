@@ -118,6 +118,7 @@
     <string name="loading">Loading&#8230;</string>
     <string name="no_connection_popup">Looks like you are not connected to the internet!</string>
     <string name="no_data">No Data</string>
+    <string name="offers">Offers</string>
     <string name="ok">OK</string>
     <string name="other">Other</string>
     <string name="oops">Oops&#8230;</string>

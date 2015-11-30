@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical">
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:layout_width="wrap_content"
+        android:id="@+id/label_offers"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_label"
+        android:text="@string/offers" />
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/loading"
         android:textSize="18sp"
         android:id="@+id/empty_list"
-        android:layout_gravity="center"
+        android:layout_below="@+id/label_offers"
+        android:gravity="center"
         style="@style/Theme.App.TextFolks"/>
 
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/offer_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_offers">
 
         <GridView android:id="@+id/grid_view"
             style="@style/Widget.Dashboard.Grid"
@@ -32,4 +43,4 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</FrameLayout>
+</RelativeLayout>
