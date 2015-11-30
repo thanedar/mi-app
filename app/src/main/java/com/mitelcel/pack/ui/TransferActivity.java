@@ -116,7 +116,7 @@ public class TransferActivity extends BaseActivity
 
                     MiUtils.MiAppPreferences.setSessionId(beanTransferBalanceResponse.getResult().getSessionId());
                     MiUtils.MiAppPreferences.setLastCheckTimestamp();
-//                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
+                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
 
                     showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);

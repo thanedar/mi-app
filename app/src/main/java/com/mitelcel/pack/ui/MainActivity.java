@@ -8,18 +8,23 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
+import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.ui.fragment.FragmentAccount;
 import com.mitelcel.pack.ui.fragment.FragmentMain;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
+import com.mitelcel.pack.ui.widget.LayoutBalance;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
@@ -114,6 +119,8 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                     getResources().getIdentifier("ic_no_network", "drawable", MiApp.getInstance().getPackageName()),
                     DialogActivity.APP_REQ);
         }
+
+        getCurrentBalance();
     }
 
     @Override
@@ -133,7 +140,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
     public void onClickNavigationDrawer(View view){
         mDrawerLayout.closeDrawers();
-        FragmentTransaction transaction;
         switch (view.getId()){
             case R.id.navdrawer_item_home:
                 FragmentHandler.addFragmentInBackStackWithAnimation(
@@ -150,7 +156,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 startActivity(new Intent(this, FrequentNumbersActivity.class));
                 break;
             case R.id.navdrawer_item_services:
-//                startActivity(new Intent(this, Settings.class));
+//                startActivity(new Intent(this, ServicesActivity.class));
                 break;
             case R.id.navdrawer_item_recharge:
                 startActivity(new Intent(this, RechargeActivity.class));
@@ -204,6 +210,35 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             public void failure(RetrofitError error) {
                 MiLog.i("Logout", "Logout failure " + error.toString());
                 showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+            }
+        });
+    }
+
+    public void getCurrentBalance() {
+        BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance();
+        View progressBar = getSupportActionBar().getCustomView().findViewById(R.id.progress_bar_balance);
+        progressBar.setVisibility(View.VISIBLE);
+        TextView balanceView = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.act_bar_balance);
+        balanceView.setVisibility(View.GONE);
+
+        MiLog.i("MainActivity", "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
+        miApiClient.get_current_balance(beanGetCurrentBalance, new Callback<BeanGetCurrentBalanceResponse>() {
+            @Override
+            public void success(BeanGetCurrentBalanceResponse beanGetCurrentBalanceResponse, Response response) {
+                MiLog.i("MainActivity", "BeanGetCurrentBalanceResponse response [ " + beanGetCurrentBalanceResponse.toString() + " ]");
+                progressBar.setVisibility(View.GONE);
+                balanceView.setVisibility(View.VISIBLE);
+                if (beanGetCurrentBalanceResponse != null && beanGetCurrentBalanceResponse.getError().getCode() == Config.SUCCESS) {
+                    String balance = beanGetCurrentBalanceResponse.getResult().getCurrentBalance();
+                    MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(balance));
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                progressBar.setVisibility(View.GONE);
+                balanceView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
+                balanceView.setVisibility(View.VISIBLE);
             }
         });
     }
