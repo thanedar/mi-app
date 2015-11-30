@@ -182,9 +182,6 @@ public class FragmentFrequentNumbers extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-        MiLog.i(TAG, "onResume MSISDN 1 - " + msisdn_1);
-        MiLog.i(TAG, "onResume MSISDN 2 - " + msisdn_2);
-        MiLog.i(TAG, "onResume MSISDN 3 - " + msisdn_3);
         refreshDisplay();
     }
 
@@ -289,7 +286,8 @@ public class FragmentFrequentNumbers extends Fragment
                 order = 5;
                 break;
         }
-        mListener.onDeleteFrequentNumberInteraction(order);
+        String msisdn = selectedView.getText().toString();
+        mListener.onDeleteFrequentNumberInteraction(msisdn, order);
     }
 
     @OnClick(R.id.frequent_numbers_btn)
@@ -316,23 +314,6 @@ public class FragmentFrequentNumbers extends Fragment
 
         if (msg_msisdn == null) {
             mListener.onSetFrequentNumberInteraction(newMsisdn, order);
-            switch (order){
-                case 1:
-                    msisdn_1 = newMsisdn;
-                    break;
-                case 2:
-                    msisdn_2 = newMsisdn;
-                    break;
-                case 3:
-                    msisdn_3 = newMsisdn;
-                    break;
-                case 4:
-                    msisdn_4 = newMsisdn;
-                    break;
-                case 5:
-                    msisdn_5 = newMsisdn;
-                    break;
-            }
         }
         else
             dialogListener.showDialogErrorCall(
@@ -430,6 +411,6 @@ public class FragmentFrequentNumbers extends Fragment
      */
     public interface OnFrequentNumbersFragmentInteractionListener {
         void onSetFrequentNumberInteraction(String msisdn, int order);
-        void onDeleteFrequentNumberInteraction(int order);
+        void onDeleteFrequentNumberInteraction(String msisdn, int order);
     }
 }

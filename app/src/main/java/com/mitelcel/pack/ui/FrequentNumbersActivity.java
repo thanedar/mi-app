@@ -1,7 +1,6 @@
 package com.mitelcel.pack.ui;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -14,11 +13,8 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanDeleteFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
-import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
-import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
-import com.mitelcel.pack.ui.fragment.FragmentConfirm;
 import com.mitelcel.pack.ui.fragment.FragmentFrequentNumbers;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
@@ -38,7 +34,7 @@ public class FrequentNumbersActivity extends BaseActivity
 
     private static final String TAG = FrequentNumbersActivity.class.getName();
 
-    private float amount = 0;
+    private int order = 0;
     private String msisdn = "";
 
     MaterialDialog dialog;
@@ -87,6 +83,7 @@ public class FrequentNumbersActivity extends BaseActivity
     public void onSetFrequentNumberInteraction(String msisdn, int order){
         MiLog.i(TAG, "onSetFrequentNumberInteraction event with " + msisdn + " and order " + order);
         this.msisdn = msisdn;
+        this.order = order;
 
         dialog.show();
 
@@ -104,7 +101,7 @@ public class FrequentNumbersActivity extends BaseActivity
 //                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
 //                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
 
-                    showDialogSuccessCall(String.format(getString(R.string.frequent_numbers_success), msisdn),
+                    showDialogSuccessCall(getString(R.string.frequent_numbers_success, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
                 } else {
@@ -116,19 +113,22 @@ public class FrequentNumbersActivity extends BaseActivity
             public void failure(RetrofitError error) {
                 dialog.dismiss();
                 MiLog.i(TAG, "Set Freq Number failure " + error.toString());
-                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
         });
     }
 
     @Override
-    public void onDeleteFrequentNumberInteraction(int order){
-        MiLog.i(TAG, "onSetFrequentNumberInteraction event with order " + order);
+    public void onDeleteFrequentNumberInteraction(String msisdn, int order) {
+        MiLog.i(TAG, "onDeleteFrequentNumberInteraction event with " + msisdn + " and order " + order);
 
-        //MiUtils.showDialogError(this, getString(R.string.frequent_check), getString(R.string.ok), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_API_CALL);
+        this.msisdn = msisdn;
+        this.order = order;
 
-        dialog.show();
+        MiUtils.showDialogQuery(this, getString(R.string.frequent_check, msisdn), getString(R.string.ok), getString(R.string.cancel), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_API_CALL);
+    }
 
+    private void makeDeleteApiCall() {
         BeanDeleteFrequentNumber beanDeleteFrequentNumber;
         beanDeleteFrequentNumber = new BeanDeleteFrequentNumber(order);
 
@@ -139,7 +139,7 @@ public class FrequentNumbersActivity extends BaseActivity
                 if (beanDeleteFrequentNumberResponse.getError().getCode() == Config.SUCCESS) {
                     MiLog.i(TAG, "Delete Freq Number API response " + beanDeleteFrequentNumberResponse.toString());
 
-                    showDialogSuccessCall(getString(R.string.frequent_numbers_success_delete),
+                    showDialogSuccessCall(getString(R.string.frequent_numbers_success_delete, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
                 } else {
@@ -151,7 +151,7 @@ public class FrequentNumbersActivity extends BaseActivity
             public void failure(RetrofitError error) {
                 dialog.dismiss();
                 MiLog.i(TAG, "Delete Freq Number failure " + error.toString());
-                showDialogErrorCall(getString(R.string.somethings_goes_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
             }
         });
     }
@@ -160,9 +160,12 @@ public class FrequentNumbersActivity extends BaseActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         MiLog.i(TAG, "onActivityResult: requestCode " + requestCode + " resultCode " + resultCode);
-        if(requestCode  == DialogActivity.APP_RES && resultCode == DialogActivity.APP_REFRESH) {
+        if(requestCode  == DialogActivity.APP_REQ && resultCode == DialogActivity.APP_REFRESH) {
             FragmentHandler.clearFragmentBackStack(getSupportFragmentManager(), TAG);
             FragmentHandler.replaceFragment(getSupportFragmentManager(), null, FragmentFrequentNumbers.newInstance(), R.id.container);
+        }
+        if(requestCode  == DialogActivity.APP_API_CALL && resultCode == DialogActivity.APP_REFRESH) {
+            makeDeleteApiCall();
         }
     }
 
@@ -174,6 +177,6 @@ public class FrequentNumbersActivity extends BaseActivity
     }
 
     public void showDialogSuccessCall(String content, String btnTex, @IdRes int resId) {
-        MiUtils.showDialogSuccess(this, content, btnTex, resId, DialogActivity.APP_RES);
+        MiUtils.showDialogSuccess(this, content, btnTex, resId, DialogActivity.APP_REQ);
     }
 }
