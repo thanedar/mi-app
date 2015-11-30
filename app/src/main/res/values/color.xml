@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="red">#990000</color>
+    <color name="soft_red">#bf3030</color>
     <color name="green">#009900</color>
     <color name="green_skill">#76c01e</color>
     <color name="yellow">#e6e600</color>

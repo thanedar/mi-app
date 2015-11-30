@@ -22,17 +22,16 @@ public class DialogActivity extends Activity {
     public static final int APP_RES             = 51;
     public static final int APP_REFRESH         = 52;
     public static final int APP_ERROR_CALL      = 53;
+    public static final int APP_API_CALL      = 54;
 
-    public static final int REQ_REWARDS_PRIZE           = 54;
-    public static final int REQ_REWARDS_EMAIL           = 55;
     public static final int REQ_SIGN_UP                 = 56;
-    public static final int REQ_LOGIN_OR_SIGN_UP        = 58;
     public static final int REQ_SIGN_IN                 = 59;
 
     public static final int DIALOG_HIDDEN_ICO      = -1;
 
     public static final String DIALOG_CONTENT       = "dialog_content";
-    public static final String DIALOG_BTN_TEXT      = "dialog_btn_text";
+    public static final String DIALOG_POS_BTN_TEXT  = "dialog_pos_btn_text";
+    public static final String DIALOG_NEG_BTN_TEXT  = "dialog_neg_btn_text";
     public static final String DIALOG_RES_ID        = "dialog_int_res_id";
     public static final String DIALOG_RES_URL       = "dialog_int_res_url";
     public static final String DIALOG_RES_TITLE     = "dialog_int_res_title";
@@ -43,8 +42,11 @@ public class DialogActivity extends Activity {
     @InjectView(R.id.tv_dialog_content)
     TextView tvDialogContent;
 
-    @InjectView(R.id.btn_dialog)
-    Button btnDialog;
+    @InjectView(R.id.btn_dialog_positive)
+    Button btnDialogPos;
+
+    @InjectView(R.id.btn_dialog_negative)
+    Button btnDialogNeg;
 
     @InjectView(R.id.iv_dialog)
     ImageView dialogIcon;
@@ -62,8 +64,12 @@ public class DialogActivity extends Activity {
 
         if(bundle == null) return;
 
-        if(bundle.containsKey(DIALOG_BTN_TEXT)){
-            btnDialog.setText(bundle.getString(DIALOG_BTN_TEXT));
+        if(bundle.containsKey(DIALOG_POS_BTN_TEXT)){
+            btnDialogPos.setText(bundle.getString(DIALOG_POS_BTN_TEXT));
+        }
+        if(bundle.containsKey(DIALOG_NEG_BTN_TEXT)){
+            btnDialogNeg.setVisibility(View.VISIBLE);
+            btnDialogNeg.setText(bundle.getString(DIALOG_NEG_BTN_TEXT));
         }
         if(bundle.containsKey(DIALOG_CONTENT)){
             tvDialogContent.setText(bundle.getString(DIALOG_CONTENT));
@@ -88,9 +94,15 @@ public class DialogActivity extends Activity {
         }
     }
 
-    @OnClick(R.id.btn_dialog)
-    public void click(){
+    @OnClick(R.id.btn_dialog_positive)
+    public void posBtnClick(){
         setResult(APP_REFRESH);
+        finish();
+    }
+
+    @OnClick(R.id.btn_dialog_negative)
+    public void negBtnClick(){
+        setResult(APP_RES);
         finish();
     }
 

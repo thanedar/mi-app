@@ -52,7 +52,7 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
     public void testLogIn() throws Exception{
         // get play as guest user
         Button btn = (Button)rootActivity.findViewById(R.id.login_or_register_register);
-        // click on btn
+        // posBtnClick on btn
         TouchUtils.clickView(this, btn);
         // get btn logon
         Button btnLogin = (Button)rootActivity.findViewById(R.id.login_btn_logon);

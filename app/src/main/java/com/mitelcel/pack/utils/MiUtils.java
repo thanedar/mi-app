@@ -5,19 +5,14 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -67,7 +62,7 @@ public class MiUtils {
         if(content != null && !content.equals(""))
             i.putExtra(DialogActivity.DIALOG_CONTENT, content);
         if(btnTex != null && !btnTex.equals(""))
-            i.putExtra(DialogActivity.DIALOG_BTN_TEXT, btnTex);
+            i.putExtra(DialogActivity.DIALOG_POS_BTN_TEXT, btnTex);
         i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
         i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.oops));
         activity.startActivityForResult(i, requestCode);
@@ -78,7 +73,20 @@ public class MiUtils {
         if(content != null && !content.equals(""))
             i.putExtra(DialogActivity.DIALOG_CONTENT, content);
         if(btnTex != null && !btnTex.equals(""))
-            i.putExtra(DialogActivity.DIALOG_BTN_TEXT, btnTex);
+            i.putExtra(DialogActivity.DIALOG_POS_BTN_TEXT, btnTex);
+        i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
+        i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.success));
+        activity.startActivityForResult(i, requestCode);
+    }
+
+    public static void showDialogQuery(Activity activity, String content, String pBtnTex, String nBtnTex, @IdRes int resId, int requestCode){
+        Intent i = new Intent(activity, DialogActivity.class);
+        if(content != null && !content.equals(""))
+            i.putExtra(DialogActivity.DIALOG_CONTENT, content);
+        if(pBtnTex != null && !pBtnTex.equals(""))
+            i.putExtra(DialogActivity.DIALOG_POS_BTN_TEXT, pBtnTex);
+        if(nBtnTex != null && !nBtnTex.equals(""))
+            i.putExtra(DialogActivity.DIALOG_NEG_BTN_TEXT, nBtnTex);
         i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
         i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.success));
         activity.startActivityForResult(i, requestCode);
@@ -89,7 +97,7 @@ public class MiUtils {
         if(content != null && !content.equals(""))
             i.putExtra(DialogActivity.DIALOG_CONTENT, content);
         if(btnTex != null && !btnTex.equals(""))
-            i.putExtra(DialogActivity.DIALOG_BTN_TEXT, btnTex);
+            i.putExtra(DialogActivity.DIALOG_POS_BTN_TEXT, btnTex);
         i.putExtra(DialogActivity.DIALOG_RES_URL, resUrl);
         if(title != null && !title.equals(""))
             i.putExtra(DialogActivity.DIALOG_RES_TITLE, title);
