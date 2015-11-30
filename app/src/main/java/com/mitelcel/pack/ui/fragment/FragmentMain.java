@@ -20,6 +20,7 @@ import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
+import com.mitelcel.pack.api.bean.req.BeanGetOfferList;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
@@ -224,14 +225,15 @@ public class FragmentMain extends Fragment {
         MiLog.i(TAG, "Offer click detected");
         getActivity().startActivity(new Intent(getActivity(), ListOfferActivity.class));
     }
+
     private void get_best_offer() {
-        /*BeanGetOfferList beanGetOfferList = new BeanGetOfferList(0, 1);
-        BeanGetOfferListResponse beanGetOfferListResponse = miApiClient.get_offer_list(beanGetOfferList);*/
-        Gson gson = new Gson();
-        BeanGetOfferListResponse beanGetOfferListResponse = gson.fromJson(FakeData.RESP_GET_BEST_OFFER, BeanGetOfferListResponse.class);
-//        MiLog.i(TAG, "bean " + beanGetOfferListResponse.toString());
+        BeanGetOfferList beanGetOfferList = new BeanGetOfferList(0, 1);
+        BeanGetOfferListResponse beanGetOfferListResponse = miApiClient.get_offer_list(beanGetOfferList);
+//        Gson gson = new Gson();
+//        BeanGetOfferListResponse beanGetOfferListResponse = gson.fromJson(FakeData.RESP_GET_BEST_OFFER, BeanGetOfferListResponse.class);
+        MiLog.i(TAG, "bean " + beanGetOfferListResponse.toString());
         List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
-//        MiLog.i(TAG, "offer list " + offerList.get(0).toString());
+        MiLog.i(TAG, "offer list " + offerList.get(0).toString());
         OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
         MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
                 " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
