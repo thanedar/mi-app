@@ -79,7 +79,8 @@
     <string name="transfer">Transfer</string>
     <string name="transfer_check">"Please confirm you want to transfer %1$s%2$.2f to %3$s."</string>
     <string name="transfer_info">Please choose the amount and the phone number you want to transfer balance.</string>
-    <string name="transfer_invalid_input">Please check if you have selected proper amount and contact to transfer balance!</string>
+    <string name="transfer_invalid_amount">Transfer amount cannot exceed your available balance. Please check if you have entered the proper amount to transfer balance!</string>
+    <string name="transfer_invalid_msisdn">Please check if you have selected proper contact to transfer balance!</string>
     <string name="transfer_msisdn">Phone #</string>
     <string name="transfer_recent_activity">"Transferred %1$s%2$.2f to %3$s"</string>
     <string name="transfer_success">"Your transfer of %1$s%2$.2f to %3$s was successful."</string>

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -43,7 +44,7 @@ public class FragmentTransfer extends Fragment
     private float amount = 0;
 
     @InjectView(R.id.transfer_amount)
-    TextView transfer_amount;
+    EditText transfer_amount;
     @InjectView(R.id.transfer_msisdn)
     TextView transfer_msisdn;
     @InjectView(R.id.transfer_confirm_btn)
@@ -55,7 +56,6 @@ public class FragmentTransfer extends Fragment
     @Inject
     Validator validator;
 
-    MaterialDialog dialog;
     OnDialogListener dialogListener;
 
     public static FragmentTransfer newInstance() {
@@ -107,15 +107,12 @@ public class FragmentTransfer extends Fragment
         msisdn = transfer_msisdn.getText().toString();
         MiLog.i(TAG, "Target " + msisdn + " and Amount " + input);
 
-        float inFloat = 0;
         try {
-            inFloat = Float.parseFloat(input);
+            amount = Float.parseFloat(input);
         } catch (NumberFormatException e) {
             MiLog.d(TAG, "NumberFormatException");
-            transfer_amount.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_alert, 0);
+            transfer_amount.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
         }
-
-        amount = inFloat;
 
         if(validator != null){
             msg_msisdn = validator.isNumberValid(msisdn);
@@ -129,7 +126,7 @@ public class FragmentTransfer extends Fragment
             msg_amount = validator.isTransferAmountValid(amount);
             if(msg_amount != null) {
                 MiLog.d(TAG, "Msg_amount is " + msg_amount);
-                transfer_amount.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_alert, 0);
+                transfer_amount.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
             }
             else
                 MiLog.d(TAG, "Msg_amount is null");
@@ -139,13 +136,15 @@ public class FragmentTransfer extends Fragment
 
         if (msg_amount == null && msg_msisdn == null)
             mListener.onTransferFragmentInteraction(msisdn, amount);
-        else
+        else {
+            String error = msg_msisdn == null ? msg_amount : msg_msisdn;
             dialogListener.showDialogErrorCall(
-                    getString(R.string.transfer_invalid_input),
+                    error,
                     getString(R.string.close),
                     DialogActivity.DIALOG_HIDDEN_ICO,
                     DialogActivity.APP_REQ
             );
+        }
     }
 
     @Override

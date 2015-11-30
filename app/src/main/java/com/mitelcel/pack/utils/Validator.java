@@ -41,7 +41,7 @@ public class Validator {
     public String isTransferAmountValid(float amount){
 
         if(amount <= 0 || amount > MiUtils.MiAppPreferences.getCurrentBalance())
-            return this.context.getString(R.string.check_input);
+            return this.context.getString(R.string.transfer_invalid_amount);
 
         // If null return the referral code is OK
         return null;
