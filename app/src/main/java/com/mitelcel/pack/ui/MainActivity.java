@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 startActivity(new Intent(this, FrequentNumbersActivity.class));
                 break;
             case R.id.navdrawer_item_services:
-//                startActivity(new Intent(this, ServicesActivity.class));
+                startActivity(new Intent(this, ServiceActivity.class));
                 break;
             case R.id.navdrawer_item_recharge:
                 startActivity(new Intent(this, RechargeActivity.class));
@@ -188,6 +188,8 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             case R.id.navdrawer_item_logout:
                 logout();
                 break;
+            default:
+                MiLog.d("Main Activity", "onClickNavigationDrawer default started with View " + view.getId());
         }
     }
 
