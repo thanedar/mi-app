@@ -54,7 +54,7 @@
     <!-- Frequent Numbers -->
     <string name="frequent_check">"Please confirm you want to delete %1$s?"</string>
     <string name="frequent_invalid_input">Please check if you have entered proper contact phone number!</string>
-    <string name="frequent_msisdn">Phone #</string>
+    <string name="frequent_msisdn">Add New Contact ></string>
     <string name="frequent_numbers">Frequent Numbers</string>
     <string name="frequent_numbers_info">Please choose one of the fields to add/edit your frequent numbers.</string>
     <string name="frequent_numbers_success">You successfully added %1$s to your frequent numbers.</string>

@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.mitelcel.pack.Config;
-import com.mitelcel.pack.FakeData;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
@@ -229,8 +227,6 @@ public class FragmentMain extends Fragment {
     private void get_best_offer() {
         BeanGetOfferList beanGetOfferList = new BeanGetOfferList(0, 1);
         BeanGetOfferListResponse beanGetOfferListResponse = miApiClient.get_offer_list(beanGetOfferList);
-//        Gson gson = new Gson();
-//        BeanGetOfferListResponse beanGetOfferListResponse = gson.fromJson(FakeData.RESP_GET_BEST_OFFER, BeanGetOfferListResponse.class);
         MiLog.i(TAG, "bean " + beanGetOfferListResponse.toString());
         List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
         MiLog.i(TAG, "offer list " + offerList.get(0).toString());

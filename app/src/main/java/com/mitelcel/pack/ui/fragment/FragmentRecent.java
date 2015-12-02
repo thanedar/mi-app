@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
@@ -55,6 +56,8 @@ public class FragmentRecent extends Fragment
     @Inject
     MiApiClient miApiClient;
 
+    MaterialDialog dialog;
+
     public static FragmentRecent newInstance() {
         FragmentRecent fragment = new FragmentRecent();
         Bundle args = new Bundle();
@@ -73,6 +76,11 @@ public class FragmentRecent extends Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
+
+        dialog = new MaterialDialog.Builder(getActivity())
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .build();
     }
 
     @Override
@@ -110,6 +118,7 @@ public class FragmentRecent extends Fragment
             }
         });
 
+        dialog.show();
         BeanGetRecentActivity beanGetRecentActivity = new BeanGetRecentActivity();
         MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivity.toString() + " ]");
         if(miApiClient == null){
@@ -119,6 +128,7 @@ public class FragmentRecent extends Fragment
         miApiClient.get_recent_activity(beanGetRecentActivity, new Callback<BeanGetRecentActivityResponse>() {
             @Override
             public void success(BeanGetRecentActivityResponse beanGetRecentActivityResponse, Response response) {
+                dialog.dismiss();
                 MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivityResponse.toString() + " ]");
                 if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS && beanGetRecentActivityResponse.getResult() != null) {
                     MiLog.i(TAG, beanGetRecentActivityResponse.toString());
@@ -133,6 +143,7 @@ public class FragmentRecent extends Fragment
 
             @Override
             public void failure(RetrofitError error) {
+                dialog.dismiss();
                 MiLog.i(TAG, "GetAccountInfo failure " + error.toString());
                 tvEmpty.setText(R.string.oops);
             }

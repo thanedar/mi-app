@@ -129,8 +129,8 @@ public class FrequentNumbersActivity extends BaseActivity
     }
 
     private void makeDeleteApiCall() {
-        BeanDeleteFrequentNumber beanDeleteFrequentNumber;
-        beanDeleteFrequentNumber = new BeanDeleteFrequentNumber(order);
+        dialog.show();
+        BeanDeleteFrequentNumber beanDeleteFrequentNumber = new BeanDeleteFrequentNumber(order);
 
         miApiClient.delete_frequent_number(beanDeleteFrequentNumber, new Callback<BeanDeleteFrequentNumberResponse>() {
             @Override

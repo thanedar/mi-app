@@ -23,7 +23,7 @@ public class BeanGetOfferList extends BeanGenericApi {
     public BeanGetOfferList (int page, int limit) {
         this.id = System.currentTimeMillis();
         this.method = NAME;
-        this.params = new Params();
+        this.params = new Params(limit);
     }
 
     public class Params extends GenericBean {
@@ -32,8 +32,16 @@ public class BeanGetOfferList extends BeanGenericApi {
         @Expose
         private String sessionId;
 
+        @Expose
+        private int limit;
+
         public Params() {
             this.sessionId = MiUtils.MiAppPreferences.getSessionId();
+        }
+
+        public Params(int limit) {
+            this.sessionId = MiUtils.MiAppPreferences.getSessionId();
+            this.limit = limit;
         }
     }
 }
