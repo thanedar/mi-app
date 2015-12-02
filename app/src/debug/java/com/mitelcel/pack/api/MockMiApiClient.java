@@ -9,6 +9,7 @@ import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
 import com.mitelcel.pack.api.bean.req.BeanGetFrequentNumbers;
 import com.mitelcel.pack.api.bean.req.BeanGetOfferList;
 import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
+import com.mitelcel.pack.api.bean.req.BeanGetServiceList;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
@@ -21,6 +22,7 @@ import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetFrequentNumbersResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
+import com.mitelcel.pack.api.bean.resp.BeanGetServiceListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
@@ -89,6 +91,13 @@ public class MockMiApiClient implements MiApiClient {
     @Override
     public void get_recent_activity(@Body BeanGetRecentActivity beanInput, Callback<BeanGetRecentActivityResponse> callback) {
         BeanGetRecentActivityResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_RECENT_ACTIVITY, BeanGetRecentActivityResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_RECENT_ACTIVITY.getBytes()));
+        callback.success(beanResponse, response);
+    }
+
+    @Override
+    public void get_service_list(@Body BeanGetServiceList beanInput, Callback<BeanGetServiceListResponse> callback) {
+        BeanGetServiceListResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_OFFER_LIST, BeanGetServiceListResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_RECENT_ACTIVITY.getBytes()));
         callback.success(beanResponse, response);
     }
