@@ -297,8 +297,7 @@ public class FragmentFrequentNumbers extends Fragment
         MiLog.i(TAG, "Confirm clicked");
 
         String newMsisdn = selectedView.getText().toString();
-//        msisdn_1 = tvMsisdn_1.getText().toString();
-        MiLog.i(TAG, "MSISDN - " + newMsisdn);
+        MiLog.i(TAG, "New MSISDN - " + newMsisdn);
 
         if(validator != null){
             msg_msisdn = validator.isNumberValid(newMsisdn);
@@ -313,6 +312,28 @@ public class FragmentFrequentNumbers extends Fragment
             MiLog.d(TAG, "Validator is null");
 
         if (msg_msisdn == null) {
+            switch (selectedView.getId()) {
+                case R.id.frequent_msisdn_1:
+                    msisdn_1 = newMsisdn;
+                    MiLog.i(TAG, "MSISDN 1 - " + msisdn_1);
+                    break;
+                case R.id.frequent_msisdn_2:
+                    msisdn_2 = newMsisdn;
+                    MiLog.i(TAG, "MSISDN 2 - " + msisdn_2);
+                    break;
+                case R.id.frequent_msisdn_3:
+                    msisdn_3 = newMsisdn;
+                    MiLog.i(TAG, "MSISDN 3 - " + msisdn_3);
+                    break;
+                case R.id.frequent_msisdn_4:
+                    msisdn_4 = newMsisdn;
+                    MiLog.i(TAG, "MSISDN 4 - " + msisdn_4);
+                    break;
+                case R.id.frequent_msisdn_5:
+                    msisdn_5 = newMsisdn;
+                    MiLog.i(TAG, "MSISDN 5 - " + msisdn_5);
+                    break;
+            }
             mListener.onSetFrequentNumberInteraction(newMsisdn, order);
         }
         else
@@ -347,7 +368,7 @@ public class FragmentFrequentNumbers extends Fragment
         mListener = null;
     }
 
-    private void refreshDisplay() {
+    public void refreshDisplay() {
 
         tvMsisdn_1.setText(msisdn_1);
         MiLog.i(TAG, "refreshDisplay MSISDN 1 - " + msisdn_1);
@@ -380,6 +401,7 @@ public class FragmentFrequentNumbers extends Fragment
             neg_3.setVisibility(View.VISIBLE);
         }
         tvMsisdn_4.setText(msisdn_4);
+        MiLog.i(TAG, "refreshDisplay MSISDN 4 - " + msisdn_4);
         if(msisdn_4.equals("")){
             pos_4.setVisibility(View.VISIBLE);
             neg_4.setVisibility(View.GONE);
@@ -389,6 +411,7 @@ public class FragmentFrequentNumbers extends Fragment
             neg_4.setVisibility(View.VISIBLE);
         }
         tvMsisdn_5.setText(msisdn_5);
+        MiLog.i(TAG, "refreshDisplay MSISDN 5 - " + msisdn_5);
         if(msisdn_5.equals("")){
             pos_5.setVisibility(View.VISIBLE);
             neg_5.setVisibility(View.GONE);

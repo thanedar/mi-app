@@ -7,11 +7,13 @@ import com.mitelcel.pack.bean.GenericBean;
 import com.mitelcel.pack.utils.MiUtils;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by sudhanshu.thanedar on 11/24/15.
  */
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class BeanRechargeParams extends GenericBean {
     @Expose
     private float amount;

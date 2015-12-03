@@ -6,11 +6,13 @@ import com.google.gson.annotations.SerializedName;
 import com.mitelcel.pack.bean.GenericBean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by sudhanshu.thanedar on 11/24/15.
  */
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class BeanTransferParams extends GenericBean {
 
     @SerializedName("app_token")

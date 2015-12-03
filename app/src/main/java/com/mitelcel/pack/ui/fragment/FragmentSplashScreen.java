@@ -73,9 +73,8 @@ public class FragmentSplashScreen extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        submit_app_info();
 
-        new Handler().postDelayed(() -> autoLogin(), 2500);
+        new Handler().postDelayed(() -> autoLogin(), 1500);
     }
 
     @Override
@@ -103,6 +102,10 @@ public class FragmentSplashScreen extends Fragment implements
                     if (BuildConfig.DEBUG) {
                         fakeLogin();
                     }
+                    else {
+                        MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
+                        getActivity().finish();
+                    }
                 }
 
                 @Override
@@ -119,15 +122,14 @@ public class FragmentSplashScreen extends Fragment implements
             MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
             getActivity().finish();
         }
-        else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET && !MiUtils.Info.isNetworkConnected(getActivity())){
+        else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET && MiUtils.Info.isNetworkConnected(getActivity())){
             /**
              * Only for first install
              */
-            MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
-            getActivity().finish();
+            submit_app_info();
         }
         else{
-            if(BuildConfig.DEBUG && !MiUtils.MiAppPreferences.getToken().equals(""))
+            if(BuildConfig.DEBUG)
                 fakeLogin();
             else {
                 MiUtils.startSkillActivity(getActivity(), MainActivity.class);

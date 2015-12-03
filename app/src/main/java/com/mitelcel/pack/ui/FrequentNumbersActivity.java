@@ -142,6 +142,8 @@ public class FrequentNumbersActivity extends BaseActivity
                     showDialogSuccessCall(getString(R.string.frequent_numbers_success_delete, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
+                    FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
+                    frag.refreshDisplay();
                 } else {
                     MiLog.i(TAG, "Delete Freq Number API Error response " + beanDeleteFrequentNumberResponse.toString());
                 }
@@ -161,8 +163,10 @@ public class FrequentNumbersActivity extends BaseActivity
         super.onActivityResult(requestCode, resultCode, data);
         MiLog.i(TAG, "onActivityResult: requestCode " + requestCode + " resultCode " + resultCode);
         if(requestCode  == DialogActivity.APP_REQ && resultCode == DialogActivity.APP_REFRESH) {
-            FragmentHandler.clearFragmentBackStack(getSupportFragmentManager(), TAG);
-            FragmentHandler.replaceFragment(getSupportFragmentManager(), null, FragmentFrequentNumbers.newInstance(), R.id.container);
+            FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
+            frag.refreshDisplay();
+            /*FragmentHandler.clearFragmentBackStack(getSupportFragmentManager(), TAG);
+            FragmentHandler.replaceFragment(getSupportFragmentManager(), null, FragmentFrequentNumbers.newInstance(), R.id.container);*/
         }
         if(requestCode  == DialogActivity.APP_API_CALL && resultCode == DialogActivity.APP_REFRESH) {
             makeDeleteApiCall();
