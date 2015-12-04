@@ -71,7 +71,7 @@ public class LayoutBalance extends FrameLayout
         ((MiApp)getContext()).getAppComponent().inject(this);
         MiUtils.MiAppPreferences.registerListener(this);
 
-        getCurrentBalance();
+        //getCurrentBalance();
     }
 
     @Override

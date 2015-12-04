@@ -83,9 +83,16 @@ public class MockMiApiClient implements MiApiClient {
     }
 
     @Override
-    public BeanGetOfferListResponse get_offer_list(@Body BeanGetOfferList beanInput) {
+    public BeanGetOfferListResponse get_offer_list_async(@Body BeanGetOfferList beanInput) {
         BeanGetOfferListResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_OFFER_LIST, BeanGetOfferListResponse.class);
         return beanResponse;
+    }
+
+    @Override
+    public void get_offer_list(@Body BeanGetOfferList beanInput, Callback<BeanGetOfferListResponse> callback) {
+        BeanGetOfferListResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_OFFER_LIST, BeanGetOfferListResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_OFFER_LIST.getBytes()));
+        callback.success(beanResponse, response);
     }
 
     @Override

@@ -37,7 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         /**
-         * utility to avoid issue with hyerarchy view
+         * utility to avoid issue with hierarchy view
          */
         if(BuildConfig.DEBUG){
             ViewServer.get(this).addWindow(this);

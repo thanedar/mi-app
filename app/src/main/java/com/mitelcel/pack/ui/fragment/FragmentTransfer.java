@@ -36,7 +36,7 @@ import butterknife.OnClick;
  */
 public class FragmentTransfer extends Fragment
 {
-    public static final String TAG = FragmentTransfer.class.getName();
+    public static final String TAG = FragmentTransfer.class.getSimpleName();
 
     private OnTransferFragmentInteractionListener mListener;
 
@@ -92,7 +92,6 @@ public class FragmentTransfer extends Fragment
     public void onResume() {
         super.onResume();
 
-        confirm_btn.requestFocus();
     }
 
     @OnClick(R.id.transfer_confirm_btn)

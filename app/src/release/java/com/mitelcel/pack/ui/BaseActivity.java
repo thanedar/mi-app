@@ -49,8 +49,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         if(BuildConfig.DEBUG)
             ViewServer.get(this).removeWindow(this);
-
-        actionBarDecorator();
     }
 
     @Override
@@ -58,6 +56,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onResume();
         if(BuildConfig.DEBUG)
             ViewServer.get(this).setFocusedWindow(this);
+
+        actionBarDecorator();
     }
 
     public void actionBarDecorator(){
