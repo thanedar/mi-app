@@ -18,11 +18,11 @@
 
     <string name="app_name">Mi Telcel</string>
     <string name="hello_world">Hello world!</string>
-    <string name="placeholder_lorem_ipsum">Lorem ipsum dolor</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem Ipsum</string>
-    <string name="sample_user_msisdn">Subscriber 55 55897898</string>
-    <string name="title_activity_dialog_no_connection">DialogNoConnection</string>
+    <string name="placeholder_lorem_ipsum" translatable="false">Lorem ipsum dolor</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_template_step" translatable="false">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem Ipsum</string>
+    <string name="sample_user_msisdn" translatable="false">Subscriber 55 55897898</string>
+    <string name="title_activity_dialog_no_connection" translatable="false">DialogNoConnection</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
 
     <!-- MSISDN -->
@@ -37,19 +37,19 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="logout">Log Out</string>
-    <string name="enter_your_msisdn">Enter 10-digit phone number</string>
+    <string name="enter_your_msisdn">Enter your phone number</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="log_on">Log On</string>
     <string name="already_member">Already a member? Sign in</string>
     <string name="new_user">New User? Create a New Account</string>
 
-    <string name="hello_blank_fragment">Hello, I am a blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello, I am a blank fragment</string>
 
     <string name="home_minutes">"Minutes\n%1$s"</string>
     <string name="home_sms">"SMS\n%1$s"</string>
     <string name="home_data">"Data\n%1$s"</string>
     
-    <string name="confirm_info">"Since you not signed in recently, please provide your password below to confirm."</string>
+    <string name="confirm_info">"As you have not signed in recently, please provide your password below to confirm the transaction."</string>
 
     <!-- Frequent Numbers -->
     <string name="frequent_check">"Please confirm you want to delete %1$s?"</string>
@@ -68,27 +68,22 @@
     <string name="recharge_recent_activity">"Recharged your account for %1$s%2$.2f"</string>
     <string name="recharge_success">"Your recharge for %1$s%2$.2f was successful."</string>
 
-    <string name="recharge_5">$5.00</string>
-    <string name="recharge_10">$10.00</string>
-    <string name="recharge_20">$20.00</string>
-    <string name="recharge_50">$50.00</string>
+    <string name="recharge_5" translatable="false">$5.00</string>
+    <string name="recharge_10" translatable="false">$10.00</string>
+    <string name="recharge_20" translatable="false">$20.00</string>
+    <string name="recharge_50" translatable="false">$50.00</string>
 
     <!-- Transfer Balance -->
     <string name="transfer_balance">Transfer balance</string>
 
-    <string name="transfer">Transfer</string>
+    <string name="transfer" translatable="false">Transfer</string>
     <string name="transfer_check">"Please confirm you want to transfer %1$s%2$.2f to %3$s."</string>
-    <string name="transfer_info">Please choose the amount and the phone number you want to transfer balance.</string>
+    <string name="transfer_info">Please choose the amount and the phone number you want to transfer balance. Click on image to choose from your Contacts or enter the phone number in the text-box.</string>
     <string name="transfer_invalid_amount">Transfer amount cannot exceed your available balance. Please check if you have entered the proper amount to transfer balance!</string>
     <string name="transfer_invalid_msisdn">Please check if you have selected proper contact to transfer balance!</string>
     <string name="transfer_msisdn">Phone #</string>
     <string name="transfer_recent_activity">"Transferred %1$s%2$.2f to %3$s"</string>
     <string name="transfer_success">"Your transfer of %1$s%2$.2f to %3$s was successful."</string>
-
-    <string name="transfer_5">$5</string>
-    <string name="transfer_10">$10</string>
-    <string name="transfer_20">$20</string>
-    <string name="transfer_50">$50</string>
 
     <!-- my account page -->
     <string name="your_account">Your account</string>
@@ -96,15 +91,15 @@
     <string name="service">Services</string>
     <string name="your_service">Your Services</string>
     <string name="your_offer">Your offer</string>
-    <string name="account_period">From %1$s to %2$s</string>
-    <string name="sample_offer">Limited time offer! Buy a internet pack for $19 for 500 MB and receive another 200 MB free! Click here now to purchase this deal!</string>
+    <string name="account_period" translatable="false">From %1$s to %2$s</string>
+    <string name="sample_offer" translatable="false">Limited time offer! Buy a internet pack for $19 for 500 MB and receive another 200 MB free! Click here now to purchase this deal!</string>
     <string name="your_balance">"Balance: %1$s &gt;"</string>
 
     <!-- signup -->
     <string name="email_not_valid">Email not valid</string>
-    <string name="password_does_not_match">Password does not match</string>
+    <string name="password_does_not_match">Password does not match!</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
-    <string name="login_failed">"Login failed with code: %1$s"</string>
+    <string name="login_failed">"Login failed, error code: %1$s"</string>
 
     <!-- General -->
     <string name="amount">Amount</string>
@@ -125,15 +120,15 @@
     <string name="ok">OK</string>
     <string name="other">Other</string>
     <string name="oops">Oops&#8230;</string>
-    <string name="please_wait">Please wait…</string>
+    <string name="please_wait">Please wait&#8230;</string>
     <string name="something_is_wrong">Something is wrong, please try again later.</string>
     <string name="success">Success</string>
     <string name="updated">User updated!</string>
     <string name="warning">Warning</string>
 
-    <string name="package_tag">package_tag</string>
-    <string name="url_redirect">link_redirect</string>
-    <string name="installed_tag">installed_tag</string>
+    <string name="package_tag" translatable="false">package_tag</string>
+    <string name="url_redirect" translatable="false">link_redirect</string>
+    <string name="installed_tag" translatable="false">installed_tag</string>
 
     <!-- TutorialActivity -->
     <string name="title_activity_tutorial">Tutorial</string>
@@ -141,24 +136,24 @@
     <string name="next">Next</string>
     <string name="start">Start Now</string>
 
-    <string name="tutorial_welcome_1">Welcome to</string>
-    <string name="tutorial_welcome_2">It\'s fun and easy to earn prizes</string>
-    <string name="tutorial_install_1">Install Apps</string>
-    <string name="tutorial_install_2">"Install awesome apps and \n earn coins!"</string>
-    <string name="tutorial_play_1">Play Games</string>
-    <string name="tutorial_play_2">"Play fun games and \n earn more coins!"</string>
-    <string name="tutorial_invite_1">Invite Friends</string>
-    <string name="tutorial_invite_2">"Invite lots of friends and \n earn lots of coins."</string>
-    <string name="tutorial_cash">"When you have enough coins, \n redeem them for cool prizes"</string>
+    <string name="tutorial_welcome_1" translatable="false">Welcome to</string>
+    <string name="tutorial_welcome_2" translatable="false">It\'s fun and easy to earn prizes</string>
+    <string name="tutorial_install_1" translatable="false">Install Apps</string>
+    <string name="tutorial_install_2" translatable="false">"Install awesome apps and \n earn coins!"</string>
+    <string name="tutorial_play_1" translatable="false">Play Games</string>
+    <string name="tutorial_play_2" translatable="false">"Play fun games and \n earn more coins!"</string>
+    <string name="tutorial_invite_1" translatable="false">Invite Friends</string>
+    <string name="tutorial_invite_2" translatable="false">"Invite lots of friends and \n earn lots of coins."</string>
+    <string name="tutorial_cash" translatable="false">"When you have enough coins, \n redeem them for cool prizes"</string>
 
-    <string name="tutorial_earn">Earn Coins</string>
-    <string name="tutorial_cash_in">Cash In</string>
+    <string name="tutorial_earn" translatable="false">Earn Coins</string>
+    <string name="tutorial_cash_in" translatable="false">Cash In</string>
 
     <!-- fonts -->
-    <string name="vagroundedstd_black">VAGRoundedStd-Black.otf</string>
-    <string name="vagroundedstd_bold">VAGRoundedStd-Bold.otf</string>
-    <string name="vagroundedstd_light">VAGRoundedStd-Light.otf</string>
-    <string name="vagroundedstd_thin">VAGRoundedStd-Thin.otf</string>
+    <string name="vagroundedstd_black" translatable="false">VAGRoundedStd-Black.otf</string>
+    <string name="vagroundedstd_bold" translatable="false">VAGRoundedStd-Bold.otf</string>
+    <string name="vagroundedstd_light" translatable="false">VAGRoundedStd-Light.otf</string>
+    <string name="vagroundedstd_thin" translatable="false">VAGRoundedStd-Thin.otf</string>
 
     <!-- Navigation drawer -->
     <string name="navdrawer_item_home">Home</string>
@@ -166,7 +161,7 @@
     <string name="navdrawer_item_frequent_numbers">Frequent Numbers</string>
     <string name="navdrawer_item_services">Services</string>
     <string name="navdrawer_item_recharge">Recharge</string>
-    <string name="navdrawer_item_pastime">Pastime</string>
+    <string name="navdrawer_item_pastime">Transfer</string>
     <string name="navdrawer_item_offers">Offers</string>
     <string name="navdrawer_item_communicate">Communicate</string>
     <string name="navdrawer_item_help">Help</string>
@@ -175,27 +170,27 @@
     <string name="navdrawer_item_contact">Contact Us</string>
     <string name="navdrawer_item_privacy">Privacy Policy</string>
     <string name="navdrawer_item_logout">Logout</string>
-    <string name="navdrawer_item_debug">Is Debug?</string>
-    <string name="navdrawer_item_error_call">Token not valid</string>
+    <string name="navdrawer_item_debug" translatable="false">Is Debug?</string>
+    <string name="navdrawer_item_error_call" translatable="false">Token not valid</string>
 
     <!-- Bucksense -->
-    <string name="tats_app_id">9aeee11d-1ffd-11e5-8cfb-d4856445</string>
-    <string name="gcm_sender">1095055717735</string>
+    <string name="tats_app_id" translatable="false">9aeee11d-1ffd-11e5-8cfb-d4856445</string>
+    <string name="gcm_sender" translatable="false">1095055717735</string>
 
     <!-- Log Level -->
-    <string name="tats_log_verbose">verbose</string>
-    <string name="tats_log_debug">debug</string>
-    <string name="tats_log_info">info</string>
-    <string name="tats_log_warn">warning</string>
-    <string name="tats_log_error">error</string>
-    <string name="tats_log_assert">assert</string>
+    <string name="tats_log_verbose" translatable="false">verbose</string>
+    <string name="tats_log_debug" translatable="false">debug</string>
+    <string name="tats_log_info" translatable="false">info</string>
+    <string name="tats_log_warn" translatable="false">warning</string>
+    <string name="tats_log_error" translatable="false">error</string>
+    <string name="tats_log_assert" translatable="false">assert</string>
 
     <!-- Retargeting Placement -->
-    <string name="tutorial_screen">tutorial</string>
+    <string name="tutorial_screen" translatable="false">tutorial</string>
     <!-- Environment -->
-    <string name="tats_env_production">production</string>
-    <string name="tats_env_sandbox">sandbox</string>
+    <string name="tats_env_production" translatable="false">production</string>
+    <string name="tats_env_sandbox" translatable="false">sandbox</string>
 
-    <string name="lorem_ipsum">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</string>
+    <string name="lorem_ipsum" translatable="false">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</string>
 
 </resources>

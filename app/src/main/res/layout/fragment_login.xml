@@ -28,6 +28,7 @@
             class="com.mitelcel.pack.ui.widget.EditTextFolk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
             android:background="@drawable/edittext_background"
             android:hint="@string/enter_your_msisdn" />
 
@@ -38,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_tv_msisdn"
+            android:layout_margin="@dimen/margin_medium"
             android:hint="@string/enter_your_password"
             android:inputType="textPassword" />
 

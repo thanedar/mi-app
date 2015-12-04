@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Mi Telcel</string>
+    <string name="hello_world">Hola mundo!</string>
+    <string name="title_activity_login_or_register">Entrar o Registrarse</string>
+
+    <!-- MSISDN -->
+    <string name="msisdn">Número de Teléfono</string>
+    <string name="msisdn_not_valid">Número inválido</string>
+
+    <!-- Login -->
+    <string name="password">Contraseña</string>
+    <string name="repeat_password">Repite tu contraseña</string>
+    <string name="submit">Entrar</string>
+    <string name="retry">Reintentar</string>
+    <string name="register">Registrar</string>
+    <string name="login">Ingresar</string>
+    <string name="logout">Salir</string>
+    <string name="enter_your_msisdn">Registra tu número de teléfono</string>
+    <string name="enter_your_password">Registra tu contraseña</string>
+    <string name="log_on">Acceder</string>
+    <string name="already_member">¿Ya estás registrado? Entra</string>
+    <string name="new_user">¿Eres Nuevo? Crea una cuenta</string>
+
+    <string name="home_minutes">"Minutos\n%1$s"</string>
+    <string name="home_sms">"SMS\n%1$s"</string>
+    <string name="home_data">"Datos\n%1$s"</string>
+    
+    <string name="confirm_info">"No te haz conectado ultimamente, por favor ingresa tu contraseña para confirmar la transacción."</string>
+
+    <!-- Frequent Numbers -->
+    <string name="frequent_check">"Por favor confirma que deseas borrar %1$s?"</string>
+    <string name="frequent_invalid_input">¡Por favor confirma si se registró correctamente el número de teléfono!</string>
+    <string name="frequent_msisdn">Añadir nuevo contacto></string>
+    <string name="frequent_numbers">Números frecuentes</string>
+    <string name="frequent_numbers_info">Por favor, elige uno de los campos para añadir/editar tus números frecuentes.</string>
+    <string name="frequent_numbers_success">Añadiste exitosamente %1$s a tus números frecuentes.</string>
+    <string name="frequent_numbers_success_delete">Eliminaste exitosamente %1$s de tus números frecuentes.</string>
+
+    <!-- Recharge -->
+    <string name="recharge">Recargar</string>
+    <string name="recharge_check">"Por favor confirma que deseas recargar %1$s%2$.2f."</string>
+    <string name="recharge_info">Elige el monto de tu recarga.</string>
+    <string name="recharge_invalid_input">Por favor valida que elegiste un monto valido de recarga!</string>
+    <string name="recharge_recent_activity">"Recarga en la cuenta por %1$s%2$.2f"</string>
+    <string name="recharge_success">"Tu recarga de %1$s%2$.2f fue exitosa."</string>
+
+    <!-- Transfer Balance -->
+    <string name="transfer_balance">Pasa Tiempo</string>
+
+    <string name="transfer_check">"Por favor confirma que deseas abonar %1$s%2$.2f a %3$s."</string>
+    <string name="transfer_info">Por favor, elige la cantidad y el número de teléfono al que deseas abonar. Haz clic en la imagen para elegir entre tus contactos o registra el número de teléfono en el cuadro de texto.</string>
+    <string name="transfer_invalid_amount">La cantidad a abonar no puede ser superior a tu saldo disponible. ¡Por favor confirma si ingresaste el monto correcto para abonar!</string>
+    <string name="transfer_invalid_msisdn">¡Por favor confirma que el contacto seleccionado es a quien deseas abonar!</string>
+    <string name="transfer_msisdn">Registrar teléfono #</string>
+    <string name="transfer_recent_activity">"Se han abonado %1$s%2$.2f a %3$s"</string>
+    <string name="transfer_success">"Tu abono de %1$s%2$.2f a %3$s fue exitoso."</string>
+
+    <!-- my account page -->
+    <string name="your_account">Mi cuenta</string>
+    <string name="recent_activity">Últimos movimientos</string>
+    <string name="service">Servicios</string>
+    <string name="your_service">Tus Servicios</string>
+    <string name="your_offer">Tus promociones</string>
+    <string name="your_balance">"Saldo: %1$s &gt;"</string>
+
+    <!-- signup -->
+    <string name="email_not_valid">Email inválido</string>
+    <string name="invalid_password">La contraseña debe tener al menos 8 caracteres alfanuméricos!</string>
+    <string name="login_failed">"Fallo al acceder, código: %1$s"</string>
+
+    <!-- General -->
+    <string name="amount">Monto</string>
+    <string name="accept">Aceptar</string>
+    <string name="back">Regresar</string>
+    <string name="buy">Comprar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="check_input">Por favor valida entrada</string>
+    <string name="close">Cerrar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="decline">Rechazar</string>
+    <string name="email">Email</string>
+    <string name="loading">Cargando&#8230;</string>
+    <string name="no_connection_popup">¡Parece que no estas conectado a internet!</string>
+    <string name="no_data">Sin Datos</string>
+    <string name="offers">Promociones</string>
+    <string name="ok">OK</string>
+    <string name="other">Otro</string>
+    <string name="oops">Oops&#8230;</string>
+    <string name="please_wait">Por favor espera&#8230;</string>
+    <string name="something_is_wrong">Hay un problema, por favor intenta más tarde.</string>
+    <string name="success">Exitoso</string>
+    <string name="updated">¡Usuario Actualizado!</string>
+    <string name="warning">Advertencia</string>
+
+    <!-- TutorialActivity -->
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="skip">Omitir</string>
+    <string name="next">Siguiente</string>
+    <string name="start">Iniciar ahora</string>
+
+    <!-- Navigation drawer -->
+    <string name="navdrawer_item_home">Inicio</string>
+    <string name="navdrawer_item_recent">Últimos movimientos</string>
+    <string name="navdrawer_item_frequent_numbers">Números Frecuentes</string>
+    <string name="navdrawer_item_services">Servicios</string>
+    <string name="navdrawer_item_recharge">Recarga</string>
+    <string name="navdrawer_item_pastime">Pasa Tiempo</string>
+    <string name="navdrawer_item_offers">Promociones</string>
+    <string name="navdrawer_item_communicate">Comunicar</string>
+    <string name="navdrawer_item_help">Ayuda</string>
+    <string name="navdrawer_item_tutorial">Tutorial</string>
+    <string name="navdrawer_item_terms">Términos y Condiciones</string>
+    <string name="navdrawer_item_contact">Contáctanos</string>
+    <string name="navdrawer_item_privacy">PolÍtica de Privacidad</string>
+    <string name="navdrawer_item_logout">Salir</string>
+    <string name="password_does_not_match">La contraseña no coincide!</string>
+
+</resources>

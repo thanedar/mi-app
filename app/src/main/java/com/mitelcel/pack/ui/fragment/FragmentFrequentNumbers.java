@@ -266,22 +266,27 @@ public class FragmentFrequentNumbers extends Fragment
         MiLog.i(TAG, "deleteNumber View clicked " + view.getId());
         switch (view.getId()) {
             case R.id.frequent_neg_1:
+                msisdn_1 = "";
                 selectedView = tvMsisdn_1;
                 order = 1;
                 break;
             case R.id.frequent_neg_2:
+                msisdn_2 = "";
                 selectedView = tvMsisdn_2;
                 order = 2;
                 break;
             case R.id.frequent_neg_3:
+                msisdn_3 = "";
                 selectedView = tvMsisdn_3;
                 order = 3;
                 break;
             case R.id.frequent_neg_4:
+                msisdn_4 = "";
                 selectedView = tvMsisdn_4;
                 order = 4;
                 break;
             case R.id.frequent_neg_5:
+                msisdn_5 = "";
                 selectedView = tvMsisdn_5;
                 order = 5;
                 break;
