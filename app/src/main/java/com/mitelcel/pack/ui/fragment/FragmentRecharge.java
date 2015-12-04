@@ -42,28 +42,16 @@ public class FragmentRecharge extends Fragment
 
     private OnRechargeFragmentInteractionListener mListener;
 
-    private int checkedButtonId = 0;
-
     @InjectView(R.id.recharge_amount)
     TextView recharge_amount;
     @InjectView(R.id.recharge_other)
-    RadioButton recharge_other;
+    ButtonFolks recharge_other;
     @InjectView(R.id.recharge_5)
-    RadioButton recharge_5;
+    ButtonFolks recharge_5;
     @InjectView(R.id.recharge_10)
-    RadioButton recharge_10;
+    ButtonFolks recharge_10;
     @InjectView(R.id.recharge_20)
-    RadioButton recharge_20;
-    @InjectView(R.id.recharge_50)
-    RadioButton recharge_50;
-
-    @InjectView(R.id.recharge_list_1)
-    RadioGroup list_1;
-    @InjectView(R.id.recharge_list_2)
-    RadioGroup list_2;
-
-    @InjectView(R.id.recharge_confirm_btn)
-    ButtonFolks confirm_btn;
+    ButtonFolks recharge_20;
 
     @Inject
     MiApiClient miApiClient;
@@ -105,65 +93,15 @@ public class FragmentRecharge extends Fragment
     public void onResume() {
         super.onResume();
 
-        list_1.setOnCheckedChangeListener(listener_1);
-        list_2.setOnCheckedChangeListener(listener_2);
-
         recharge_amount.clearFocus();
-        confirm_btn.requestFocus();
     }
 
-    private RadioGroup.OnCheckedChangeListener listener_1= new RadioGroup.OnCheckedChangeListener() {
-
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (checkedId != -1) {
-                list_2.setOnCheckedChangeListener(null);
-                list_2.clearCheck();
-                list_2.setOnCheckedChangeListener(listener_2);
-                MiLog.i("Recharge", "Listener 1 checked " + list_1.getCheckedRadioButtonId());
-                checkedButtonId = list_1.getCheckedRadioButtonId();
-
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(recharge_amount.getWindowToken(), 0);
-                recharge_amount.clearFocus();
-                confirm_btn.requestFocus();
-            }
-        }
-    };
-
-    private RadioGroup.OnCheckedChangeListener listener_2 = new RadioGroup.OnCheckedChangeListener() {
-
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (checkedId != -1) {
-                list_1.setOnCheckedChangeListener(null);
-                list_1.clearCheck();
-                list_1.setOnCheckedChangeListener(listener_1);
-                MiLog.i("Recharge", "Listener 2 checked " + list_2.getCheckedRadioButtonId());
-                checkedButtonId = list_2.getCheckedRadioButtonId();
-
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(list_2.getCheckedRadioButtonId() == R.id.recharge_other) {
-                    MiLog.i("Recharge", "Listener 2 checked other requesting focus ");
-                    recharge_amount.setFocusableInTouchMode(true);
-                    recharge_amount.requestFocusFromTouch();
-                    imm.showSoftInput(recharge_amount, InputMethodManager.SHOW_IMPLICIT);
-                }
-                else {
-                    imm.hideSoftInputFromWindow(recharge_amount.getWindowToken(), 0);
-                    recharge_amount.clearFocus();
-                    confirm_btn.requestFocus();
-                }
-            }
-        }
-    };
-
-    @OnClick(R.id.recharge_confirm_btn)
+    @OnClick({R.id.recharge_other, R.id.recharge_5, R.id.recharge_10, R.id.recharge_20})
     public void startConfirm(View view){
         MiLog.i(TAG, "Confirm clicked");
         float recharge = 0;
 
-        switch (checkedButtonId) {
+        switch (view.getId()) {
             case R.id.recharge_5:
                 recharge = 5;
                 break;
@@ -172,9 +110,6 @@ public class FragmentRecharge extends Fragment
                 break;
             case R.id.recharge_20:
                 recharge = 20;
-                break;
-            case R.id.recharge_50:
-                recharge = 50;
                 break;
             case R.id.recharge_other:
                 String input = recharge_amount.getText().toString();

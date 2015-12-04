@@ -116,6 +116,15 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <style name="Theme.App.ButtonFolks.Recharge" parent="Theme.App.ButtonFolks.Positive"  >
+        <item name="android:textColor">@color/white</item>
+        <item name="type_face">@string/vagroundedstd_bold</item>
+        <item name="android:background">@drawable/shape_button_folks_positive</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:width">144dp</item>
+        <item name="android:layout_margin">@dimen/margin_small</item>
+    </style>
+
     <style name="Theme.App.ButtonFolks.Disable" parent="Theme.App"  >
         <item name="android:textColor">@color/white</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
