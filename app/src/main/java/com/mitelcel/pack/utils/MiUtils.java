@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
@@ -16,8 +17,11 @@ import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.annotation.IdRes;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.view.View;
 
@@ -37,6 +41,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
+
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
  */
@@ -51,6 +57,55 @@ public class MiUtils {
         Intent i = new Intent(context, cls);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(i);
+    }
+
+    public static void startContactPhonePick(Activity activity, int requestCode) {
+        Intent i = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+        i.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        startActivityForResult(activity, i, requestCode, null);
+    }
+    
+    public static String[] sendContactInfo(Cursor cursor){
+        long l1 = System.currentTimeMillis();
+
+        String strId = "", strName = "", strNum = "", strPhoto = "";
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            strId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            MiLog.i("Utils", "Selected ID: " + strId);
+
+            strName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            MiLog.i("Utils", "Selected name: " + strName);
+
+            strNum = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+                strNum = PhoneNumberUtils.formatNumber(strNum);
+            else
+                strNum = PhoneNumberUtils.formatNumberToE164(strNum, "MX");
+            MiLog.i("Utils", "Selected phone number: " + strNum);
+
+            strPhoto = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI));
+            if (strPhoto == null) {
+                MiLog.i("Utils", "Selected photo url is null");
+            }
+            else if (strPhoto.equalsIgnoreCase("")) {
+                MiLog.i("Utils", "Selected photo url is empty");
+            }
+            else {
+                MiLog.i("Utils", "Selected photo url: " + strPhoto);
+            }
+
+            cursor.close();
+        }
+
+        String[] info = {strId, strName, strNum, strPhoto};
+
+        long l2 = System.currentTimeMillis();
+        MiLog.i("Utils", "Finished readContacts() time " + l2);
+        MiLog.i("Utils", "Total contact loaded within " + (l2 - l1) + "ms");
+
+        return info;
     }
 
     public static void showDialogErrorCall(Activity activity, String content, String btnTex){

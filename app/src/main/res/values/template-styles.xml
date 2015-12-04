@@ -144,7 +144,7 @@
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:textSize">15sp</item>
     </style>
-    <style name="Theme.App.Offers.TextFolks" parent="Theme.App"  >
+    <style name="Theme.App.TextFolks.Dark" parent="Theme.App"  >
         <item name="android:textColor">@color/black</item>
         <item name="type_face">@string/vagroundedstd_bold</item>
         <item name="android:textSize">15sp</item>

@@ -38,6 +38,8 @@ public class Config {
     public static final int PASS_LENGTH = 4;
     public static final int PASS_TIMEOUT = 20;
 
+    public static final int PICK_CONTACT = 99;
+
     /**
      * HTML
      */

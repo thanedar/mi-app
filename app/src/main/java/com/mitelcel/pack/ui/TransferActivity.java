@@ -1,6 +1,9 @@
 package com.mitelcel.pack.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -136,11 +139,27 @@ public class TransferActivity extends BaseActivity
     }
 
     @Override
+    public void selectContact() {
+        MiUtils.startContactPhonePick(this, Config.PICK_CONTACT);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         MiLog.i(TAG, "onActivityResult: requestCode " + requestCode + " resultCode " + resultCode);
         if(requestCode  == DialogActivity.APP_RES && resultCode == DialogActivity.APP_REFRESH)
             finish();
+        else if(requestCode == Config.PICK_CONTACT && resultCode == RESULT_OK){
+            long l1 = System.currentTimeMillis();
+            MiLog.i(TAG, "starting readContacts() time " + l1);
+
+            Uri contactUri = data.getData();
+            Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+
+            String[] contactInfo = MiUtils.sendContactInfo(cursor);
+            FragmentTransfer frag = (FragmentTransfer) getSupportFragmentManager().findFragmentByTag(FragmentTransfer.TAG);
+            frag.displayContact(contactInfo[1], contactInfo[2], contactInfo[3]);
+        }
     }
 
     @Override

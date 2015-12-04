@@ -1,12 +1,16 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -17,8 +21,10 @@ import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.DialogActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.ui.widget.ButtonFolks;
+import com.mitelcel.pack.ui.widget.RoundedTransformation;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.Validator;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -42,6 +48,7 @@ public class FragmentTransfer extends Fragment
 
     private String msisdn = "";
     private float amount = 0;
+    private boolean showDefault = true;
 
     @InjectView(R.id.transfer_amount)
     EditText transfer_amount;
@@ -49,6 +56,9 @@ public class FragmentTransfer extends Fragment
     TextView transfer_msisdn;
     @InjectView(R.id.transfer_confirm_btn)
     ButtonFolks confirm_btn;
+
+    @InjectView(R.id.transfer_contact)
+    ImageView transfer_contact;
 
     @Inject
     MiApiClient miApiClient;
@@ -92,6 +102,24 @@ public class FragmentTransfer extends Fragment
     public void onResume() {
         super.onResume();
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            transfer_msisdn.addTextChangedListener(new PhoneNumberFormattingTextWatcher("MX"));
+        else
+            transfer_msisdn.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+        if(showDefault) {
+            Picasso.with(getActivity().getApplicationContext())
+                    .load(R.drawable.ic_contacts_128)
+                    .resize(192, 192)
+                    .centerCrop()
+                    .into(transfer_contact);
+            MiLog.i(TAG, "Loading contacts PNG");
+        }
+    }
+
+    @OnClick(R.id.transfer_contact)
+    public void selectContact(){
+        mListener.selectContact();
     }
 
     @OnClick(R.id.transfer_confirm_btn)
@@ -146,6 +174,27 @@ public class FragmentTransfer extends Fragment
         }
     }
 
+    public void displayContact(String name, String number, String photo) {
+        MiLog.i(TAG, "Name: " + name + " Number: " + number + " Photo: " + photo);
+        if(photo != null && !photo.equalsIgnoreCase("")) {
+            showDefault = false;
+            MiLog.i(TAG, "Loading image from Contacts path " + photo);
+            Picasso.with(getActivity().getApplicationContext())
+                    .load(photo)
+                    .transform(new RoundedTransformation(50, 4))
+                    .resize(192, 192)
+                    .centerCrop()
+                    .into(transfer_contact);
+        }
+        else {
+            showDefault = true;
+        }
+
+        transfer_msisdn.setText(number);
+        msisdn = number;
+        transfer_msisdn.setEnabled(false);
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -181,5 +230,6 @@ public class FragmentTransfer extends Fragment
      */
     public interface OnTransferFragmentInteractionListener {
         void onTransferFragmentInteraction(String msisdn, float transfer);
+        void selectContact();
     }
 }
