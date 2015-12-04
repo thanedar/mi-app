@@ -171,9 +171,11 @@ public class FragmentMain extends Fragment {
 
     private void get_account_info() {
         BeanGetAccountInfo beanGetAccountInfo = new BeanGetAccountInfo();
+        MiLog.i(TAG, "beanGetAccountInfo: " + beanGetAccountInfo.toString());
         miApiClient.get_account_info(beanGetAccountInfo, new Callback<BeanGetAccountInfoResponse>() {
             @Override
             public void success(BeanGetAccountInfoResponse beanGetAccountInfoResponse, Response response) {
+                MiLog.i(TAG, "beanGetAccountInfoResponse: " + beanGetAccountInfoResponse.toString());
                 if (beanGetAccountInfoResponse.getError().getCode() == Config.SUCCESS && beanGetAccountInfoResponse.getResult() != null) {
                     Resources res = getResources();
                     minutes.setText(res.getString(R.string.home_minutes, beanGetAccountInfoResponse.getResult().getUsedMinutes()));
@@ -191,9 +193,11 @@ public class FragmentMain extends Fragment {
 
     private void get_most_recent_activity() {
         BeanGetRecentActivity beanGetRecentActivity = new BeanGetRecentActivity(1);
+        MiLog.i(TAG, "beanGetRecentActivity: " + beanGetRecentActivity.toString());
         miApiClient.get_recent_activity(beanGetRecentActivity, new Callback<BeanGetRecentActivityResponse>() {
             @Override
             public void success(BeanGetRecentActivityResponse beanGetRecentActivityResponse, Response response) {
+                MiLog.i(TAG, "beanGetRecentActivityResponse: " + beanGetRecentActivityResponse.toString());
                 if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS) {
                     MiLog.i(TAG, beanGetRecentActivityResponse.toString());
                     if (beanGetRecentActivityResponse.getResult() != null) {
@@ -226,19 +230,29 @@ public class FragmentMain extends Fragment {
 
     private void get_best_offer() {
         BeanGetOfferList beanGetOfferList = new BeanGetOfferList(0, 1);
-        BeanGetOfferListResponse beanGetOfferListResponse = miApiClient.get_offer_list(beanGetOfferList);
-        MiLog.i(TAG, "bean " + beanGetOfferListResponse.toString());
-        List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
-        MiLog.i(TAG, "offer list " + offerList.get(0).toString());
-        OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
-        MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
-                " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
-        offerDescription.setText(offerItemHolder.description);
-        offerBtn.setText(offerItemHolder.buttonText);
-        offerBtn.setVisibility(View.INVISIBLE);
+        MiLog.i(TAG, "beanGetOfferList " + beanGetOfferList.toString());
+        miApiClient.get_offer_list(beanGetOfferList, new Callback<BeanGetOfferListResponse>() {
+            @Override
+            public void success(BeanGetOfferListResponse beanGetOfferListResponse, Response response) {
+                MiLog.i(TAG, "beanGetOfferListResponse " + beanGetOfferListResponse.toString());
+                List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
+                MiLog.i(TAG, "offer list " + offerList.get(0).toString());
+                OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
+                MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
+                        " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
+                offerDescription.setText(offerItemHolder.description);
+                offerBtn.setText(offerItemHolder.buttonText);
+                offerBtn.setVisibility(View.INVISIBLE);
 
-        Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
-        Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
+                Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
+                Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                MiLog.i(TAG, "GetOfferList failure " + error.toString());
+            }
+        });
     }
 
     public void showRecent(){

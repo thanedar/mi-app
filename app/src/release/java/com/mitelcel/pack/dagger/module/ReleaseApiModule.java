@@ -27,6 +27,8 @@ public class ReleaseApiModule {
     @Singleton
     @Provides
     MiApiClient provideMiApiClient(RestAdapter restAdapter){
+        restAdapter.setLogLevel(RestAdapter.LogLevel.BASIC);
+
         return restAdapter.create(MiApiClient.class);
     }
 

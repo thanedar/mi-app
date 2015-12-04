@@ -57,7 +57,10 @@ public interface MiApiClient {
     void get_frequent_numbers(@Body BeanGetFrequentNumbers beanGetFrequentNumbers, Callback<BeanGetFrequentNumbersResponse> callback);
 
     @POST(REQUEST_URI)
-    BeanGetOfferListResponse get_offer_list(@Body BeanGetOfferList beanGetOfferList);
+    void get_offer_list(@Body BeanGetOfferList beanGetOfferList, Callback<BeanGetOfferListResponse> callback);
+
+    @POST(REQUEST_URI)
+    BeanGetOfferListResponse get_offer_list_async(@Body BeanGetOfferList beanGetOfferList);
 
     @POST(REQUEST_URI)
     void get_recent_activity(@Body BeanGetRecentActivity beanGetRecentActivity, Callback<BeanGetRecentActivityResponse> callback);

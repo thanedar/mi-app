@@ -43,7 +43,7 @@ public class LoadOffersAsyncTask extends AsyncTask<MiApiClient, Void, LoadOffers
             BeanGetOfferListResponse res;
             MiApiClient miApiClient = params[0];
 
-            res = miApiClient.get_offer_list(beanGetOfferList);
+            res = miApiClient.get_offer_list_async(beanGetOfferList);
 
             Context context = reference.get() != null ? ((Fragment) reference.get()).getActivity().getApplicationContext() : null;
 

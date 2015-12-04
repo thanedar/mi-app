@@ -11,8 +11,10 @@ import com.mitelcel.pack.BuildConfig;
  */
 public class MiLog {
 	
-	public static final LEVEL logType = BuildConfig.DEBUG?LEVEL.VERBOSE:LEVEL.NO_LOG;
-	
+//	public static final LEVEL logType = BuildConfig.DEBUG?LEVEL.VERBOSE:LEVEL.NO_LOG;
+	// TODO Change Log level back to NO_LOG for live release
+	public static final LEVEL logType = LEVEL.VERBOSE;
+
 	enum LEVEL{
 		 NO_LOG, ASSERT, ERROR, WARNING, INFO, DEBUG, VERBOSE
 	}
