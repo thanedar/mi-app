@@ -1,6 +1,8 @@
 package com.mitelcel.pack.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -15,7 +17,9 @@ import com.mitelcel.pack.api.bean.req.BeanDeleteFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
+import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.ui.fragment.FragmentFrequentNumbers;
+import com.mitelcel.pack.ui.fragment.FragmentTransfer;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
@@ -128,6 +132,11 @@ public class FrequentNumbersActivity extends BaseActivity
         MiUtils.showDialogQuery(this, getString(R.string.frequent_check, msisdn), getString(R.string.ok), getString(R.string.cancel), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_API_CALL);
     }
 
+    @Override
+    public void selectContact(){
+        MiUtils.startContactPhonePick(this, Config.PICK_CONTACT);
+    }
+
     private void makeDeleteApiCall() {
         dialog.show();
         BeanDeleteFrequentNumber beanDeleteFrequentNumber = new BeanDeleteFrequentNumber(order);
@@ -165,11 +174,17 @@ public class FrequentNumbersActivity extends BaseActivity
         if(requestCode  == DialogActivity.APP_REQ && resultCode == DialogActivity.APP_REFRESH) {
             FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
             frag.refreshDisplay();
-            /*FragmentHandler.clearFragmentBackStack(getSupportFragmentManager(), TAG);
-            FragmentHandler.replaceFragment(getSupportFragmentManager(), null, FragmentFrequentNumbers.newInstance(), R.id.container);*/
         }
-        if(requestCode  == DialogActivity.APP_API_CALL && resultCode == DialogActivity.APP_REFRESH) {
+        else if(requestCode  == DialogActivity.APP_API_CALL && resultCode == DialogActivity.APP_REFRESH) {
             makeDeleteApiCall();
+        }
+        else if(requestCode == Config.PICK_CONTACT && resultCode == RESULT_OK){
+            Uri contactUri = data.getData();
+            Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+
+            BeanContactInfo bean = MiUtils.sendContactInfoBean(cursor);
+            FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
+            frag.displayContact(bean);
         }
     }
 

@@ -29,6 +29,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
+import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.ui.DialogActivity;
 import com.mitelcel.pack.ui.LoginOrRegister;
 //import com.tatssense.core.Buckstracks;
@@ -106,6 +107,58 @@ public class MiUtils {
         MiLog.i("Utils", "Total contact loaded within " + (l2 - l1) + "ms");
 
         return info;
+    }
+
+    public static BeanContactInfo sendContactInfoBean(Cursor cursor){
+        long l1 = System.currentTimeMillis();
+
+        String strId = "", strName = "", strNum = "", strPhoto = "";
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            strId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            MiLog.i("Utils", "Selected ID: " + strId);
+
+            strName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            MiLog.i("Utils", "Selected name: " + strName);
+
+            strNum = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+            strNum = getCleanMsisdn(strNum);
+            MiLog.i("Utils", "Selected phone number: " + strNum);
+
+            strPhoto = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI));
+            if (strPhoto == null) {
+                MiLog.i("Utils", "Selected photo url is null");
+            }
+            else if (strPhoto.equalsIgnoreCase("")) {
+                MiLog.i("Utils", "Selected photo url is empty");
+            }
+            else {
+                MiLog.i("Utils", "Selected photo url: " + strPhoto);
+            }
+
+            cursor.close();
+        }
+
+        BeanContactInfo beanContactInfo = new BeanContactInfo();
+        beanContactInfo.setName(strName);
+        beanContactInfo.setPhone(strNum);
+        beanContactInfo.setPhoto(strPhoto);
+
+        long l2 = System.currentTimeMillis();
+        MiLog.i("Utils", "Finished readContacts() time " + l2);
+        MiLog.i("Utils", "Total contact loaded within " + (l2 - l1) + "ms");
+
+        return beanContactInfo;
+    }
+
+    public static String getCleanMsisdn(String msisdn){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            return PhoneNumberUtils.formatNumberToE164(msisdn, "MX");
+        }
+        else
+            return PhoneNumberUtils.stripSeparators(PhoneNumberUtils.formatNumber(msisdn));
     }
 
     public static void showDialogErrorCall(Activity activity, String content, String btnTex){

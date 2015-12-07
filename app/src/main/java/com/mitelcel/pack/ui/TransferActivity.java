@@ -150,9 +150,6 @@ public class TransferActivity extends BaseActivity
         if(requestCode  == DialogActivity.APP_RES && resultCode == DialogActivity.APP_REFRESH)
             finish();
         else if(requestCode == Config.PICK_CONTACT && resultCode == RESULT_OK){
-            long l1 = System.currentTimeMillis();
-            MiLog.i(TAG, "starting readContacts() time " + l1);
-
             Uri contactUri = data.getData();
             Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
 
