@@ -4,15 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    android:padding="@dimen/card_padding"
+    android:padding="@dimen/card_padding_small"
     tools:context="com.mitelcel.pack.ui.fragment.FragmentMain">
+
+    <include layout="@layout/item_offer_listcard_with_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/home_offer"
+        android:clickable="true"/>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/home_account_id"
         style="@style/Theme.App.Account.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/home_offer"
         android:padding="@dimen/margin_tiny"
         android:text="@string/your_account" />
 
@@ -53,27 +60,11 @@
     </LinearLayout>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/home_offer_title"
-        style="@style/Theme.App.Account.Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/home_account_list"
-        android:padding="@dimen/margin_tiny"
-        android:text="@string/your_offer" />
-
-    <include layout="@layout/item_offer_listcard_with_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/home_offer"
-        android:clickable="true"
-        android:layout_below="@id/home_offer_title"/>
-
-    <com.mitelcel.pack.ui.widget.TextViewFolks
         android:id="@+id/home_recent_title"
         style="@style/Theme.App.Account.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_offer"
+        android:layout_below="@id/home_account_list"
         android:padding="@dimen/margin_tiny"
         android:text="@string/recent_activity" />
 
