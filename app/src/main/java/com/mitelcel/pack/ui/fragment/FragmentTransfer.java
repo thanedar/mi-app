@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.DialogActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
@@ -174,8 +175,9 @@ public class FragmentTransfer extends Fragment
         }
     }
 
-    public void displayContact(String name, String number, String photo) {
-        MiLog.i(TAG, "Name: " + name + " Number: " + number + " Photo: " + photo);
+    public void displayContact(BeanContactInfo beanContactInfo) {
+        MiLog.i(TAG, "Name: " + beanContactInfo.getName() + " Number: " + beanContactInfo.getPhone() + " Photo: " + beanContactInfo.getPhoto());
+        String photo = beanContactInfo.getPhoto();
         if(photo != null && !photo.equalsIgnoreCase("")) {
             showDefault = false;
             MiLog.i(TAG, "Loading image from Contacts path " + photo);
@@ -190,8 +192,8 @@ public class FragmentTransfer extends Fragment
             showDefault = true;
         }
 
-        transfer_msisdn.setText(number);
-        msisdn = number;
+        msisdn = beanContactInfo.getPhone();
+        transfer_msisdn.setText(msisdn);
         transfer_msisdn.setEnabled(false);
     }
 

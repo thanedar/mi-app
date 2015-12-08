@@ -16,6 +16,7 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
+import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.ui.fragment.FragmentConfirm;
 import com.mitelcel.pack.ui.fragment.FragmentTransfer;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
@@ -151,11 +152,14 @@ public class TransferActivity extends BaseActivity
             finish();
         else if(requestCode == Config.PICK_CONTACT && resultCode == RESULT_OK){
             Uri contactUri = data.getData();
-            Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+            Cursor cursor = getContentResolver().query(contactUri, new String[]{ContactsContract.Contacts.LOOKUP_KEY,
+                    ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER,
+                    ContactsContract.Contacts.PHOTO_URI}, null, null, null);
 
-            String[] contactInfo = MiUtils.sendContactInfo(cursor);
+
+            BeanContactInfo contactInfo = MiUtils.getContactInfoBean(cursor);
             FragmentTransfer frag = (FragmentTransfer) getSupportFragmentManager().findFragmentByTag(FragmentTransfer.TAG);
-            frag.displayContact(contactInfo[1], contactInfo[2], contactInfo[3]);
+            frag.displayContact(contactInfo);
         }
     }
 

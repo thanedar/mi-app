@@ -3,6 +3,7 @@ package com.mitelcel.pack.ui;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -19,7 +20,6 @@ import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.ui.fragment.FragmentFrequentNumbers;
-import com.mitelcel.pack.ui.fragment.FragmentTransfer;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
@@ -108,8 +108,14 @@ public class FrequentNumbersActivity extends BaseActivity
                     showDialogSuccessCall(getString(R.string.frequent_numbers_success, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
-                } else {
+                }
+                else if (beanSetFrequentNumberResponse.getError().getCode() == Config.RECORD_EXISTS) {
                     MiLog.i(TAG, "Set Freq Number API Error response " + beanSetFrequentNumberResponse.toString());
+                    showDialogErrorCall(getString(R.string.check_input), getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                }
+                else {
+                    MiLog.i(TAG, "Set Freq Number API Error response " + beanSetFrequentNumberResponse.toString());
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             }
 
@@ -180,9 +186,11 @@ public class FrequentNumbersActivity extends BaseActivity
         }
         else if(requestCode == Config.PICK_CONTACT && resultCode == RESULT_OK){
             Uri contactUri = data.getData();
-            Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+            Cursor cursor = getContentResolver().query(contactUri, new String[]{ContactsContract.Contacts.LOOKUP_KEY,
+                    ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER,
+                    ContactsContract.Contacts.PHOTO_URI}, null, null, null);
 
-            BeanContactInfo bean = MiUtils.sendContactInfoBean(cursor);
+            BeanContactInfo bean = MiUtils.getContactInfoBean(cursor);
             FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
             frag.displayContact(bean);
         }

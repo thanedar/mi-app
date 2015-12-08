@@ -13,6 +13,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 public class BeanContactInfo extends GenericBean{
     @Expose
+    private String key;
+
+    @Expose
     private String name;
 
     @Expose

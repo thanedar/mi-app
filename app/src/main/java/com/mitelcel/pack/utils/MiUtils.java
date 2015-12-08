@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -109,14 +110,14 @@ public class MiUtils {
         return info;
     }
 
-    public static BeanContactInfo sendContactInfoBean(Cursor cursor){
+    public static BeanContactInfo getContactInfoBean(Cursor cursor){
         long l1 = System.currentTimeMillis();
 
         String strId = "", strName = "", strNum = "", strPhoto = "";
         if (cursor != null) {
             cursor.moveToFirst();
 
-            strId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            strId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
             MiLog.i("Utils", "Selected ID: " + strId);
 
             strName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
@@ -142,13 +143,44 @@ public class MiUtils {
         }
 
         BeanContactInfo beanContactInfo = new BeanContactInfo();
+        beanContactInfo.setKey(strId);
         beanContactInfo.setName(strName);
         beanContactInfo.setPhone(strNum);
         beanContactInfo.setPhoto(strPhoto);
 
         long l2 = System.currentTimeMillis();
-        MiLog.i("Utils", "Finished readContacts() time " + l2);
+        MiLog.i("Utils", "Finished getContactInfoBean() time " + l2);
         MiLog.i("Utils", "Total contact loaded within " + (l2 - l1) + "ms");
+
+        return beanContactInfo;
+    }
+
+    public static BeanContactInfo getContactInfoByPhone(Context context, String phone){
+        String strId = "", strName = "", strNum = "", strPhoto = "";
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phone));
+
+        ContentResolver contentResolver = context.getContentResolver();
+        Cursor contactLookup = contentResolver.query(uri, new String[] {ContactsContract.Contacts.LOOKUP_KEY,
+                ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.PHOTO_URI }, null, null, null);
+
+        try {
+            if (contactLookup != null && contactLookup.getCount() > 0) {
+                contactLookup.moveToNext();
+                strName = contactLookup.getString(contactLookup.getColumnIndex(ContactsContract.Data.DISPLAY_NAME));
+                strPhoto = contactLookup.getString(contactLookup.getColumnIndex(ContactsContract.Contacts.PHOTO_URI));
+                strId = contactLookup.getString(contactLookup.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+            }
+        } finally {
+            if (contactLookup != null) {
+                contactLookup.close();
+            }
+        }
+
+        BeanContactInfo beanContactInfo = new BeanContactInfo();
+        beanContactInfo.setKey(strId);
+        beanContactInfo.setName(strName);
+        beanContactInfo.setPhone(strNum);
+        beanContactInfo.setPhoto(strPhoto);
 
         return beanContactInfo;
     }
