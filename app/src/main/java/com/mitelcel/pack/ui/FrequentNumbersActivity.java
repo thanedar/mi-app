@@ -135,7 +135,7 @@ public class FrequentNumbersActivity extends BaseActivity
         this.msisdn = msisdn;
         this.order = order;
 
-        MiUtils.showDialogQuery(this, getString(R.string.frequent_check, msisdn), getString(R.string.ok), getString(R.string.cancel), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_API_CALL);
+        MiUtils.showDialogQuery(this, getString(R.string.success), getString(R.string.frequent_check, msisdn), getString(R.string.ok), getString(R.string.cancel), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_API_CALL);
     }
 
     @Override

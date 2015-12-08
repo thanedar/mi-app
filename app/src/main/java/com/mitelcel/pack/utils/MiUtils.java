@@ -219,8 +219,10 @@ public class MiUtils {
         activity.startActivityForResult(i, requestCode);
     }
 
-    public static void showDialogQuery(Activity activity, String content, String pBtnTex, String nBtnTex, @IdRes int resId, int requestCode){
+    public static void showDialogQuery(Activity activity, String title, String content, String pBtnTex, String nBtnTex, @IdRes int resId, int requestCode){
         Intent i = new Intent(activity, DialogActivity.class);
+        if(title != null && !title.equals(""))
+            i.putExtra(DialogActivity.DIALOG_RES_TITLE, title);
         if(content != null && !content.equals(""))
             i.putExtra(DialogActivity.DIALOG_CONTENT, content);
         if(pBtnTex != null && !pBtnTex.equals(""))
@@ -228,7 +230,6 @@ public class MiUtils {
         if(nBtnTex != null && !nBtnTex.equals(""))
             i.putExtra(DialogActivity.DIALOG_NEG_BTN_TEXT, nBtnTex);
         i.putExtra(DialogActivity.DIALOG_RES_ID, resId);
-        i.putExtra(DialogActivity.DIALOG_RES_TITLE, activity.getResources().getString(R.string.success));
         activity.startActivityForResult(i, requestCode);
     }
 

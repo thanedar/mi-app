@@ -74,7 +74,7 @@ public class FragmentSplashScreen extends Fragment implements
     public void onResume() {
         super.onResume();
 
-        new Handler().postDelayed(() -> autoLogin(), 1500);
+        new Handler().postDelayed(() -> autoLogin(), 1000);
     }
 
     @Override
@@ -117,27 +117,30 @@ public class FragmentSplashScreen extends Fragment implements
         // TODO: Remove the FAKE login call here when we have the entire login and register flow
         fakeLogin();
     }
-    private void autoLogin() {
-        int status = MiUtils.MiAppPreferences.getLoggedStatus();
-        MiLog.i(TAG, "getLoggedStatus value [" + status + "]");
-        if(status == MiUtils.MiAppPreferences.LOGOUT){
-            MiLog.d(TAG, "LoginOrRegister");
-            MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
-            getActivity().finish();
-        }
-        else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET && MiUtils.Info.isNetworkConnected(getActivity())){
-            /**
-             * Only for first install
-             */
-            MiLog.d(TAG, "submit_app_info");
-            submit_app_info();
-        }
-        else{
-            // TODO: Remove the FAKE login call here when we have the entire login and register flow
-            MiLog.d(TAG, "fakeLogin");
-            fakeLogin();
-            /*MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-            getActivity().finish();*/
+
+    public void autoLogin() {
+        if(MiUtils.Info.isNetworkConnected(getActivity().getApplicationContext())) {
+            int status = MiUtils.MiAppPreferences.getLoggedStatus();
+            MiLog.i(TAG, "getLoggedStatus value [" + status + "]");
+            if(status == MiUtils.MiAppPreferences.LOGOUT){
+                MiLog.d(TAG, "LoginOrRegister");
+                MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
+                getActivity().finish();
+            }
+            else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET){
+                /**
+                 * Only for first install
+                 */
+                MiLog.d(TAG, "submit_app_info");
+                submit_app_info();
+            }
+            else{
+                // TODO: Remove the FAKE login call here when we have the entire login and register flow
+                MiLog.d(TAG, "fakeLogin");
+                fakeLogin();
+                /*MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                getActivity().finish();*/
+            }
         }
     }
 
