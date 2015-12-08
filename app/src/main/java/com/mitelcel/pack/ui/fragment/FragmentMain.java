@@ -236,16 +236,18 @@ public class FragmentMain extends Fragment {
             public void success(BeanGetOfferListResponse beanGetOfferListResponse, Response response) {
                 MiLog.i(TAG, "beanGetOfferListResponse " + beanGetOfferListResponse.toString());
                 List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
-                MiLog.i(TAG, "offer list " + offerList.get(0).toString());
-                OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
-                MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
-                        " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
-                offerDescription.setText(offerItemHolder.description);
-                offerBtn.setText(offerItemHolder.buttonText);
-                offerBtn.setVisibility(View.INVISIBLE);
+                if(beanGetOfferListResponse.getError().getCode() == Config.SUCCESS && !offerList.isEmpty()) {
+                    MiLog.i(TAG, "offer list " + offerList.get(0).toString());
+                    OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
+                    MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
+                            " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
+                    offerDescription.setText(offerItemHolder.description);
+                    offerBtn.setText(offerItemHolder.buttonText);
+                    offerBtn.setVisibility(View.INVISIBLE);
 
-                Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
-                Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
+                    Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
+                    Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
+                }
             }
 
             @Override

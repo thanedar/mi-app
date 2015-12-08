@@ -56,7 +56,7 @@
     <string name="frequent_invalid_input">Please check if you have entered proper contact phone number!</string>
     <string name="frequent_msisdn">Add New Contact ></string>
     <string name="frequent_numbers">Frequent Numbers</string>
-    <string name="frequent_numbers_info">Please choose one of the fields to add/edit your frequent numbers. Click on the person outline to choose from your contacts or click on plus-sign to enter number.</string>
+    <string name="frequent_numbers_info">Please choose one of the fields to change your frequent numbers. Click on the person to choose from your contacts or on plus to enter number.</string>
     <string name="frequent_numbers_success">You successfully added %1$s to your frequent numbers.</string>
     <string name="frequent_numbers_success_delete">You successfully deleted %1$s from your frequent numbers.</string>
 
@@ -107,7 +107,7 @@
     <string name="back">Go Back</string>
     <string name="buy">Buy</string>
     <string name="cancel">Cancel</string>
-    <string name="check_input">Please check input</string>
+    <string name="check_input">Please check input!</string>
     <string name="close">Close</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_password">Confirm Password</string>

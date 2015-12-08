@@ -45,9 +45,9 @@
     <string name="confirm_info">"No te haz conectado ultimamente, por favor ingresa tu contraseña para confirmar la transacción."</string>
 
     <!-- Frequent Numbers -->
-    <string name="frequent_check">"Por favor confirma que deseas borrar %1$s?"</string>
+    <string name="frequent_check">"Por favor confirma que deseas borrar el número %1$s?"</string>
     <string name="frequent_invalid_input">¡Por favor confirma si se registró correctamente el número de teléfono!</string>
-    <string name="frequent_msisdn">Añadir nuevo contacto></string>
+    <string name="frequent_msisdn">Añadir nuevo contacto</string>
     <string name="frequent_numbers">Números frecuentes</string>
     <string name="frequent_numbers_info">Por favor, elige uno de los campos para añadir/editar tus números frecuentes.</string>
     <string name="frequent_numbers_success">Añadiste exitosamente %1$s a tus números frecuentes.</string>
@@ -57,20 +57,20 @@
     <string name="recharge">Recargar</string>
     <string name="recharge_check">"Por favor confirma que deseas recargar %1$s%2$.2f."</string>
     <string name="recharge_info">Elige el monto de tu recarga.</string>
-    <string name="recharge_invalid_input">Por favor valida que elegiste un monto valido de recarga!</string>
+    <string name="recharge_invalid_input">Por favor valida que elegiste un monto válido de recarga!</string>
     <string name="recharge_recent_activity">"Recarga en la cuenta por %1$s%2$.2f"</string>
     <string name="recharge_success">"Tu recarga de %1$s%2$.2f fue exitosa."</string>
 
     <!-- Transfer Balance -->
     <string name="transfer_balance">Pasa Tiempo</string>
 
-    <string name="transfer_check">"Por favor confirma que deseas abonar %1$s%2$.2f a %3$s."</string>
+    <string name="transfer_check">"Por favor confirma que deseas abonar %1$s%2$.2f al número %3$s."</string>
     <string name="transfer_info">Por favor, elige la cantidad y el número de teléfono al que deseas abonar. Haz clic en la imagen para elegir entre tus contactos o registra el número de teléfono en el cuadro de texto.</string>
     <string name="transfer_invalid_amount">La cantidad a abonar no puede ser superior a tu saldo disponible. ¡Por favor confirma si ingresaste el monto correcto para abonar!</string>
     <string name="transfer_invalid_msisdn">¡Por favor confirma que el contacto seleccionado es a quien deseas abonar!</string>
     <string name="transfer_msisdn">Registrar teléfono #</string>
-    <string name="transfer_recent_activity">"Se han abonado %1$s%2$.2f a %3$s"</string>
-    <string name="transfer_success">"Tu abono de %1$s%2$.2f a %3$s fue exitoso."</string>
+    <string name="transfer_recent_activity">"Se han abonado %1$s%2$.2f pesos al número %3$s"</string>
+    <string name="transfer_success">"Tu abono de %1$s%2$.2f pesos al %3$s fue exitoso."</string>
 
     <!-- my account page -->
     <string name="your_account">Mi cuenta</string>
@@ -118,7 +118,7 @@
 
     <!-- Navigation drawer -->
     <string name="navdrawer_item_home">Inicio</string>
-    <string name="navdrawer_item_recent">Últimos movimientos</string>
+    <string name="navdrawer_item_recent">Últimos Movimientos</string>
     <string name="navdrawer_item_frequent_numbers">Números Frecuentes</string>
     <string name="navdrawer_item_services">Servicios</string>
     <string name="navdrawer_item_recharge">Recarga</string>
@@ -129,7 +129,7 @@
     <string name="navdrawer_item_tutorial">Tutorial</string>
     <string name="navdrawer_item_terms">Términos y Condiciones</string>
     <string name="navdrawer_item_contact">Contáctanos</string>
-    <string name="navdrawer_item_privacy">PolÍtica de Privacidad</string>
+    <string name="navdrawer_item_privacy">Política de Privacidad</string>
     <string name="navdrawer_item_logout">Salir</string>
     <string name="password_does_not_match">La contraseña no coincide!</string>
 
