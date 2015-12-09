@@ -10,10 +10,12 @@ import com.google.gson.Gson;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse.UserActivity;
+import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.bean.ui.BeanRechargeParams;
 import com.mitelcel.pack.bean.ui.BeanTransferParams;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
+import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -70,6 +72,21 @@ public class RecentItemLayout extends RelativeLayout {
             if(bean != null) {
                 amount = bean.getAmount();
                 target = bean.getTarget();
+
+                BeanContactInfo beanContactInfo = MiUtils.getContactInfoByPhone(getContext(), target);
+                if(beanContactInfo.getName() != null && !beanContactInfo.getName().equals("")){
+                    target = beanContactInfo.getName();
+                }
+
+                String photo = beanContactInfo.getPhoto();
+                if(photo != null && !photo.equalsIgnoreCase("")){
+                    Picasso.with(getContext().getApplicationContext())
+                            .load(photo)
+                            .transform(new RoundedTransformation(20, 4))
+                            .resize(256, 256)
+                            .centerCrop()
+                            .into(overlay);
+                }
             }
             action = getResources().getString(R.string.transfer_recent_activity, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, target);
         }

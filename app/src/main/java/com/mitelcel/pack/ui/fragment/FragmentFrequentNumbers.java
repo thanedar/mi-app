@@ -500,6 +500,7 @@ public class FragmentFrequentNumbers extends Fragment
     public void refreshDisplay() {
         BeanContactInfo beanContactInfo;
         String photo;
+        String name;
 
         tvMsisdn_1.setText(msisdn_1);
         MiLog.i(TAG, "refreshDisplay MSISDN 1 - " + msisdn_1);
@@ -515,6 +516,10 @@ public class FragmentFrequentNumbers extends Fragment
             photo = beanContactInfo.getPhoto();
             if(photo != null && !photo.equalsIgnoreCase("")){
                 loadPhoto(photo, con_1);
+
+            name = beanContactInfo.getName();
+            if(name != null && !name.equalsIgnoreCase("")){
+                tvMsisdn_1.setText(name);
             }
 
             pos_1.setVisibility(View.GONE);
@@ -535,6 +540,10 @@ public class FragmentFrequentNumbers extends Fragment
             photo = beanContactInfo.getPhoto();
             if(photo != null && !photo.equalsIgnoreCase("")){
                 loadPhoto(photo, con_2);
+
+            name = beanContactInfo.getName();
+            if(name != null && !name.equalsIgnoreCase("")){
+                tvMsisdn_2.setText(name);
             }
 
             pos_2.setVisibility(View.GONE);
@@ -555,6 +564,10 @@ public class FragmentFrequentNumbers extends Fragment
             photo = beanContactInfo.getPhoto();
             if(photo != null && !photo.equalsIgnoreCase("")){
                 loadPhoto(photo, con_3);
+
+            name = beanContactInfo.getName();
+            if(name != null && !name.equalsIgnoreCase("")){
+                tvMsisdn_3.setText(name);
             }
 
             pos_3.setVisibility(View.GONE);
@@ -575,6 +588,10 @@ public class FragmentFrequentNumbers extends Fragment
             photo = beanContactInfo.getPhoto();
             if(photo != null && !photo.equalsIgnoreCase("")){
                 loadPhoto(photo, con_4);
+
+            name = beanContactInfo.getName();
+            if(name != null && !name.equalsIgnoreCase("")){
+                tvMsisdn_4.setText(name);
             }
 
             pos_4.setVisibility(View.GONE);
@@ -595,6 +612,10 @@ public class FragmentFrequentNumbers extends Fragment
             photo = beanContactInfo.getPhoto();
             if(photo != null && !photo.equalsIgnoreCase("")){
                 loadPhoto(photo, con_5);
+
+            name = beanContactInfo.getName();
+            if(name != null && !name.equalsIgnoreCase("")){
+                tvMsisdn_5.setText(name);
             }
 
             pos_5.setVisibility(View.GONE);

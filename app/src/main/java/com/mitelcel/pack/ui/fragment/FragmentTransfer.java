@@ -193,8 +193,8 @@ public class FragmentTransfer extends Fragment
         }
 
         msisdn = beanContactInfo.getPhone();
-        transfer_msisdn.setText(msisdn);
-        transfer_msisdn.setEnabled(false);
+        transfer_msisdn.setText(beanContactInfo.getName());
+        transfer_msisdn.setClickable(false);
     }
 
     @Override
