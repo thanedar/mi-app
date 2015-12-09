@@ -157,21 +157,6 @@ public class FragmentFrequentNumbers extends Fragment
         }
         else
             phoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_frequent_numbers, container, false);
-        ButterKnife.inject(this, view);
-
-        dialog.show();
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
 
         BeanGetFrequentNumbers beanGetFrequentNumbers = new BeanGetFrequentNumbers();
         miApiClient.get_frequent_numbers(beanGetFrequentNumbers, new Callback<BeanGetFrequentNumbersResponse>() {
@@ -216,6 +201,21 @@ public class FragmentFrequentNumbers extends Fragment
                 dialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_frequent_numbers, container, false);
+        ButterKnife.inject(this, view);
+
+        dialog.show();
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @OnClick({R.id.frequent_pos_1, R.id.frequent_pos_2, R.id.frequent_pos_3, R.id.frequent_pos_4, R.id.frequent_pos_5})
@@ -499,7 +499,6 @@ public class FragmentFrequentNumbers extends Fragment
 
     public void refreshDisplay() {
         BeanContactInfo beanContactInfo;
-        String photo;
         String name;
 
         tvMsisdn_1.setText(msisdn_1);
@@ -508,19 +507,19 @@ public class FragmentFrequentNumbers extends Fragment
         if(msisdn_1.equals("")){
             pos_1.setVisibility(View.VISIBLE);
             neg_1.setVisibility(View.GONE);
+            con_1.setImageResource(R.drawable.ic_person_128);
             con_1.setClickable(true);
         }
         else {
             beanContactInfo = MiUtils.getContactInfoByPhone(getActivity(), msisdn_1);
             MiLog.i(TAG, "beanContactInfo - " + beanContactInfo.toString());
-            photo = beanContactInfo.getPhoto();
-            if(photo != null && !photo.equalsIgnoreCase("")){
-                loadPhoto(photo, con_1);
 
             name = beanContactInfo.getName();
             if(name != null && !name.equalsIgnoreCase("")){
                 tvMsisdn_1.setText(name);
             }
+
+            loadPhoto(beanContactInfo.getPhoto(), con_1);
 
             pos_1.setVisibility(View.GONE);
             neg_1.setVisibility(View.VISIBLE);
@@ -532,19 +531,19 @@ public class FragmentFrequentNumbers extends Fragment
         if(msisdn_2.equals("")){
             pos_2.setVisibility(View.VISIBLE);
             neg_2.setVisibility(View.GONE);
+            con_2.setImageResource(R.drawable.ic_person_128);
             con_2.setClickable(true);
         }
         else {
             beanContactInfo = MiUtils.getContactInfoByPhone(getActivity(), msisdn_2);
             MiLog.i(TAG, "beanContactInfo - " + beanContactInfo.toString());
-            photo = beanContactInfo.getPhoto();
-            if(photo != null && !photo.equalsIgnoreCase("")){
-                loadPhoto(photo, con_2);
 
             name = beanContactInfo.getName();
             if(name != null && !name.equalsIgnoreCase("")){
                 tvMsisdn_2.setText(name);
             }
+
+            loadPhoto(beanContactInfo.getPhoto(), con_2);
 
             pos_2.setVisibility(View.GONE);
             neg_2.setVisibility(View.VISIBLE);
@@ -556,19 +555,19 @@ public class FragmentFrequentNumbers extends Fragment
         if(msisdn_3.equals("")){
             pos_3.setVisibility(View.VISIBLE);
             neg_3.setVisibility(View.GONE);
+            con_3.setImageResource(R.drawable.ic_person_128);
             con_3.setClickable(true);
         }
         else {
             beanContactInfo = MiUtils.getContactInfoByPhone(getActivity(), msisdn_3);
             MiLog.i(TAG, "beanContactInfo - " + beanContactInfo.toString());
-            photo = beanContactInfo.getPhoto();
-            if(photo != null && !photo.equalsIgnoreCase("")){
-                loadPhoto(photo, con_3);
 
             name = beanContactInfo.getName();
             if(name != null && !name.equalsIgnoreCase("")){
                 tvMsisdn_3.setText(name);
             }
+
+            loadPhoto(beanContactInfo.getPhoto(), con_3);
 
             pos_3.setVisibility(View.GONE);
             neg_3.setVisibility(View.VISIBLE);
@@ -580,19 +579,19 @@ public class FragmentFrequentNumbers extends Fragment
         if(msisdn_4.equals("")){
             pos_4.setVisibility(View.VISIBLE);
             neg_4.setVisibility(View.GONE);
+            con_4.setImageResource(R.drawable.ic_person_128);
             con_4.setClickable(true);
         }
         else {
             beanContactInfo = MiUtils.getContactInfoByPhone(getActivity(), msisdn_4);
             MiLog.i(TAG, "beanContactInfo - " + beanContactInfo.toString());
-            photo = beanContactInfo.getPhoto();
-            if(photo != null && !photo.equalsIgnoreCase("")){
-                loadPhoto(photo, con_4);
 
             name = beanContactInfo.getName();
             if(name != null && !name.equalsIgnoreCase("")){
                 tvMsisdn_4.setText(name);
             }
+
+            loadPhoto(beanContactInfo.getPhoto(), con_4);
 
             pos_4.setVisibility(View.GONE);
             neg_4.setVisibility(View.VISIBLE);
@@ -604,19 +603,19 @@ public class FragmentFrequentNumbers extends Fragment
         if(msisdn_5.equals("")){
             pos_5.setVisibility(View.VISIBLE);
             neg_5.setVisibility(View.GONE);
+            con_5.setImageResource(R.drawable.ic_person_128);
             con_5.setClickable(true);
         }
         else {
             beanContactInfo = MiUtils.getContactInfoByPhone(getActivity(), msisdn_5);
             MiLog.i(TAG, "beanContactInfo - " + beanContactInfo.toString());
-            photo = beanContactInfo.getPhoto();
-            if(photo != null && !photo.equalsIgnoreCase("")){
-                loadPhoto(photo, con_5);
 
             name = beanContactInfo.getName();
             if(name != null && !name.equalsIgnoreCase("")){
                 tvMsisdn_5.setText(name);
             }
+
+            loadPhoto(beanContactInfo.getPhoto(), con_5);
 
             pos_5.setVisibility(View.GONE);
             neg_5.setVisibility(View.VISIBLE);
@@ -625,12 +624,17 @@ public class FragmentFrequentNumbers extends Fragment
     }
 
     private void loadPhoto(String photo, ImageView display){
-        Picasso.with(getActivity().getApplicationContext())
-                .load(photo)
-                .transform(new RoundedTransformation(20, 4))
-                .resize(192, 192)
-                .centerCrop()
-                .into(display);
+        if(photo != null && !photo.equalsIgnoreCase("")){
+            Picasso.with(getActivity().getApplicationContext())
+                    .load(photo)
+                    .transform(new RoundedTransformation(20, 4))
+                    .resize(224, 224)
+                    .centerCrop()
+                    .into(display);
+        }
+        else{
+            display.setImageResource(R.drawable.ic_person_128);
+        }
     }
 
     /**
