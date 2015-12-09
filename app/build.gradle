@@ -45,8 +45,8 @@ android {
         applicationId "com.acotel.mitelcel"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 6
-        versionName '1.2.0'
+        versionCode 7
+        versionName '1.2.5'
     }
     buildTypes {
         release {
@@ -107,14 +107,13 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.1.1'
     compile 'com.android.support:support-v4:22.1.1'
     compile 'com.android.support:support-v13:22.1.1'
-    compile 'com.google.android.gms:play-services:8.1.0'
-    compile 'com.google.android.gms:play-services-ads:8.1.0'
-    compile 'com.google.android.gms:play-services-identity:8.1.0'
-    compile 'com.google.android.gms:play-services-gcm:8.1.0'
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.android.gms:play-services:8.3.0'
+    compile 'com.google.android.gms:play-services-ads:8.3.0'
+    compile 'com.google.android.gms:play-services-identity:8.3.0'
+    compile 'com.google.android.gms:play-services-gcm:8.3.0'
+    compile 'com.google.code.gson:gson:2.4'
     compile 'org.projectlombok:lombok:1.16.4'
     compile 'io.reactivex:rxandroid:0.24.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }
 
 afterEvaluate {
