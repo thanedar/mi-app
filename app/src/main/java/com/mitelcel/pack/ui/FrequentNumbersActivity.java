@@ -108,12 +108,10 @@ public class FrequentNumbersActivity extends BaseActivity
                     showDialogSuccessCall(getString(R.string.frequent_numbers_success, msisdn),
                             getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
-                }
-                else if (beanSetFrequentNumberResponse.getError().getCode() == Config.RECORD_EXISTS) {
+                } else if (beanSetFrequentNumberResponse.getError().getCode() == Config.RECORD_EXISTS) {
                     MiLog.i(TAG, "Set Freq Number API Error response " + beanSetFrequentNumberResponse.toString());
                     showDialogErrorCall(getString(R.string.check_input), getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
-                }
-                else {
+                } else {
                     MiLog.i(TAG, "Set Freq Number API Error response " + beanSetFrequentNumberResponse.toString());
                     showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
@@ -151,16 +149,23 @@ public class FrequentNumbersActivity extends BaseActivity
             @Override
             public void success(BeanDeleteFrequentNumberResponse beanDeleteFrequentNumberResponse, Response response) {
                 dialog.dismiss();
-                if (beanDeleteFrequentNumberResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i(TAG, "Delete Freq Number API response " + beanDeleteFrequentNumberResponse.toString());
 
-                    showDialogSuccessCall(getString(R.string.frequent_numbers_success_delete, msisdn),
-                            getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+                if (beanDeleteFrequentNumberResponse != null) {
+                    if (beanDeleteFrequentNumberResponse.getError().getCode() == Config.SUCCESS) {
+                        MiLog.i(TAG, "Delete Freq Number API response " + beanDeleteFrequentNumberResponse.toString());
 
-                    FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
-                    frag.refreshDisplay();
+                        showDialogSuccessCall(getString(R.string.frequent_numbers_success_delete, msisdn),
+                                getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+
+                        FragmentFrequentNumbers frag = (FragmentFrequentNumbers) getSupportFragmentManager().findFragmentByTag(FragmentFrequentNumbers.TAG);
+                        frag.refreshDisplay();
+                    } else {
+                        MiLog.i(TAG, "Delete Freq Number API Error response " + beanDeleteFrequentNumberResponse.toString());
+                        showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                    }
                 } else {
-                    MiLog.i(TAG, "Delete Freq Number API Error response " + beanDeleteFrequentNumberResponse.toString());
+                    MiLog.i(TAG, "Delete Freq Number API NULL response");
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             }
 

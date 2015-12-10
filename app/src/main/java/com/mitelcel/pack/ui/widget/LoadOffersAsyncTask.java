@@ -64,19 +64,20 @@ public class LoadOffersAsyncTask extends AsyncTask<MiApiClient, Void, LoadOffers
     @Override
     protected void onPostExecute(InternalBean bean) {
         super.onPostExecute(bean);
-        MiLog.i("LoadAsync onPostExecute", bean.toString());
         try {
             if (reference.get() == null || bean == null) {
                 MiLog.i("LoadAsync onPostExecute", "reference bean NULL");
                 reference.get().error(Config.NO_CONNECTION);
             }
-            if (bean.error_code == Config.SUCCESS) {
-                MiLog.i("LoadAsync onPostExecute", "Calling updateAdapter");
-                reference.get().updateAdapter(bean.offerItemHolders, refresh);
-            }
             else {
-                MiLog.i("LoadAsync onPostExecute", "not SUCCESS " + bean.error_code);
-                reference.get().error(bean.error_code);
+                MiLog.i("LoadAsync onPostExecute", bean.toString());
+                if (bean.error_code == Config.SUCCESS) {
+                    MiLog.i("LoadAsync onPostExecute", "Calling updateAdapter");
+                    reference.get().updateAdapter(bean.offerItemHolders, refresh);
+                } else {
+                    MiLog.i("LoadAsync onPostExecute", "not SUCCESS " + bean.error_code);
+                    reference.get().error(bean.error_code);
+                }
             }
         } catch (Exception e) {
             MiLog.i("LoadAsync onPostExecute", "In catch block");

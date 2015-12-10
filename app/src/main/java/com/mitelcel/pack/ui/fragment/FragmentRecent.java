@@ -114,7 +114,7 @@ public class FragmentRecent extends Fragment
         mRecentRecycleViewAdapter.setOnItemClickListener(new RecentRecycleViewAdapter.ClickListener() {
             @Override
             public void onRecentItemClick(int position, View view) {
-                MiLog.i("FragmentRecent", "Click detected in fragment");
+                MiLog.i("FragmentRecent", "Click detected in fragment with position " + position + " and view " + view);
             }
         });
 
@@ -129,15 +129,20 @@ public class FragmentRecent extends Fragment
             @Override
             public void success(BeanGetRecentActivityResponse beanGetRecentActivityResponse, Response response) {
                 dialog.dismiss();
-                MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivityResponse.toString() + " ]");
-                if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS && beanGetRecentActivityResponse.getResult() != null) {
-                    MiLog.i(TAG, beanGetRecentActivityResponse.toString());
-                    List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
-                    mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
-                } else{
-                    if(beanGetRecentActivityResponse == null)
-                        MiLog.i(TAG, "beanGetRecentActivityResponse [ NULL ]");
+                if(beanGetRecentActivityResponse == null) {
                     tvEmpty.setText(R.string.oops);
+                    MiLog.i(TAG, "beanGetRecentActivityResponse [ NULL ]");
+                }
+                else {
+                    MiLog.i(TAG, "beanGetRecentActivity [" + beanGetRecentActivityResponse.toString() + " ]");
+
+                    if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS && beanGetRecentActivityResponse.getResult() != null) {
+                        MiLog.i(TAG, beanGetRecentActivityResponse.toString());
+                        List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
+                        mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
+                    } else {
+                        tvEmpty.setText(R.string.no_data);
+                    }
                 }
             }
 

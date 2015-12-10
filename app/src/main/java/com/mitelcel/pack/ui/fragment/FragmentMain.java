@@ -140,12 +140,9 @@ public class FragmentMain extends Fragment {
         super.onResume();
 
         mListener.updateActionBar();
-        mRecentRecycleViewAdapter.setOnItemClickListener(new RecentRecycleViewAdapter.ClickListener() {
-            @Override
-            public void onRecentItemClick(int position, View view) {
-                MiLog.i("FragmentMain", "Click detected in fragment");
-                showRecent();
-            }
+        mRecentRecycleViewAdapter.setOnItemClickListener((position, view) -> {
+            MiLog.i("FragmentMain", "Click detected in fragment");
+            showRecent();
         });
 
         get_account_info();
@@ -175,13 +172,16 @@ public class FragmentMain extends Fragment {
         miApiClient.get_account_info(beanGetAccountInfo, new Callback<BeanGetAccountInfoResponse>() {
             @Override
             public void success(BeanGetAccountInfoResponse beanGetAccountInfoResponse, Response response) {
-                MiLog.i(TAG, "beanGetAccountInfoResponse: " + beanGetAccountInfoResponse.toString());
-                if (beanGetAccountInfoResponse.getError().getCode() == Config.SUCCESS && beanGetAccountInfoResponse.getResult() != null) {
-                    Resources res = getResources();
-                    minutes.setText(res.getString(R.string.home_minutes, beanGetAccountInfoResponse.getResult().getUsedMinutes()));
-                    sms.setText(res.getString(R.string.home_sms, beanGetAccountInfoResponse.getResult().getUsedSms()));
-                    data.setText(res.getString(R.string.home_data, beanGetAccountInfoResponse.getResult().getUsedData()));
-                }
+                if(beanGetAccountInfoResponse != null) {
+                    MiLog.i(TAG, "beanGetAccountInfoResponse: " + beanGetAccountInfoResponse.toString());
+                    if (beanGetAccountInfoResponse.getError().getCode() == Config.SUCCESS && beanGetAccountInfoResponse.getResult() != null) {
+                        Resources res = getResources();
+                        minutes.setText(res.getString(R.string.home_minutes, beanGetAccountInfoResponse.getResult().getUsedMinutes()));
+                        sms.setText(res.getString(R.string.home_sms, beanGetAccountInfoResponse.getResult().getUsedSms()));
+                        data.setText(res.getString(R.string.home_data, beanGetAccountInfoResponse.getResult().getUsedData()));
+                    }
+                } else
+                    MiLog.i(TAG, "beanGetAccountInfoResponse [ NULL ]");
             }
 
             @Override
@@ -197,20 +197,22 @@ public class FragmentMain extends Fragment {
         miApiClient.get_recent_activity(beanGetRecentActivity, new Callback<BeanGetRecentActivityResponse>() {
             @Override
             public void success(BeanGetRecentActivityResponse beanGetRecentActivityResponse, Response response) {
-                MiLog.i(TAG, "beanGetRecentActivityResponse: " + beanGetRecentActivityResponse.toString());
-                if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i(TAG, beanGetRecentActivityResponse.toString());
-                    if (beanGetRecentActivityResponse.getResult() != null) {
-                        List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
-                        mRecentRecycleViewAdapter.replaceData(userActivities == null ? new ArrayList<>() : userActivities);
+                if (beanGetRecentActivityResponse == null)
+                    MiLog.i("FragmentMain", "beanGetRecentActivityResponse [ NULL ]");
+                else {
+                    MiLog.i(TAG, "beanGetRecentActivityResponse: " + beanGetRecentActivityResponse.toString());
+                    if (beanGetRecentActivityResponse.getError().getCode() == Config.SUCCESS) {
+                        MiLog.i(TAG, beanGetRecentActivityResponse.toString());
+                        if (beanGetRecentActivityResponse.getResult() != null) {
+                            List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
+                            mRecentRecycleViewAdapter.replaceData(userActivities);
+                        } else {
+                            MiLog.i("FragmentMain", "beanGetRecentActivityResponse.Result [ NULL ]");
+                            tvEmpty.setText(R.string.no_data);
+                        }
                     } else {
-                        MiLog.i("FragmentMain", "beanGetRecentActivityResponse.Result [ NULL ]");
                         tvEmpty.setText(R.string.no_data);
                     }
-                } else {
-                    if (beanGetRecentActivityResponse == null)
-                        MiLog.i("FragmentMain", "beanGetRecentActivityResponse [ NULL ]");
-                    tvEmpty.setText(R.string.oops);
                 }
             }
 
@@ -224,7 +226,7 @@ public class FragmentMain extends Fragment {
 
     @OnClick(R.id.home_offer)
     public void onCLick(View view){
-        MiLog.i(TAG, "Offer click detected");
+        MiLog.i(TAG, "Offer click detected " + view.getId());
         getActivity().startActivity(new Intent(getActivity(), ListOfferActivity.class));
     }
 
@@ -234,25 +236,29 @@ public class FragmentMain extends Fragment {
         miApiClient.get_offer_list(beanGetOfferList, new Callback<BeanGetOfferListResponse>() {
             @Override
             public void success(BeanGetOfferListResponse beanGetOfferListResponse, Response response) {
-                MiLog.i(TAG, "beanGetOfferListResponse " + beanGetOfferListResponse.toString());
-                List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
-                if(beanGetOfferListResponse.getError().getCode() == Config.SUCCESS && !offerList.isEmpty()) {
-                    MiLog.i(TAG, "offer list " + offerList.get(0).toString());
-                    OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
-                    MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
-                            " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
-                    offerDescription.setText(offerItemHolder.description);
-                    offerBtn.setText(offerItemHolder.buttonText);
-                    offerBtn.setVisibility(View.INVISIBLE);
+                if(beanGetOfferListResponse != null) {
+                    MiLog.i(TAG, "beanGetOfferListResponse " + beanGetOfferListResponse.toString());
+                    List<BeanGetOfferListResponse.Offer> offerList = beanGetOfferListResponse.getResult();
+                    if (beanGetOfferListResponse.getError().getCode() == Config.SUCCESS && !offerList.isEmpty()) {
+                        MiLog.i(TAG, "offer list " + offerList.get(0).toString());
+                        OfferItemHolder offerItemHolder = new OfferItemHolder(offerList.get(0));
+                        MiLog.i(TAG, "offerItemHolder desc " + offerItemHolder.description + " button " + offerItemHolder.buttonText +
+                                " urlCard " + offerItemHolder.urlCard + " urlIcon " + offerItemHolder.urlIcon);
+                        offerDescription.setText(offerItemHolder.description);
+                        offerBtn.setText(offerItemHolder.buttonText);
+                        offerBtn.setVisibility(View.INVISIBLE);
 
-                    Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
-                    Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
+                        Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
+                        Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
+                    }
                 }
+                else
+                    MiLog.i(TAG, "GetBestOfferList NULL response");
             }
 
             @Override
             public void failure(RetrofitError error) {
-                MiLog.i(TAG, "GetOfferList failure " + error.toString());
+                MiLog.i(TAG, "GetBestOfferList failure " + error.toString());
             }
         });
     }

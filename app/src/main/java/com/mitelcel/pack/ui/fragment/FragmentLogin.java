@@ -135,23 +135,33 @@ public class FragmentLogin extends Fragment implements View.OnClickListener{
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
                 dialog.dismiss();
+
+                if (beanLoginResponse != null) {
 //                MiLog.i(TAG, "Login response " + beanLoginResponse.toString());
 //                MiLog.i(TAG, "Login Session Id " + beanLoginResponse.getResult().getSessionId());
-                if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
-                    MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
+                    if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
+                        MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
 
-                    MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
-                    MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
-                    MiUtils.MiAppPreferences.setLogin();
-                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
+                        MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
+                        MiUtils.MiAppPreferences.setAuthPass(pass.getText().toString());
+                        MiUtils.MiAppPreferences.setLogin();
+                        MiUtils.MiAppPreferences.setLastCheckTimestamp();
 
-                    MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-                    getActivity().finish();
+                        MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                        getActivity().finish();
+                    } else {
+                        MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());
+                        mListener.showDialogErrorCall(
+                                getString(R.string.login_failed, beanLoginResponse.getError().getCode()),
+                                getString(R.string.close),
+                                DialogActivity.DIALOG_HIDDEN_ICO,
+                                DialogActivity.REQ_SIGN_IN
+                        );
+                    }
                 } else {
-                    MiLog.i(TAG, "Login API error response " + beanLoginResponse.toString());
-                    dialog.dismiss();
+                    MiLog.i(TAG, "Login API NULL response");
                     mListener.showDialogErrorCall(
-                            getString(R.string.login_failed, beanLoginResponse.getError().getCode()),
+                            getString(R.string.login_failed, Config.GENERIC_ERROR),
                             getString(R.string.close),
                             DialogActivity.DIALOG_HIDDEN_ICO,
                             DialogActivity.REQ_SIGN_IN

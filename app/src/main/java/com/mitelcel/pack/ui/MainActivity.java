@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -217,32 +218,40 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     }
 
     public void getCurrentBalance() {
-        BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance();
-        View progressBar = getSupportActionBar().getCustomView().findViewById(R.id.progress_bar_balance);
-        progressBar.setVisibility(View.VISIBLE);
-        TextView balanceView = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.act_bar_balance);
-        balanceView.setVisibility(View.GONE);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance();
 
-        MiLog.i("MainActivity", "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
-        miApiClient.get_current_balance(beanGetCurrentBalance, new Callback<BeanGetCurrentBalanceResponse>() {
-            @Override
-            public void success(BeanGetCurrentBalanceResponse beanGetCurrentBalanceResponse, Response response) {
-                MiLog.i("MainActivity", "BeanGetCurrentBalanceResponse response [ " + beanGetCurrentBalanceResponse.toString() + " ]");
-                progressBar.setVisibility(View.GONE);
-                balanceView.setVisibility(View.VISIBLE);
-                if (beanGetCurrentBalanceResponse != null && beanGetCurrentBalanceResponse.getError().getCode() == Config.SUCCESS) {
-                    String balance = beanGetCurrentBalanceResponse.getResult().getCurrentBalance();
-                    MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(balance));
+            View progressBar = actionBar.getCustomView().findViewById(R.id.progress_bar_balance);
+            progressBar.setVisibility(View.VISIBLE);
+            TextView balanceView = (TextView) actionBar.getCustomView().findViewById(R.id.act_bar_balance);
+            balanceView.setVisibility(View.GONE);
+
+            MiLog.i("MainActivity", "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
+            miApiClient.get_current_balance(beanGetCurrentBalance, new Callback<BeanGetCurrentBalanceResponse>() {
+                @Override
+                public void success(BeanGetCurrentBalanceResponse beanGetCurrentBalanceResponse, Response response) {
+                    if (beanGetCurrentBalanceResponse != null) {
+                        MiLog.i("MainActivity", "BeanGetCurrentBalanceResponse response [ " + beanGetCurrentBalanceResponse.toString() + " ]");
+                        progressBar.setVisibility(View.GONE);
+                        balanceView.setVisibility(View.VISIBLE);
+                        if (beanGetCurrentBalanceResponse.getError().getCode() == Config.SUCCESS) {
+                            String balance = beanGetCurrentBalanceResponse.getResult().getCurrentBalance();
+                            MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(balance));
+                        }
+                    }
+                    else
+                        MiLog.i("MainActivity", "BeanGetCurrentBalanceResponse response [ NULL ]");
                 }
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                progressBar.setVisibility(View.GONE);
-                balanceView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
-                balanceView.setVisibility(View.VISIBLE);
-            }
-        });
+                @Override
+                public void failure(RetrofitError error) {
+                    progressBar.setVisibility(View.GONE);
+                    balanceView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
+                    balanceView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
     }
 
     @Override

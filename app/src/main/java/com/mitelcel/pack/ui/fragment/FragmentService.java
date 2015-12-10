@@ -134,15 +134,20 @@ public class FragmentService extends Fragment
             @Override
             public void success(BeanGetServiceListResponse beanGetServiceListResponse, Response response) {
                 dialog.dismiss();
-                MiLog.i(TAG, "beanGetServiceListResponse [" + beanGetServiceListResponse.toString() + " ]");
-                if (beanGetServiceListResponse.getError().getCode() == Config.SUCCESS && beanGetServiceListResponse.getResult() != null) {
-                    MiLog.i(TAG, beanGetServiceListResponse.toString());
-                    List<BeanGetServiceListResponse.Service> services= beanGetServiceListResponse.getResult();
-                    mServiceRecycleViewAdapter.replaceData(services == null ? new ArrayList<>() : services);
-                } else {
-                    if (beanGetServiceListResponse == null)
-                        MiLog.i(TAG, "GetServiceListResponse [ NULL ]");
+                if (beanGetServiceListResponse == null){
                     tvEmpty.setText(R.string.oops);
+                    MiLog.i(TAG, "GetServiceListResponse [ NULL ]");
+                }
+                else {
+                    MiLog.i(TAG, "beanGetServiceListResponse [" + beanGetServiceListResponse.toString() + " ]");
+
+                    if (beanGetServiceListResponse.getError().getCode() == Config.SUCCESS && beanGetServiceListResponse.getResult() != null) {
+                        MiLog.i(TAG, beanGetServiceListResponse.toString());
+                        List<BeanGetServiceListResponse.Service> services = beanGetServiceListResponse.getResult();
+                        mServiceRecycleViewAdapter.replaceData(services == null ? new ArrayList<>() : services);
+                    } else {
+                        tvEmpty.setText(R.string.no_data);
+                    }
                 }
             }
 

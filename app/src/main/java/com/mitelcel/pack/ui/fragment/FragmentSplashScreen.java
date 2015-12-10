@@ -97,14 +97,16 @@ public class FragmentSplashScreen extends Fragment implements
             miApiClient.submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
                 @Override
                 public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
-                    MiLog.i(TAG, "beanSubmitAppInfoResponse: " + beanSubmitAppInfoResponse.toString());
-                    if (beanSubmitAppInfoResponse.getResult() != null) {
-                        MiUtils.MiAppPreferences.setToken(beanSubmitAppInfoResponse.getResult().getAppToken());
-                    } else {
-                        // TODO: Remove the FAKE login call here when we have the entire login and register flow
-                        fakeLogin();
+                    if(beanSubmitAppInfoResponse != null) {
+                        MiLog.i(TAG, "beanSubmitAppInfoResponse: " + beanSubmitAppInfoResponse.toString());
+                        if (beanSubmitAppInfoResponse.getResult() != null) {
+                            MiUtils.MiAppPreferences.setToken(beanSubmitAppInfoResponse.getResult().getAppToken());
+                        } else {
+                            // TODO: Remove the FAKE login call here when we have the entire login and register flow
+                            fakeLogin();
                         /*MiUtils.startSkillActivity(getActivity(), TutorialActivity.class);
                         getActivity().finish();*/
+                        }
                     }
                 }
 
@@ -152,16 +154,19 @@ public class FragmentSplashScreen extends Fragment implements
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {
             @Override
             public void success(BeanLoginResponse beanLoginResponse, Response response) {
-                MiLog.i(TAG, "beanLoginResponse: " + beanLoginResponse.toString());
-                if(beanLoginResponse.getError().getCode() == Config.SUCCESS) {
-                    MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
-                    MiUtils.MiAppPreferences.setMsisdn(fakeMsisdn);
-                    MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-                    getActivity().finish();
+                if (beanLoginResponse != null) {
+                    MiLog.i(TAG, "beanLoginResponse: " + beanLoginResponse.toString());
+                    if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
+                        MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
+                        MiUtils.MiAppPreferences.setMsisdn(fakeMsisdn);
+                        MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                        getActivity().finish();
+                    } else {
+                        MiLog.i(TAG, "Fake Login error response " + beanLoginResponse.toString());
+                    }
                 }
-                else{
-                    MiLog.i(TAG, "Fake Login error response " + beanLoginResponse.toString());
-                }
+                else
+                    MiLog.i(TAG, "Fake Login response is NULL");
             }
 
             @Override

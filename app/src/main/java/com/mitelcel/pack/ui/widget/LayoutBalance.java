@@ -31,6 +31,7 @@ import rx.schedulers.Schedulers;
 public class LayoutBalance extends FrameLayout
         implements SharedPreferences.OnSharedPreferenceChangeListener, Observer<BeanGetCurrentBalanceResponse>
 {
+    private final String TAG = LayoutBalance.class.getSimpleName();
 
     @InjectView(R.id.act_bar_balance)
     TextView textView;
@@ -100,7 +101,7 @@ public class LayoutBalance extends FrameLayout
 
     public void getCurrentBalance(){
         BeanGetCurrentBalance beanGetCurrentBalance = new BeanGetCurrentBalance();
-        MiLog.i(LayoutBalance.class.getSimpleName(), "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
+        MiLog.i(TAG, "beanGetCurrentBalance [ " + beanGetCurrentBalance.toString() + " ]");
         showProgressBar();
         miApiClient.get_current_balance(beanGetCurrentBalance)
                 .subscribeOn(Schedulers.computation())
@@ -120,10 +121,14 @@ public class LayoutBalance extends FrameLayout
 
     @Override
     public void onNext(BeanGetCurrentBalanceResponse beanResponse) {
-        MiLog.i(LayoutBalance.class.getSimpleName(), "BeanGetCurrentBalanceResponse response [ " + beanResponse.toString() + " ]");
-        if (beanResponse != null && beanResponse.getError().getCode() == Config.SUCCESS) {
-            String cash = beanResponse.getResult().getCurrentBalance();
-            MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(cash));
+        if (beanResponse != null) {
+            MiLog.i(TAG, "BeanGetCurrentBalanceResponse response [ " + beanResponse.toString() + " ]");
+            if (beanResponse.getError().getCode() == Config.SUCCESS) {
+                String cash = beanResponse.getResult().getCurrentBalance();
+                MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(cash));
+            }
         }
+        else
+            MiLog.i(TAG, "BeanGetCurrentBalanceResponse response [ NULL ]");
     }
 }

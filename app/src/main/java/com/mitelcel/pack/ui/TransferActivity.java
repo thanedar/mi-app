@@ -104,7 +104,7 @@ public class TransferActivity extends BaseActivity
         MiLog.i(TAG, "onConfirmFragmentInteraction event started");
 
         BeanTransferBalance beanTransferBalance;
-        if(password == "") {
+        if(password.equals("")) {
             beanTransferBalance = new BeanTransferBalance(msisdn, amount);
         }
         else {
@@ -115,18 +115,25 @@ public class TransferActivity extends BaseActivity
             @Override
             public void success(BeanTransferBalanceResponse beanTransferBalanceResponse, Response response) {
                 dialog.dismiss();
-                if (beanTransferBalanceResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i("Transfer", "Transfer API response " + beanTransferBalanceResponse.toString());
 
-                    MiUtils.MiAppPreferences.setSessionId(beanTransferBalanceResponse.getResult().getSessionId());
-                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
-                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
+                if (beanTransferBalanceResponse != null) {
+                    if (beanTransferBalanceResponse.getError().getCode() == Config.SUCCESS) {
+                        MiLog.i("Transfer", "Transfer API response " + beanTransferBalanceResponse.toString());
 
-                    showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
-                            getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+                        MiUtils.MiAppPreferences.setSessionId(beanTransferBalanceResponse.getResult().getSessionId());
+                        MiUtils.MiAppPreferences.setLastCheckTimestamp();
+                        MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
 
+                        showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
+                                getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+
+                    } else {
+                        MiLog.i("Transfer", "Transfer API Error response " + beanTransferBalanceResponse.toString());
+                        showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                    }
                 } else {
-                    MiLog.i("Transfer", "Transfer API Error response " + beanTransferBalanceResponse.toString());
+                    MiLog.i("Transfer", "Transfer API NULL response");
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             }
 

@@ -98,7 +98,7 @@ public class RechargeActivity extends BaseActivity
         MiLog.i(TAG, "onConfirmFragmentInteraction event started");
 
         BeanRechargeAccount beanRechargeAccount;
-        if(password == "") {
+        if(password.equals("")) {
             beanRechargeAccount = new BeanRechargeAccount(amount);
         }
         else {
@@ -109,18 +109,24 @@ public class RechargeActivity extends BaseActivity
             @Override
             public void success(BeanRechargeAccountResponse beanRechargeAccountResponse, Response response) {
                 dialog.dismiss();
-                if (beanRechargeAccountResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i("Recharge", "Recharge API response " + beanRechargeAccountResponse.toString());
+                if(beanRechargeAccountResponse != null) {
+                    if (beanRechargeAccountResponse.getError().getCode() == Config.SUCCESS) {
+                        MiLog.i("Recharge", "Recharge API response " + beanRechargeAccountResponse.toString());
 
-                    MiUtils.MiAppPreferences.setSessionId(beanRechargeAccountResponse.getResult().getSessionId());
-                    MiUtils.MiAppPreferences.setLastCheckTimestamp();
-                    MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() + amount);
+                        MiUtils.MiAppPreferences.setSessionId(beanRechargeAccountResponse.getResult().getSessionId());
+                        MiUtils.MiAppPreferences.setLastCheckTimestamp();
+                        MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() + amount);
 
-                    showDialogSuccessCall(getString(R.string.recharge_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
-                            getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+                        showDialogSuccessCall(getString(R.string.recharge_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
+                                getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
+                    } else {
+                        MiLog.i("Recharge", "Recharge API Error response " + beanRechargeAccountResponse.toString());
+                        showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                    }
                 } else {
-                    MiLog.i("Recharge", "Recharge API Error response " + beanRechargeAccountResponse.toString());
+                    MiLog.i("Recharge", "Recharge API NULL response");
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             }
 
