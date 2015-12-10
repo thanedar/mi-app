@@ -1,6 +1,7 @@
 package com.mitelcel.pack.ui.widget;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -92,9 +93,9 @@ public class RecentItemLayout extends RelativeLayout {
         }
 
         tvDescription.setText(action);
-//        tvDescription.setText(userActivity.getAppDisplayText());
 
-        tvTime.setText(userActivity.getActivityDatetime());
+//        tvTime.setText(userActivity.getActivityDatetime());
+        tvTime.setText(DateUtils.getRelativeTimeSpanString(userActivity.getActivityTimestamp() * 1000));
 
         int iconRes = MiUtils.getResIdFromAction(activityType);
         icon.setImageResource(iconRes);

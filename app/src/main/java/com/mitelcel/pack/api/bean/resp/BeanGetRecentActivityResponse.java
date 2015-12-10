@@ -38,6 +38,9 @@ public class BeanGetRecentActivityResponse extends BeanGenericResponse {
         @SerializedName("activity_datetime")
         @Expose
         private String activityDatetime;
+        @SerializedName("activity_timestamp")
+        @Expose
+        private long activityTimestamp;
         @Expose
         private String request;
         @Expose
