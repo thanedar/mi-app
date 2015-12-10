@@ -147,8 +147,18 @@ public class FragmentSplashScreen extends Fragment implements
     }
 
     private void fakeLogin() {
-        String fakeMsisdn = "0000000002";
-        String fakePassword = "yasar";
+        String fakeMsisdn;
+        String fakePassword;
+
+        if(BuildConfig.DEBUG) {
+            fakeMsisdn = "0000000001";
+            fakePassword = "blabla";
+        }
+        else {
+            fakeMsisdn = "0000000002";
+            fakePassword = "yasar";
+        }
+
         BeanLogin beanLogin = new BeanLogin(getActivity().getApplicationContext(), fakeMsisdn, fakePassword);
         MiLog.i(TAG, "beanLogin: " + beanLogin.toString());
         miApiClient.login(beanLogin, new Callback<BeanLoginResponse>() {

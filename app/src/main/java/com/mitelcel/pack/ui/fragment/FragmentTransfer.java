@@ -48,7 +48,6 @@ public class FragmentTransfer extends Fragment
     private OnTransferFragmentInteractionListener mListener;
 
     private String msisdn = "";
-    private float amount = 0;
     private boolean showDefault = true;
 
     @InjectView(R.id.transfer_amount)
@@ -129,7 +128,7 @@ public class FragmentTransfer extends Fragment
         String msg_msisdn = null;
 
         MiLog.i(TAG, "Confirm clicked");
-        amount = 0;
+        float amount = 0;
 
         String input = transfer_amount.getText().toString();
         msisdn = transfer_msisdn.getText().toString();

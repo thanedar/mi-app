@@ -25,8 +25,7 @@ public class FragmentLoginOrRegister extends Fragment{
     public static final String TAG = FragmentLoginOrRegister.class.getSimpleName();
 
     public static FragmentLoginOrRegister newInstance() {
-        FragmentLoginOrRegister fragment = new FragmentLoginOrRegister();
-        return fragment;
+        return new FragmentLoginOrRegister();
     }
 
     public FragmentLoginOrRegister() {

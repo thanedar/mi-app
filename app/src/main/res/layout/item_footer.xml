@@ -69,7 +69,8 @@
             android:scaleType="centerCrop"
             android:src="@drawable/place_holder"
             app:border_image_width="@dimen/borderimage_width"
-            app:border_image_color="@android:color/white"/>
+            app:border_image_color="@android:color/white"
+            android:visibility="invisible" />
 
         <View
             android:id="@+id/space_view"

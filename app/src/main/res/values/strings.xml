@@ -99,7 +99,7 @@
     <string name="email_not_valid">Email not valid</string>
     <string name="password_does_not_match">Password does not match!</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
-    <string name="login_failed">"Login failed, error code: %1$s"</string>
+    <string name="login_failed">"Login failed with error code: %1$s"</string>
 
     <!-- General -->
     <string name="amount">Amount</string>

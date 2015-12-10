@@ -74,7 +74,7 @@
 
     <!-- my account page -->
     <string name="your_account">Mi cuenta</string>
-    <string name="recent_activity">Últimos movimientos</string>
+    <string name="recent_activity">Últimos Movimientos</string>
     <string name="service">Servicios</string>
     <string name="your_service">Tus Servicios</string>
     <string name="your_offer">Tus promociones</string>

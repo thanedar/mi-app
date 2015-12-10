@@ -212,10 +212,9 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
                 public void success(BeanLoginResponse resp, Response response) {
                     if (resp.getError().getCode() == Config.SUCCESS) {
                         MiUtils.MiAppPreferences.setSessionId(resp.getResult().getSessionId());
-                        sharedPreferences.edit().putBoolean(SharedPrefModule.HAS_CALL_ERROR, false).commit();
+                        sharedPreferences.edit().putBoolean(SharedPrefModule.HAS_CALL_ERROR, false).apply();
                         adapter.clear();
-                        if (MiUtils.Info.isNetworkConnected(getActivity()))
-                            startUpdateProcess(true);
+                        startUpdateProcess(true);
                     }
                 }
 
