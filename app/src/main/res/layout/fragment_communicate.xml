@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/label_communicate"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_label"
+        android:text="@string/communicate" />
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/communicate_offer"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_communicate"
+        android:padding="30dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/communicate_video_offer"
+        android:textSize="20sp" />
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:id="@+id/video_btn"
+        style="@style/Theme.App.ButtonFolks.Positive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/margin_huge"
+        android:layout_marginRight="@dimen/margin_huge"
+        android:text="@string/communicate_watch_video" />
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.mitelcel.pack.dagger.component;
 
 import com.mitelcel.pack.MiApp;
+import com.mitelcel.pack.ui.CommunicateActivity;
 import com.mitelcel.pack.ui.FrequentNumbersActivity;
 import com.mitelcel.pack.ui.ListOfferActivity;
 import com.mitelcel.pack.ui.MainActivity;
@@ -19,6 +20,7 @@ import com.mitelcel.pack.ui.widget.LayoutBalance;
  */
 public interface AppGraph {
     void inject(FrequentNumbersActivity frequentNumbersActivity);
+    void inject(CommunicateActivity communicateActivity);
     void inject(MiApp miApp);
     void inject(MainActivity mainActivity);
     void inject(LayoutBalance layoutBalance);

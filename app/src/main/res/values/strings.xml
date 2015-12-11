@@ -109,6 +109,7 @@
     <string name="cancel">Cancel</string>
     <string name="check_input">Please check input!</string>
     <string name="close">Close</string>
+    <string name="communicate">Communicate</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="decline">Decline</string>
@@ -125,6 +126,9 @@
     <string name="success">Success</string>
     <string name="updated">User updated!</string>
     <string name="warning">Warning</string>
+
+    <string name="communicate_video_offer">Click below to watch a video and earn some extra balance!</string>
+    <string name="communicate_watch_video">Watch video</string>
 
     <string name="package_tag" translatable="false">package_tag</string>
     <string name="url_redirect" translatable="false">link_redirect</string>

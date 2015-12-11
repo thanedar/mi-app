@@ -168,6 +168,9 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             case R.id.navdrawer_item_offers:
                 startActivity(new Intent(this, ListOfferActivity.class));
                 break;
+            case R.id.navdrawer_item_communicate:
+                startActivity(new Intent(this, CommunicateActivity.class));
+                break;
             case R.id.navdrawer_item_help:
                 Intent iHelp = new Intent(this, WebViewActivity.class);
                 iHelp.putExtra(WebViewActivity.VIEW_TYPE, WebViewActivity.VIEW_HELP);
