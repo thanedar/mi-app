@@ -1,7 +1,6 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
@@ -54,8 +52,13 @@ public class FragmentTransfer extends Fragment
     EditText transfer_amount;
     @InjectView(R.id.transfer_msisdn)
     TextView transfer_msisdn;
-    @InjectView(R.id.transfer_confirm_btn)
-    ButtonFolks confirm_btn;
+
+    @InjectView(R.id.transfer_5)
+    ButtonFolks transfer_5;
+    @InjectView(R.id.transfer_10)
+    ButtonFolks transfer_10;
+    @InjectView(R.id.transfer_other)
+    ButtonFolks otherBtn;
 
     @InjectView(R.id.transfer_contact)
     ImageView transfer_contact;
@@ -122,7 +125,7 @@ public class FragmentTransfer extends Fragment
         mListener.selectContact();
     }
 
-    @OnClick(R.id.transfer_confirm_btn)
+    @OnClick({R.id.transfer_other, R.id.transfer_5, R.id.transfer_10})
     public void startConfirm(View view){
         String msg_amount = null;
         String msg_msisdn = null;
@@ -130,16 +133,29 @@ public class FragmentTransfer extends Fragment
         MiLog.i(TAG, "Confirm clicked");
         float amount = 0;
 
-        String input = transfer_amount.getText().toString();
-        msisdn = transfer_msisdn.getText().toString();
-        MiLog.i(TAG, "Target " + msisdn + " and Amount " + input);
+        if(showDefault)
+            msisdn = transfer_msisdn.getText().toString();
 
-        try {
-            amount = Float.parseFloat(input);
-        } catch (NumberFormatException e) {
-            MiLog.d(TAG, "NumberFormatException");
-            transfer_amount.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
+        switch (view.getId()) {
+            case R.id.transfer_5:
+                amount = 5;
+                break;
+            case R.id.transfer_10:
+                amount = 10;
+                break;
+            case R.id.transfer_other:
+                String input = transfer_amount.getText().toString();
+                MiLog.i(TAG, "Target " + msisdn + " and Amount " + input);
+
+                try {
+                    amount = Float.parseFloat(input);
+                } catch (NumberFormatException e) {
+                    MiLog.d(TAG, "NumberFormatException");
+                    transfer_amount.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_alert, 0, 0, 0);
+                }
+                break;
         }
+        MiLog.i(TAG, "Target " + msisdn + " and Amount " + amount);
 
         if(validator != null){
             msg_msisdn = validator.isNumberValid(msisdn);
@@ -161,8 +177,10 @@ public class FragmentTransfer extends Fragment
         else
             MiLog.d(TAG, "Validator is null");
 
-        if (msg_amount == null && msg_msisdn == null)
-            mListener.onTransferFragmentInteraction(msisdn, amount);
+        if (msg_amount == null && msg_msisdn == null) {
+            String name = (showDefault) ? "" : transfer_msisdn.getText().toString();
+            mListener.onTransferFragmentInteraction(msisdn, amount, name);
+        }
         else {
             String error = msg_msisdn == null ? msg_amount : msg_msisdn;
             dialogListener.showDialogErrorCall(
@@ -230,7 +248,7 @@ public class FragmentTransfer extends Fragment
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnTransferFragmentInteractionListener {
-        void onTransferFragmentInteraction(String msisdn, float transfer);
+        void onTransferFragmentInteraction(String msisdn, float transfer, String name);
         void selectContact();
     }
 }

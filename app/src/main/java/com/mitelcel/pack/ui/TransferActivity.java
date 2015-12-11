@@ -40,6 +40,7 @@ public class TransferActivity extends BaseActivity
 
     private float amount = 0;
     private String msisdn = "";
+    private String name = "";
 
     MaterialDialog dialog;
 
@@ -84,12 +85,20 @@ public class TransferActivity extends BaseActivity
     }
 
     @Override
-    public void onTransferFragmentInteraction(String msisdn, float amount){
+    public void onTransferFragmentInteraction(String msisdn, float amount, String name){
         MiLog.i(TAG, "onTransferFragmentInteraction event with " + amount + " for target " + msisdn);
         this.amount = amount;
         this.msisdn = msisdn;
 
-        String display = getString(R.string.transfer_check, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn);
+        String display;
+        if(name != ""){
+            this.name = name;
+            display = getString(R.string.transfer_check, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, name);
+        }
+        else {
+            display = getString(R.string.transfer_check, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn);
+        }
+
         FragmentHandler.addFragmentInBackStackWithAnimation(
                 getSupportFragmentManager(),
                 "Transfer",
@@ -124,8 +133,13 @@ public class TransferActivity extends BaseActivity
                         MiUtils.MiAppPreferences.setLastCheckTimestamp();
                         MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() - amount);
 
-                        showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
-                                getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+                        if (name != "") {
+                            showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, name),
+                                    getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+                        } else {
+                            showDialogSuccessCall(getString(R.string.transfer_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount, msisdn),
+                                    getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+                        }
 
                     } else {
                         MiLog.i("Transfer", "Transfer API Error response " + beanTransferBalanceResponse.toString());

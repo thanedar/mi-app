@@ -1,6 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background_color">
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
@@ -8,6 +9,7 @@
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
         android:padding="@dimen/padding_label"
         android:text="@string/transfer_balance" />
@@ -17,8 +19,7 @@
         style="@style/Theme.App.TextFolks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label_transfer"
-        android:clickable="true"
+        android:layout_gravity="center"
         android:gravity="center"
         android:padding="@dimen/margin_medium"
         android:text="@string/transfer_info"
@@ -28,9 +29,8 @@
         android:id="@+id/transfer_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
-        android:layout_below="@id/transfer_details"
-        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_small"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <ImageView
@@ -45,7 +45,7 @@
             android:id="@+id/transfer_msisdn"
             style="@style/Theme.App.Input.EditText"
             class="com.mitelcel.pack.ui.widget.EditTextFolk"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_tiny"
             android:layout_gravity="center_vertical"
@@ -54,29 +54,42 @@
             android:inputType="phone"
             android:maxLength="15" />
     </LinearLayout>
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:id="@+id/transfer_5"
+        style="@style/Theme.App.ButtonFolks.Recharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/recharge_5" />
+
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:id="@+id/transfer_10"
+        style="@style/Theme.App.ButtonFolks.Recharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/recharge_10" />
+
     <view
         android:id="@+id/transfer_amount"
         style="@style/Theme.App.Input.EditText"
         class="com.mitelcel.pack.ui.widget.EditTextFolk"
-        android:layout_width="100dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/transfer_list"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_small"
         android:gravity="end"
-        android:layout_margin="@dimen/margin_medium"
         android:hint="@string/amount"
         android:inputType="numberDecimal" />
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
-        android:id="@+id/transfer_confirm_btn"
-        style="@style/Theme.App.ButtonFolks.Positive"
-        android:layout_width="250dp"
+        android:id="@+id/transfer_other"
+        style="@style/Theme.App.ButtonFolks.Recharge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_large"
-        android:layout_marginLeft="@dimen/margin_huge"
-        android:layout_marginRight="@dimen/margin_huge"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_gravity="center"
         android:text="@string/ok" />
 
-</RelativeLayout>
+</LinearLayout>
