@@ -9,12 +9,17 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jirbo.adcolony.AdColony;
+import com.jirbo.adcolony.AdColonyAd;
+import com.jirbo.adcolony.AdColonyAdAvailabilityListener;
+import com.jirbo.adcolony.AdColonyAdListener;
 import com.jirbo.adcolony.AdColonyVideoAd;
 
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
+import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
+import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
 import com.mitelcel.pack.ui.fragment.FragmentCommunicate;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
@@ -23,7 +28,13 @@ import com.mitelcel.pack.utils.MiUtils;
 
 import javax.inject.Inject;
 
-public class CommunicateActivity extends BaseActivity implements OnDialogListener, FragmentCommunicate.OnCommunicateFragmentInteractionListener {
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+public class CommunicateActivity extends BaseActivity implements OnDialogListener, FragmentCommunicate.OnCommunicateFragmentInteractionListener,
+        AdColonyAdAvailabilityListener, AdColonyAdListener
+{
 
     private static final String TAG = RechargeActivity.class.getName();
 
@@ -42,6 +53,7 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
         if (savedInstanceState == null) {
             FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentCommunicate.TAG, FragmentCommunicate.newInstance(), R.id.container);
 
+            AdColony.setDeviceID(MiUtils.MiAppPreferences.getToken());
             String client_options = "version:"+ com.mitelcel.pack.BuildConfig.VERSION_NAME + ",store:google";
             AdColony.configure(this, client_options, Config.ADCOLONY_APP_ID, Config.ADCOLONY_ZONE_ID);
         }
@@ -55,7 +67,6 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
                 .progress(true, 0)
                 .build();
 
-        ad = new AdColonyVideoAd(Config.ADCOLONY_ZONE_ID);
         ((MiApp)getApplication()).getAppComponent().inject(this);
     }
 
@@ -79,22 +90,24 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     public void onResume() {
         super.onResume();
         AdColony.resume(this);
+        ad = new AdColonyVideoAd(Config.ADCOLONY_ZONE_ID).withListener(this);
+        AdColony.addAdAvailabilityListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        AdColony.removeAdAvailabilityListener(this);
         AdColony.pause();
     }
 
     @Override
     public void onCommunicateFragmentInteraction(View view){
         MiLog.i(TAG, "onCommunicateFragmentInteraction event");
-        showDialogSuccessCall(getString(R.string.sample_offer), getString(R.string.ok), DialogActivity.DIALOG_HIDDEN_ICO);
 
         if(ad.isReady()){
             ad.show();
-            ad = new AdColonyVideoAd(Config.ADCOLONY_ZONE_ID);
+            ad = new AdColonyVideoAd(Config.ADCOLONY_ZONE_ID).withListener(this);
         }
         else
             dialog.show();
@@ -104,8 +117,6 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         MiLog.i(TAG, "onActivityResult: requestCode " + requestCode + " resultCode " + resultCode);
-        if(requestCode  == DialogActivity.APP_RES && resultCode == DialogActivity.APP_REFRESH)
-            finish();
     }
 
     @Override
@@ -117,6 +128,75 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
 
     public void showDialogSuccessCall(String content, String btnTex, @IdRes int resId) {
         MiUtils.showDialogSuccess(this, content, btnTex, resId, DialogActivity.APP_RES);
+    }
+
+    @Override
+    public void onAdColonyAdAvailabilityChange( final boolean available, String zone_id )
+    {
+        runOnUiThread(() -> {
+            MiLog.i(TAG, "onAdColonyAdAvailabilityChange with " + available);
+            if (available) {
+                dialog.hide();
+            } else {
+                dialog.show();
+            }
+        });
+    }
+
+    @Override
+    public void onAdColonyAdAttemptFinished( AdColonyAd ad )
+    {
+        //Can use the ad object to determine information about the ad attempt:
+        //ad.shown();
+        //ad.notShown();
+        //ad.canceled();
+        //ad.noFill();
+        //ad.skipped();
+
+        if(ad.shown()){
+            MiLog.i(TAG, "onAdColonyAdAttemptFinished ad shown call started");
+
+            float amount = 0.25f;
+            BeanRechargeAccount beanRechargeAccount = new BeanRechargeAccount(amount);
+
+            miApiClient.recharge_account(beanRechargeAccount, new Callback<BeanRechargeAccountResponse>() {
+                @Override
+                public void success(BeanRechargeAccountResponse beanRechargeAccountResponse, Response response) {
+                    dialog.dismiss();
+                    if(beanRechargeAccountResponse != null) {
+                        if (beanRechargeAccountResponse.getError().getCode() == Config.SUCCESS) {
+                            MiLog.i(TAG, "Recharge API response " + beanRechargeAccountResponse.toString());
+
+                            MiUtils.MiAppPreferences.setSessionId(beanRechargeAccountResponse.getResult().getSessionId());
+                            MiUtils.MiAppPreferences.setCurrentBalance(MiUtils.MiAppPreferences.getCurrentBalance() + amount);
+
+                            showDialogSuccessCall(getString(R.string.communicate_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
+                                    getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+
+                        } else {
+                            MiLog.i("Recharge", "Recharge API Error response " + beanRechargeAccountResponse.toString());
+                            showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                        }
+                    } else {
+                        MiLog.i("Recharge", "Recharge API NULL response");
+                        showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    dialog.dismiss();
+                    MiLog.i("Logout", "Logout failure " + error.toString());
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onAdColonyAdStarted( AdColonyAd ad )
+    {
+        //Called when the ad has started playing
     }
 
 }
