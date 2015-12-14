@@ -6,10 +6,10 @@
     <dimen name="borderimage_width">4dp</dimen>
     <dimen name="border_image_view_width">60dp</dimen>
     <dimen name="border_image_height">60dp</dimen>
-    <dimen name="space_view_height">8dp</dimen>
+    <dimen name="space_view_height">4dp</dimen>
     <dimen name="description_game_size">12sp</dimen>
     <dimen name="title_text_game_size">14sp</dimen>
-    <dimen name="padding_container_title_description_game">2dp</dimen>
+    <dimen name="padding_container_title_description_game">4dp</dimen>
     <dimen name="padding_left_container_description_title">76dp</dimen>
     <dimen name="content_cardview_height">200dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>

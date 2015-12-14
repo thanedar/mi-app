@@ -2,94 +2,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/content_cardview_height"
-    >
+    android:layout_height="@dimen/content_cardview_height">
 
     <ImageView
         android:id="@+id/item_background_imageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/place_holder"/>
+        android:src="@drawable/place_holder" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/padding_left_container_description_title"
-        android:paddingStart="@dimen/padding_left_container_description_title"
-        android:paddingRight="@dimen/padding_left_container_description_title"
-        android:paddingEnd="@dimen/padding_left_container_description_title"
-        android:paddingTop="@dimen/padding_container_title_description_game"
-        android:paddingBottom="@dimen/padding_container_title_description_game"
-        android:background="@color/dark_transparency"
-        android:layout_gravity="center_horizontal|top"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Rewards Title"
-            android:id="@+id/item_offer_title"
-            android:textSize="@dimen/title_text_game_size"
-            android:textColor="@android:color/white"
-            android:maxLines="1"
-            android:visibility="gone"
-            android:ellipsize="marquee"/>
+        android:layout_gravity="center_horizontal|top"
+        android:background="@color/dark_transparency"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_container_title_description_game"
+        android:paddingEnd="@dimen/padding_left_container_description_title"
+        android:paddingLeft="@dimen/padding_left_container_description_title"
+        android:paddingRight="@dimen/padding_left_container_description_title"
+        android:paddingStart="@dimen/padding_left_container_description_title"
+        android:paddingTop="@dimen/padding_container_title_description_game">
 
         <TextView
+            android:id="@+id/item_offer_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:maxLines="1"
+            android:text="Rewards Title"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Rewards Description"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_text_game_size"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/item_offer_description"
-            android:textSize="@dimen/description_game_size"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
             android:maxLines="3"
-            android:ellipsize="marquee"/>
+            android:text="Rewards Description"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white"
+            android:textSize="@dimen/description_game_size" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_above="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp">
+        android:layout_marginStart="8dp"
+        android:orientation="vertical">
+
         <com.mitelcel.pack.ui.widget.BorderImageView
+            android:id="@+id/item_border_imageview"
             android:layout_width="@dimen/border_image_view_width"
             android:layout_height="@dimen/border_image_height"
-            android:id="@+id/item_border_imageview"
             android:scaleType="centerCrop"
             android:src="@drawable/place_holder"
-            app:border_image_width="@dimen/borderimage_width"
+            android:visibility="invisible"
             app:border_image_color="@android:color/white"
-            android:visibility="invisible" />
+            app:border_image_width="@dimen/borderimage_width" />
 
         <View
             android:id="@+id/space_view"
             android:layout_width="@dimen/border_image_height"
-            android:layout_height="@dimen/space_view_height"/>
+            android:layout_height="@dimen/space_view_height" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_above="@+id/linearLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp">
-
+        android:layout_marginStart="8dp"
+        android:orientation="vertical">
 
         <view
             android:id="@+id/item_offer_click_btn"
@@ -97,19 +98,20 @@
             class="com.mitelcel.pack.ui.widget.TextViewFolks"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_tiny"
             android:layout_marginEnd="@dimen/margin_tiny"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:visibility="invisible"
             android:clickable="true"
             android:gravity="center"
+            android:paddingBottom="@dimen/margin_tiny"
             android:paddingLeft="@dimen/margin_small"
             android:paddingRight="@dimen/margin_small"
             android:paddingTop="@dimen/margin_tiny"
-            android:paddingBottom="@dimen/margin_tiny"
             android:text="@string/accept" />
 
         <View
             android:id="@+id/space_view_end"
             android:layout_width="@dimen/border_image_height"
-            android:layout_height="@dimen/space_view_height"/>
+            android:layout_height="@dimen/space_view_height" />
     </LinearLayout>
 </RelativeLayout>

@@ -71,7 +71,7 @@ public class OfferListAdapter extends ArrayAdapter<OfferItemHolder> implements V
 
     @Override
     public void onClick(final View v) {
-//        MiUtils.logicButtonInstallPlay(getContext(), v, rewardsRedirectResponse.getRedirectUrl()).start();
+        MiLog.i("OfferListAdapter", "offerItemHolder clicked [ " + v.getId() + " ]");
     }
 
     public static class HolderMainItem {
