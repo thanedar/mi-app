@@ -129,7 +129,7 @@
 
     <string name="communicate_video_offer">Click below to watch a video and earn some extra balance!</string>
     <string name="communicate_watch_video">Watch video</string>
-    <string name="communicate_success">"You have received %1$s%2$.2f for watching the video."</string>
+    <string name="communicate_success">"You have earned %1$s%2$.2f for watching the video."</string>
 
     <string name="package_tag" translatable="false">package_tag</string>
     <string name="url_redirect" translatable="false">link_redirect</string>

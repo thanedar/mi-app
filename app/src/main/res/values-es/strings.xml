@@ -111,6 +111,10 @@
     <string name="updated">¡Usuario Actualizado!</string>
     <string name="warning">Advertencia</string>
 
+    <string name="communicate_video_offer">¡Gana saldo sólo por ver un video, da clic en Ver Video para continuar!</string>
+    <string name="communicate_watch_video">Ver Video</string>
+    <string name="communicate_success">"Ganaste %1$s%2$.2f pesos por ver el video."</string>
+
     <!-- TutorialActivity -->
     <string name="title_activity_tutorial">Tutorial</string>
     <string name="skip">Omitir</string>

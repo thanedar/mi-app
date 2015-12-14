@@ -169,7 +169,7 @@ public class FragmentSplashScreen extends Fragment implements
                     if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                         MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
                         MiUtils.MiAppPreferences.setMsisdn(fakeMsisdn);
-                        MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                        MiUtils.startSkillActivityClearStack(getActivity(), MainActivity.class);
                         getActivity().finish();
                     } else {
                         MiLog.i(TAG, "Fake Login error response " + beanLoginResponse.toString());
