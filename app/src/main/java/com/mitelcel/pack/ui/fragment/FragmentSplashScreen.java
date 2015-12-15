@@ -22,6 +22,7 @@ import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.LoginOrRegister;
 import com.mitelcel.pack.ui.MainActivity;
+import com.mitelcel.pack.ui.TutorialActivity;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 
@@ -90,58 +91,59 @@ public class FragmentSplashScreen extends Fragment implements
     }
 
     private void submit_app_info(){
-
-        if(MiUtils.MiAppPreferences.getToken().equals("")) {
-            BeanSubmitAppInfo beanSubmitAppInfo = new BeanSubmitAppInfo(getActivity().getApplicationContext());
-            MiLog.i(TAG, "beanSubmitAppInfo: " + beanSubmitAppInfo.toString());
-            miApiClient.submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
-                @Override
-                public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
-                    if(beanSubmitAppInfoResponse != null) {
-                        MiLog.i(TAG, "beanSubmitAppInfoResponse: " + beanSubmitAppInfoResponse.toString());
-                        if (beanSubmitAppInfoResponse.getResult() != null) {
-                            MiUtils.MiAppPreferences.setToken(beanSubmitAppInfoResponse.getResult().getAppToken());
-                        } else {
-                            // TODO: Remove the FAKE login call here when we have the entire login and register flow
-                            fakeLogin();
-                        /*MiUtils.startSkillActivity(getActivity(), TutorialActivity.class);
-                        getActivity().finish();*/
-                        }
+        BeanSubmitAppInfo beanSubmitAppInfo = new BeanSubmitAppInfo(getActivity().getApplicationContext());
+        MiLog.i(TAG, "beanSubmitAppInfo: " + beanSubmitAppInfo.toString());
+        miApiClient.submit_app_info(beanSubmitAppInfo, new Callback<BeanSubmitAppInfoResponse>() {
+            @Override
+            public void success(BeanSubmitAppInfoResponse beanSubmitAppInfoResponse, Response response) {
+                if(beanSubmitAppInfoResponse != null) {
+                    MiLog.i(TAG, "beanSubmitAppInfoResponse: " + beanSubmitAppInfoResponse.toString());
+                    if (beanSubmitAppInfoResponse.getResult() != null) {
+                        MiUtils.MiAppPreferences.setToken(beanSubmitAppInfoResponse.getResult().getAppToken());
+                        MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
+                        getActivity().finish();
+                    } else {
+                        MiLog.e(TAG, "BeanSubmitAppInfoResponse Result Error");
                     }
                 }
+            }
 
-                @Override
-                public void failure(RetrofitError error) {
-                    MiLog.e(TAG, "BeanSubmitAppInfoResponse Error " + error.toString());
-                }
-            });
-        }
-        // TODO: Remove the FAKE login call here when we have the entire login and register flow
-        fakeLogin();
+            @Override
+            public void failure(RetrofitError error) {
+                MiLog.e(TAG, "BeanSubmitAppInfoResponse Error " + error.toString());
+            }
+        });
     }
 
     public void autoLogin() {
         if(MiUtils.Info.isNetworkConnected(getActivity().getApplicationContext())) {
             int status = MiUtils.MiAppPreferences.getLoggedStatus();
             MiLog.i(TAG, "getLoggedStatus value [" + status + "]");
+            // User has logged out of app
             if(status == MiUtils.MiAppPreferences.LOGOUT){
                 MiLog.d(TAG, "LoginOrRegister");
                 MiUtils.startSkillActivity(getActivity(), LoginOrRegister.class);
                 getActivity().finish();
             }
+            // Login status not set in app preferences
             else if (status == MiUtils.MiAppPreferences.LOGIN_NOT_SET){
-                /**
-                 * Only for first install
-                 */
-                MiLog.d(TAG, "submit_app_info");
-                submit_app_info();
+                if(MiUtils.MiAppPreferences.getToken().equals("")) {
+                    /** Only for first launch */
+                    MiLog.d(TAG, "Calling submit_app_info");
+                    submit_app_info();
+                }
+                else {
+                    MiUtils.startSkillActivity(getActivity(), TutorialActivity.class);
+                    getActivity().finish();
+                }
             }
+            // User has previously logged in so we take them to home activity
             else{
-                // TODO: Remove the FAKE login call here when we have the entire login and register flow
-                MiLog.d(TAG, "fakeLogin");
-                fakeLogin();
-                /*MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-                getActivity().finish();*/
+                /*MiLog.d(TAG, "fakeLogin");
+                fakeLogin();*/
+
+                MiUtils.startSkillActivity(getActivity(), MainActivity.class);
+                getActivity().finish();
             }
         }
     }
