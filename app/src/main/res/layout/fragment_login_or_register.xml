@@ -22,7 +22,7 @@
             android:text="@string/register" />
 
         <com.mitelcel.pack.ui.widget.TextViewFolks
-            android:id="@+id/login_or_register_already_reg"
+            android:id="@+id/register_already_reg"
             style="@style/Theme.App.Fragment.Title.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             style="@style/Theme.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_or_register_already_reg"
+            android:layout_below="@+id/register_already_reg"
             android:layout_marginTop="40dp"
             android:onClick="clickWidgetOnFragment"
             android:text="@string/login" />
