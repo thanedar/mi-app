@@ -22,11 +22,11 @@
         android:clickable="true"
         android:gravity="center"
         android:padding="@dimen/padding_label"
-        android:text="@string/request_pin_info"
+        android:text="@string/confirm_pin_info"
         android:textSize="16sp" />
 
     <RelativeLayout
-        android:id="@+id/form_signup"
+        android:id="@+id/form_confirm_pin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
@@ -34,21 +34,21 @@
         android:paddingRight="@dimen/margin_medium">
 
         <view
-            android:id="@+id/register_tv_msisdn"
+            android:id="@+id/register_confirm_pin"
             style="@style/Theme.App.Input.EditText"
             class="com.mitelcel.pack.ui.widget.EditTextFolk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_large"
-            android:hint="@string/msisdn"
-            android:inputType="phone" />
+            android:hint="@string/pin"
+            android:inputType="number" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
-            android:id="@+id/register_request_btn"
+            android:id="@+id/register_confirm_btn"
             style="@style/Theme.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/register_tv_msisdn"
+            android:layout_below="@+id/register_confirm_pin"
             android:layout_marginTop="@dimen/margin_medium"
             android:text="@string/submit" />
 
