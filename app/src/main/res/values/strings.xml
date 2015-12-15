@@ -27,7 +27,7 @@
 
     <!-- MSISDN -->
     <string name="msisdn">Phone number</string>
-    <string name="msisdn_not_valid">Invalid number</string>
+    <string name="msisdn_not_valid">Invalid phone number</string>
 
     <!-- Login -->
     <string name="password">Password</string>
@@ -86,20 +86,22 @@
     <string name="transfer_success">"Your transfer of %1$s%2$.2f to %3$s was successful."</string>
 
     <!-- my account page -->
-    <string name="your_account">Your account</string>
-    <string name="recent_activity">Recent activity</string>
-    <string name="service">Services</string>
-    <string name="your_service">Your Services</string>
-    <string name="your_offer">Your offer</string>
     <string name="account_period" translatable="false">From %1$s to %2$s</string>
+    <string name="recent_activity">Recent activity</string>
     <string name="sample_offer" translatable="false">Limited time offer! Buy a internet pack for $19 for 500 MB and receive another 200 MB free! Click here now to purchase this deal!</string>
+    <string name="service">Services</string>
+    <string name="your_account">Your account</string>
     <string name="your_balance">"Balance: %1$s &gt;"</string>
+    <string name="your_offer">Your offer</string>
+    <string name="your_service">Your Services</string>
 
-    <!-- signup -->
-    <string name="email_not_valid">Email not valid</string>
-    <string name="password_does_not_match">Password does not match!</string>
+    <!-- register -->
+    <string name="confirm_pin_info">Please enter the PIN you received to complete the registration process</string>
+    <string name="request_pin_info">Please enter your phone number below to request a PIN to start the registration process</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
     <string name="login_failed">"Login failed with error code: %1$s"</string>
+    <string name="password_does_not_match">Password does not match!</string>
+    <string name="pin">PIN Code</string>
 
     <!-- General -->
     <string name="amount">Amount</string>
@@ -109,10 +111,12 @@
     <string name="cancel">Cancel</string>
     <string name="check_input">Please check input!</string>
     <string name="close">Close</string>
+    <string name="communicate">Communicate</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="decline">Decline</string>
     <string name="email">Email</string>
+    <string name="email_not_valid">Email not valid</string>
     <string name="loading">Loading&#8230;</string>
     <string name="no_connection_popup">Looks like you are not connected to the internet!</string>
     <string name="no_data">No Data</string>
@@ -125,6 +129,10 @@
     <string name="success">Success</string>
     <string name="updated">User updated!</string>
     <string name="warning">Warning</string>
+
+    <string name="communicate_video_offer">Click below to watch a video and earn some extra balance!</string>
+    <string name="communicate_watch_video">Watch video</string>
+    <string name="communicate_success">"You have earned %1$s%2$.2f for watching the video."</string>
 
     <string name="package_tag" translatable="false">package_tag</string>
     <string name="url_redirect" translatable="false">link_redirect</string>

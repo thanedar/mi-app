@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/label_register"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/padding_label"
+        android:text="@string/register" />
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/request_details"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="@dimen/padding_label"
+        android:text="@string/confirm_pin_info"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/form_confirm_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium">
+
+        <view
+            android:id="@+id/register_confirm_pin"
+            style="@style/Theme.App.Input.EditText"
+            class="com.mitelcel.pack.ui.widget.EditTextFolk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:hint="@string/pin"
+            android:inputType="number" />
+
+        <com.mitelcel.pack.ui.widget.ButtonFolks
+            android:id="@+id/register_confirm_btn"
+            style="@style/Theme.App.ButtonFolks.Positive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_confirm_pin"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/submit" />
+
+    </RelativeLayout>
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/register_already_reg"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_large"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="clickWidgetOnFragment"
+        android:padding="@dimen/margin_medium"
+        android:text="@string/already_member"
+        android:textSize="20sp" />
+
+</LinearLayout>

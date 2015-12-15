@@ -98,7 +98,7 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
     public static String PASSWORD = "aaa";
     public static String CONFIRM_PASS = "aaa";
     public void testCreateNewAccount(){
-        Button btnRegisterAccount = (Button)rootActivity.findViewById(R.id.signup_btn_submit);
+        Button btnRegisterAccount = (Button)rootActivity.findViewById(R.id.register_request_btn);
         ViewAsserts.assertOnScreen(rootActivity, btnRegisterAccount);
 
         final EditText mail = (EditText)rootActivity.findViewById(R.id.register_tv_msisdn);

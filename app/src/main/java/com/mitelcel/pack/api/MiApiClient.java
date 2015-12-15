@@ -1,5 +1,6 @@
 package com.mitelcel.pack.api;
 
+import com.mitelcel.pack.api.bean.req.BeanConfirmPin;
 import com.mitelcel.pack.api.bean.req.BeanDeleteFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanGetAccountInfo;
 import com.mitelcel.pack.api.bean.req.BeanGetCurrentBalance;
@@ -10,9 +11,11 @@ import com.mitelcel.pack.api.bean.req.BeanGetServiceList;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
+import com.mitelcel.pack.api.bean.req.BeanRequestPin;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
+import com.mitelcel.pack.api.bean.resp.BeanConfirmPinResponse;
 import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetCurrentBalanceResponse;
@@ -23,6 +26,7 @@ import com.mitelcel.pack.api.bean.resp.BeanGetServiceListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
+import com.mitelcel.pack.api.bean.resp.BeanRequestPinResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
@@ -43,6 +47,9 @@ public interface MiApiClient {
 
     /*@POST("/")
     void authenticate(@Body BeanAuthenticate beanAuthenticate, Callback<BeanAuthenticateResponse> callback);*/
+
+    @POST(REQUEST_URI)
+    void confirm_pin(@Body BeanConfirmPin beanConfirmPin, Callback<BeanConfirmPinResponse> callback);
 
     @POST(REQUEST_URI)
     void delete_frequent_number(@Body BeanDeleteFrequentNumber beanDeleteFrequentNumber, Callback<BeanDeleteFrequentNumberResponse> callback);
@@ -76,6 +83,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void recharge_account(@Body BeanRechargeAccount beanRechargeAccount, Callback<BeanRechargeAccountResponse> callback);
+
+    @POST(REQUEST_URI)
+    void request_pin(@Body BeanRequestPin beanRequestPin, Callback<BeanRequestPinResponse> callback);
 
     @POST(REQUEST_URI)
     void set_frequent_number(@Body BeanSetFrequentNumber beanSetFrequentNumber, Callback<BeanSetFrequentNumberResponse> callback);

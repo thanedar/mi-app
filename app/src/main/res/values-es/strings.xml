@@ -92,6 +92,7 @@
     <string name="buy">Comprar</string>
     <string name="cancel">Cancelar</string>
     <string name="check_input">Por favor valida entrada</string>
+    <string name="communicate">Communicado</string>
     <string name="close">Cerrar</string>
     <string name="confirm">Confirmar</string>
     <string name="confirm_password">Confirmar contraseña</string>
@@ -109,6 +110,10 @@
     <string name="success">Exitoso</string>
     <string name="updated">¡Usuario Actualizado!</string>
     <string name="warning">Advertencia</string>
+
+    <string name="communicate_video_offer">¡Gana saldo sólo por ver un video, da clic en Ver Video para continuar!</string>
+    <string name="communicate_watch_video">Ver Video</string>
+    <string name="communicate_success">"Ganaste %1$s%2$.2f pesos por ver el video."</string>
 
     <!-- TutorialActivity -->
     <string name="title_activity_tutorial">Tutorial</string>

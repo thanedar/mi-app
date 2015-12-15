@@ -155,7 +155,7 @@ public class FragmentRegister extends Fragment implements View.OnClickListener{
     }
 
 
-    @OnClick(R.id.signup_btn_submit)
+    @OnClick(R.id.register_submit_btn)
     @Override
     public void onClick(View v) {
         submit();

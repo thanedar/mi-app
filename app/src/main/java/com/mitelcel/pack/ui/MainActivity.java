@@ -168,6 +168,9 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             case R.id.navdrawer_item_offers:
                 startActivity(new Intent(this, ListOfferActivity.class));
                 break;
+            case R.id.navdrawer_item_communicate:
+                startActivity(new Intent(this, CommunicateActivity.class));
+                break;
             case R.id.navdrawer_item_help:
                 Intent iHelp = new Intent(this, WebViewActivity.class);
                 iHelp.putExtra(WebViewActivity.VIEW_TYPE, WebViewActivity.VIEW_HELP);
@@ -200,12 +203,13 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             @Override
             public void success(BeanLogoutResponse beanLogoutResponse, Response response) {
 //                MiLog.i(TAG, "Logout response " + beanLogoutResponse.toString());
-                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
+                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS && beanLogoutResponse.isResult()) {
+                    MiLog.i("Logout", "Logout API success response " + beanLogoutResponse.toString());
 
                     MiUtils.MiAppPreferences.logOut(MainActivity.this);
                 } else {
                     MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             }
 

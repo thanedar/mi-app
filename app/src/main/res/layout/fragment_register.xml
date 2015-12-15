@@ -55,11 +55,10 @@
             android:inputType="textPassword" />
 
         <com.mitelcel.pack.ui.widget.ButtonFolks
-            android:id="@+id/signup_btn_submit"
+            android:id="@+id/register_submit_btn"
             style="@style/Theme.App.ButtonFolks.Positive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@+id/register_tv_confirm_pass"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="25dp"
@@ -68,7 +67,7 @@
     </RelativeLayout>
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/login_or_register_already_reg"
+        android:id="@+id/register_already_reg"
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

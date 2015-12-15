@@ -14,12 +14,12 @@ public class BeanCredentials extends GenericBean {
     private String password;
 
     public BeanCredentials(){
-        this.msisdn = MiUtils.MiAppPreferences.getMsisdnPrefix() + MiUtils.MiAppPreferences.getMsisdn();
+        this.msisdn = MiUtils.MiAppPreferences.getMsisdn();
         this.password = MiUtils.MiAppPreferences.getAuthPass();
     }
 
     public BeanCredentials(String msisdn, String password){
-        this.msisdn = MiUtils.MiAppPreferences.getMsisdnPrefix() + msisdn;
+        this.msisdn = MiUtils.getCleanMsisdn(msisdn);
         this.password = password;
     }
 }

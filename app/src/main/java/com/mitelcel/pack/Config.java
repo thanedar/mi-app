@@ -40,6 +40,9 @@ public class Config {
 
     public static final int PICK_CONTACT = 99;
 
+    public static final String ADCOLONY_APP_ID = "app5ee323996bd043da8c";
+    public static final String ADCOLONY_ZONE_ID = "vz8d327906cf784b51a5";
+
     /**
      * HTML
      */
