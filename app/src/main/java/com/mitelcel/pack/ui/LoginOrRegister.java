@@ -8,6 +8,7 @@ import com.mitelcel.pack.R;
 import com.mitelcel.pack.ui.fragment.FragmentLogin;
 import com.mitelcel.pack.ui.fragment.FragmentLoginOrRegister;
 import com.mitelcel.pack.ui.fragment.FragmentRegister;
+import com.mitelcel.pack.ui.fragment.FragmentRequestPin;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
@@ -36,12 +37,11 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
 
     public void clickWidgetOnFragment(View view) {
         switch (view.getId()) {
-            case R.id.signin_tv_new_user://1
-                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentRegister.TAG, FragmentRegister.newInstance(), R.id.container);
+            case R.id.login_new_user://1
+            case R.id.login_or_register_register://1
+                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentRequestPin.TAG, FragmentRequestPin.newInstance(), R.id.container);
                 break;
-            case R.id.login_or_register_already_reg://2
-                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentLogin.TAG, FragmentLogin.newInstance(), R.id.container);
-                break;
+            case R.id.register_already_reg://2
             case R.id.login_or_register_login://2
                 FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentLogin.TAG, FragmentLogin.newInstance(), R.id.container);
                 break;

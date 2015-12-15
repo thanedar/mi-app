@@ -27,7 +27,7 @@
 
     <!-- MSISDN -->
     <string name="msisdn">Phone number</string>
-    <string name="msisdn_not_valid">Invalid number</string>
+    <string name="msisdn_not_valid">Invalid phone number</string>
 
     <!-- Login -->
     <string name="password">Password</string>
@@ -95,7 +95,8 @@
     <string name="sample_offer" translatable="false">Limited time offer! Buy a internet pack for $19 for 500 MB and receive another 200 MB free! Click here now to purchase this deal!</string>
     <string name="your_balance">"Balance: %1$s &gt;"</string>
 
-    <!-- signup -->
+    <!-- register -->
+    <string name="register_request_info">Please enter your phone number below to request a PIN to start the registration process</string>
     <string name="email_not_valid">Email not valid</string>
     <string name="password_does_not_match">Password does not match!</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>

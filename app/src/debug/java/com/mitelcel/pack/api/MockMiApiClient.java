@@ -13,6 +13,7 @@ import com.mitelcel.pack.api.bean.req.BeanGetServiceList;
 import com.mitelcel.pack.api.bean.req.BeanLogin;
 import com.mitelcel.pack.api.bean.req.BeanLogout;
 import com.mitelcel.pack.api.bean.req.BeanRechargeAccount;
+import com.mitelcel.pack.api.bean.req.BeanRequestPin;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
@@ -26,6 +27,7 @@ import com.mitelcel.pack.api.bean.resp.BeanGetServiceListResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLoginResponse;
 import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.api.bean.resp.BeanRechargeAccountResponse;
+import com.mitelcel.pack.api.bean.resp.BeanRequestPinResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 
@@ -127,6 +129,13 @@ public class MockMiApiClient implements MiApiClient {
     public void recharge_account(@Body BeanRechargeAccount beanInput, Callback<BeanRechargeAccountResponse> callback) {
         BeanRechargeAccountResponse beanResponse  = new Gson().fromJson(FakeData.RESP_RECHARGE_ACCOUNT, BeanRechargeAccountResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_RECHARGE_ACCOUNT.getBytes()));
+        callback.success(beanResponse, response);
+    }
+
+    @Override
+    public void request_pin(@Body BeanRequestPin beanInput, Callback<BeanRequestPinResponse> callback) {
+        BeanRequestPinResponse beanResponse = new Gson().fromJson(FakeData.RESP_LOGOUT, BeanRequestPinResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_LOGOUT.getBytes()));
         callback.success(beanResponse, response);
     }
 
