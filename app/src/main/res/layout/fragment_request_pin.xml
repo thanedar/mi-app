@@ -22,7 +22,7 @@
         android:clickable="true"
         android:gravity="center"
         android:padding="@dimen/padding_label"
-        android:text="@string/register_request_info"
+        android:text="@string/request_pin_info"
         android:textSize="16sp" />
 
     <RelativeLayout

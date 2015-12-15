@@ -5,24 +5,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.bean.req.BeanRequestPin;
-import com.mitelcel.pack.api.bean.resp.BeanRequestPinResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
-import com.mitelcel.pack.ui.MainActivity;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
-import com.mitelcel.pack.utils.MiLog;
-import com.mitelcel.pack.utils.MiUtils;
 import com.mitelcel.pack.utils.Validator;
 
 import javax.inject.Inject;
@@ -30,23 +21,16 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class FragmentRequestPin extends Fragment{
 
     @InjectView(R.id.register_tv_msisdn)
     EditText msisdn;
 
-    MaterialDialog dialog;
-
-    @Inject
-    MiApiClient miApiClient;
     @Inject
     Validator validator;
 
-    OnDialogListener mListener;
+    private OnRequestPinFragmentInteractionListener interactionListener;
 
     public static final String TAG = FragmentRequestPin.class.getSimpleName();
 
@@ -62,11 +46,6 @@ public class FragmentRequestPin extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dialog = new MaterialDialog.Builder(getActivity())
-                .content(R.string.please_wait)
-                .progress(true, 0)
-                .build();
-
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
@@ -74,7 +53,7 @@ public class FragmentRequestPin extends Fragment{
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_register_request, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_request_pin, container, false);
         ButterKnife.inject(this, rootView);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -89,17 +68,17 @@ public class FragmentRequestPin extends Fragment{
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnDialogListener) activity;
+            interactionListener = (OnRequestPinFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnDialogListener");
+                    + " must implement OnRequestPinFragmentInteractionListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        interactionListener = null;
     }
 
     @Override
@@ -113,27 +92,7 @@ public class FragmentRequestPin extends Fragment{
         if(!isValidInput())
             return;
 
-        dialog.show();
-
-        BeanRequestPin beanRequestPin = new BeanRequestPin(msisdn.getText().toString());
-
-        miApiClient.request_pin(beanRequestPin, new Callback<BeanRequestPinResponse>() {
-            @Override
-            public void success(BeanRequestPinResponse beanRequestPinResponse, Response response) {
-                MiLog.i(TAG, "Request Pin success " + beanRequestPinResponse.toString());
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                MiLog.i(TAG, "Request Pin Error " + error.toString());
-            }
-        });
-
-        MiUtils.MiAppPreferences.setMsisdn(msisdn.getText().toString());
-
-        MiUtils.startSkillActivity(getActivity(), MainActivity.class);
-        getActivity().finish();
-
+        interactionListener.onRequestPinSubmit(msisdn.getText().toString());
     }
 
     private boolean isValidInput() {
@@ -147,4 +106,7 @@ public class FragmentRequestPin extends Fragment{
         return true;
     }
 
+    public interface OnRequestPinFragmentInteractionListener {
+        void onRequestPinSubmit(String msisdn);
+    }
 }

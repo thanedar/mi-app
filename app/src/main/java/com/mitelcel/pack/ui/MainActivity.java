@@ -203,12 +203,13 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             @Override
             public void success(BeanLogoutResponse beanLogoutResponse, Response response) {
 //                MiLog.i(TAG, "Logout response " + beanLogoutResponse.toString());
-                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS) {
-                    MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
+                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS && beanLogoutResponse.isResult()) {
+                    MiLog.i("Logout", "Logout API success response " + beanLogoutResponse.toString());
 
                     MiUtils.MiAppPreferences.logOut(MainActivity.this);
                 } else {
                     MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
+                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             }
 
