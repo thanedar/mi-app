@@ -1,8 +1,10 @@
 package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -79,23 +81,11 @@ public class FragmentLogin extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.inject(this, view);
 
-        msisdn.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().matches(MiUtils.REGEX_MSISDN)) {
-                    msisdn.setTextColor(getResources().getColor(R.color.red));
-                } else
-                    msisdn.setTextColor(getResources().getColor(R.color.dark_grey_more));
-            }
-        });
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            msisdn.addTextChangedListener(new PhoneNumberFormattingTextWatcher("MX"));
+        else
+            msisdn.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         return view;
     }

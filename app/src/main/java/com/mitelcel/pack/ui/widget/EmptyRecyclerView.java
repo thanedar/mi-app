@@ -54,9 +54,6 @@ public class EmptyRecyclerView extends RecyclerView {
         }
     };
 
-
-
-
     @Override public void setAdapter(@Nullable Adapter adapter) {
         final Adapter oldAdapter = getAdapter();
         if (oldAdapter != null) {

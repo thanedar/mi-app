@@ -186,11 +186,15 @@ public class MiUtils {
     }
 
     public static String getCleanMsisdn(String msisdn){
+        String value;
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            return PhoneNumberUtils.formatNumberToE164(msisdn, "MX");
+            value = PhoneNumberUtils.formatNumberToE164(msisdn, "MX");
         }
         else
-            return PhoneNumberUtils.stripSeparators(PhoneNumberUtils.formatNumber(msisdn));
+            value = PhoneNumberUtils.stripSeparators(PhoneNumberUtils.formatNumber(msisdn));
+
+        MiLog.i("Utils", "getCleanMsisdn return " + value);
+        return value;
     }
 
     public static void showDialogErrorCall(Activity activity, String content, String btnTex){
@@ -567,12 +571,14 @@ public class MiUtils {
         }
 
         public static void setMsisdn(String value){
+            MiLog.i(TAG, "set msisdn: " + value);
             getSharedPreferences().edit().putString(MSISDN, value).apply();
         }
 
         public static String getMsisdn(){
-            SharedPreferences sp = getSharedPreferences();
-            return sp.getString(MSISDN, "");
+            String msisdn = getSharedPreferences().getString(MSISDN, "");
+            MiLog.i(TAG, "get msisdn: " + msisdn);
+            return msisdn;
         }
 
         public static void setDeviceType(String value){
