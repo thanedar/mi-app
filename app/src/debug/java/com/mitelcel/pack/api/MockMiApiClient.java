@@ -18,6 +18,7 @@ import com.mitelcel.pack.api.bean.req.BeanRequestPin;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
+import com.mitelcel.pack.api.bean.req.BeanUpdateUserInfo;
 import com.mitelcel.pack.api.bean.resp.BeanConfirmPinResponse;
 import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
@@ -35,6 +36,7 @@ import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 
 import com.google.gson.Gson;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanUpdateUserInfoResponse;
 
 import java.util.Collections;
 
@@ -165,6 +167,13 @@ public class MockMiApiClient implements MiApiClient {
     @Override
     public void transfer_balance(@Body BeanTransferBalance beanInput, Callback<BeanTransferBalanceResponse> callback) {
         BeanTransferBalanceResponse beanResponse = new Gson().fromJson(FakeData.RESP_RECHARGE_ACCOUNT, BeanTransferBalanceResponse.class);
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_RECHARGE_ACCOUNT.getBytes()));
+        callback.success(beanResponse, response);
+    }
+
+    @Override
+    public void update_user_info(@Body BeanUpdateUserInfo beanInput, Callback<BeanUpdateUserInfoResponse> callback) {
+        BeanUpdateUserInfoResponse beanResponse = new Gson().fromJson(FakeData.RESP_RECHARGE_ACCOUNT, BeanUpdateUserInfoResponse.class);
         Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_RECHARGE_ACCOUNT.getBytes()));
         callback.success(beanResponse, response);
     }

@@ -15,6 +15,7 @@ import com.mitelcel.pack.api.bean.req.BeanRequestPin;
 import com.mitelcel.pack.api.bean.req.BeanSetFrequentNumber;
 import com.mitelcel.pack.api.bean.req.BeanSubmitAppInfo;
 import com.mitelcel.pack.api.bean.req.BeanTransferBalance;
+import com.mitelcel.pack.api.bean.req.BeanUpdateUserInfo;
 import com.mitelcel.pack.api.bean.resp.BeanConfirmPinResponse;
 import com.mitelcel.pack.api.bean.resp.BeanDeleteFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanGetAccountInfoResponse;
@@ -30,6 +31,7 @@ import com.mitelcel.pack.api.bean.resp.BeanRequestPinResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSetFrequentNumberResponse;
 import com.mitelcel.pack.api.bean.resp.BeanSubmitAppInfoResponse;
 import com.mitelcel.pack.api.bean.resp.BeanTransferBalanceResponse;
+import com.mitelcel.pack.api.bean.resp.BeanUpdateUserInfoResponse;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -95,6 +97,9 @@ public interface MiApiClient {
 
     @POST(REQUEST_URI)
     void transfer_balance(@Body BeanTransferBalance beanTransferBalance, Callback<BeanTransferBalanceResponse> callback);
+
+    @POST(REQUEST_URI)
+    void update_user_info(@Body BeanUpdateUserInfo beanUpdateUserInfo, Callback<BeanUpdateUserInfoResponse> callback);
 
     /**
      * RxJava call
