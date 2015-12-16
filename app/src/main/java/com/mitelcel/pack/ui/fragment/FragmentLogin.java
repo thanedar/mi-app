@@ -128,7 +128,6 @@ public class FragmentLogin extends Fragment implements View.OnClickListener{
 
                 if (beanLoginResponse != null) {
 //                MiLog.i(TAG, "Login response " + beanLoginResponse.toString());
-//                MiLog.i(TAG, "Login Session Id " + beanLoginResponse.getResult().getSessionId());
                     if (beanLoginResponse.getError().getCode() == Config.SUCCESS) {
                         MiUtils.MiAppPreferences.setSessionId(beanLoginResponse.getResult().getSessionId());
 

@@ -96,6 +96,7 @@
     <string name="your_service">Your Services</string>
 
     <!-- register -->
+    <string name="change_password_info">Click \'Skip\' to use the PIN code as your password for logging in or enter your preferred password below.</string>
     <string name="confirm_pin_info">Please enter the PIN you received to complete the registration process</string>
     <string name="request_pin_info">Please enter your phone number below to request a PIN to start the registration process</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>

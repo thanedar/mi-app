@@ -15,6 +15,12 @@ public class BeanUpdateUserInfo extends BeanGenericApi {
     @Expose
     private Params params;
 
+    public BeanUpdateUserInfo(String new_password) {
+        this.id = System.currentTimeMillis();
+        this.method = NAME;
+        this.params = new Params(new_password);
+    }
+
     public BeanUpdateUserInfo(String old_password, String new_password) {
         this.id = System.currentTimeMillis();
         this.method = NAME;
@@ -37,6 +43,13 @@ public class BeanUpdateUserInfo extends BeanGenericApi {
         @SerializedName("new_password")
         @Expose
         private String newPassword;
+
+        public Params(String new_password) {
+            this.appToken = MiUtils.MiAppPreferences.getToken();
+            this.sessionId = MiUtils.MiAppPreferences.getSessionId();
+
+            this.newPassword = new_password;
+        }
 
         public Params(String old_password, String new_password) {
             this.appToken = MiUtils.MiAppPreferences.getToken();

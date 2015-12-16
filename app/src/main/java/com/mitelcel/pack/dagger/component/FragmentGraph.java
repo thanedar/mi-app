@@ -1,6 +1,7 @@
 package com.mitelcel.pack.dagger.component;
 
 import com.mitelcel.pack.ui.fragment.FragmentAccount;
+import com.mitelcel.pack.ui.fragment.FragmentChangePassword;
 import com.mitelcel.pack.ui.fragment.FragmentCommunicate;
 import com.mitelcel.pack.ui.fragment.FragmentConfirm;
 import com.mitelcel.pack.ui.fragment.FragmentConfirmPin;
@@ -27,6 +28,7 @@ import com.mitelcel.pack.ui.fragment.FragmentTutorialText;
  */
 public interface FragmentGraph {
     void inject(FragmentAccount fragmentAccount);
+    void inject(FragmentChangePassword fragmentChangePassword);
     void inject(FragmentConfirm fragmentConfirm);
     void inject(FragmentConfirmPin fragmentConfirmPin);
     void inject(FragmentCommunicate fragmentCommunicate);
