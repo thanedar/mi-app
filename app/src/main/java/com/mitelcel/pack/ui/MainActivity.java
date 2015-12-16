@@ -203,10 +203,11 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
             @Override
             public void success(BeanLogoutResponse beanLogoutResponse, Response response) {
 //                MiLog.i(TAG, "Logout response " + beanLogoutResponse.toString());
-                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS && beanLogoutResponse.isResult()) {
+                if (beanLogoutResponse.getError().getCode() == Config.SUCCESS) {
                     MiLog.i("Logout", "Logout API success response " + beanLogoutResponse.toString());
-
                     MiUtils.MiAppPreferences.logOut(MainActivity.this);
+                } else if (beanLogoutResponse.getError().getCode() == Config.INVALID_SESSION_ID) {
+                    forceUserLogin();
                 } else {
                     MiLog.i("Logout", "Logout API error response " + beanLogoutResponse.toString());
                     showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
@@ -237,11 +238,14 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
                 public void success(BeanGetCurrentBalanceResponse beanGetCurrentBalanceResponse, Response response) {
                     if (beanGetCurrentBalanceResponse != null) {
                         MiLog.i("MainActivity", "BeanGetCurrentBalanceResponse response [ " + beanGetCurrentBalanceResponse.toString() + " ]");
-                        progressBar.setVisibility(View.GONE);
-                        balanceView.setVisibility(View.VISIBLE);
                         if (beanGetCurrentBalanceResponse.getError().getCode() == Config.SUCCESS) {
+                            progressBar.setVisibility(View.GONE);
+                            balanceView.setVisibility(View.VISIBLE);
                             String balance = beanGetCurrentBalanceResponse.getResult().getCurrentBalance();
                             MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(balance));
+                        }
+                        else if(beanGetCurrentBalanceResponse.getError().getCode() == Config.INVALID_SESSION_ID){
+                            forceUserLogin();
                         }
                     }
                     else
@@ -260,6 +264,7 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
 
     @Override
     public void updateActionBar() {
+//        super.actionBarDecorator();
     }
 
     @Override
@@ -285,6 +290,10 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     @Override
     public void goBackPreviousFragment() {
         super.onBackPressed();
+    public void forceUserLogin() {
+        MiLog.i("forceUserLogin", "Starting LoginOrRegister now");
+        startActivity(new Intent(this, LoginOrRegister.class));
+        finish();
     }
 
     @Override
