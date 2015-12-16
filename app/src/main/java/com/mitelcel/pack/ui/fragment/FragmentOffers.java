@@ -26,7 +26,6 @@ import com.mitelcel.pack.bean.ui.OfferItemHolder;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.dagger.module.SharedPrefModule;
 import com.mitelcel.pack.ui.OfferDetailActivity;
-import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.OfferListAdapter;
 import com.mitelcel.pack.ui.widget.LoadOffersAsyncTask;
 import com.mitelcel.pack.ui.widget.TextViewFolks;
@@ -67,8 +66,6 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     MiApiClient miApiClient;
     @Inject
     SharedPreferences sharedPreferences;
-
-    OnMainFragmentInteractionListener mListener;
 
     public EndlessScrollListener endlessScrollListener = new EndlessScrollListener() {
         @Override
@@ -138,7 +135,6 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     @Override
     public void onResume() {
         super.onResume();
-        mListener.updateActionBar();
         if (MiUtils.MiAppPreferences.isInvalidSession()) {
             startUpdateProcess(true);
         }
@@ -178,7 +174,6 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -226,19 +221,13 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
         }
 
         if (errorCode == Config.NO_CONNECTION) {
-            mListener.noInternetConnection();
+            getActivity().onBackPressed();
         }
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
-            mListener = (OnMainFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnMainFragmentInteractionListener");
-        }
     }
 
     @Override

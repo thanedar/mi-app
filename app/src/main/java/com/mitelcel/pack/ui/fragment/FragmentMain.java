@@ -27,7 +27,6 @@ import com.mitelcel.pack.bean.ui.OfferItemHolder;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.ListOfferActivity;
 import com.mitelcel.pack.ui.RecentActivity;
-import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.BorderImageView;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
@@ -35,7 +34,6 @@ import com.mitelcel.pack.ui.widget.RecentRecycleViewAdapter;
 import com.mitelcel.pack.utils.MiLog;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -271,5 +269,10 @@ public class FragmentMain extends Fragment {
     public void showRecent(){
         MiLog.i(TAG, "Start recent activity");
         getActivity().startActivity(new Intent(getActivity(), RecentActivity.class));
+    }
+
+    public interface OnMainFragmentInteractionListener {
+        void updateActionBar();
+        void forceUserLogin();
     }
 }

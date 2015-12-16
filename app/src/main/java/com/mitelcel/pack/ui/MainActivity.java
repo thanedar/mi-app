@@ -3,13 +3,11 @@ package com.mitelcel.pack.ui;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mitelcel.pack.Config;
@@ -23,9 +21,7 @@ import com.mitelcel.pack.api.bean.resp.BeanLogoutResponse;
 import com.mitelcel.pack.ui.fragment.FragmentAccount;
 import com.mitelcel.pack.ui.fragment.FragmentMain;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
-import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.ui.widget.CustomDrawerLayout;
-import com.mitelcel.pack.ui.widget.LayoutBalance;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
@@ -39,7 +35,11 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class MainActivity extends BaseActivity implements OnMainFragmentInteractionListener, FragmentAccount.OnAccountFragmentInteractionListener, OnDialogListener{
+public class MainActivity extends BaseActivity implements
+        OnDialogListener,
+        FragmentMain.OnMainFragmentInteractionListener,
+        FragmentAccount.OnAccountFragmentInteractionListener
+{
 
     @InjectView(R.id.drawer_layout)
     CustomDrawerLayout mDrawerLayout;
@@ -273,23 +273,6 @@ public class MainActivity extends BaseActivity implements OnMainFragmentInteract
     }
 
     @Override
-    public void onMainFragmentInteraction (int id) {
-        MiLog.i("OnMainFragmentInteractionListener", " ");
-        switch (id){
-            case R.id.empty_list:
-            case R.id.home_recent_act:
-            MiUtils.startSkillActivity(this, RecentActivity.class);
-        }
-    }
-
-    @Override
-    public void noInternetConnection() {
-        checkInternetConnection();
-    }
-
-    @Override
-    public void goBackPreviousFragment() {
-        super.onBackPressed();
     public void forceUserLogin() {
         MiLog.i("forceUserLogin", "Starting LoginOrRegister now");
         startActivity(new Intent(this, LoginOrRegister.class));

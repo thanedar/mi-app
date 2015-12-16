@@ -8,7 +8,6 @@ import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.ui.fragment.FragmentOffers;
-import com.mitelcel.pack.ui.listener.OnMainFragmentInteractionListener;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
@@ -17,7 +16,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class ListOfferActivity extends BaseActivity implements OnMainFragmentInteractionListener {
+public class ListOfferActivity extends BaseActivity {
 
     private static final String TAG = ListOfferActivity.class.getName();
     FragmentOffers fragmentOffers;
@@ -59,24 +58,5 @@ public class ListOfferActivity extends BaseActivity implements OnMainFragmentInt
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void updateActionBar() {
-    }
-
-    @Override
-    public void noInternetConnection() {
-    }
-
-    @Override
-    public void goBackPreviousFragment() {
-        super.onBackPressed();
-    }
-
-
-    @Override
-    public void onMainFragmentInteraction (int id) {
-        MiLog.i("OnMainFragmentInteractionListener", " ");
     }
 }
