@@ -29,13 +29,17 @@ public class Config {
 
     public static final int LOW_BALANCE = -32050;
 
+    public static final int INVALID_PIN          = -32060;
+    public static final int USER_EXISTS          = -32061;
+    public static final int USER_DOES_NOT_EXISTS = -32062;
+
     public static final int ACTION_TYPE_TRANSFER = 9;
     public static final int ACTION_TYPE_RECHARGE = 10;
     public static final int ACTION_TYPE_BONUS    = 5;
 
     public static final String MSISDN_PREFIX = "52";
     public static final int MSISDN_LENGTH = 10;
-    public static final int PASS_LENGTH = 4;
+    public static final int PASS_LENGTH = 3;
     public static final int PASS_TIMEOUT = 20;
 
     public static final int PICK_CONTACT = 99;

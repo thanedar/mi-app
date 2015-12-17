@@ -17,7 +17,7 @@
         android:id="@+id/form_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/label_login"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:padding="15dp">
@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
             android:background="@drawable/edittext_background"
-            android:hint="@string/enter_your_msisdn" />
+            android:hint="@string/enter_your_msisdn"
+            android:inputType="phone" />
 
         <view
             android:id="@+id/login_tv_pass"
@@ -60,13 +61,27 @@
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/form_login"
-        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/login_forgot"
+        android:layout_marginBottom="@dimen/margin_medium"
         android:clickable="true"
         android:gravity="center"
         android:onClick="clickWidgetOnFragment"
+        android:padding="@dimen/padding_label"
         android:text="@string/new_user"
+        android:textSize="20sp" />
+
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/login_forgot"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="clickWidgetOnFragment"
+        android:padding="@dimen/padding_label"
+        android:text="@string/forgot_password"
         android:textSize="20sp" />
 
 </RelativeLayout>

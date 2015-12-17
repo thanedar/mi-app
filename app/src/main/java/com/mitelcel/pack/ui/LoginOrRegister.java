@@ -21,6 +21,7 @@ import com.mitelcel.pack.ui.fragment.FragmentChangePassword;
 import com.mitelcel.pack.ui.fragment.FragmentConfirmPin;
 import com.mitelcel.pack.ui.fragment.FragmentLogin;
 import com.mitelcel.pack.ui.fragment.FragmentLoginOrRegister;
+import com.mitelcel.pack.ui.fragment.FragmentRegister;
 import com.mitelcel.pack.ui.fragment.FragmentRequestPin;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
@@ -41,6 +42,8 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
 
     public static String BACK_STACK_NAME = "back_stack";
     public static String TAG = LoginOrRegister.class.getSimpleName();
+
+    private int errorCode = 0;
 
     @Inject
     MiApiClient miApiClient;
@@ -72,15 +75,24 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
     }
 
     public void clickWidgetOnFragment(View view) {
+        MiLog.i(TAG, "clickWidgetOnFragment start errorCode " + errorCode + " with view " + view.getId());
         switch (view.getId()) {
             case R.id.login_new_user://1
             case R.id.login_or_register_register://1
-                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentRequestPin.TAG, FragmentRequestPin.newInstance(), R.id.container);
+                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentRequestPin.TAG, FragmentRequestPin.newInstance("register"), R.id.container);
+                break;
+            case R.id.login_forgot:
+                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentRequestPin.TAG, FragmentRequestPin.newInstance("pwreset"), R.id.container);
                 break;
             case R.id.register_already_reg://2
             case R.id.login_or_register_login://2
                 FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentLogin.TAG, FragmentLogin.newInstance(), R.id.container);
                 break;
+            /*case R.id.reset_password:
+                FragmentHandler.addFragmentInBackStackWithAnimation(getSupportFragmentManager(), BACK_STACK_NAME, FragmentChangePassword.TAG, FragmentChangePassword.newInstance(), R.id.container);
+                break;*/
+            default:
+                FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), null, FragmentLoginOrRegister.TAG, FragmentLoginOrRegister.newInstance(), R.id.container);
         }
     }
 
@@ -88,26 +100,57 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
     public void showDialogErrorCall(String content, String btnTex, @IdRes int resId, int requestCode) {
         if (requestCode == DialogActivity.REQ_SIGN_UP || requestCode == DialogActivity.REQ_SIGN_IN) {
             MiUtils.showDialogError(this, content, btnTex, resId, DialogActivity.APP_ERROR_CALL);
-            MiUtils.MiAppPreferences.clear();
         }
     }
 
     @Override
-    public void onRequestPinSubmit(String msisdn) {
-        MiLog.i(TAG, "onRequestPinSubmit called with " + msisdn);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DialogActivity.APP_ERROR_CALL) {
+            MiLog.i(TAG, "onActivityResult start errorCode " + errorCode);
+            switch (errorCode) {
+                case Config.USER_DOES_NOT_EXISTS:
+                    MiLog.i(TAG, "onActivityResult errorCode USER_DOES_NOT_EXISTS");
+                    FragmentHandler.replaceFragment(getSupportFragmentManager(), FragmentRegister.TAG, FragmentRegister.newInstance(), R.id.container);
+                    break;
+                case Config.USER_EXISTS:
+                    MiLog.i(TAG, "onActivityResult errorCode USER_EXISTS");
+                    FragmentHandler.replaceFragment(getSupportFragmentManager(), FragmentLogin.TAG, FragmentLogin.newInstance(), R.id.container);
+                    break;
+                default:
+                    MiLog.i(TAG, "onActivityResult default errorCode " + errorCode);
+            }
+            errorCode = 0;
+        }
+        else
+            MiUtils.MiAppPreferences.clear();
+    }
+
+    @Override
+    public void onRequestPinSubmit(String msisdn, String reason) {
+        MiLog.i(TAG, "onRequestPinSubmit called with " + msisdn + " and reason " + reason);
 
         dialog.show();
 
-        BeanRequestPin beanRequestPin = new BeanRequestPin(msisdn);
+        BeanRequestPin beanRequestPin = new BeanRequestPin(msisdn, reason);
 
         miApiClient.request_pin(beanRequestPin, new Callback<BeanRequestPinResponse>() {
             @Override
             public void success(BeanRequestPinResponse beanRequestPinResponse, Response response) {
                 dialog.hide();
-                if(beanRequestPinResponse.getError().getCode() == Config.SUCCESS){
+                errorCode = beanRequestPinResponse.getError().getCode();
+                if(errorCode == Config.SUCCESS){
                     MiLog.i(TAG, "Request Pin success " + beanRequestPinResponse.toString());
                     MiUtils.MiAppPreferences.setMsisdn(MiUtils.getCleanMsisdn(msisdn));
                     FragmentHandler.replaceFragment(getSupportFragmentManager(), FragmentConfirmPin.TAG, FragmentConfirmPin.newInstance(), R.id.container);
+                }
+                else if(errorCode == Config.USER_DOES_NOT_EXISTS) {
+                    MiLog.i(TAG, "Request Pin failure " + beanRequestPinResponse.toString());
+                    showDialogErrorCall(getString(R.string.user_not_found), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.REQ_SIGN_UP);
+                }
+                else if(errorCode == Config.USER_EXISTS){
+                    MiLog.i(TAG, "Request Pin failure " + beanRequestPinResponse.toString());
+                    showDialogErrorCall(getString(R.string.user_found), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.REQ_SIGN_UP);
                 }
                 else {
                     MiLog.i(TAG, "Request Pin failure " + beanRequestPinResponse.toString());
@@ -136,11 +179,13 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
             @Override
             public void success(BeanConfirmPinResponse beanConfirmPinResponse, Response response) {
                 dialog.hide();
-                if (beanConfirmPinResponse.getError().getCode() == Config.SUCCESS && beanConfirmPinResponse.getResult() != null) {
+                errorCode = beanConfirmPinResponse.getError().getCode();
+                if (errorCode == Config.SUCCESS && beanConfirmPinResponse.getResult() != null) {
                     MiLog.i(TAG, "Confirm Pin success " + beanConfirmPinResponse.toString());
                     MiUtils.MiAppPreferences.setSessionId(beanConfirmPinResponse.getResult().getSessionId());
+                    MiUtils.MiAppPreferences.setLogin();
                     FragmentHandler.replaceFragment(getSupportFragmentManager(), FragmentChangePassword.TAG, FragmentChangePassword.newInstance(), R.id.container);
-                } else if (beanConfirmPinResponse.getError().getCode() == Config.INVALID_PARAMS) {
+                } else if (errorCode == Config.INVALID_PARAMS) {
                     MiLog.i(TAG, "Confirm Pin params failure " + beanConfirmPinResponse.toString());
                     showDialogErrorCall(getString(R.string.check_input), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.REQ_SIGN_UP);
                 } else {
@@ -170,12 +215,13 @@ public class LoginOrRegister extends BaseActivityLogin implements OnDialogListen
             @Override
             public void success(BeanUpdateUserInfoResponse beanUpdateUserInfoResponse, Response response) {
                 dialog.hide();
-                if (beanUpdateUserInfoResponse.getError().getCode() == Config.SUCCESS) {
+                errorCode = beanUpdateUserInfoResponse.getError().getCode();
+                if (errorCode == Config.SUCCESS) {
                     MiLog.i(TAG, "Change Password success " + beanUpdateUserInfoResponse.toString());
                     MiUtils.MiAppPreferences.setSessionId(beanUpdateUserInfoResponse.getResult().getSessionId());
                     MiUtils.startSkillActivityClearStack(getApplicationContext(), MainActivity.class);
                     finish();
-                } else if (beanUpdateUserInfoResponse.getError().getCode() == Config.INVALID_PARAMS) {
+                } else if (errorCode == Config.INVALID_PARAMS) {
                     MiLog.i(TAG, "Change Password failure " + beanUpdateUserInfoResponse.toString());
                     showDialogErrorCall(getString(R.string.check_input), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.REQ_SIGN_UP);
                 } else {

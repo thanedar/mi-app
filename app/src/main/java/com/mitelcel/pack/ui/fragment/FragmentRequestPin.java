@@ -9,11 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
-import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.Validator;
 
 import javax.inject.Inject;
@@ -26,6 +26,8 @@ public class FragmentRequestPin extends Fragment{
 
     @InjectView(R.id.register_tv_msisdn)
     EditText msisdn;
+    @InjectView(R.id.request_details)
+    TextView viewDetails;
 
     @Inject
     Validator validator;
@@ -34,8 +36,16 @@ public class FragmentRequestPin extends Fragment{
 
     public static final String TAG = FragmentRequestPin.class.getSimpleName();
 
-    public static FragmentRequestPin newInstance() {
-        return new FragmentRequestPin();
+    private static final String ARG_TYPE = "type";
+    private String mType;
+
+    public static FragmentRequestPin newInstance(String type) {
+        FragmentRequestPin fragmentRequestPin = new FragmentRequestPin();
+        Bundle args = new Bundle();
+        args.putString(ARG_TYPE, type);
+        fragmentRequestPin.setArguments(args);
+
+        return fragmentRequestPin;
     }
 
     public FragmentRequestPin() {
@@ -46,6 +56,9 @@ public class FragmentRequestPin extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(getArguments() != null){
+            mType = getArguments().getString(ARG_TYPE);
+        }
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
 
@@ -55,6 +68,13 @@ public class FragmentRequestPin extends Fragment{
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_request_pin, container, false);
         ButterKnife.inject(this, rootView);
+
+        if(mType.equals("pwreset")){
+            viewDetails.setText(R.string.request_pin_reset);
+        }
+        else if(mType.equals("register")){
+            viewDetails.setText(R.string.request_pin_register);
+        }
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             msisdn.addTextChangedListener(new PhoneNumberFormattingTextWatcher("MX"));
@@ -92,7 +112,7 @@ public class FragmentRequestPin extends Fragment{
         if(!isValidInput())
             return;
 
-        interactionListener.onRequestPinSubmit(msisdn.getText().toString());
+        interactionListener.onRequestPinSubmit(msisdn.getText().toString(), mType);
     }
 
     private boolean isValidInput() {
@@ -107,6 +127,6 @@ public class FragmentRequestPin extends Fragment{
     }
 
     public interface OnRequestPinFragmentInteractionListener {
-        void onRequestPinSubmit(String msisdn);
+        void onRequestPinSubmit(String msisdn, String reason);
     }
 }
