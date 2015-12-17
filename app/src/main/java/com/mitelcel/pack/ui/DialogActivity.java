@@ -78,8 +78,12 @@ public class DialogActivity extends Activity {
             tvDialogTitle.setText(bundle.getString(DIALOG_RES_TITLE));
         }
         if(bundle.containsKey(DIALOG_RES_ID)){
+            if(bundle.getInt(DIALOG_RES_ID) == DIALOG_HIDDEN_ICO){
+                dialogIcon.setVisibility(View.GONE);
+            } else {
                 dialogIcon.setVisibility(View.VISIBLE);
                 dialogIcon.setImageResource(bundle.getInt(DIALOG_RES_ID));
+            }
         }
         if(bundle.containsKey(DIALOG_RES_URL)){
             Picasso.with(getApplicationContext()).load(bundle.getString(DIALOG_RES_URL)).into(dialogIcon);

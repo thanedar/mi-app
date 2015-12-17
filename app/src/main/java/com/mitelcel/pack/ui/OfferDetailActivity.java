@@ -89,7 +89,7 @@ public class OfferDetailActivity extends BaseChildActivity implements View.OnCli
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(beanImage.getTitle());
+            //actionBar.setTitle(beanImage.getTitle());
         }
 
         MiLog.i(TAG, "beanImage - " + beanImage.toString());

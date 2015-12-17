@@ -27,7 +27,7 @@ public class Validator {
 
     public String isValidPassSignUp(String pass) {
         if(pass.length() < Config.PASS_LENGTH)
-            return this.context.getString(R.string.invalid_password);
+            return this.context.getString(R.string.invalid_password, Config.PASS_LENGTH);
         return null;
     }
 

@@ -17,11 +17,10 @@
         android:id="@+id/form_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/label_register"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:padding="15dp">
 
         <view
             android:id="@+id/register_tv_msisdn"
