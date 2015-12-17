@@ -244,7 +244,7 @@ public class MainActivity extends BaseActivity implements
                             String balance = beanGetCurrentBalanceResponse.getResult().getCurrentBalance();
                             MiUtils.MiAppPreferences.setCurrentBalance(Float.parseFloat(balance));
                         }
-                        else if(beanGetCurrentBalanceResponse.getError().getCode() == Config.INVALID_SESSION_ID){
+                        else if(beanGetCurrentBalanceResponse.getError().getCode() == Config.INVALID_SESSION_ID || beanGetCurrentBalanceResponse.getError().getCode() == Config.INVALID_PARAMS){
                             forceUserLogin();
                         }
                     }
@@ -275,6 +275,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void forceUserLogin() {
         MiLog.i("forceUserLogin", "Starting LoginOrRegister now");
+        MiUtils.MiAppPreferences.logOut(MainActivity.this);
         startActivity(new Intent(this, LoginOrRegister.class));
         finish();
     }

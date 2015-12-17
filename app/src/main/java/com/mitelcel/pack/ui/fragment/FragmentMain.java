@@ -177,7 +177,7 @@ public class FragmentMain extends Fragment {
                         minutes.setText(res.getString(R.string.home_minutes, beanGetAccountInfoResponse.getResult().getUsedMinutes()));
                         sms.setText(res.getString(R.string.home_sms, beanGetAccountInfoResponse.getResult().getUsedSms()));
                         data.setText(res.getString(R.string.home_data, beanGetAccountInfoResponse.getResult().getUsedData()));
-                    } else if (beanGetAccountInfoResponse.getError().getCode() == Config.INVALID_SESSION_ID) {
+                    } else if (beanGetAccountInfoResponse.getError().getCode() == Config.INVALID_SESSION_ID || beanGetAccountInfoResponse.getError().getCode() == Config.INVALID_PARAMS) {
                         mListener.forceUserLogin();
                     }
                 } else
@@ -206,7 +206,7 @@ public class FragmentMain extends Fragment {
                         if (beanGetRecentActivityResponse.getResult() != null) {
                             List<BeanGetRecentActivityResponse.UserActivity> userActivities = beanGetRecentActivityResponse.getResult();
                             mRecentRecycleViewAdapter.replaceData(userActivities);
-                        } else if (beanGetRecentActivityResponse.getError().getCode() == Config.INVALID_SESSION_ID) {
+                        } else if (beanGetRecentActivityResponse.getError().getCode() == Config.INVALID_SESSION_ID || beanGetRecentActivityResponse.getError().getCode() == Config.INVALID_PARAMS) {
                             mListener.forceUserLogin();
                         } else {
                             MiLog.i("FragmentMain", "beanGetRecentActivityResponse.Result [ NULL ]");
@@ -252,7 +252,7 @@ public class FragmentMain extends Fragment {
 
                         Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlIcon).into(borderImageView);
                         Picasso.with(getActivity().getApplicationContext()).load(offerItemHolder.urlCard).placeholder(R.drawable.placeholder_thumb).into(backGroundImageView);
-                    } else if (beanGetOfferListResponse.getError().getCode() == Config.INVALID_SESSION_ID) {
+                    } else if (beanGetOfferListResponse.getError().getCode() == Config.INVALID_SESSION_ID || beanGetOfferListResponse.getError().getCode() == Config.INVALID_PARAMS) {
                         mListener.forceUserLogin();
                     }
                 } else
