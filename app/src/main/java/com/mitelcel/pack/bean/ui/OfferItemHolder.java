@@ -1,7 +1,7 @@
 package com.mitelcel.pack.bean.ui;
 
 import com.google.gson.Gson;
-import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
+import com.mitelcel.pack.bean.api.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.bean.GenericBean;
 import com.mitelcel.pack.utils.MiLog;
 

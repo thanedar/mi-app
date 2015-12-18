@@ -14,15 +14,11 @@ import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.MiRestClient;
-import com.mitelcel.pack.api.bean.req.BeanGetRecentActivity;
-import com.mitelcel.pack.api.bean.req.BeanGetServiceList;
-import com.mitelcel.pack.api.bean.resp.BeanGetRecentActivityResponse;
-import com.mitelcel.pack.api.bean.resp.BeanGetServiceListResponse;
+import com.mitelcel.pack.bean.api.req.BeanGetServiceList;
+import com.mitelcel.pack.bean.api.resp.BeanGetServiceListResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.widget.DividerItemDecoration;
 import com.mitelcel.pack.ui.widget.EmptyRecyclerView;
-import com.mitelcel.pack.ui.widget.RecentRecycleViewAdapter;
 import com.mitelcel.pack.ui.widget.ServiceRecycleViewAdapter;
 import com.mitelcel.pack.utils.MiLog;
 

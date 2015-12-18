@@ -1,26 +1,17 @@
 package com.mitelcel.pack.ui.widget;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.bean.resp.BeanGetServiceListResponse.Service;
-import com.squareup.picasso.Picasso;
+import com.mitelcel.pack.bean.api.resp.BeanGetServiceListResponse.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by sudhanshu.thanedar on 12/11/2015

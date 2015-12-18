@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.api.bean.req.BeanGetOfferList;
-import com.mitelcel.pack.api.bean.resp.BeanGetOfferListResponse;
+import com.mitelcel.pack.bean.api.req.BeanGetOfferList;
+import com.mitelcel.pack.bean.api.resp.BeanGetOfferListResponse;
 import com.mitelcel.pack.bean.ui.OfferItemHolder;
 import com.mitelcel.pack.ui.fragment.IFragCommunication;
 import com.mitelcel.pack.utils.MiLog;
