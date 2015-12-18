@@ -26,7 +26,7 @@ public class BeanGetRecentActivity extends BeanGenericApi {
         this.params = new Params(limit);
     }
 
-    public BeanGetRecentActivity (String status, int limit) {
+    public BeanGetRecentActivity (int status, int limit) {
         this.id = System.currentTimeMillis();
         this.method = NAME;
         this.params = new Params(status, limit);
@@ -40,24 +40,24 @@ public class BeanGetRecentActivity extends BeanGenericApi {
 
         @SerializedName("activity_status")
         @Expose
-        private String activityStatus;
+        private int activityStatus;
 
         @Expose
         private int limit;
 
         public Params() {
             this.sessionId = MiUtils.MiAppPreferences.getSessionId();
-            this.activityStatus = "0"; //  By default successful activity list will be returned.
+            this.activityStatus = 0; //  By default successful activity list will be returned.
             this.limit = 5;
         }
 
         public Params(int limit) {
             this.sessionId = MiUtils.MiAppPreferences.getSessionId();
-            this.activityStatus = "0"; //  By default successful activity list will be returned.
+            this.activityStatus = 0; //  By default successful activity list will be returned.
             this.limit = limit;
         }
 
-        public Params(String status, int limit) {
+        public Params(int status, int limit) {
             this.sessionId = MiUtils.MiAppPreferences.getSessionId();
             this.activityStatus = status;
             this.limit = limit;

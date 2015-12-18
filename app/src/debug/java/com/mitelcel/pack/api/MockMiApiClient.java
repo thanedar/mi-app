@@ -118,7 +118,7 @@ public class MockMiApiClient implements MiApiClient {
     @Override
     public void get_service_list(@Body BeanGetServiceList beanInput, Callback<BeanGetServiceListResponse> callback) {
         BeanGetServiceListResponse beanResponse = new Gson().fromJson(FakeData.RESP_GET_OFFER_LIST, BeanGetServiceListResponse.class);
-        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_RECENT_ACTIVITY.getBytes()));
+        Response response = new Response("http://fake", 200, "nothing", Collections.EMPTY_LIST, new TypedByteArray("application/json",FakeData.RESP_GET_OFFER_LIST.getBytes()));
         callback.success(beanResponse, response);
     }
 

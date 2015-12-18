@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.dagger.module.SharedPrefModule;
-import com.mitelcel.pack.ui.ProcessPhoenix;
+import com.jakewharton.processphoenix.ProcessPhoenix;
 
 /**
  * Created by sudhanshu.thanedar on 10/26/2015.
@@ -32,7 +32,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
     protected static final int NAVDRAWER_ITEM_HELP              = 8;
     protected static final int NAVDRAWER_ITEM_TUTORIAL          = 9;
     protected static final int NAVDRAWER_ITEM_TERMS             = 10;
-    protected static final int NAVDRAWER_ITEM_PRIVACY         = 11;
+    protected static final int NAVDRAWER_ITEM_PRIVACY           = 11;
     protected static final int NAVDRAWER_ITEM_LOGOUT            = 12;
 
     protected static final int NAVDRAWER_ITEM_DEBUG             = 13;
@@ -153,14 +153,9 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(getContext(), "" + isChecked, Toast.LENGTH_SHORT).show();
-                sharedPreferences.edit().putBoolean(SharedPrefModule.HAS_MOCK, isChecked).commit();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ProcessPhoenix.triggerRebirth(getContext());
-                    }
-                }, 500);
+                Toast.makeText(getContext(), "Has mock API? " + isChecked, Toast.LENGTH_SHORT).show();
+                sharedPreferences.edit().putBoolean(SharedPrefModule.HAS_MOCK, isChecked).apply();
+                new Handler().postDelayed(() -> ProcessPhoenix.triggerRebirth(getContext()), 500);
             }
         });
 

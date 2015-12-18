@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.mitelcel.pack.BuildConfig;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
@@ -207,7 +208,9 @@ public class FragmentOffers extends Fragment implements IFragCommunication, Adap
                 public void success(BeanLoginResponse resp, Response response) {
                     if (resp.getError().getCode() == Config.SUCCESS) {
                         MiUtils.MiAppPreferences.setSessionId(resp.getResult().getSessionId());
-                        sharedPreferences.edit().putBoolean(SharedPrefModule.HAS_CALL_ERROR, false).apply();
+                        if(BuildConfig.DEBUG)
+                            sharedPreferences.edit().putBoolean(SharedPrefModule.HAS_CALL_ERROR, false).apply();
+
                         adapter.clear();
                         startUpdateProcess(true);
                     }

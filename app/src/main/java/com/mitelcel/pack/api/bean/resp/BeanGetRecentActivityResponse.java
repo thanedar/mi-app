@@ -34,7 +34,7 @@ public class BeanGetRecentActivityResponse extends BeanGenericResponse {
         private String apiMethod;
         @SerializedName("activity_status")
         @Expose
-        private String activityStatus;
+        private int activityStatus;
         @SerializedName("activity_datetime")
         @Expose
         private String activityDatetime;
