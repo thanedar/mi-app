@@ -12,8 +12,8 @@ import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.bean.api.req.BeanGetCurrentBalance;
-import com.mitelcel.pack.bean.api.resp.BeanGetCurrentBalanceResponse;
+import com.mitelcel.pack.bean.api.request.BeanGetCurrentBalance;
+import com.mitelcel.pack.bean.api.response.BeanGetCurrentBalanceResponse;
 import com.mitelcel.pack.utils.MiLog;
 import com.mitelcel.pack.utils.MiUtils;
 

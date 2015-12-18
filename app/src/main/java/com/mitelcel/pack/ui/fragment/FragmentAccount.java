@@ -13,8 +13,8 @@ import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.bean.api.req.BeanGetAccountInfo;
-import com.mitelcel.pack.bean.api.resp.BeanGetAccountInfoResponse;
+import com.mitelcel.pack.bean.api.request.BeanGetAccountInfo;
+import com.mitelcel.pack.bean.api.response.BeanGetAccountInfoResponse;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.utils.MiLog;
 

@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.bean.api.resp.BeanGetServiceListResponse;
+import com.mitelcel.pack.bean.api.response.BeanGetServiceListResponse;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;

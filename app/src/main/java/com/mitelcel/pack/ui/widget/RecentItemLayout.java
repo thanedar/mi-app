@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.R;
-import com.mitelcel.pack.bean.api.resp.BeanGetRecentActivityResponse.UserActivity;
+import com.mitelcel.pack.bean.api.response.BeanGetRecentActivityResponse.UserActivity;
 import com.mitelcel.pack.bean.ui.BeanContactInfo;
 import com.mitelcel.pack.bean.ui.BeanRechargeParams;
 import com.mitelcel.pack.bean.ui.BeanTransferParams;

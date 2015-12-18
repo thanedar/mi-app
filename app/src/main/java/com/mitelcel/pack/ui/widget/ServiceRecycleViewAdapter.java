@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.api.MiApiClient;
-import com.mitelcel.pack.bean.api.resp.BeanGetServiceListResponse.Service;
+import com.mitelcel.pack.bean.api.response.BeanGetServiceListResponse.Service;
 
 import java.util.ArrayList;
 import java.util.List;
