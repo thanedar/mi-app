@@ -26,6 +26,9 @@ public class FragmentRequestPin extends Fragment{
 
     @InjectView(R.id.register_tv_msisdn)
     EditText msisdn;
+
+    @InjectView(R.id.label_register)
+    TextView viewLabel;
     @InjectView(R.id.request_details)
     TextView viewDetails;
 
@@ -70,9 +73,11 @@ public class FragmentRequestPin extends Fragment{
         ButterKnife.inject(this, rootView);
 
         if(mType.equals("pwreset")){
+            viewLabel.setText(getString(R.string.reset_password));
             viewDetails.setText(R.string.request_pin_reset);
         }
         else if(mType.equals("register")){
+            viewLabel.setText(getString(R.string.register));
             viewDetails.setText(R.string.request_pin_register);
         }
 
