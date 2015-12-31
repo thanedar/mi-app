@@ -24,7 +24,10 @@ public class CustomDrawerLayout extends DrawerLayout {
     protected static final int NAVDRAWER_ITEM_TUTORIAL          = 9;
     protected static final int NAVDRAWER_ITEM_TERMS             = 10;
     protected static final int NAVDRAWER_ITEM_PRIVACY           = 11;
-    protected static final int NAVDRAWER_ITEM_LOGOUT            = 12;
+    protected static final int NAVDRAWER_ITEM_PASSWORD          = 12;
+    protected static final int NAVDRAWER_ITEM_LOGOUT            = 13;
+
+    protected static final int NAVDRAWER_ITEM_SEPARATOR = -2;
 
     private static final int[] NAVDRAWER_TITLE_RES_ID = new int[]{
             R.string.navdrawer_item_home,
@@ -39,11 +42,13 @@ public class CustomDrawerLayout extends DrawerLayout {
             R.string.navdrawer_item_tutorial,
             R.string.navdrawer_item_terms,
             R.string.navdrawer_item_privacy,
+            R.string.navdrawer_item_password,
             R.string.navdrawer_item_logout
     };
 
     private static final int[] NAVDRAWER_ICON_RES_ID = new int[]{
             R.drawable.ic_menu_home,
+            R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
@@ -71,6 +76,7 @@ public class CustomDrawerLayout extends DrawerLayout {
             R.id.navdrawer_item_tutorial,
             R.id.navdrawer_item_terms,
             R.id.navdrawer_item_privacy,
+            R.id.navdrawer_item_password,
             R.id.navdrawer_item_logout
     };
 
@@ -122,6 +128,8 @@ public class CustomDrawerLayout extends DrawerLayout {
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_TERMS], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_TERMS], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_TERMS]);
         // CONTACT US
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_PRIVACY], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_PRIVACY], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_PRIVACY]);
+        // CHANGE PASSWORD
+        fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_PASSWORD], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_PASSWORD], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_PASSWORD]);
         // LOGOUT
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_LOGOUT], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_LOGOUT], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_LOGOUT]);
     }

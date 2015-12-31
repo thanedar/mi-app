@@ -41,6 +41,7 @@
             <!-- Divider -->
             <include  layout="@layout/navdrawer_separator"/>
 
+            <include android:id="@+id/navdrawer_item_password" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_logout" layout="@layout/navdrawer_item"/>
         </LinearLayout>
     </ScrollView>

@@ -33,10 +33,11 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
     protected static final int NAVDRAWER_ITEM_TUTORIAL          = 9;
     protected static final int NAVDRAWER_ITEM_TERMS             = 10;
     protected static final int NAVDRAWER_ITEM_PRIVACY           = 11;
-    protected static final int NAVDRAWER_ITEM_LOGOUT            = 12;
+    protected static final int NAVDRAWER_ITEM_PASSWORD          = 12;
+    protected static final int NAVDRAWER_ITEM_LOGOUT            = 13;
 
-    protected static final int NAVDRAWER_ITEM_DEBUG             = 13;
-    protected static final int NAVDRAWER_ITEM_ERROR_CALL        = 14;
+    protected static final int NAVDRAWER_ITEM_DEBUG             = 14;
+    protected static final int NAVDRAWER_ITEM_ERROR_CALL        = 15;
 
     protected static final int NAVDRAWER_ITEM_SEPARATOR = -2;
 
@@ -53,6 +54,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
             R.string.navdrawer_item_tutorial,
             R.string.navdrawer_item_terms,
             R.string.navdrawer_item_privacy,
+            R.string.navdrawer_item_password,
             R.string.navdrawer_item_logout,
             R.string.navdrawer_item_debug,
             R.string.navdrawer_item_error_call
@@ -60,6 +62,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
 
     private static final int[] NAVDRAWER_ICON_RES_ID = new int[]{
             R.drawable.ic_menu_home,
+            R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
             R.drawable.ic_menu_settings,
@@ -89,6 +92,7 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
             R.id.navdrawer_item_tutorial,
             R.id.navdrawer_item_terms,
             R.id.navdrawer_item_privacy,
+            R.id.navdrawer_item_password,
             R.id.navdrawer_item_logout,
             R.id.navdrawer_item_debug,
             R.id.navdrawer_item_error_call
@@ -201,6 +205,8 @@ public class CustomDrawerLayout extends DrawerLayout implements SharedPreference
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_TERMS], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_TERMS], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_TERMS]);
         // CONTACT US
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_PRIVACY], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_PRIVACY], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_PRIVACY]);
+        // CHANGE PASSWORD
+        fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_PASSWORD], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_PASSWORD], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_PASSWORD]);
         // LOGOUT
         fillItem(NAVDRAWER_LAYOUT_RES_ID[NAVDRAWER_ITEM_LOGOUT], NAVDRAWER_ICON_RES_ID[NAVDRAWER_ITEM_LOGOUT], NAVDRAWER_TITLE_RES_ID[NAVDRAWER_ITEM_LOGOUT]);
         // SET ENVIRONMENT

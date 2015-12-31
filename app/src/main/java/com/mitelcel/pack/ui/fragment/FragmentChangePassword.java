@@ -14,6 +14,8 @@ import android.widget.EditText;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
+import com.mitelcel.pack.ui.LoginOrRegister;
+import com.mitelcel.pack.ui.widget.TextViewFolks;
 import com.mitelcel.pack.utils.Validator;
 
 import javax.inject.Inject;
@@ -23,6 +25,9 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class FragmentChangePassword extends Fragment{
+
+    @InjectView(R.id.change_password_now)
+    EditText passwordNow;
 
     @InjectView(R.id.change_password_one)
     EditText passwordOne;
@@ -34,10 +39,17 @@ public class FragmentChangePassword extends Fragment{
 
     private OnChangePasswordFragmentInteractionListener interactionListener;
 
+    private static final String ARG_TYPE = "login";
+    private String mType;
+
     public static final String TAG = FragmentChangePassword.class.getSimpleName();
 
-    public static FragmentChangePassword newInstance() {
-        return new FragmentChangePassword();
+    public static FragmentChangePassword newInstance(String type) {
+        FragmentChangePassword fragmentChangePassword = new FragmentChangePassword();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_TYPE, type);
+        fragmentChangePassword.setArguments(bundle);
+        return fragmentChangePassword;
     }
 
     public FragmentChangePassword() {
@@ -47,6 +59,9 @@ public class FragmentChangePassword extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mType = getArguments().getString(ARG_TYPE);
+        }
 
         FragmentComponent.Initializer.init(MiApp.getInstance().getAppComponent()).inject(this);
     }
@@ -58,42 +73,71 @@ public class FragmentChangePassword extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_change_password, container, false);
         ButterKnife.inject(this, rootView);
 
-        passwordOne.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        if(mType.equals(LoginOrRegister.PASSWORD)) {
+            passwordNow.setVisibility(View.VISIBLE);
 
-            }
+            passwordNow.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
 
-            }
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (passwordNow.getText().toString().trim().isEmpty()) {
+                        passwordNow.setError(getString(R.string.check_input, ContextCompat.getDrawable(getActivity(), R.drawable.ic_alert)));
+                    }
+                    else
+                        passwordNow.setError(null, null);
+                }
+            });
 
-            @Override
-            public void afterTextChanged(Editable s) {
+            passwordOne.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    if(passwordNow.getText().toString().trim().isEmpty()){
+                        passwordNow.setError(getString(R.string.check_input, ContextCompat.getDrawable(getActivity(), R.drawable.ic_alert)));
+                    }
+                }
 
-            }
-        });
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+        }
 
         passwordTwo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                checkPasswords();
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                checkPasswords();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                String textOne = passwordOne.getText().toString();
-                String textTwo = passwordTwo.getText().toString();
+                checkPasswords();
+            }
 
-                if(!textOne.equals(textTwo)) {
+            private void checkPasswords(){
+                String textOne = passwordOne.getText().toString().trim();
+                String textTwo = passwordTwo.getText().toString().trim();
+
+                if (!textOne.equals(textTwo)) {
                     passwordTwo.setError(getString(R.string.password_does_not_match), ContextCompat.getDrawable(getActivity(), R.drawable.ic_alert));
                 }
+                else
+                    passwordTwo.setError(null, null);
             }
         });
 
@@ -128,7 +172,11 @@ public class FragmentChangePassword extends Fragment{
         if(!isValidInput())
             return;
 
-        interactionListener.onChangePasswordSubmit(passwordOne.getText().toString());
+        String old = "";
+        if(mType.equals(LoginOrRegister.PASSWORD)) {
+            old = passwordNow.getText().toString();
+        }
+        interactionListener.onChangePasswordSubmit(old, passwordOne.getText().toString());
     }
 
     @OnClick(R.id.change_password_skip)
@@ -148,7 +196,7 @@ public class FragmentChangePassword extends Fragment{
     }
 
     public interface OnChangePasswordFragmentInteractionListener {
-        void onChangePasswordSubmit(String password);
+        void onChangePasswordSubmit(String old_password, String new_password);
         void onChangePasswordSkip();
     }
 }

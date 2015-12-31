@@ -97,6 +97,7 @@
 
     <!-- register -->
     <string name="change_password_info">Click \'Skip\' to use the PIN code as your password for logging in or enter your preferred password below.</string>
+    <string name="change_password_success">Your password was successfully changed, please continue.</string>
     <string name="confirm_pin_info">Please enter the PIN you received to complete the registration process</string>
     <string name="request_pin_info">Please enter your phone number below to request a PIN to start the registration process</string>
     <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
@@ -180,6 +181,7 @@
     <string name="navdrawer_item_terms">Terms &amp; Conditions</string>
     <string name="navdrawer_item_contact">Contact Us</string>
     <string name="navdrawer_item_privacy">Privacy Policy</string>
+    <string name="navdrawer_item_password">Change Password</string>
     <string name="navdrawer_item_logout">Logout</string>
     <string name="navdrawer_item_debug" translatable="false">Is Debug?</string>
     <string name="navdrawer_item_error_call" translatable="false">Token not valid</string>

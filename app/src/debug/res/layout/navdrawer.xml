@@ -42,8 +42,10 @@
             <!-- Divider -->
             <include  layout="@layout/navdrawer_separator"/>
 
-            <!-- debug -->
+            <include android:id="@+id/navdrawer_item_password" layout="@layout/navdrawer_item"/>
             <include android:id="@+id/navdrawer_item_logout" layout="@layout/navdrawer_item"/>
+
+            <!-- debug -->
             <include  android:id="@+id/navdrawer_item_debug" layout="@layout/navdrawer_item_debug"/>
             <include  android:id="@+id/navdrawer_item_error_call" layout="@layout/navdrawer_item_debug"/>
 

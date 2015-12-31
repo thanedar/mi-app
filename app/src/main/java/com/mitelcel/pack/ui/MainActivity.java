@@ -189,6 +189,11 @@ public class MainActivity extends BaseActivity implements
             case R.id.navdrawer_item_tutorial:
                 startActivity(new Intent(this, TutorialActivity.class));
                 break;
+            case R.id.navdrawer_item_password:
+                Intent iChange = new Intent(this, LoginOrRegister.class);
+                iChange.putExtra(LoginOrRegister.FRAGMENT_NAME, LoginOrRegister.PASSWORD);
+                startActivity(iChange);
+                break;
             case R.id.navdrawer_item_logout:
                 logout();
                 break;
