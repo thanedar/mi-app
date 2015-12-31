@@ -24,24 +24,29 @@
     <string name="sample_user_msisdn" translatable="false">Subscriber 55 55897898</string>
     <string name="title_activity_dialog_no_connection" translatable="false">DialogNoConnection</string>
     <string name="title_activity_login_or_register">Login Or Register</string>
+    <string name="title_activity_tutorial">Tutorial</string>
 
     <!-- MSISDN -->
     <string name="msisdn">Phone number</string>
     <string name="msisdn_not_valid">Invalid phone number</string>
 
     <!-- Login -->
-    <string name="password">Password</string>
-    <string name="repeat_password">Repeat password</string>
-    <string name="submit">Submit</string>
-    <string name="retry">Retry</string>
-    <string name="register">Register</string>
-    <string name="login">Login</string>
-    <string name="logout">Log Out</string>
+    <string name="already_member">Already a member? Sign in</string>
     <string name="enter_your_msisdn">Enter your phone number</string>
     <string name="enter_your_password">Enter your password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
     <string name="log_on">Log On</string>
-    <string name="already_member">Already a member? Sign in</string>
+    <string name="logout">Log Out</string>
     <string name="new_user">New User? Create a New Account</string>
+    <string name="password">Password</string>
+    <string name="password_current">Current Password</string>
+    <string name="password_new">New Password</string>
+    <string name="register">Register</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="retry">Retry</string>
+    <string name="submit">Submit</string>
 
     <string name="hello_blank_fragment" translatable="false">Hello, I am a blank fragment</string>
 
@@ -99,13 +104,14 @@
     <string name="change_password_info">Click \'Skip\' to use the PIN code as your password for logging in or enter your preferred password below.</string>
     <string name="change_password_success">Your password was successfully changed, please continue.</string>
     <string name="confirm_pin_info">Please enter the PIN you received to complete the registration process</string>
-    <string name="request_pin_info">Please enter your phone number below to request a PIN to start the registration process</string>
-    <string name="invalid_password">Password must be at least 4 alpha-numeric characters!</string>
+    <string name="invalid_password">Password must be at least %1$s alpha-numeric characters!</string>
     <string name="login_failed">"Login failed with error code: %1$s"</string>
     <string name="password_does_not_match">Password does not match!</string>
     <string name="pin">PIN Code</string>
     <string name="request_pin_register">Please enter your phone number below to request a PIN to start the registration process</string>
     <string name="request_pin_reset">Please enter your phone number below to request a PIN to start the password reset process</string>
+    <string name="user_found">This number is already registered, please login!</string>
+    <string name="user_not_found">This number is not registered, please register first!</string>
 
     <!-- General -->
     <string name="amount">Amount</string>
@@ -139,13 +145,11 @@
     <string name="communicate_success">"You have earned %1$s%2$.2f for watching the video."</string>
 
     <string name="package_tag" translatable="false">package_tag</string>
-    <string name="url_redirect" translatable="false">link_redirect</string>
     <string name="installed_tag" translatable="false">installed_tag</string>
 
     <!-- TutorialActivity -->
-    <string name="title_activity_tutorial">Tutorial</string>
-    <string name="skip">Skip</string>
     <string name="next">Next</string>
+    <string name="skip">Skip</string>
     <string name="start">Start Now</string>
 
     <string name="tutorial_welcome_1" translatable="false">Welcome to</string>
@@ -187,8 +191,8 @@
     <string name="navdrawer_item_error_call" translatable="false">Token not valid</string>
 
     <!-- Bucksense -->
-    <string name="tats_app_id" translatable="false">9aeee11d-1ffd-11e5-8cfb-d4856445</string>
-    <string name="gcm_sender" translatable="false">1095055717735</string>
+    <string name="tats_app_id" translatable="false">ec29ab43-a5a9-11e5-9e5e-18a90547</string>
+    <string name="gcm_sender" translatable="false">1023767124068</string>
 
     <!-- Log Level -->
     <string name="tats_log_verbose" translatable="false">verbose</string>

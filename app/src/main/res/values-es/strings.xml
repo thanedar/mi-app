@@ -19,39 +19,43 @@
     <string name="app_name">Mi Telcel</string>
     <string name="hello_world">Hola mundo!</string>
     <string name="title_activity_login_or_register">Entrar o Registrarse</string>
+    <string name="title_activity_tutorial">Tutorial</string>
 
     <!-- MSISDN -->
     <string name="msisdn">Número de Teléfono</string>
     <string name="msisdn_not_valid">Número inválido</string>
 
     <!-- Login -->
-    <string name="password">Contraseña</string>
-    <string name="repeat_password">Repite tu contraseña</string>
-    <string name="submit">Entrar</string>
-    <string name="retry">Reintentar</string>
-    <string name="register">Registrar</string>
-    <string name="login">Ingresar</string>
-    <string name="logout">Salir</string>
+    <string name="already_member">¿Ya estás registrado? Entra</string>
     <string name="enter_your_msisdn">Registra tu número de teléfono</string>
     <string name="enter_your_password">Registra tu contraseña</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Ingresar</string>
     <string name="log_on">Acceder</string>
-    <string name="already_member">¿Ya estás registrado? Entra</string>
+    <string name="logout">Salir</string>
     <string name="new_user">¿Eres Nuevo? Crea una cuenta</string>
+    <string name="password">Contraseña</string>
+    <string name="password_current">Current Password</string>
+    <string name="password_new">New Password</string>
+    <string name="register">Registrar</string>
+    <string name="repeat_password">Repite tu contraseña</string>
+    <string name="retry">Reintentar</string>
+    <string name="submit">Entrar</string>
 
     <string name="home_minutes">"Minutos\n%1$s"</string>
     <string name="home_sms">"SMS\n%1$s"</string>
     <string name="home_data">"Datos\n%1$s"</string>
     
-    <string name="confirm_info">"No te haz conectado ultimamente, por favor ingresa tu contraseña para confirmar la transacción."</string>
+    <string name="confirm_info">"No te haz conectado últimamente, por favor ingresa tu contraseña para confirmar la transacción."</string>
 
     <!-- Frequent Numbers -->
     <string name="frequent_check">"Por favor confirma que deseas borrar el número %1$s?"</string>
     <string name="frequent_invalid_input">¡Por favor confirma si se registró correctamente el número de teléfono!</string>
     <string name="frequent_msisdn">Añadir nuevo contacto</string>
-    <string name="frequent_numbers">Números frecuentes</string>
+    <string name="frequent_numbers">Números Frecuentes</string>
     <string name="frequent_numbers_info">Por favor, elige uno de los campos para añadir/editar tus números frecuentes.</string>
     <string name="frequent_numbers_success">Añadiste exitosamente %1$s a tus números frecuentes.</string>
-    <string name="frequent_numbers_success_delete">Eliminaste exitosamente %1$s de tus números frecuentes.</string>
+    <string name="frequent_numbers_success_delete">Eliminaste exitosamente al número %1$s de tus Números Frecuentes.</string>
 
     <!-- Recharge -->
     <string name="recharge">Recargar</string>
@@ -80,10 +84,18 @@
     <string name="your_offer">Tus promociones</string>
     <string name="your_balance">"Saldo: %1$s &gt;"</string>
 
-    <!-- signup -->
-    <string name="email_not_valid">Email inválido</string>
-    <string name="invalid_password">La contraseña debe tener al menos 8 caracteres alfanuméricos!</string>
+    <!-- register -->
+    <string name="change_password_info">Da clic en \'Saltar\' para usar el código PIN como tu contraseña para inciar sesión o ingresa tu contraseña preferida en la casilla inferior.</string>
+    <string name="confirm_pin_info">Por favor ingresa el código PIN que te enviamos para completar tu registro</string>
+    <string name="request_pin_register">Por favor ingresa tu número de teléfono en la casilla para comenzar el proceso de registro</string>
+    <string name="request_pin_reset">Por favor ingresa tu número de teléfono en la casilla inferior para poder restablecer tu contraseña</string>
+    <string name="invalid_password">La contraseña debe tener al menos %1$s caracteres alfanuméricos!</string>
     <string name="login_failed">"Fallo al acceder, código: %1$s"</string>
+    <string name="password_does_not_match">La contraseña no coincide!</string>
+    <string name="pin">PIN CODE</string>
+    <string name="user_found">THIS NUMBER IS ALREADY REGISTERED, PLEASE LOGIN!</string>
+    <string name="user_not_found">THIS NUMBER IS NOT REGISTERED, PLEASE REGISTER FIRST!</string>
+    <string name="email_not_valid">Email inválido</string>
 
     <!-- General -->
     <string name="amount">Monto</string>
@@ -116,9 +128,8 @@
     <string name="communicate_success">"Ganaste %1$s%2$.2f pesos por ver el video."</string>
 
     <!-- TutorialActivity -->
-    <string name="title_activity_tutorial">Tutorial</string>
-    <string name="skip">Omitir</string>
     <string name="next">Siguiente</string>
+    <string name="skip">Omitir</string>
     <string name="start">Iniciar ahora</string>
 
     <!-- Navigation drawer -->
@@ -136,6 +147,5 @@
     <string name="navdrawer_item_contact">Contáctanos</string>
     <string name="navdrawer_item_privacy">Política de Privacidad</string>
     <string name="navdrawer_item_logout">Salir</string>
-    <string name="password_does_not_match">La contraseña no coincide!</string>
 
 </resources>
