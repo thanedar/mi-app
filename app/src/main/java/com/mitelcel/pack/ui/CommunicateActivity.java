@@ -21,6 +21,7 @@ import com.mitelcel.pack.api.MiApiClient;
 import com.mitelcel.pack.bean.api.request.BeanRechargeAccount;
 import com.mitelcel.pack.bean.api.response.BeanRechargeAccountResponse;
 import com.mitelcel.pack.ui.fragment.FragmentCommunicate;
+import com.mitelcel.pack.ui.fragment.FragmentVideoAd;
 import com.mitelcel.pack.ui.listener.OnDialogListener;
 import com.mitelcel.pack.utils.FragmentHandler;
 import com.mitelcel.pack.utils.MiLog;
@@ -32,11 +33,12 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class CommunicateActivity extends BaseActivity implements OnDialogListener, FragmentCommunicate.OnCommunicateFragmentInteractionListener,
+public class CommunicateActivity extends BaseActivity implements OnDialogListener,
+        FragmentCommunicate.OnCommunicateFragmentInteractionListener, FragmentVideoAd.OnCommunicateFragmentInteractionListener,
         AdColonyAdAvailabilityListener, AdColonyAdListener
 {
 
-    private static final String TAG = RechargeActivity.class.getName();
+    private static final String TAG = CommunicateActivity.class.getName();
 
     MaterialDialog dialog;
 
@@ -102,10 +104,17 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     }
 
     @Override
-    public void onCommunicateFragmentInteraction(View view){
-        MiLog.i(TAG, "onCommunicateFragmentInteraction event");
+    public void onStartVideoClick(View view){
+        MiLog.i(TAG, "onStartVideoClick event");
+        FragmentHandler.addFragmentInBackStack(getSupportFragmentManager(), TAG, FragmentVideoAd.TAG, FragmentVideoAd.newInstance(), R.id.container);
+    }
+
+    @Override
+    public void onWatchVideoClick(){
+        MiLog.i(TAG, "onWatchVideoClick event");
 
         if(ad.isReady()){
+            dialog.hide();
             ad.show();
             ad = new AdColonyVideoAd(Config.ADCOLONY_ZONE_ID).withListener(this);
         }
@@ -135,10 +144,15 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     {
         runOnUiThread(() -> {
             MiLog.i(TAG, "onAdColonyAdAvailabilityChange with " + available);
-            if (available) {
-                dialog.hide();
-            } else {
-                dialog.show();
+            FragmentVideoAd videoAd = (FragmentVideoAd) getSupportFragmentManager().findFragmentByTag(FragmentVideoAd.TAG);
+            if(videoAd != null) {
+                if (available) {
+                    videoAd.enableWatch();
+                    dialog.hide();
+                } else {
+                    videoAd.disableWatch();
+                    dialog.show();
+                }
             }
         });
     }

@@ -140,7 +140,8 @@
     <string name="updated">User updated!</string>
     <string name="warning">Warning</string>
 
-    <string name="communicate_video_offer">Click below to watch a video and earn some extra balance!</string>
+    <string name="communicate_send_sms">Click here to send a SMS to friend!</string>
+    <string name="communicate_video_offer">Click here to watch short video and earn balance!</string>
     <string name="communicate_watch_video">Watch video</string>
     <string name="communicate_success">"You have earned %1$s%2$.2f for watching the video."</string>
 

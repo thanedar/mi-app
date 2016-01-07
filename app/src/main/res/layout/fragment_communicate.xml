@@ -1,6 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_medium"
     android:background="@color/background_color">
 
     <com.mitelcel.pack.ui.widget.TextViewFolks
@@ -8,30 +10,27 @@
         style="@style/Theme.App.Fragment.Title.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
         android:padding="@dimen/padding_label"
         android:text="@string/communicate" />
 
-    <com.mitelcel.pack.ui.widget.TextViewFolks
-        android:id="@+id/communicate_offer"
-        style="@style/Theme.App.Fragment.Title.TextView"
-        android:layout_width="wrap_content"
+    <com.mitelcel.pack.ui.widget.ButtonFolks
+        android:id="@+id/sms_btn"
+        style="@style/Theme.App.ButtonFolks.Positive"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label_communicate"
-        android:padding="30dp"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="@string/communicate_video_offer"
-        android:textSize="20sp" />
+        android:padding="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/communicate_send_sms" />
 
     <com.mitelcel.pack.ui.widget.ButtonFolks
         android:id="@+id/video_btn"
         style="@style/Theme.App.ButtonFolks.Positive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/margin_huge"
-        android:layout_marginRight="@dimen/margin_huge"
-        android:text="@string/communicate_watch_video" />
+        android:padding="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/communicate_video_offer" />
 
-</RelativeLayout>
+</LinearLayout>
