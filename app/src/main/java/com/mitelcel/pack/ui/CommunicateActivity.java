@@ -13,7 +13,6 @@ import com.jirbo.adcolony.AdColonyAd;
 import com.jirbo.adcolony.AdColonyAdAvailabilityListener;
 import com.jirbo.adcolony.AdColonyAdListener;
 import com.jirbo.adcolony.AdColonyVideoAd;
-
 import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
@@ -145,13 +144,18 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
         runOnUiThread(() -> {
             MiLog.i(TAG, "onAdColonyAdAvailabilityChange with " + available);
             FragmentVideoAd videoAd = (FragmentVideoAd) getSupportFragmentManager().findFragmentByTag(FragmentVideoAd.TAG);
-            if(videoAd != null) {
-                if (available) {
-                    videoAd.enableWatch();
+
+            if (available) {
+                if(dialog.isShowing()) {
                     dialog.hide();
-                } else {
+                    ad.show();
+                } else if (videoAd != null) {
+                    videoAd.enableWatch();
+                }
+            } else {
+                dialog.show();
+                if (videoAd != null) {
                     videoAd.disableWatch();
-                    dialog.show();
                 }
             }
         });
@@ -186,6 +190,11 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
 
                             showDialogSuccessCall(getString(R.string.communicate_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
                                     getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
+
+                            FragmentVideoAd videoAd = (FragmentVideoAd) getSupportFragmentManager().findFragmentByTag(FragmentVideoAd.TAG);
+                            if(videoAd != null){
+                                videoAd.disableWatch();
+                            }
 
                         } else {
                             MiLog.i("Recharge", "Recharge API Error response " + beanRechargeAccountResponse.toString());

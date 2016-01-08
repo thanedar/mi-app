@@ -12,14 +12,45 @@
         android:padding="@dimen/padding_label"
         android:text="@string/communicate" />
 
+    <RelativeLayout
+        android:id="@+id/video_timer"
+        android:layout_below="@id/label_communicate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <ProgressBar
+            android:id="@+id/progressWheel"
+            android:layout_centerInParent="true"
+            android:indeterminate="false"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:max="100"
+            android:progress="25"
+            android:progressDrawable="@drawable/progress_bar_circle"
+            android:rotation="-90"
+            android:layout_height="250dip"
+            android:layout_width="250dip" />
+
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/communicate_video_timer"
+            android:textColor="#fff"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
     <com.mitelcel.pack.ui.widget.ButtonFolks
         android:id="@+id/watch_video_btn"
         style="@style/Theme.App.ButtonFolks.Positive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_below="@id/video_timer"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
         android:padding="@dimen/padding_label"
         android:text="@string/communicate_watch_video" />
 

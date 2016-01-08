@@ -506,12 +506,16 @@ public class MiUtils {
         public static final String DEVICE_TYPE = "device_type";
         public static final String LOGIN_STATUS_KEY = "login_status";
         public static final String LAST_CHECK_TIMESTAMP = "last_check_timestamp";
+
         public static final int LOGOUT = 1;
         public static final int LOGIN_NOT_SET = -1;
         public static final int LOGIN = 0;
+
+
         public static String CURRENCY_SYMBOL = "currency_symbol";
         public static String MSISDN_PREFIX = "msisdn_prefix";
         public static String MSISDN_FORMAT = "msisdn_format";
+        public static final String VIDEO_DELAY = "video_delay";
 
         public static final String MIAPP_SHARED_PREF_NAME = "mitelcel_shared_pref";
 
@@ -623,6 +627,15 @@ public class MiUtils {
             int key = getSharedPreferences().getInt(LOGIN_STATUS_KEY, LOGIN_NOT_SET);
             MiLog.i(TAG, "getLoggedStatus[" + key + "]");
             return key;
+        }
+
+        public static void setVideoDelay(long delay){
+            MiLog.i(TAG, "setVideoDelay: " + delay);
+            getSharedPreferences().edit().putLong(VIDEO_DELAY, delay).apply();
+        }
+
+        public static long getVideoDelay(){
+            return getSharedPreferences().getLong(VIDEO_DELAY, 0);
         }
 
         public static void setLastCheckTimestamp(){

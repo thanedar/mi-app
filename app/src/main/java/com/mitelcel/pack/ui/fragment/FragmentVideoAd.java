@@ -2,16 +2,22 @@ package com.mitelcel.pack.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.mitelcel.pack.Config;
 import com.mitelcel.pack.MiApp;
 import com.mitelcel.pack.R;
 import com.mitelcel.pack.dagger.component.FragmentComponent;
 import com.mitelcel.pack.ui.widget.ButtonFolks;
 import com.mitelcel.pack.utils.MiLog;
+import com.mitelcel.pack.utils.MiUtils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,9 +36,18 @@ public class FragmentVideoAd extends Fragment {
     public static final String TAG = FragmentVideoAd.class.getSimpleName();
 
     private OnCommunicateFragmentInteractionListener mListener;
+    private CountDownTimer timer;
+    private long videoDelay = 0;
 
     @InjectView(R.id.watch_video_btn)
-    ButtonFolks watch_video;
+    ButtonFolks watchVideoButton;
+    @InjectView(R.id.timer_text)
+    TextView timerText;
+    @InjectView(R.id.video_timer)
+    RelativeLayout timerLayout;
+
+    @InjectView(R.id.progressWheel)
+    ProgressBar wheel;
 
     /**
      * Use this factory method to create a new instance of
@@ -61,12 +76,39 @@ public class FragmentVideoAd extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video_ad, container, false);
         ButterKnife.inject(this, view);
 
+//        watchVideoButton.setEnabled(false);
+        timerText.setVisibility(View.INVISIBLE);
+        wheel.setVisibility(View.INVISIBLE);
+        wheel.setMax(Config.VIDEO_TIMER_DELAY);
+
+        videoDelay = MiUtils.MiAppPreferences.getVideoDelay();
+        startTimer(videoDelay);
+
         return view;
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        timer.cancel();
+        timer = null;
+        MiUtils.MiAppPreferences.setVideoDelay(videoDelay);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(videoDelay != 0) disableWatch();
     }
 
     @OnClick(R.id.watch_video_btn)
     public void onWatchVideoPressed(View view) {
         MiLog.i("FragmentVideoAd", "Video btn clicked for " + view.getId());
+
+        videoDelay = 0;
+        startTimer(videoDelay);
+        MiUtils.MiAppPreferences.setVideoDelay(videoDelay);
+
         if (mListener != null) {
             mListener.onWatchVideoClick();
         }
@@ -95,11 +137,37 @@ public class FragmentVideoAd extends Fragment {
 
     public void disableWatch() {
         MiLog.i(TAG, "Disable watch video button");
-        watch_video.setEnabled(false);
+        watchVideoButton.setEnabled(false);
+        timerText.setVisibility(View.VISIBLE);
+        wheel.setVisibility(View.VISIBLE);
+        timer.start();
     }
 
     public void enableWatch() {
         MiLog.i(TAG, "Enable watch video button");
-        watch_video.setEnabled(true);
+        watchVideoButton.setEnabled(true);
+        timerText.setVisibility(View.INVISIBLE);
+        wheel.setVisibility(View.INVISIBLE);
+    }
+
+    private void startTimer(long delay){
+        if(delay == 0)
+            delay = Config.VIDEO_TIMER_DELAY * 1000;
+
+        timer = new CountDownTimer(delay, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timerText.setText(getString(R.string.communicate_video_timer, millisUntilFinished / (60 * 1000), (millisUntilFinished / 1000) % 60 ));
+                wheel.setProgress((int) millisUntilFinished / 1000);
+                videoDelay = millisUntilFinished;
+            }
+
+            public void onFinish() {
+                timerText.setVisibility(View.INVISIBLE);
+                wheel.setVisibility(View.INVISIBLE);
+                watchVideoButton.setEnabled(true);
+                videoDelay = 0;
+            }
+        };
     }
 }
