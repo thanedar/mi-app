@@ -43,6 +43,8 @@ public class FragmentVideoAd extends Fragment {
     ButtonFolks watchVideoButton;
     @InjectView(R.id.timer_text)
     TextView timerText;
+    @InjectView(R.id.video_info)
+    TextView timerInfo;
     @InjectView(R.id.video_timer)
     RelativeLayout timerLayout;
 
@@ -77,6 +79,7 @@ public class FragmentVideoAd extends Fragment {
         ButterKnife.inject(this, view);
 
 //        watchVideoButton.setEnabled(false);
+        timerInfo.setVisibility(View.INVISIBLE);
         timerText.setVisibility(View.INVISIBLE);
         wheel.setVisibility(View.INVISIBLE);
         wheel.setMax(Config.VIDEO_TIMER_DELAY);
@@ -145,6 +148,7 @@ public class FragmentVideoAd extends Fragment {
     public void disableWatchWithDelay() {
         MiLog.i(TAG, "Disable watch video button, start timer countdown");
         watchVideoButton.setEnabled(false);
+        timerInfo.setVisibility(View.VISIBLE);
         timerText.setVisibility(View.VISIBLE);
         wheel.setVisibility(View.VISIBLE);
         timer.start();
@@ -154,6 +158,7 @@ public class FragmentVideoAd extends Fragment {
         if(videoDelay == 0) {
             MiLog.i(TAG, "Enable watch video button");
             watchVideoButton.setEnabled(true);
+            timerInfo.setVisibility(View.INVISIBLE);
             timerText.setVisibility(View.INVISIBLE);
             wheel.setVisibility(View.INVISIBLE);
         }
@@ -161,7 +166,7 @@ public class FragmentVideoAd extends Fragment {
 
     private void startTimer(long delay){
         if(delay == 0)
-            delay = Config.VIDEO_TIMER_DELAY * 1000;
+            delay = Config.VIDEO_TIMER_DELAY;
 
         if(timer != null) {
             timer.cancel();
@@ -173,7 +178,7 @@ public class FragmentVideoAd extends Fragment {
 
             public void onTick(long millisUntilFinished) {
                 timerText.setText(getString(R.string.communicate_video_timer, millisUntilFinished / (60 * 1000), (millisUntilFinished / 1000) % 60 ));
-                wheel.setProgress((int) millisUntilFinished / 1000);
+                wheel.setProgress((int) millisUntilFinished);
                 videoDelay = millisUntilFinished;
             }
 

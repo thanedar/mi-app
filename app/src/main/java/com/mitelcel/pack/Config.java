@@ -47,7 +47,7 @@ public class Config {
     public static final String ADCOLONY_APP_ID = "app5ee323996bd043da8c";
     public static final String ADCOLONY_ZONE_ID = "vz8d327906cf784b51a5";
 
-    public static final int VIDEO_TIMER_DELAY = 30; // Delay before showing video ad
+    public static final int VIDEO_TIMER_DELAY = 1 * 60 * 1000; // <-- minutes * seconds * millis - Delay before showing video ad in milliseconds
 
     /**
      * HTML

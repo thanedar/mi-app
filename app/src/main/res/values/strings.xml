@@ -141,6 +141,7 @@
     <string name="warning">Warning</string>
 
     <string name="communicate_send_sms">Click here to send a SMS to friend!</string>
+    <string name="communicate_video_info">You need to wait some time before you can view another video</string>
     <string name="communicate_video_offer">Click here to watch short video and earn balance!</string>
     <string name="communicate_video_timer">%1$02d : %2$02d</string>
     <string name="communicate_watch_video">Watch video</string>

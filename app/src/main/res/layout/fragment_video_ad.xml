@@ -12,9 +12,20 @@
         android:padding="@dimen/padding_label"
         android:text="@string/communicate" />
 
+    <com.mitelcel.pack.ui.widget.TextViewFolks
+        android:id="@+id/video_info"
+        style="@style/Theme.App.Fragment.Title.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_communicate"
+        android:padding="@dimen/margin_medium"
+        android:gravity="center"
+        android:text="@string/communicate_video_info"
+        android:textSize="16sp" />
+
     <RelativeLayout
         android:id="@+id/video_timer"
-        android:layout_below="@id/label_communicate"
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center" >
@@ -48,9 +59,10 @@
         style="@style/Theme.App.ButtonFolks.Positive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/video_timer"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_large"
         android:padding="@dimen/padding_label"
         android:text="@string/communicate_watch_video" />
 
