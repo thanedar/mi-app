@@ -84,7 +84,15 @@ public class FragmentVideoAd extends Fragment {
         wheel.setVisibility(View.INVISIBLE);
         wheel.setMax(Config.VIDEO_TIMER_DELAY);
 
-        videoDelay = MiUtils.MiAppPreferences.getVideoDelay();
+        long delay = MiUtils.MiAppPreferences.getVideoDelay();
+        if (delay == 0 || System.currentTimeMillis() >= delay + Config.VIDEO_TIMER_DELAY){
+            MiLog.i(TAG, "onCreateView 1 delay: " + delay + " and current " + System.currentTimeMillis());
+            videoDelay = 0;
+        }
+        else {
+            MiLog.i(TAG, "onCreateView 2 delay: " + delay + " and current " + System.currentTimeMillis());
+            videoDelay = Config.VIDEO_TIMER_DELAY - (System.currentTimeMillis() - delay);
+        }
 
         return view;
     }
@@ -97,7 +105,6 @@ public class FragmentVideoAd extends Fragment {
             timer.cancel();
             timer = null;
         }
-        MiUtils.MiAppPreferences.setVideoDelay(videoDelay);
     }
 
     @Override
@@ -112,7 +119,6 @@ public class FragmentVideoAd extends Fragment {
     public void onWatchVideoPressed(View view) {
         MiLog.i(TAG, "onWatchVideoPressed timer RESET");
         videoDelay = 0;
-        MiUtils.MiAppPreferences.setVideoDelay(videoDelay);
 
         if (mListener != null) {
             mListener.onWatchVideoClick();

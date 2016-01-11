@@ -173,6 +173,7 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
 
         if(ad.shown()){
             MiLog.i(TAG, "onAdColonyAdAttemptFinished ad shown call started");
+            MiUtils.MiAppPreferences.setVideoDelay(System.currentTimeMillis());
 
             float amount = 0.25f;
             BeanRechargeAccount beanRechargeAccount = new BeanRechargeAccount(amount);
