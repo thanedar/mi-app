@@ -193,7 +193,7 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
 
                             FragmentVideoAd videoAd = (FragmentVideoAd) getSupportFragmentManager().findFragmentByTag(FragmentVideoAd.TAG);
                             if(videoAd != null){
-                                videoAd.disableWatch();
+                                videoAd.disableWatchWithDelay();
                             }
 
                         } else {

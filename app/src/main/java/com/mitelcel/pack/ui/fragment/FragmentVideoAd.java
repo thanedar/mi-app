@@ -82,7 +82,6 @@ public class FragmentVideoAd extends Fragment {
         wheel.setMax(Config.VIDEO_TIMER_DELAY);
 
         videoDelay = MiUtils.MiAppPreferences.getVideoDelay();
-        startTimer(videoDelay);
 
         return view;
     }
@@ -90,23 +89,26 @@ public class FragmentVideoAd extends Fragment {
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        timer.cancel();
-        timer = null;
+        if(timer != null) {
+            MiLog.i(TAG, "onDestroyView destroy timer");
+            timer.cancel();
+            timer = null;
+        }
         MiUtils.MiAppPreferences.setVideoDelay(videoDelay);
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        if(videoDelay != 0) disableWatch();
+        MiLog.i(TAG, "onResume timer for " + videoDelay);
+        startTimer(videoDelay);
+        if(videoDelay != 0) disableWatchWithDelay();
     }
 
     @OnClick(R.id.watch_video_btn)
     public void onWatchVideoPressed(View view) {
-        MiLog.i("FragmentVideoAd", "Video btn clicked for " + view.getId());
-
+        MiLog.i(TAG, "onWatchVideoPressed timer RESET");
         videoDelay = 0;
-        startTimer(videoDelay);
         MiUtils.MiAppPreferences.setVideoDelay(videoDelay);
 
         if (mListener != null) {
@@ -138,22 +140,35 @@ public class FragmentVideoAd extends Fragment {
     public void disableWatch() {
         MiLog.i(TAG, "Disable watch video button");
         watchVideoButton.setEnabled(false);
+    }
+
+    public void disableWatchWithDelay() {
+        MiLog.i(TAG, "Disable watch video button, start timer countdown");
+        watchVideoButton.setEnabled(false);
         timerText.setVisibility(View.VISIBLE);
         wheel.setVisibility(View.VISIBLE);
         timer.start();
     }
 
     public void enableWatch() {
-        MiLog.i(TAG, "Enable watch video button");
-        watchVideoButton.setEnabled(true);
-        timerText.setVisibility(View.INVISIBLE);
-        wheel.setVisibility(View.INVISIBLE);
+        if(videoDelay == 0) {
+            MiLog.i(TAG, "Enable watch video button");
+            watchVideoButton.setEnabled(true);
+            timerText.setVisibility(View.INVISIBLE);
+            wheel.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void startTimer(long delay){
         if(delay == 0)
             delay = Config.VIDEO_TIMER_DELAY * 1000;
 
+        if(timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+
+        MiLog.i(TAG, "start timer " + delay);
         timer = new CountDownTimer(delay, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -163,10 +178,8 @@ public class FragmentVideoAd extends Fragment {
             }
 
             public void onFinish() {
-                timerText.setVisibility(View.INVISIBLE);
-                wheel.setVisibility(View.INVISIBLE);
-                watchVideoButton.setEnabled(true);
                 videoDelay = 0;
+                enableWatch();
             }
         };
     }
