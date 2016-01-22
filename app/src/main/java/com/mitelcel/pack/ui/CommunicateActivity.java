@@ -45,6 +45,7 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     MiApiClient miApiClient;
 
     private AdColonyVideoAd ad;
+    private boolean watchClick = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     @Override
     public void onWatchVideoClick(){
         MiLog.i(TAG, "onWatchVideoClick event");
+        watchClick = true;
 
         if(ad.isReady()){
             dialog.hide();
@@ -148,7 +150,9 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
             if (available) {
                 if(dialog.isShowing()) {
                     dialog.hide();
-                    ad.show();
+                    if(watchClick) {
+                        ad.show();
+                    }
                 } else if (videoAd != null) {
                     videoAd.enableWatch();
                 }
@@ -175,6 +179,11 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
             MiLog.i(TAG, "onAdColonyAdAttemptFinished ad shown call started");
             MiUtils.MiAppPreferences.setVideoDelay(System.currentTimeMillis());
 
+            FragmentVideoAd videoAd = (FragmentVideoAd) getSupportFragmentManager().findFragmentByTag(FragmentVideoAd.TAG);
+            if(videoAd != null){
+                videoAd.disableWatchWithDelay();
+            }
+
             float amount = 0.25f;
             BeanRechargeAccount beanRechargeAccount = new BeanRechargeAccount(amount);
 
@@ -192,26 +201,21 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
                             showDialogSuccessCall(getString(R.string.communicate_success, MiUtils.MiAppPreferences.getCurrencySymbol(), amount),
                                     getString(R.string.close), DialogActivity.DIALOG_HIDDEN_ICO);
 
-                            FragmentVideoAd videoAd = (FragmentVideoAd) getSupportFragmentManager().findFragmentByTag(FragmentVideoAd.TAG);
-                            if(videoAd != null){
-                                videoAd.disableWatchWithDelay();
-                            }
-
                         } else {
-                            MiLog.i("Recharge", "Recharge API Error response " + beanRechargeAccountResponse.toString());
-                            showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                            MiLog.i(TAG, "Video bonus recharge API Error response " + beanRechargeAccountResponse.toString());
+//                            showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                         }
                     } else {
-                        MiLog.i("Recharge", "Recharge API NULL response");
-                        showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                        MiLog.i(TAG, "Video bonus recharge API NULL response");
+//                        showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                     }
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     dialog.dismiss();
-                    MiLog.i("Logout", "Logout failure " + error.toString());
-                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
+                    MiLog.i(TAG, "Video bonus API failure " + error.toString());
+//                    showDialogErrorCall(getString(R.string.something_is_wrong), getString(R.string.retry), DialogActivity.DIALOG_HIDDEN_ICO, DialogActivity.APP_REQ);
                 }
             });
         }
@@ -221,6 +225,6 @@ public class CommunicateActivity extends BaseActivity implements OnDialogListene
     public void onAdColonyAdStarted( AdColonyAd ad )
     {
         //Called when the ad has started playing
+        watchClick = false;
     }
-
 }

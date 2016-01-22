@@ -78,7 +78,7 @@ public class FragmentVideoAd extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video_ad, container, false);
         ButterKnife.inject(this, view);
 
-//        watchVideoButton.setEnabled(false);
+        watchVideoButton.setVisibility(View.VISIBLE);
         timerInfo.setVisibility(View.INVISIBLE);
         timerText.setVisibility(View.INVISIBLE);
         wheel.setVisibility(View.INVISIBLE);
@@ -120,6 +120,7 @@ public class FragmentVideoAd extends Fragment {
         MiLog.i(TAG, "onWatchVideoPressed timer RESET");
         videoDelay = 0;
 
+        watchVideoButton.setVisibility(View.INVISIBLE);
         if (mListener != null) {
             mListener.onWatchVideoClick();
         }
@@ -154,6 +155,7 @@ public class FragmentVideoAd extends Fragment {
     public void disableWatchWithDelay() {
         MiLog.i(TAG, "Disable watch video button, start timer countdown");
         watchVideoButton.setEnabled(false);
+        watchVideoButton.setVisibility(View.INVISIBLE);
         timerInfo.setVisibility(View.VISIBLE);
         timerText.setVisibility(View.VISIBLE);
         wheel.setVisibility(View.VISIBLE);
@@ -164,6 +166,7 @@ public class FragmentVideoAd extends Fragment {
         if(videoDelay == 0) {
             MiLog.i(TAG, "Enable watch video button");
             watchVideoButton.setEnabled(true);
+            watchVideoButton.setVisibility(View.VISIBLE);
             timerInfo.setVisibility(View.INVISIBLE);
             timerText.setVisibility(View.INVISIBLE);
             wheel.setVisibility(View.INVISIBLE);
