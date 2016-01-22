@@ -69,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.END | Gravity.CENTER_VERTICAL);
 
         layoutParams.rightMargin = 40;
         actionbarBalance.setLayoutParams(layoutParams);

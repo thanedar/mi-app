@@ -30,7 +30,7 @@ public class SplashScreenTest extends ActivityInstrumentationTestCase2<SplashScr
         splashScreen = getActivity();
         rootActivity = splashScreen.getWindow().getDecorView();
         pref = PreferenceManager.getDefaultSharedPreferences(splashScreen);
-        pref.edit().clear().commit();
+        pref.edit().clear().apply();
     }
 
 //    public void testPreconditions(){

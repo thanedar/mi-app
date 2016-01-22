@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            android:text="Rewards Title"
+            android:text="@string/your_offer"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/white"
             android:textSize="@dimen/title_text_game_size"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="3"
-            android:text="Rewards Description"
+            android:text="@string/sample_offer"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/white"
             android:textSize="@dimen/description_game_size" />

@@ -37,7 +37,7 @@ public class LoginOrRegisterTest extends ActivityInstrumentationTestCase2<LoginO
         loginOrRegister = getActivity();
         rootActivity = loginOrRegister.getWindow().getDecorView();
         pref = PreferenceManager.getDefaultSharedPreferences(loginOrRegister);
-        pref.edit().clear().commit();
+        pref.edit().clear().apply();
     }
 
     public void testCheckToken() throws Exception{

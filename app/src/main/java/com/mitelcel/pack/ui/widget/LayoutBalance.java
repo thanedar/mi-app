@@ -84,9 +84,8 @@ public class LayoutBalance extends FrameLayout
 
     private void setCurrentBalance(){
         textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cash, 0, 0, 0);
-        String symbol = MiUtils.MiAppPreferences.getCurrencySymbol();
-        String value = MiUtils.MiAppPreferences.getCurrentBalanceString();
-        textView.setText(symbol + value);
+        String value = MiUtils.MiAppPreferences.getCurrencySymbol() + MiUtils.MiAppPreferences.getCurrentBalanceString();
+        textView.setText(value);
     }
 
     public void hideProgressBar(){

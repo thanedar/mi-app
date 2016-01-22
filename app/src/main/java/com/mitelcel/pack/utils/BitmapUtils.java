@@ -38,7 +38,7 @@ public class BitmapUtils {
             "and they scattered.",
     };
 
-    static HashMap<Integer, Bitmap> sBitmapResourceMap = new HashMap<Integer, Bitmap>();
+    static HashMap<Integer, Bitmap> sBitmapResourceMap = new HashMap<>();
 
     /**
      * Utility method to get bitmap from cache or, if not there, load it
